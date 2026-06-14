@@ -1,0 +1,78 @@
+municipality: mijas
+version: v1
+source: user_provided_historical_context
+status: internal_context
+hypotheses:
+  - id: psoe_local_floor_strength
+    label: PSOE Local Floor Strength
+    type: contextual_prior
+    applies_to: PSOE
+    expected_effect: positive
+    confidence: medium
+    evidence_type: historical_context_and_municipal_results
+    model_use: adjust_party_floor
+    caution: "Do not treat as deterministic. Validate against election data."
+  - id: pp_brand_reserve
+    label: PP Brand Reserve
+    type: contextual_prior
+    applies_to: PP
+    expected_effect: positive
+    confidence: medium_high_if_supported_by_data
+    evidence_type: compare_municipal_vs_regional_national_results
+    model_use: estimate_pp_recovery_potential
+    caution: "Only apply where data confirms PP underperformance in municipal elections."
+  - id: pp_candidate_reset_potential
+    label: PP Candidate Reset Potential
+    type: contextual_prior
+    applies_to: PP
+    expected_effect: positive
+    confidence: medium
+    evidence_type: leadership_change_context
+    model_use: candidate_contextual_adjustment
+    caution: "Use as a limited hypothesis-based adjustment and moderate with uncertainty."
+  - id: conservative_localist_split_risk
+    label: Conservative Localist Split Risk
+    type: contextual_prior
+    applies_to: PP
+    expected_effect: negative
+    confidence: medium_low
+    evidence_type: possible_new_localist_supply
+    model_use: uncertainty_and_fragmentation_adjustment
+    active: false
+    caution: "Only activate after candidate or party supply is human-confirmed."
+  - id: cs_orphan_vote_pool
+    label: Cs Orphan Vote Pool
+    type: transfer_pool
+    applies_to: CS
+    expected_effect: uncertain
+    confidence: medium
+    evidence_type: observed_electoral_decline
+    model_use: vote_transfer_uncertainty
+    caution: "Do not distribute mechanically."
+  - id: pmp_localist_transfer_pool
+    label: Por Mi Pueblo Localist Transfer Pool
+    type: transfer_pool
+    applies_to: PMP
+    expected_effect: uncertain
+    confidence: medium_low
+    evidence_type: observed_2023_localist_vote
+    model_use: localist_transfer_uncertainty
+    caution: "Personalist or localist vote may transfer, persist or abstain."
+  - id: vox_national_anchor
+    label: VOX National Anchor
+    type: contextual_prior
+    applies_to: VOX
+    expected_effect: stabilizing
+    confidence: medium
+    evidence_type: compare_municipal_vs_regional_national_results
+    model_use: blend_municipal_with_regional_national_signal
+    caution: "Avoid purely local explanation."
+  - id: territorial_cluster_effect
+    label: Territorial Cluster Effect
+    type: spatial_context
+    applies_to: all
+    expected_effect: heterogeneous
+    confidence: medium_high
+    evidence_type: internal_expert_context_and_gis_labels
+    model_use: cluster_level_adjustments
+    caution: "Use clusters as priors, not deterministic labels."

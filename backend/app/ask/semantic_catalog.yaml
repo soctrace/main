@@ -1,0 +1,570 @@
+version: 2
+
+entities:
+  section:
+    label: Seccion censal
+    id_field: section_id
+  municipality:
+    label: Municipio
+    id_field: municipio_id
+  party:
+    label: Partido
+    id_field: canonical_party
+  election:
+    label: Eleccion
+    id_field: election_id
+  age_group:
+    label: Grupo de edad
+    id_field: age_cohort
+  housing_zone:
+    label: Zona residencial
+    id_field: section_id
+
+views:
+  agent_section_profile:
+    source: marts.agent_section_profile
+    grain: municipio_id + section_id + year
+    fields: [municipio_id, municipio_nombre, section_id, section_name, year, population_total, population_density, average_age, population_under_18, population_under_18_pct, population_under_30, population_under_30_pct, population_over_65, population_over_65_pct, income_individual, income_household, participation_pct, abstention_pct, winner_party, built_footprint, parcel_density, building_intensity, estimated_real_estate_value_m2, market_price_estimated_m2, housing_pressure_label]
+  agent_population_age:
+    source: marts.agent_population_age
+    grain: municipio_id + section_id + year + gender + age_cohort
+    fields: [municipio_id, municipio_nombre, section_id, section_name, year, gender, age_cohort, age_min, age_max, people]
+  agent_electoral_results:
+    source: marts.agent_electoral_results
+    grain: municipio_id + section_id + election_id + canonical_party
+    fields: [municipio_id, municipio_nombre, section_id, section_name, election_id, election_type, election_year, election_month, election_label, party, canonical_party, votes, valid_votes, vote_pct]
+  agent_electoral_summary:
+    source: marts.agent_electoral_summary
+    grain: municipio_id + section_id + election_id
+    fields: [municipio_id, municipio_nombre, section_id, section_name, election_id, election_type, election_year, election_label, census, valid_votes, total_votes, participation_pct, abstention_pct, winner_party, winner_vote_pct, second_party, second_vote_pct, margin_pct]
+  agent_income_sources:
+    source: marts.agent_income_sources
+    grain: municipio_id + section_id + year
+    fields: [municipio_id, municipio_nombre, section_id, section_name, year, income_individual, income_household, salary_share, pension_share, unemployment_share, other_income_share]
+  agent_housing_profile:
+    source: marts.agent_housing_profile
+    grain: municipio_id + section_id + year
+    fields: [municipio_id, municipio_nombre, section_id, section_name, year, parcel_density, built_footprint, avg_plot_size, building_intensity, estimated_cadastral_value_m2, market_price_estimated_m2, market_to_cadastral_ratio, housing_classification, residential_pressure_index]
+  agent_section_lookup:
+    source: marts.agent_section_lookup
+    grain: municipio_id + section_id
+    fields: [municipio_id, municipio_nombre, section_id, section_number, section_name, display_name]
+  mv_electoral_behavior:
+    source: marts.mv_electoral_behavior
+    grain: election_id + seccion_id
+    fields: [election_id, tipo_eleccion_code, tipo_eleccion_nombre, anio, seccion_id, left_bloc_pct, right_bloc_pct, local_vote_pct, national_vote_pct]
+
+metrics:
+  population_total: &population_metric
+    label: Poblacion total
+    description: Personas residentes en la seccion.
+    view: marts.agent_section_profile
+    field: population_total
+    entity: section
+    type: integer
+    default_operation: rank_sections
+    default_order: desc
+    synonyms_es: [mayor poblacion, mas poblacion, mas habitantes, seccion mas poblada, menor poblacion, menos habitantes, habitantes, poblacion total]
+    synonyms_en: [largest population, most populated, population total]
+    supported_operations: [rank_sections, aggregate_municipality, compare_years, filter_sections, population_growth, cross_metric_ranking]
+    caveats: []
+  population_density:
+    <<: *population_metric
+    label: Densidad de poblacion
+    description: Habitantes por superficie de la seccion.
+    field: population_density
+    type: numeric
+    synonyms_es: [densidad de poblacion, zonas mas densas, mayor densidad]
+    synonyms_en: [population density, densest areas]
+    supported_operations: [rank_sections]
+  population_under_18:
+    <<: *population_metric
+    label: Poblacion menor de 18
+    description: Personas residentes menores de edad.
+    field: population_under_18
+    synonyms_es: [menores, menores de edad, menores de 18, poblacion menor de 18]
+    synonyms_en: [under 18, minors]
+  population_under_30:
+    <<: *population_metric
+    label: Poblacion menor de 30
+    description: Personas residentes menores de 30 anos.
+    field: population_under_30
+    synonyms_es: [jovenes, poblacion joven, poblacion menor de 30, poblacion menor de 30 anos, mas poblacion joven, concentran mas jovenes, mas jovenes, menores de 30]
+    synonyms_en: [young people, under 30, youth population]
+    caveats: [Jovenes se interpreta como menores de 30 salvo que la pregunta indique otra edad.]
+  population_over_65:
+    <<: *population_metric
+    label: Poblacion mayor de 65
+    description: Personas residentes de 65 anos o mas.
+    field: population_over_65
+    synonyms_es: [jubilados, mayores, mayores de 65, personas mayores, tercera edad, poblacion senior, pensionistas]
+    synonyms_en: [over 65, seniors, elderly, retirees]
+    caveats: [Jubilados se usa como proxy de edad mayor de 65, no como estado real de pension.]
+  population_under_18_pct:
+    <<: *population_metric
+    label: Porcentaje menor de 18
+    description: Peso porcentual de menores de 18 anos.
+    field: population_under_18_pct
+    type: numeric
+    synonyms_es: [porcentaje de menores, peso de menores, porcentaje menores de 18]
+    synonyms_en: [under 18 share, minors percentage]
+  population_under_30_pct:
+    <<: *population_metric
+    label: Porcentaje menor de 30
+    description: Peso porcentual de menores de 30 anos.
+    field: population_under_30_pct
+    type: numeric
+    synonyms_es: [porcentaje de jovenes, peso joven, porcentaje poblacion joven, porcentaje menores de 30]
+    synonyms_en: [youth share, under 30 percentage]
+  population_over_65_pct:
+    <<: *population_metric
+    label: Porcentaje mayor de 65
+    description: Peso porcentual de poblacion de 65 anos o mas.
+    field: population_over_65_pct
+    type: numeric
+    synonyms_es: [porcentaje de mayores, peso de mayores, porcentaje mayores de 65, peso senior]
+    synonyms_en: [senior share, over 65 percentage]
+    caveats: [No mide pensionistas reales.]
+  average_age:
+    label: Edad media
+    description: Edad media estimada de residentes de la seccion.
+    view: marts.agent_section_profile
+    field: average_age
+    entity: section
+    type: numeric
+    default_operation: rank_sections
+    default_order: asc
+    synonyms_es: [seccion mas joven, mas joven, seccion mas envejecida, mas envejecida, edad media, ha rejuvenecido, rejuvenecimiento, ha envejecido, envejecimiento, evolucion de la edad]
+    synonyms_en: [youngest section, oldest section, average age]
+    supported_operations: [rank_sections, compare_years]
+    caveats: [Mas joven se ordena por edad media ascendente, no por volumen de jovenes.]
+  income_individual:
+    label: Renta individual
+    description: Renta media por persona.
+    view: marts.agent_income_sources
+    field: income_individual
+    entity: section
+    type: numeric
+    default_operation: rank_sections
+    default_order: desc
+    synonyms_es: [renta, renta individual, seccion mas rica, zona mas rica, seccion mas pobre, zona mas pobre, renta media]
+    synonyms_en: [income, individual income, richest section, poorest section]
+    supported_operations: [rank_sections, cross_metric_ranking]
+    caveats: []
+  income_household:
+    label: Renta del hogar
+    description: Renta media por hogar.
+    view: marts.agent_income_sources
+    field: income_household
+    entity: section
+    type: numeric
+    default_operation: rank_sections
+    default_order: desc
+    synonyms_es: [renta del hogar, renta familiar, renta por hogar]
+    synonyms_en: [household income]
+    supported_operations: [rank_sections]
+    caveats: []
+  salary_share:
+    label: Peso de salarios
+    description: Porcentaje de renta procedente de salarios.
+    view: marts.agent_income_sources
+    field: salary_share
+    entity: section
+    type: numeric
+    default_operation: rank_sections
+    default_order: desc
+    synonyms_es: [salarios, peso de salarios]
+    synonyms_en: [salary share, wages]
+    supported_operations: [rank_sections]
+    caveats: []
+  pension_share:
+    label: Peso de pensiones
+    description: Porcentaje de renta procedente de pensiones.
+    view: marts.agent_income_sources
+    field: pension_share
+    entity: section
+    type: numeric
+    default_operation: rank_sections
+    default_order: desc
+    synonyms_es: [peso de pensiones, pensiones, pensionistas]
+    synonyms_en: [pension share]
+    supported_operations: [rank_sections]
+    caveats: [Mide peso de rentas por pensiones, no numero de pensionistas.]
+  unemployment_share:
+    label: Peso del desempleo
+    description: Porcentaje de renta procedente de prestaciones por desempleo.
+    view: marts.agent_income_sources
+    field: unemployment_share
+    entity: section
+    type: numeric
+    default_operation: rank_sections
+    default_order: desc
+    synonyms_es: [desempleo, peso del desempleo, paro]
+    synonyms_en: [unemployment share]
+    supported_operations: [rank_sections]
+    caveats: []
+  vote_pct:
+    label: Porcentaje de voto
+    description: Porcentaje de voto valido de un partido en una eleccion.
+    view: marts.agent_electoral_results
+    field: vote_pct
+    entity: party
+    type: numeric
+    default_operation: party_strength
+    default_order: desc
+    synonyms_es: [voto al pp, voto al psoe, voto a vox, fortaleza electoral, mas fuerte, favorable al]
+    synonyms_en: [party vote share, strongest]
+    supported_operations: [party_strength, historical_party_average, cross_metric_ranking]
+    caveats: [Requiere partido cuando la pregunta no lo indique implicitamente.]
+  winner_party:
+    label: Partido ganador
+    description: Primera fuerza por seccion y eleccion.
+    view: marts.agent_electoral_summary
+    field: winner_party
+    entity: party
+    type: string
+    default_operation: persistent_winner
+    default_order: desc
+    synonyms_es: [gana, gana siempre, primera fuerza, partido ganador, mas votado, historicamente mas votado, domina historicamente]
+    synonyms_en: [winner party, always wins, dominant party]
+    supported_operations: [persistent_winner, historical_party_average]
+    caveats: []
+  participation_pct:
+    label: Participacion
+    description: Porcentaje de participacion electoral.
+    view: marts.agent_electoral_summary
+    field: participation_pct
+    entity: section
+    type: numeric
+    default_operation: rank_sections
+    default_order: desc
+    synonyms_es: [participacion, donde vota mas la gente, donde vota menos la gente]
+    synonyms_en: [turnout, participation]
+    supported_operations: [rank_sections, compare_years]
+    caveats: []
+  abstention_pct:
+    label: Abstencion
+    description: Porcentaje de abstencion electoral.
+    view: marts.agent_electoral_summary
+    field: abstention_pct
+    entity: section
+    type: numeric
+    default_operation: rank_sections
+    default_order: desc
+    synonyms_es: [abstencion, no vota, donde vota menos la gente]
+    synonyms_en: [abstention]
+    supported_operations: [rank_sections, cross_metric_ranking]
+    caveats: []
+  left_bloc_pct:
+    label: Voto de izquierdas
+    description: Peso agregado de candidaturas del bloque progresista.
+    view: marts.mv_electoral_behavior
+    field: left_bloc_pct
+    entity: section
+    type: numeric
+    default_operation: cross_metric_ranking
+    default_order: desc
+    synonyms_es: [voto de izquierdas, izquierda, voto progresista, bloque progresista]
+    synonyms_en: [left vote, progressive vote]
+    supported_operations: [cross_metric_ranking]
+    caveats: [Agrupa candidaturas por bloque ideologico; no describe voto individual.]
+  right_bloc_pct:
+    label: Voto de derechas
+    description: Peso agregado de candidaturas del bloque conservador.
+    view: marts.mv_electoral_behavior
+    field: right_bloc_pct
+    entity: section
+    type: numeric
+    default_operation: cross_metric_ranking
+    default_order: desc
+    synonyms_es: [voto de derechas, derecha, voto conservador, bloque conservador]
+    synonyms_en: [right vote, conservative vote]
+    supported_operations: [cross_metric_ranking]
+    caveats: [Agrupa candidaturas por bloque ideologico; no describe voto individual.]
+  local_vote_pct:
+    label: Voto localista
+    description: Peso de candidaturas de ambito local.
+    view: marts.mv_electoral_behavior
+    field: local_vote_pct
+    entity: section
+    type: numeric
+    default_operation: cross_metric_ranking
+    default_order: desc
+    synonyms_es: [voto localista, partidos locales, voto local]
+    synonyms_en: [local vote]
+    supported_operations: [cross_metric_ranking]
+    caveats: []
+  national_vote_pct:
+    label: Voto a partidos nacionales
+    description: Peso de candidaturas de ambito estatal.
+    view: marts.mv_electoral_behavior
+    field: national_vote_pct
+    entity: section
+    type: numeric
+    default_operation: cross_metric_ranking
+    default_order: desc
+    synonyms_es: [voto nacional, partidos nacionales]
+    synonyms_en: [national vote]
+    supported_operations: [cross_metric_ranking]
+    caveats: []
+  winner_vote_pct:
+    label: Porcentaje del ganador
+    description: Porcentaje obtenido por la primera fuerza.
+    view: marts.agent_electoral_summary
+    field: winner_vote_pct
+    entity: section
+    type: numeric
+    default_operation: rank_sections
+    default_order: desc
+    synonyms_es: [porcentaje del ganador, voto ganador]
+    synonyms_en: [winner vote share]
+    supported_operations: [rank_sections]
+    caveats: []
+  margin_pct:
+    label: Margen electoral
+    description: Diferencia porcentual entre primera y segunda fuerza.
+    view: marts.agent_electoral_summary
+    field: margin_pct
+    entity: section
+    type: numeric
+    default_operation: rank_sections
+    default_order: asc
+    synonyms_es: [margen, secciones disputadas, competitividad, mas disputadas]
+    synonyms_en: [margin, competitive sections]
+    supported_operations: [rank_sections]
+    caveats: [Menor margen implica mayor competicion.]
+  market_price_estimated_m2:
+    label: Valor inmobiliario estimado por m2
+    description: Valor de mercado estimado por metro cuadrado.
+    view: marts.agent_housing_profile
+    field: market_price_estimated_m2
+    entity: housing_zone
+    type: numeric
+    default_operation: rank_sections
+    default_order: desc
+    synonyms_es: [valor inmobiliario, precio por metro cuadrado, valor de mercado]
+    synonyms_en: [real estate value, market price per sqm]
+    supported_operations: [rank_sections, cross_metric_ranking]
+    caveats: [Estimacion modelizada, no tasacion individual.]
+  estimated_cadastral_value_m2:
+    label: Valor catastral estimado por m2
+    description: Valor catastral estimado por metro cuadrado.
+    view: marts.agent_housing_profile
+    field: estimated_cadastral_value_m2
+    entity: housing_zone
+    type: numeric
+    default_operation: rank_sections
+    default_order: desc
+    synonyms_es: [valor catastral]
+    synonyms_en: [cadastral value]
+    supported_operations: [rank_sections]
+    caveats: []
+  market_to_cadastral_ratio:
+    label: Ratio mercado catastral
+    description: Relacion entre valor de mercado estimado y valor catastral.
+    view: marts.agent_housing_profile
+    field: market_to_cadastral_ratio
+    entity: housing_zone
+    type: numeric
+    default_operation: rank_sections
+    default_order: desc
+    synonyms_es: [oportunidad inmobiliaria, infravalorada]
+    synonyms_en: [market to cadastral ratio]
+    supported_operations: [rank_sections]
+    caveats: []
+  residential_pressure_index:
+    label: Presion residencial
+    description: Indice de tension residencial.
+    view: marts.agent_housing_profile
+    field: residential_pressure_index
+    entity: housing_zone
+    type: numeric
+    default_operation: rank_sections
+    default_order: desc
+    synonyms_es: [presion residencial, zona sobrecalentada, mercado tensionado, presion urbanistica]
+    synonyms_en: [residential pressure, housing pressure]
+    supported_operations: [rank_sections]
+    caveats: []
+  building_intensity:
+    label: Intensidad construida
+    description: Intensidad edificatoria de la seccion.
+    view: marts.agent_housing_profile
+    field: building_intensity
+    entity: housing_zone
+    type: numeric
+    default_operation: rank_sections
+    default_order: desc
+    synonyms_es: [intensidad construida, intensidad edificatoria]
+    synonyms_en: [building intensity]
+    supported_operations: [rank_sections]
+    caveats: []
+  parcel_density:
+    label: Densidad parcelaria
+    description: Densidad de parcelas.
+    view: marts.agent_housing_profile
+    field: parcel_density
+    entity: housing_zone
+    type: numeric
+    default_operation: rank_sections
+    default_order: desc
+    synonyms_es: [densidad parcelaria]
+    synonyms_en: [parcel density]
+    supported_operations: [rank_sections]
+    caveats: []
+  built_footprint:
+    label: Huella construida
+    description: Superficie o huella construida agregada.
+    view: marts.agent_housing_profile
+    field: built_footprint
+    entity: housing_zone
+    type: numeric
+    default_operation: rank_sections
+    default_order: desc
+    synonyms_es: [superficie construida, huella construida]
+    synonyms_en: [built footprint]
+    supported_operations: [rank_sections]
+    caveats: []
+  avg_plot_size:
+    label: Tamano medio de parcela
+    description: Tamano medio de parcela.
+    view: marts.agent_housing_profile
+    field: avg_plot_size
+    entity: housing_zone
+    type: numeric
+    default_operation: rank_sections
+    default_order: desc
+    synonyms_es: [tamano medio de parcela, parcela media]
+    synonyms_en: [average plot size]
+    supported_operations: [rank_sections]
+    caveats: []
+
+operations:
+  rank_sections:
+    required_inputs: [metric, municipality_id]
+    optional_inputs: [year, election_type, party, filters, order, limit]
+    default_limit: 1
+    supported_metrics: [population_total, population_density, population_under_18, population_under_30, population_over_65, population_under_18_pct, population_under_30_pct, population_over_65_pct, average_age, income_individual, income_household, salary_share, pension_share, unemployment_share, participation_pct, abstention_pct, winner_vote_pct, margin_pct, market_price_estimated_m2, estimated_cadastral_value_m2, market_to_cadastral_ratio, residential_pressure_index, building_intensity, parcel_density, built_footprint, avg_plot_size]
+    output_type: single_entity_or_ranking
+    chart_type: bar
+  aggregate_municipality:
+    required_inputs: [metric, municipality_id]
+    optional_inputs: [year, filters]
+    default_limit: 1
+    supported_metrics: [population_total, population_under_18, population_under_30, population_over_65, population_under_18_pct, population_under_30_pct, population_over_65_pct]
+    output_type: single_value
+    chart_type: none
+  compare_years:
+    required_inputs: [metric, municipality_id]
+    optional_inputs: [start_year, end_year, direction, order, limit]
+    default_limit: 5
+    supported_metrics: [population_total, average_age, participation_pct, abstention_pct]
+    output_type: ranking_or_trend
+    chart_type: line
+  filter_sections:
+    required_inputs: [metric, municipality_id, filters]
+    optional_inputs: [year, limit]
+    default_limit: 50
+    supported_metrics: [population_total]
+    output_type: table
+    chart_type: bar
+  section_profile:
+    required_inputs: [section_id, municipality_id]
+    optional_inputs: [year]
+    default_limit: 1
+    supported_metrics: [population_total, average_age, income_individual, abstention_pct, market_price_estimated_m2]
+    output_type: profile
+    chart_type: none
+  party_strength:
+    required_inputs: [party, municipality_id]
+    optional_inputs: [election_type, year, limit]
+    default_limit: 1
+    supported_metrics: [vote_pct]
+    output_type: ranking
+    chart_type: bar
+  persistent_winner:
+    required_inputs: [party, municipality_id]
+    optional_inputs: [election_type]
+    default_limit: 50
+    supported_metrics: [winner_party]
+    output_type: entity_list
+    chart_type: bar
+  historical_party_average:
+    required_inputs: [municipality_id]
+    optional_inputs: [party, section_id, election_type, limit]
+    default_limit: 10
+    supported_metrics: [vote_pct, winner_party]
+    output_type: party_ranking
+    chart_type: bar
+  age_cohort_projection:
+    required_inputs: [target_age, target_year, municipality_id]
+    optional_inputs: [source_age, source_year, limit]
+    default_limit: 5
+    supported_metrics: [population_total]
+    output_type: single_value_plus_section_ranking
+    chart_type: bar
+  ecological_vote_profile_by_age_group:
+    required_inputs: [municipality_id]
+    optional_inputs: [min_age, max_age, election_type, election_year, party_scope, method]
+    default_limit: 10
+    supported_metrics: [vote_pct]
+    output_type: party_ranking
+    chart_type: bar
+  population_growth:
+    required_inputs: [municipality_id]
+    optional_inputs: [start_year, end_year, order, limit]
+    default_limit: 5
+    supported_metrics: [population_total]
+    output_type: ranking
+    chart_type: bar
+  cross_metric_ranking:
+    required_inputs: [metrics, municipality_id]
+    optional_inputs: [year, party, weights, limit]
+    default_limit: 10
+    supported_metrics: [income_individual, abstention_pct, population_under_30, vote_pct, market_price_estimated_m2]
+    output_type: ranking_with_score
+    chart_type: scatter
+  correlation_analysis:
+    required_inputs: [x_metric, y_metric, municipality_id]
+    optional_inputs: [year, method]
+    default_limit: 50
+    supported_metrics: [income_individual, abstention_pct, average_age, participation_pct]
+    output_type: correlation
+    chart_type: scatter
+
+intent_patterns:
+  youngest:
+    metric: average_age
+    operation: rank_sections
+    order: asc
+    patterns: [seccion mas joven, mas joven, youngest section]
+  oldest:
+    metric: average_age
+    operation: rank_sections
+    order: desc
+    patterns: [seccion mas envejecida, mas envejecida, oldest section]
+  rejuvenation:
+    metric: average_age
+    operation: compare_years
+    direction: largest_decrease
+    patterns: [ha rejuvenecido, rejuvenecimiento]
+  ageing:
+    metric: average_age
+    operation: compare_years
+    direction: largest_increase
+    patterns: [ha envejecido, envejecimiento]
+  persistent_winner:
+    metric: winner_party
+    operation: persistent_winner
+    scope: all_available_elections
+    patterns: [gana siempre, siempre gana]
+
+unsupported:
+  broad_variable_search:
+    status: pending
+    reason: La busqueda automatica de variables relacionadas queda para la fase de planner.
+  clustering:
+    status: pending
+    reason: La agrupacion no esta implementada en Semantic Layer v2.
+  predictive_modeling:
+    status: pending
+    reason: Prediccion y forecast no forman parte de esta fase semantica.

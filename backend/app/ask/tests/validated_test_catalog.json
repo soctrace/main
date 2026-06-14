@@ -1,0 +1,4198 @@
+[
+  {
+    "id": "demografia-poblacion-1",
+    "category": "Demografia - Poblacion",
+    "question": "¿Cuál es la sección con mayor población?",
+    "status": "available",
+    "ui_status": "available",
+    "required_tool": "rank_sections",
+    "selected_tool": "rank_sections",
+    "arguments": {
+      "rank_sections": {
+        "municipio_id": "29070",
+        "metric": "population_total",
+        "year": null,
+        "order": "desc",
+        "limit": 1,
+        "filters": {},
+        "election_type": null,
+        "election_year": null
+      }
+    },
+    "validation_status": "passed",
+    "real_result": "passed",
+    "tool_result_status": "ok",
+    "row_count": 1,
+    "answer_preview": "La sección más poblada de Mijas es Sección 23 · Riviera Sur, con aproximadamente 5.351 habitantes.",
+    "chartSpec_status": "present",
+    "failure_reason": "passed",
+    "action_recommended": "keep_available",
+    "last_validated_at": "2026-06-14T17:32:55.174521+00:00"
+  },
+  {
+    "id": "demografia-poblacion-2",
+    "category": "Demografia - Poblacion",
+    "question": "¿Cuál es la sección con menor población?",
+    "status": "available",
+    "ui_status": "available",
+    "required_tool": "rank_sections",
+    "selected_tool": "rank_sections",
+    "arguments": {
+      "rank_sections": {
+        "municipio_id": "29070",
+        "metric": "population_total",
+        "year": null,
+        "order": "asc",
+        "limit": 1,
+        "filters": {},
+        "election_type": null,
+        "election_year": null
+      }
+    },
+    "validation_status": "passed",
+    "real_result": "passed",
+    "tool_result_status": "ok",
+    "row_count": 1,
+    "answer_preview": "La sección menos poblada de Mijas es Sección 35 · Media Legua / Puebla Tranquila, con aproximadamente 888 habitantes.",
+    "chartSpec_status": "present",
+    "failure_reason": "passed",
+    "action_recommended": "keep_available",
+    "last_validated_at": "2026-06-14T17:32:55.174521+00:00"
+  },
+  {
+    "id": "demografia-poblacion-3",
+    "category": "Demografia - Poblacion",
+    "question": "¿Qué secciones superan los 5.000 habitantes?",
+    "status": "available",
+    "ui_status": "available",
+    "required_tool": "filter_sections",
+    "selected_tool": "filter_sections",
+    "arguments": {
+      "filter_sections": {
+        "municipio_id": "29070",
+        "conditions": [
+          {
+            "metric": "population_total",
+            "operator": ">",
+            "value": 5000
+          }
+        ],
+        "year": null,
+        "limit": 50
+      }
+    },
+    "validation_status": "passed",
+    "real_result": "passed",
+    "tool_result_status": "ok",
+    "row_count": 1,
+    "answer_preview": "Actualmente hay 1 secciones que superan los 5.000 habitantes.",
+    "chartSpec_status": "present",
+    "failure_reason": "passed",
+    "action_recommended": "keep_available",
+    "last_validated_at": "2026-06-14T17:32:55.174521+00:00"
+  },
+  {
+    "id": "demografia-poblacion-4",
+    "category": "Demografia - Poblacion",
+    "question": "¿Cuál es la población total de Mijas?",
+    "status": "available",
+    "ui_status": "available",
+    "required_tool": "aggregate_municipality",
+    "selected_tool": "aggregate_municipality",
+    "arguments": {
+      "aggregate_municipality": {
+        "municipio_id": "29070",
+        "metric": "population_total",
+        "year": null,
+        "filters": {}
+      }
+    },
+    "validation_status": "passed",
+    "real_result": "passed",
+    "tool_result_status": "ok",
+    "row_count": 1,
+    "answer_preview": "La población total de Mijas es de 94.320 habitantes en el último año disponible (2025).",
+    "chartSpec_status": "present",
+    "failure_reason": "passed",
+    "action_recommended": "keep_available",
+    "last_validated_at": "2026-06-14T17:32:55.174521+00:00"
+  },
+  {
+    "id": "demografia-poblacion-5",
+    "category": "Demografia - Poblacion",
+    "question": "¿Cómo ha evolucionado la población desde 2021?",
+    "status": "coming_soon",
+    "ui_status": "coming_soon",
+    "required_tool": null,
+    "selected_tool": null,
+    "arguments": {},
+    "validation_status": "failed",
+    "real_result": "failed",
+    "tool_result_status": "ok",
+    "row_count": 5,
+    "answer_preview": "La población de Mijas ha pasado de 86.556 habitantes en 2021 a 94.320 habitantes en 2025. Esto supone un crecimiento de 9,0%. La evolución …",
+    "chartSpec_status": "present",
+    "failure_reason": "no tool selected",
+    "action_recommended": "keep_coming_soon",
+    "last_validated_at": "2026-06-14T17:32:55.174521+00:00"
+  },
+  {
+    "id": "demografia-poblacion-6",
+    "category": "Demografia - Poblacion",
+    "question": "¿Qué zonas han crecido más?",
+    "status": "available",
+    "ui_status": "available",
+    "required_tool": "population_growth",
+    "selected_tool": "population_growth",
+    "arguments": {
+      "population_growth": {
+        "municipio_id": "29070",
+        "start_year": null,
+        "end_year": null,
+        "rank_by": "growth_abs",
+        "order": "desc",
+        "limit": 10
+      }
+    },
+    "validation_status": "passed",
+    "real_result": "passed",
+    "tool_result_status": "ok",
+    "row_count": 10,
+    "answer_preview": "comparando 2021 con 2025, las zonas con mayor crecimiento son: • Zona historica Sección 30 · Parque Los Olivos / La Noria: +922 habitantes …",
+    "chartSpec_status": "present",
+    "failure_reason": "passed",
+    "action_recommended": "keep_available",
+    "last_validated_at": "2026-06-14T17:32:55.174521+00:00"
+  },
+  {
+    "id": "demografia-edad-1",
+    "category": "Demografia - Edad",
+    "question": "¿Cuál es la sección más joven?",
+    "status": "available",
+    "ui_status": "available",
+    "required_tool": "rank_sections",
+    "selected_tool": "rank_sections",
+    "arguments": {
+      "rank_sections": {
+        "municipio_id": "29070",
+        "metric": "average_age",
+        "year": null,
+        "order": "asc",
+        "limit": 1,
+        "filters": {},
+        "election_type": null,
+        "election_year": null
+      }
+    },
+    "validation_status": "passed",
+    "real_result": "passed",
+    "tool_result_status": "ok",
+    "row_count": 1,
+    "answer_preview": "Ordeno las secciones de menor a mayor edad media. La sección más joven es Sección 25 · María Zambrano Este, con una edad media de 34,6 años…",
+    "chartSpec_status": "present",
+    "failure_reason": "passed",
+    "action_recommended": "keep_available",
+    "last_validated_at": "2026-06-14T17:32:55.174521+00:00"
+  },
+  {
+    "id": "demografia-edad-2",
+    "category": "Demografia - Edad",
+    "question": "¿Cuál es la más envejecida?",
+    "status": "available",
+    "ui_status": "available",
+    "required_tool": "rank_sections",
+    "selected_tool": "rank_sections",
+    "arguments": {
+      "rank_sections": {
+        "municipio_id": "29070",
+        "metric": "average_age",
+        "year": null,
+        "order": "desc",
+        "limit": 1,
+        "filters": {},
+        "election_type": null,
+        "election_year": null
+      }
+    },
+    "validation_status": "passed",
+    "real_result": "passed",
+    "tool_result_status": "ok",
+    "row_count": 1,
+    "answer_preview": "La sección más envejecida es Sección 07 · Cala de Mijas, con una edad media de 46,7 años. Resultados principales • Sección 07 · Cala de Mij…",
+    "chartSpec_status": "present",
+    "failure_reason": "passed",
+    "action_recommended": "keep_available",
+    "last_validated_at": "2026-06-14T17:32:55.174521+00:00"
+  },
+  {
+    "id": "demografia-edad-3",
+    "category": "Demografia - Edad",
+    "question": "¿Dónde viven más menores de 18 años?",
+    "status": "available",
+    "ui_status": "available",
+    "required_tool": "rank_sections",
+    "selected_tool": "rank_sections",
+    "arguments": {
+      "rank_sections": {
+        "municipio_id": "29070",
+        "metric": "population_under_18",
+        "year": null,
+        "order": "desc",
+        "limit": 10,
+        "filters": {},
+        "election_type": null,
+        "election_year": null
+      }
+    },
+    "validation_status": "passed",
+    "real_result": "passed",
+    "tool_result_status": "ok",
+    "row_count": 10,
+    "answer_preview": "La sección con más menores de 18 años es Sección 23 · Riviera Sur, con 909 personas.",
+    "chartSpec_status": "present",
+    "failure_reason": "passed",
+    "action_recommended": "keep_available",
+    "last_validated_at": "2026-06-14T17:32:55.174521+00:00"
+  },
+  {
+    "id": "demografia-edad-4",
+    "category": "Demografia - Edad",
+    "question": "¿Dónde viven más personas mayores de 65 años?",
+    "status": "available",
+    "ui_status": "available",
+    "required_tool": "rank_sections",
+    "selected_tool": "rank_sections",
+    "arguments": {
+      "rank_sections": {
+        "municipio_id": "29070",
+        "metric": "population_over_65",
+        "year": null,
+        "order": "desc",
+        "limit": 10,
+        "filters": {},
+        "election_type": null,
+        "election_year": null
+      }
+    },
+    "validation_status": "passed",
+    "real_result": "passed",
+    "tool_result_status": "ok",
+    "row_count": 10,
+    "answer_preview": "La sección con más personas mayores de 65 años es Sección 23 · Riviera Sur, con 912 personas.",
+    "chartSpec_status": "present",
+    "failure_reason": "passed",
+    "action_recommended": "keep_available",
+    "last_validated_at": "2026-06-14T17:32:55.174521+00:00"
+  },
+  {
+    "id": "demografia-edad-5",
+    "category": "Demografia - Edad",
+    "question": "¿Qué porcentaje de la población tiene menos de 30 años?",
+    "status": "coming_soon",
+    "ui_status": "coming_soon",
+    "required_tool": null,
+    "selected_tool": null,
+    "arguments": {},
+    "validation_status": "failed",
+    "real_result": "failed",
+    "tool_result_status": "empty_or_unknown",
+    "row_count": 0,
+    "answer_preview": "Entiendo que preguntas por poblacion, pero no encuentro una metrica v2 compatible en el catalogo semantico.",
+    "chartSpec_status": "missing",
+    "failure_reason": "no tool selected",
+    "action_recommended": "keep_coming_soon",
+    "last_validated_at": "2026-06-14T17:32:55.174521+00:00"
+  },
+  {
+    "id": "demografia-edad-6",
+    "category": "Demografia - Edad",
+    "question": "¿Qué secciones tienen más población en edad laboral?",
+    "status": "available",
+    "ui_status": "available",
+    "required_tool": "rank_sections",
+    "selected_tool": "rank_sections",
+    "arguments": {
+      "rank_sections": {
+        "municipio_id": "29070",
+        "metric": "population_total",
+        "year": null,
+        "order": "desc",
+        "limit": 10,
+        "filters": {},
+        "election_type": null,
+        "election_year": null
+      }
+    },
+    "validation_status": "passed",
+    "real_result": "passed",
+    "tool_result_status": "ok",
+    "row_count": 10,
+    "answer_preview": "La sección más poblada de Mijas es Sección 23 · Riviera Sur, con aproximadamente 5.351 habitantes.",
+    "chartSpec_status": "present",
+    "failure_reason": "passed",
+    "action_recommended": "keep_available",
+    "last_validated_at": "2026-06-14T17:32:55.174521+00:00"
+  },
+  {
+    "id": "demografia-edad-7",
+    "category": "Demografia - Edad",
+    "question": "¿Siempre ha sido la sección más joven?",
+    "status": "coming_soon",
+    "ui_status": "coming_soon",
+    "required_tool": "compare_years",
+    "selected_tool": "rank_sections",
+    "arguments": {
+      "rank_sections": {
+        "municipio_id": "29070",
+        "metric": "average_age",
+        "year": null,
+        "order": "asc",
+        "limit": 1,
+        "filters": {},
+        "election_type": null,
+        "election_year": null
+      }
+    },
+    "validation_status": "failed",
+    "real_result": "failed",
+    "tool_result_status": "ok",
+    "row_count": 1,
+    "answer_preview": "Ordeno las secciones de menor a mayor edad media. La sección más joven es Sección 25 · María Zambrano Este, con una edad media de 34,6 años…",
+    "chartSpec_status": "present",
+    "failure_reason": "tool mismatch: expected compare_years, got rank_sections",
+    "action_recommended": "keep_coming_soon",
+    "last_validated_at": "2026-06-14T17:32:55.174521+00:00"
+  },
+  {
+    "id": "demografia-edad-8",
+    "category": "Demografia - Edad",
+    "question": "¿Qué sección ha rejuvenecido más desde 2021?",
+    "status": "available",
+    "ui_status": "available",
+    "required_tool": "compare_years",
+    "selected_tool": "compare_years",
+    "arguments": {
+      "compare_years": {
+        "municipio_id": "29070",
+        "metric": "average_age",
+        "start_year": 2021,
+        "end_year": null,
+        "direction": "largest_decrease",
+        "order_by": "delta_abs",
+        "limit": 1
+      }
+    },
+    "validation_status": "passed",
+    "real_result": "passed",
+    "tool_result_status": "ok",
+    "row_count": 1,
+    "answer_preview": "comparando 2021 con 2025, la zona destacada es Sección 22 · El Chaparral, con una variación de -1,1 en Edad media.",
+    "chartSpec_status": "present",
+    "failure_reason": "passed",
+    "action_recommended": "keep_available",
+    "last_validated_at": "2026-06-14T17:32:55.174521+00:00"
+  },
+  {
+    "id": "demografia-edad-9",
+    "category": "Demografia - Edad",
+    "question": "¿Qué sección ha envejecido más desde 2021?",
+    "status": "available",
+    "ui_status": "available",
+    "required_tool": "compare_years",
+    "selected_tool": "compare_years",
+    "arguments": {
+      "compare_years": {
+        "municipio_id": "29070",
+        "metric": "average_age",
+        "start_year": 2021,
+        "end_year": null,
+        "direction": "largest_increase",
+        "order_by": "delta_abs",
+        "limit": 1
+      }
+    },
+    "validation_status": "passed",
+    "real_result": "passed",
+    "tool_result_status": "ok",
+    "row_count": 1,
+    "answer_preview": "comparando 2021 con 2025, la zona destacada es Sección 19 · Barrio de las flores Oeste, con una variación de 5,4 en Edad media.",
+    "chartSpec_status": "present",
+    "failure_reason": "passed",
+    "action_recommended": "keep_available",
+    "last_validated_at": "2026-06-14T17:32:55.174521+00:00"
+  },
+  {
+    "id": "demografia-edad-10",
+    "category": "Demografia - Edad",
+    "question": "¿Qué sección ha envejecido más?",
+    "status": "available",
+    "ui_status": "available",
+    "required_tool": "compare_years",
+    "selected_tool": "compare_years",
+    "arguments": {
+      "compare_years": {
+        "municipio_id": "29070",
+        "metric": "average_age",
+        "start_year": 2021,
+        "end_year": null,
+        "direction": "largest_increase",
+        "order_by": "delta_abs",
+        "limit": 1
+      }
+    },
+    "validation_status": "passed",
+    "real_result": "passed",
+    "tool_result_status": "ok",
+    "row_count": 1,
+    "answer_preview": "comparando 2021 con 2025, la zona destacada es Sección 19 · Barrio de las flores Oeste, con una variación de 5,4 en Edad media.",
+    "chartSpec_status": "present",
+    "failure_reason": "passed",
+    "action_recommended": "keep_available",
+    "last_validated_at": "2026-06-14T17:32:55.174521+00:00"
+  },
+  {
+    "id": "demografia-edad-11",
+    "category": "Demografia - Edad",
+    "question": "¿Qué secciones tienen más menores de 30 años?",
+    "status": "available",
+    "ui_status": "available",
+    "required_tool": "rank_sections",
+    "selected_tool": "rank_sections",
+    "arguments": {
+      "rank_sections": {
+        "municipio_id": "29070",
+        "metric": "population_under_30",
+        "year": null,
+        "order": "desc",
+        "limit": 10,
+        "filters": {},
+        "election_type": null,
+        "election_year": null
+      }
+    },
+    "validation_status": "passed",
+    "real_result": "passed",
+    "tool_result_status": "ok",
+    "row_count": 10,
+    "answer_preview": "La sección con más población joven es Sección 23 · Riviera Sur, con 1.459 personas menores de 30 años.",
+    "chartSpec_status": "present",
+    "failure_reason": "passed",
+    "action_recommended": "keep_available",
+    "last_validated_at": "2026-06-14T17:32:55.174521+00:00"
+  },
+  {
+    "id": "demografia-edad-12",
+    "category": "Demografia - Edad",
+    "question": "¿Qué secciones tienen más mayores de 65 años?",
+    "status": "available",
+    "ui_status": "available",
+    "required_tool": "rank_sections",
+    "selected_tool": "rank_sections",
+    "arguments": {
+      "rank_sections": {
+        "municipio_id": "29070",
+        "metric": "population_over_65",
+        "year": null,
+        "order": "desc",
+        "limit": 10,
+        "filters": {},
+        "election_type": null,
+        "election_year": null
+      }
+    },
+    "validation_status": "passed",
+    "real_result": "passed",
+    "tool_result_status": "ok",
+    "row_count": 10,
+    "answer_preview": "La sección con más personas mayores de 65 años es Sección 23 · Riviera Sur, con 912 personas.",
+    "chartSpec_status": "present",
+    "failure_reason": "passed",
+    "action_recommended": "keep_available",
+    "last_validated_at": "2026-06-14T17:32:55.174521+00:00"
+  },
+  {
+    "id": "demografia-edad-13",
+    "category": "Demografia - Edad",
+    "question": "¿Qué porcentaje de población joven tiene cada sección?",
+    "status": "available",
+    "ui_status": "available",
+    "required_tool": "rank_sections",
+    "selected_tool": "rank_sections",
+    "arguments": {
+      "rank_sections": {
+        "municipio_id": "29070",
+        "metric": "population_under_30_pct",
+        "year": null,
+        "order": "desc",
+        "limit": 1,
+        "filters": {},
+        "election_type": null,
+        "election_year": null
+      }
+    },
+    "validation_status": "passed",
+    "real_result": "passed",
+    "tool_result_status": "ok",
+    "row_count": 1,
+    "answer_preview": "La sección con mayor porcentaje de población menor de 30 años es Sección 25 · María Zambrano Este, con 40,0%. Resultados principales • Secc…",
+    "chartSpec_status": "present",
+    "failure_reason": "passed",
+    "action_recommended": "keep_available",
+    "last_validated_at": "2026-06-14T17:32:55.174521+00:00"
+  },
+  {
+    "id": "demografia-edad-14",
+    "category": "Demografia - Edad",
+    "question": "¿Qué porcentaje de población jubilada tiene cada sección?",
+    "status": "available",
+    "ui_status": "available",
+    "required_tool": "rank_sections",
+    "selected_tool": "rank_sections",
+    "arguments": {
+      "rank_sections": {
+        "municipio_id": "29070",
+        "metric": "population_over_65_pct",
+        "year": null,
+        "order": "desc",
+        "limit": 1,
+        "filters": {},
+        "election_type": null,
+        "election_year": null
+      }
+    },
+    "validation_status": "passed",
+    "real_result": "passed",
+    "tool_result_status": "ok",
+    "row_count": 1,
+    "answer_preview": "La sección con mayor porcentaje de población mayor de 65 años es Sección 07 · Cala de Mijas, con 25,4%. Resultados principales • Sección 07…",
+    "chartSpec_status": "present",
+    "failure_reason": "passed",
+    "action_recommended": "keep_available",
+    "last_validated_at": "2026-06-14T17:32:55.174521+00:00"
+  },
+  {
+    "id": "demografia-edad-15",
+    "category": "Demografia - Edad",
+    "question": "¿Qué zonas tienen mayor dependencia demográfica?",
+    "status": "coming_soon",
+    "ui_status": "coming_soon",
+    "required_tool": null,
+    "selected_tool": null,
+    "arguments": {},
+    "validation_status": "failed",
+    "real_result": "failed",
+    "tool_result_status": "empty_or_unknown",
+    "row_count": 0,
+    "answer_preview": "Entiendo que preguntas por poblacion, pero no encuentro una metrica v2 compatible en el catalogo semantico.",
+    "chartSpec_status": "missing",
+    "failure_reason": "no tool selected",
+    "action_recommended": "keep_coming_soon",
+    "last_validated_at": "2026-06-14T17:32:55.174521+00:00"
+  },
+  {
+    "id": "demografia-cohortes-1",
+    "category": "Demografia - Cohortes",
+    "question": "¿Cuántas personas aproximadamente tendrán 18 años en 2027?",
+    "status": "available",
+    "ui_status": "available",
+    "required_tool": "age_cohort_projection",
+    "selected_tool": "age_cohort_projection",
+    "arguments": {
+      "age_cohort_projection": {
+        "municipio_id": "29070",
+        "source_year": 2025,
+        "source_age": 16,
+        "target_year": 2027,
+        "target_age": 18,
+        "min_age": null,
+        "max_age": null,
+        "group_by": "municipality_and_section",
+        "limit": 5
+      }
+    },
+    "validation_status": "passed",
+    "real_result": "passed",
+    "tool_result_status": "ok",
+    "row_count": 5,
+    "answer_preview": "Aproximadamente 1.146 personas tendrán 18 años en Mijas en 2027. Resultados principales • Sección 23 · Riviera Sur — 55 personas estimadas …",
+    "chartSpec_status": "present",
+    "failure_reason": "passed",
+    "action_recommended": "keep_available",
+    "last_validated_at": "2026-06-14T17:32:55.174521+00:00"
+  },
+  {
+    "id": "demografia-cohortes-2",
+    "category": "Demografia - Cohortes",
+    "question": "¿Cuántas personas tendrán 18 años en 2027?",
+    "status": "available",
+    "ui_status": "available",
+    "required_tool": "age_cohort_projection",
+    "selected_tool": "age_cohort_projection",
+    "arguments": {
+      "age_cohort_projection": {
+        "municipio_id": "29070",
+        "source_year": 2025,
+        "source_age": 16,
+        "target_year": 2027,
+        "target_age": 18,
+        "min_age": null,
+        "max_age": null,
+        "group_by": "municipality_and_section",
+        "limit": 5
+      }
+    },
+    "validation_status": "passed",
+    "real_result": "passed",
+    "tool_result_status": "ok",
+    "row_count": 5,
+    "answer_preview": "Aproximadamente 1.146 personas tendrán 18 años en Mijas en 2027. Resultados principales • Sección 23 · Riviera Sur — 55 personas estimadas …",
+    "chartSpec_status": "present",
+    "failure_reason": "passed",
+    "action_recommended": "keep_available",
+    "last_validated_at": "2026-06-14T17:32:55.174521+00:00"
+  },
+  {
+    "id": "demografia-cohortes-3",
+    "category": "Demografia - Cohortes",
+    "question": "¿Qué secciones tendrán más nuevos votantes en 2027?",
+    "status": "available",
+    "ui_status": "available",
+    "required_tool": "age_cohort_projection",
+    "selected_tool": "age_cohort_projection",
+    "arguments": {
+      "age_cohort_projection": {
+        "municipio_id": "29070",
+        "source_year": 2025,
+        "source_age": 16,
+        "target_year": 2027,
+        "target_age": 18,
+        "min_age": null,
+        "max_age": null,
+        "group_by": "municipality_and_section",
+        "limit": 10
+      }
+    },
+    "validation_status": "passed",
+    "real_result": "passed",
+    "tool_result_status": "ok",
+    "row_count": 10,
+    "answer_preview": "Aproximadamente 1.146 personas tendrán 18 años en Mijas en 2027. Resultados principales • Sección 20 · Parque Andalucía — 55 personas estim…",
+    "chartSpec_status": "present",
+    "failure_reason": "passed",
+    "action_recommended": "keep_available",
+    "last_validated_at": "2026-06-14T17:32:55.174521+00:00"
+  },
+  {
+    "id": "demografia-cohortes-4",
+    "category": "Demografia - Cohortes",
+    "question": "¿Qué zonas concentran más jóvenes que podrán votar por primera vez en 2027?",
+    "status": "available",
+    "ui_status": "available",
+    "required_tool": "age_cohort_projection",
+    "selected_tool": "age_cohort_projection",
+    "arguments": {
+      "age_cohort_projection": {
+        "municipio_id": "29070",
+        "source_year": 2025,
+        "source_age": 16,
+        "target_year": 2027,
+        "target_age": 18,
+        "min_age": null,
+        "max_age": null,
+        "group_by": "municipality_and_section",
+        "limit": 10
+      }
+    },
+    "validation_status": "passed",
+    "real_result": "passed",
+    "tool_result_status": "ok",
+    "row_count": 10,
+    "answer_preview": "Aproximadamente 1.146 personas tendrán 18 años en Mijas en 2027. Resultados principales • Sección 20 · Parque Andalucía — 55 personas estim…",
+    "chartSpec_status": "present",
+    "failure_reason": "passed",
+    "action_recommended": "keep_available",
+    "last_validated_at": "2026-06-14T17:32:55.174521+00:00"
+  },
+  {
+    "id": "demografia-cohortes-5",
+    "category": "Demografia - Cohortes",
+    "question": "¿Cuántas personas tenían entre 18 y 22 años en 2023?",
+    "status": "available",
+    "ui_status": "coming_soon",
+    "required_tool": "aggregate_municipality",
+    "selected_tool": "aggregate_municipality",
+    "arguments": {
+      "aggregate_municipality": {
+        "municipio_id": "29070",
+        "metric": "population_total",
+        "year": 2023,
+        "filters": {
+          "age_min": 18,
+          "age_max": 22
+        }
+      }
+    },
+    "validation_status": "passed",
+    "real_result": "passed",
+    "tool_result_status": "ok",
+    "row_count": 1,
+    "answer_preview": "La población total de Mijas es de 9.652 habitantes en el último año disponible (2023).",
+    "chartSpec_status": "present",
+    "failure_reason": "passed",
+    "action_recommended": "keep_available",
+    "last_validated_at": "2026-06-14T17:32:55.174521+00:00"
+  },
+  {
+    "id": "demografia-cohortes-6",
+    "category": "Demografia - Cohortes",
+    "question": "¿Cuántas personas entre 18 y 35 años viven en Riviera Sur?",
+    "status": "available",
+    "ui_status": "coming_soon",
+    "required_tool": "section_age_range",
+    "selected_tool": "section_age_range",
+    "arguments": {
+      "section_age_range": {
+        "municipio_id": "29070",
+        "section": "Riviera Sur",
+        "min_age": 18,
+        "max_age": 35
+      }
+    },
+    "validation_status": "passed",
+    "real_result": "passed",
+    "tool_result_status": "ok",
+    "row_count": 1,
+    "answer_preview": "En Sección 23 · Riviera Sur viven aproximadamente 1.418 personas entre 18 y 35 años en 2025. Qué significa Es una estimación demográfica po…",
+    "chartSpec_status": "present",
+    "failure_reason": "passed",
+    "action_recommended": "keep_available",
+    "last_validated_at": "2026-06-14T17:32:55.174521+00:00"
+  },
+  {
+    "id": "demografia-cohortes-7",
+    "category": "Demografia - Cohortes",
+    "question": "¿Qué secciones concentran más jóvenes?",
+    "status": "available",
+    "ui_status": "available",
+    "required_tool": "rank_sections",
+    "selected_tool": "rank_sections",
+    "arguments": {
+      "rank_sections": {
+        "municipio_id": "29070",
+        "metric": "population_under_30",
+        "year": null,
+        "order": "desc",
+        "limit": 10,
+        "filters": {},
+        "election_type": null,
+        "election_year": null
+      }
+    },
+    "validation_status": "passed",
+    "real_result": "passed",
+    "tool_result_status": "ok",
+    "row_count": 10,
+    "answer_preview": "La sección con más población joven es Sección 23 · Riviera Sur, con 1.459 personas menores de 30 años.",
+    "chartSpec_status": "present",
+    "failure_reason": "passed",
+    "action_recommended": "keep_available",
+    "last_validated_at": "2026-06-14T17:32:55.174521+00:00"
+  },
+  {
+    "id": "demografia-cohortes-8",
+    "category": "Demografia - Cohortes",
+    "question": "¿Qué secciones concentran más población joven?",
+    "status": "available",
+    "ui_status": "available",
+    "required_tool": "rank_sections",
+    "selected_tool": "rank_sections",
+    "arguments": {
+      "rank_sections": {
+        "municipio_id": "29070",
+        "metric": "population_under_30",
+        "year": null,
+        "order": "desc",
+        "limit": 10,
+        "filters": {},
+        "election_type": null,
+        "election_year": null
+      }
+    },
+    "validation_status": "passed",
+    "real_result": "passed",
+    "tool_result_status": "ok",
+    "row_count": 10,
+    "answer_preview": "La sección con más población joven es Sección 23 · Riviera Sur, con 1.459 personas menores de 30 años.",
+    "chartSpec_status": "present",
+    "failure_reason": "passed",
+    "action_recommended": "keep_available",
+    "last_validated_at": "2026-06-14T17:32:55.174521+00:00"
+  },
+  {
+    "id": "demografia-cohortes-9",
+    "category": "Demografia - Cohortes",
+    "question": "¿Qué secciones concentran más jubilados?",
+    "status": "available",
+    "ui_status": "available",
+    "required_tool": "rank_sections",
+    "selected_tool": "rank_sections",
+    "arguments": {
+      "rank_sections": {
+        "municipio_id": "29070",
+        "metric": "population_over_65",
+        "year": null,
+        "order": "desc",
+        "limit": 10,
+        "filters": {},
+        "election_type": null,
+        "election_year": null
+      }
+    },
+    "validation_status": "passed",
+    "real_result": "passed",
+    "tool_result_status": "ok",
+    "row_count": 10,
+    "answer_preview": "La sección con más personas mayores de 65 años es Sección 23 · Riviera Sur, con 912 personas.",
+    "chartSpec_status": "present",
+    "failure_reason": "passed",
+    "action_recommended": "keep_available",
+    "last_validated_at": "2026-06-14T17:32:55.174521+00:00"
+  },
+  {
+    "id": "demografia-cohortes-10",
+    "category": "Demografia - Cohortes",
+    "question": "¿Cuántas personas mayores de 65 años viven en Mijas?",
+    "status": "available",
+    "ui_status": "available",
+    "required_tool": "aggregate_municipality",
+    "selected_tool": "aggregate_municipality",
+    "arguments": {
+      "aggregate_municipality": {
+        "municipio_id": "29070",
+        "metric": "population_over_65",
+        "year": null,
+        "filters": {}
+      }
+    },
+    "validation_status": "passed",
+    "real_result": "passed",
+    "tool_result_status": "ok",
+    "row_count": 1,
+    "answer_preview": "El valor municipal de Poblacion mayor de 65 en Mijas en 2025 es 14.467,0.",
+    "chartSpec_status": "present",
+    "failure_reason": "passed",
+    "action_recommended": "keep_available",
+    "last_validated_at": "2026-06-14T17:32:55.174521+00:00"
+  },
+  {
+    "id": "electoral-partido-dominante-1",
+    "category": "Electoral - Partido dominante",
+    "question": "¿Dónde gana el PP siempre?",
+    "status": "available",
+    "ui_status": "available",
+    "required_tool": "persistent_winner",
+    "selected_tool": "persistent_winner",
+    "arguments": {
+      "persistent_winner": {
+        "municipio_id": "29070",
+        "party": "PP",
+        "election_type": "MUNICIPALES",
+        "limit": 50
+      }
+    },
+    "validation_status": "passed",
+    "real_result": "passed",
+    "tool_result_status": "ok",
+    "row_count": 37,
+    "answer_preview": "PP gana en todas las elecciones disponibles en 13 secciones.",
+    "chartSpec_status": "present",
+    "failure_reason": "passed",
+    "action_recommended": "keep_available",
+    "last_validated_at": "2026-06-14T17:32:55.174521+00:00"
+  },
+  {
+    "id": "electoral-partido-dominante-2",
+    "category": "Electoral - Partido dominante",
+    "question": "¿Dónde gana siempre el PP?",
+    "status": "available",
+    "ui_status": "available",
+    "required_tool": "persistent_winner",
+    "selected_tool": "persistent_winner",
+    "arguments": {
+      "persistent_winner": {
+        "municipio_id": "29070",
+        "party": "PP",
+        "election_type": "MUNICIPALES",
+        "limit": 50
+      }
+    },
+    "validation_status": "passed",
+    "real_result": "passed",
+    "tool_result_status": "ok",
+    "row_count": 37,
+    "answer_preview": "PP gana en todas las elecciones disponibles en 13 secciones.",
+    "chartSpec_status": "present",
+    "failure_reason": "passed",
+    "action_recommended": "keep_available",
+    "last_validated_at": "2026-06-14T17:32:55.174521+00:00"
+  },
+  {
+    "id": "electoral-partido-dominante-3",
+    "category": "Electoral - Partido dominante",
+    "question": "¿Dónde gana el PSOE siempre?",
+    "status": "available",
+    "ui_status": "available",
+    "required_tool": "persistent_winner",
+    "selected_tool": "persistent_winner",
+    "arguments": {
+      "persistent_winner": {
+        "municipio_id": "29070",
+        "party": "PSOE",
+        "election_type": "MUNICIPALES",
+        "limit": 50
+      }
+    },
+    "validation_status": "passed",
+    "real_result": "passed",
+    "tool_result_status": "ok",
+    "row_count": 37,
+    "answer_preview": "PSOE gana en todas las elecciones disponibles en 7 secciones.",
+    "chartSpec_status": "present",
+    "failure_reason": "passed",
+    "action_recommended": "keep_available",
+    "last_validated_at": "2026-06-14T17:32:55.174521+00:00"
+  },
+  {
+    "id": "electoral-partido-dominante-4",
+    "category": "Electoral - Partido dominante",
+    "question": "¿Dónde gana siempre el PSOE?",
+    "status": "available",
+    "ui_status": "available",
+    "required_tool": "persistent_winner",
+    "selected_tool": "persistent_winner",
+    "arguments": {
+      "persistent_winner": {
+        "municipio_id": "29070",
+        "party": "PSOE",
+        "election_type": "MUNICIPALES",
+        "limit": 50
+      }
+    },
+    "validation_status": "passed",
+    "real_result": "passed",
+    "tool_result_status": "ok",
+    "row_count": 37,
+    "answer_preview": "PSOE gana en todas las elecciones disponibles en 7 secciones.",
+    "chartSpec_status": "present",
+    "failure_reason": "passed",
+    "action_recommended": "keep_available",
+    "last_validated_at": "2026-06-14T17:32:55.174521+00:00"
+  },
+  {
+    "id": "electoral-partido-dominante-5",
+    "category": "Electoral - Partido dominante",
+    "question": "¿Dónde gana VOX siempre?",
+    "status": "available",
+    "ui_status": "available",
+    "required_tool": "persistent_winner",
+    "selected_tool": "persistent_winner",
+    "arguments": {
+      "persistent_winner": {
+        "municipio_id": "29070",
+        "party": "VOX",
+        "election_type": "MUNICIPALES",
+        "limit": 50
+      }
+    },
+    "validation_status": "passed",
+    "real_result": "passed",
+    "tool_result_status": "ok",
+    "row_count": 37,
+    "answer_preview": "No hay secciones donde VOX gane siempre; muestro las más cercanas.",
+    "chartSpec_status": "present",
+    "failure_reason": "passed",
+    "action_recommended": "keep_available",
+    "last_validated_at": "2026-06-14T17:32:55.174521+00:00"
+  },
+  {
+    "id": "electoral-partido-dominante-6",
+    "category": "Electoral - Partido dominante",
+    "question": "¿Dónde gana siempre VOX?",
+    "status": "available",
+    "ui_status": "available",
+    "required_tool": "persistent_winner",
+    "selected_tool": "persistent_winner",
+    "arguments": {
+      "persistent_winner": {
+        "municipio_id": "29070",
+        "party": "VOX",
+        "election_type": "MUNICIPALES",
+        "limit": 50
+      }
+    },
+    "validation_status": "passed",
+    "real_result": "passed",
+    "tool_result_status": "ok",
+    "row_count": 37,
+    "answer_preview": "No hay secciones donde VOX gane siempre; muestro las más cercanas.",
+    "chartSpec_status": "present",
+    "failure_reason": "passed",
+    "action_recommended": "keep_available",
+    "last_validated_at": "2026-06-14T17:32:55.174521+00:00"
+  },
+  {
+    "id": "electoral-partido-dominante-7",
+    "category": "Electoral - Partido dominante",
+    "question": "¿Cuál es el partido históricamente dominante en cada sección?",
+    "status": "coming_soon",
+    "ui_status": "coming_soon",
+    "required_tool": "historical_party_average",
+    "selected_tool": "historical_party_average",
+    "arguments": {
+      "historical_party_average": {
+        "municipio_id": "29070",
+        "party": null,
+        "election_type": "MUNICIPALES",
+        "limit": 10
+      }
+    },
+    "validation_status": "failed",
+    "real_result": "failed",
+    "tool_result_status": "ok",
+    "row_count": 10,
+    "answer_preview": "He ejecutado la herramienta analítica y devuelvo el resultado en tabla.",
+    "chartSpec_status": "present",
+    "failure_reason": "answer is too thin or not useful",
+    "action_recommended": "keep_coming_soon",
+    "last_validated_at": "2026-06-14T17:32:55.174521+00:00"
+  },
+  {
+    "id": "electoral-partido-dominante-8",
+    "category": "Electoral - Partido dominante",
+    "question": "¿Qué partido domina históricamente en Riviera Sur?",
+    "status": "coming_soon",
+    "ui_status": "coming_soon",
+    "required_tool": "historical_party_average",
+    "selected_tool": "historical_party_average",
+    "arguments": {
+      "historical_party_average": {
+        "municipio_id": "29070",
+        "party": null,
+        "election_type": "MUNICIPALES",
+        "limit": 10
+      }
+    },
+    "validation_status": "failed",
+    "real_result": "failed",
+    "tool_result_status": "ok",
+    "row_count": 10,
+    "answer_preview": "He ejecutado la herramienta analítica y devuelvo el resultado en tabla.",
+    "chartSpec_status": "present",
+    "failure_reason": "answer is too thin or not useful",
+    "action_recommended": "keep_coming_soon",
+    "last_validated_at": "2026-06-14T17:32:55.174521+00:00"
+  },
+  {
+    "id": "electoral-partido-dominante-9",
+    "category": "Electoral - Partido dominante",
+    "question": "¿Qué partido es históricamente más fuerte en la sección más joven?",
+    "status": "available",
+    "ui_status": "coming_soon",
+    "required_tool": "chained_youngest_section_party_dominance",
+    "selected_tool": "chained_youngest_section_party_dominance",
+    "arguments": {
+      "chained_youngest_section_party_dominance": {
+        "municipio_id": "29070"
+      }
+    },
+    "validation_status": "passed",
+    "real_result": "passed",
+    "tool_result_status": "ok",
+    "row_count": 18,
+    "answer_preview": "La sección más joven es Sección 25 · María Zambrano Este, con una edad media de 34,6 años. Si analizamos su comportamiento electoral histór…",
+    "chartSpec_status": "present",
+    "failure_reason": "passed",
+    "action_recommended": "keep_available",
+    "last_validated_at": "2026-06-14T17:32:55.174521+00:00"
+  },
+  {
+    "id": "electoral-partido-dominante-10",
+    "category": "Electoral - Partido dominante",
+    "question": "¿Qué partido domina la sección más joven?",
+    "status": "available",
+    "ui_status": "coming_soon",
+    "required_tool": "chained_youngest_section_party_dominance",
+    "selected_tool": "chained_youngest_section_party_dominance",
+    "arguments": {
+      "chained_youngest_section_party_dominance": {
+        "municipio_id": "29070"
+      }
+    },
+    "validation_status": "passed",
+    "real_result": "passed",
+    "tool_result_status": "ok",
+    "row_count": 18,
+    "answer_preview": "La sección más joven es Sección 25 · María Zambrano Este, con una edad media de 34,6 años. Si analizamos su comportamiento electoral histór…",
+    "chartSpec_status": "present",
+    "failure_reason": "passed",
+    "action_recommended": "keep_available",
+    "last_validated_at": "2026-06-14T17:32:55.174521+00:00"
+  },
+  {
+    "id": "electoral-partido-dominante-11",
+    "category": "Electoral - Partido dominante",
+    "question": "¿Qué partido domina la sección más envejecida?",
+    "status": "available",
+    "ui_status": "available",
+    "required_tool": "rank_sections",
+    "selected_tool": "rank_sections",
+    "arguments": {
+      "rank_sections": {
+        "municipio_id": "29070",
+        "metric": "average_age",
+        "year": null,
+        "order": "desc",
+        "limit": 1,
+        "filters": {},
+        "election_type": null,
+        "election_year": null
+      }
+    },
+    "validation_status": "passed",
+    "real_result": "passed",
+    "tool_result_status": "ok",
+    "row_count": 1,
+    "answer_preview": "La sección más envejecida es Sección 07 · Cala de Mijas, con una edad media de 46,7 años. Resultados principales • Sección 07 · Cala de Mij…",
+    "chartSpec_status": "present",
+    "failure_reason": "passed",
+    "action_recommended": "keep_available",
+    "last_validated_at": "2026-06-14T17:32:55.174521+00:00"
+  },
+  {
+    "id": "electoral-partido-dominante-12",
+    "category": "Electoral - Partido dominante",
+    "question": "¿Cuál es la sección más favorable al PP?",
+    "status": "available",
+    "ui_status": "available",
+    "required_tool": "party_strength",
+    "selected_tool": "party_strength",
+    "arguments": {
+      "party_strength": {
+        "municipio_id": "29070",
+        "party": "PP",
+        "election_type": "MUNICIPALES",
+        "election_year": null,
+        "historical": false,
+        "limit": 1
+      }
+    },
+    "validation_status": "passed",
+    "real_result": "passed",
+    "tool_result_status": "ok",
+    "row_count": 1,
+    "answer_preview": "La sección destacada es Sección 07 · Cala de Mijas, con 44,4 en voto a PP.",
+    "chartSpec_status": "present",
+    "failure_reason": "passed",
+    "action_recommended": "keep_available",
+    "last_validated_at": "2026-06-14T17:32:55.174521+00:00"
+  },
+  {
+    "id": "electoral-partido-dominante-13",
+    "category": "Electoral - Partido dominante",
+    "question": "¿Cuál es la más favorable al PSOE?",
+    "status": "available",
+    "ui_status": "available",
+    "required_tool": "party_strength",
+    "selected_tool": "party_strength",
+    "arguments": {
+      "party_strength": {
+        "municipio_id": "29070",
+        "party": "PSOE",
+        "election_type": "MUNICIPALES",
+        "election_year": null,
+        "historical": false,
+        "limit": 1
+      }
+    },
+    "validation_status": "passed",
+    "real_result": "passed",
+    "tool_result_status": "ok",
+    "row_count": 1,
+    "answer_preview": "La sección destacada es Sección 02 · Mijas Este, con 45,9 en voto a PSOE.",
+    "chartSpec_status": "present",
+    "failure_reason": "passed",
+    "action_recommended": "keep_available",
+    "last_validated_at": "2026-06-14T17:32:55.174521+00:00"
+  },
+  {
+    "id": "electoral-partido-dominante-14",
+    "category": "Electoral - Partido dominante",
+    "question": "¿Cuál es la más favorable a VOX?",
+    "status": "available",
+    "ui_status": "available",
+    "required_tool": "party_strength",
+    "selected_tool": "party_strength",
+    "arguments": {
+      "party_strength": {
+        "municipio_id": "29070",
+        "party": "VOX",
+        "election_type": "MUNICIPALES",
+        "election_year": null,
+        "historical": false,
+        "limit": 1
+      }
+    },
+    "validation_status": "passed",
+    "real_result": "passed",
+    "tool_result_status": "ok",
+    "row_count": 1,
+    "answer_preview": "La sección destacada es Sección 23 · Riviera Sur, con 20,7 en voto a VOX.",
+    "chartSpec_status": "present",
+    "failure_reason": "passed",
+    "action_recommended": "keep_available",
+    "last_validated_at": "2026-06-14T17:32:55.174521+00:00"
+  },
+  {
+    "id": "electoral-partido-dominante-15",
+    "category": "Electoral - Partido dominante",
+    "question": "¿Cuál es la media histórica de voto del PP?",
+    "status": "available",
+    "ui_status": "available",
+    "required_tool": "historical_party_average",
+    "selected_tool": "historical_party_average",
+    "arguments": {
+      "historical_party_average": {
+        "municipio_id": "29070",
+        "party": "PP",
+        "election_type": "MUNICIPALES",
+        "limit": 10
+      }
+    },
+    "validation_status": "passed",
+    "real_result": "passed",
+    "tool_result_status": "ok",
+    "row_count": 10,
+    "answer_preview": "La sección destacada es Sección 31 · Calahonda Norte, con 40,9 en media historica de voto.",
+    "chartSpec_status": "present",
+    "failure_reason": "passed",
+    "action_recommended": "keep_available",
+    "last_validated_at": "2026-06-14T17:32:55.174521+00:00"
+  },
+  {
+    "id": "electoral-partido-dominante-16",
+    "category": "Electoral - Partido dominante",
+    "question": "¿Cuál es la media histórica de voto del PSOE?",
+    "status": "available",
+    "ui_status": "available",
+    "required_tool": "historical_party_average",
+    "selected_tool": "historical_party_average",
+    "arguments": {
+      "historical_party_average": {
+        "municipio_id": "29070",
+        "party": "PSOE",
+        "election_type": "MUNICIPALES",
+        "limit": 10
+      }
+    },
+    "validation_status": "passed",
+    "real_result": "passed",
+    "tool_result_status": "ok",
+    "row_count": 10,
+    "answer_preview": "La sección destacada es Sección 02 · Mijas Este, con 40,1 en media historica de voto.",
+    "chartSpec_status": "present",
+    "failure_reason": "passed",
+    "action_recommended": "keep_available",
+    "last_validated_at": "2026-06-14T17:32:55.174521+00:00"
+  },
+  {
+    "id": "electoral-participacion-1",
+    "category": "Electoral - Participacion",
+    "question": "¿Qué sección tiene más abstención?",
+    "status": "available",
+    "ui_status": "available",
+    "required_tool": "rank_sections",
+    "selected_tool": "rank_sections",
+    "arguments": {
+      "rank_sections": {
+        "municipio_id": "29070",
+        "metric": "abstention_pct",
+        "year": null,
+        "order": "desc",
+        "limit": 1,
+        "filters": {},
+        "election_type": "MUNICIPALES",
+        "election_year": null
+      }
+    },
+    "validation_status": "passed",
+    "real_result": "passed",
+    "tool_result_status": "ok",
+    "row_count": 1,
+    "answer_preview": "La sección destacada es Sección 27 · Torrenueva, con 62,0 en Abstencion.",
+    "chartSpec_status": "present",
+    "failure_reason": "passed",
+    "action_recommended": "keep_available",
+    "last_validated_at": "2026-06-14T17:32:55.174521+00:00"
+  },
+  {
+    "id": "electoral-participacion-2",
+    "category": "Electoral - Participacion",
+    "question": "¿Cuál tiene menos abstención?",
+    "status": "available",
+    "ui_status": "available",
+    "required_tool": "rank_sections",
+    "selected_tool": "rank_sections",
+    "arguments": {
+      "rank_sections": {
+        "municipio_id": "29070",
+        "metric": "abstention_pct",
+        "year": null,
+        "order": "asc",
+        "limit": 1,
+        "filters": {},
+        "election_type": "MUNICIPALES",
+        "election_year": null
+      }
+    },
+    "validation_status": "passed",
+    "real_result": "passed",
+    "tool_result_status": "ok",
+    "row_count": 1,
+    "answer_preview": "La sección destacada es Sección 02 · Mijas Este, con 30,6 en Abstencion.",
+    "chartSpec_status": "present",
+    "failure_reason": "passed",
+    "action_recommended": "keep_available",
+    "last_validated_at": "2026-06-14T17:32:55.174521+00:00"
+  },
+  {
+    "id": "electoral-participacion-3",
+    "category": "Electoral - Participacion",
+    "question": "¿Dónde vota más la gente?",
+    "status": "available",
+    "ui_status": "available",
+    "required_tool": "rank_sections",
+    "selected_tool": "rank_sections",
+    "arguments": {
+      "rank_sections": {
+        "municipio_id": "29070",
+        "metric": "participation_pct",
+        "year": null,
+        "order": "desc",
+        "limit": 10,
+        "filters": {},
+        "election_type": null,
+        "election_year": null
+      }
+    },
+    "validation_status": "passed",
+    "real_result": "passed",
+    "tool_result_status": "ok",
+    "row_count": 10,
+    "answer_preview": "La sección destacada es Sección 02 · Mijas Este, con 69,4 en Participacion.",
+    "chartSpec_status": "present",
+    "failure_reason": "passed",
+    "action_recommended": "keep_available",
+    "last_validated_at": "2026-06-14T17:32:55.174521+00:00"
+  },
+  {
+    "id": "electoral-participacion-4",
+    "category": "Electoral - Participacion",
+    "question": "¿Dónde vota menos la gente?",
+    "status": "available",
+    "ui_status": "available",
+    "required_tool": "rank_sections",
+    "selected_tool": "rank_sections",
+    "arguments": {
+      "rank_sections": {
+        "municipio_id": "29070",
+        "metric": "participation_pct",
+        "year": null,
+        "order": "asc",
+        "limit": 10,
+        "filters": {},
+        "election_type": null,
+        "election_year": null
+      }
+    },
+    "validation_status": "passed",
+    "real_result": "passed",
+    "tool_result_status": "ok",
+    "row_count": 10,
+    "answer_preview": "La sección destacada es Sección 27 · Torrenueva, con 38,0 en Participacion.",
+    "chartSpec_status": "present",
+    "failure_reason": "passed",
+    "action_recommended": "keep_available",
+    "last_validated_at": "2026-06-14T17:32:55.174521+00:00"
+  },
+  {
+    "id": "electoral-participacion-5",
+    "category": "Electoral - Participacion",
+    "question": "¿Qué zonas han reducido más la participación?",
+    "status": "available",
+    "ui_status": "coming_soon",
+    "required_tool": "participation_decline",
+    "selected_tool": "participation_decline",
+    "arguments": {
+      "participation_decline": {
+        "municipio_id": "29070",
+        "start_year": 2019,
+        "end_year": 2023
+      }
+    },
+    "validation_status": "passed",
+    "real_result": "passed",
+    "tool_result_status": "ok",
+    "row_count": 10,
+    "answer_preview": "La mayor reducción de participación entre las municipales de 2019 y 2023 aparece en Sección 14 · María Barranco Norte. Resultados principal…",
+    "chartSpec_status": "present",
+    "failure_reason": "passed",
+    "action_recommended": "keep_available",
+    "last_validated_at": "2026-06-14T17:32:55.174521+00:00"
+  },
+  {
+    "id": "electoral-evolucion-1",
+    "category": "Electoral - Evolucion",
+    "question": "¿Qué secciones cambiaron más entre 2019 y 2023?",
+    "status": "available",
+    "ui_status": "available",
+    "required_tool": "electoral_vote_evolution",
+    "selected_tool": "electoral_vote_evolution",
+    "arguments": {
+      "electoral_vote_evolution": {
+        "municipio_id": "29070",
+        "party": null,
+        "start_year": 2019,
+        "end_year": 2023
+      }
+    },
+    "validation_status": "passed",
+    "real_result": "passed",
+    "tool_result_status": "ok",
+    "row_count": 10,
+    "answer_preview": "La sección donde cambio absoluto ganó más apoyo entre municipales 2019 y 2023 es Sección 23 · Riviera Sur. Resultados principales • Sección…",
+    "chartSpec_status": "present",
+    "failure_reason": "passed",
+    "action_recommended": "keep_available",
+    "last_validated_at": "2026-06-14T17:32:55.174521+00:00"
+  },
+  {
+    "id": "electoral-evolucion-2",
+    "category": "Electoral - Evolucion",
+    "question": "¿Dónde perdió más apoyo el PSOE?",
+    "status": "available",
+    "ui_status": "available",
+    "required_tool": "electoral_vote_evolution",
+    "selected_tool": "electoral_vote_evolution",
+    "arguments": {
+      "electoral_vote_evolution": {
+        "municipio_id": "29070",
+        "party": "PSOE",
+        "start_year": 2019,
+        "end_year": 2023
+      }
+    },
+    "validation_status": "passed",
+    "real_result": "passed",
+    "tool_result_status": "ok",
+    "row_count": 10,
+    "answer_preview": "apoyo a PSOE no pierde apoyo entre municipales 2019 y 2023 en las secciones comparables; la menor subida aparece en Sección 01 · Mijas Oest…",
+    "chartSpec_status": "present",
+    "failure_reason": "passed",
+    "action_recommended": "keep_available",
+    "last_validated_at": "2026-06-14T17:32:55.174521+00:00"
+  },
+  {
+    "id": "electoral-evolucion-3",
+    "category": "Electoral - Evolucion",
+    "question": "¿Dónde ganó más apoyo el PP?",
+    "status": "available",
+    "ui_status": "available",
+    "required_tool": "electoral_vote_evolution",
+    "selected_tool": "electoral_vote_evolution",
+    "arguments": {
+      "electoral_vote_evolution": {
+        "municipio_id": "29070",
+        "party": "PP",
+        "start_year": 2019,
+        "end_year": 2023
+      }
+    },
+    "validation_status": "passed",
+    "real_result": "passed",
+    "tool_result_status": "ok",
+    "row_count": 10,
+    "answer_preview": "La sección donde apoyo a PP ganó más apoyo entre municipales 2019 y 2023 es Sección 27 · Torrenueva. Resultados principales • Sección 27 · …",
+    "chartSpec_status": "present",
+    "failure_reason": "passed",
+    "action_recommended": "keep_available",
+    "last_validated_at": "2026-06-14T17:32:55.174521+00:00"
+  },
+  {
+    "id": "electoral-evolucion-4",
+    "category": "Electoral - Evolucion",
+    "question": "¿Dónde creció más VOX?",
+    "status": "available",
+    "ui_status": "available",
+    "required_tool": "electoral_vote_evolution",
+    "selected_tool": "electoral_vote_evolution",
+    "arguments": {
+      "electoral_vote_evolution": {
+        "municipio_id": "29070",
+        "party": "VOX",
+        "start_year": 2019,
+        "end_year": 2023
+      }
+    },
+    "validation_status": "passed",
+    "real_result": "passed",
+    "tool_result_status": "ok",
+    "row_count": 10,
+    "answer_preview": "La sección donde apoyo a VOX ganó más apoyo entre municipales 2019 y 2023 es Sección 23 · Riviera Sur. Resultados principales • Sección 23 …",
+    "chartSpec_status": "present",
+    "failure_reason": "passed",
+    "action_recommended": "keep_available",
+    "last_validated_at": "2026-06-14T17:32:55.174521+00:00"
+  },
+  {
+    "id": "electoral-evolucion-5",
+    "category": "Electoral - Evolucion",
+    "question": "¿Dónde aparecen más partidos locales?",
+    "status": "available",
+    "ui_status": "available",
+    "required_tool": "rank_sections",
+    "selected_tool": "rank_sections",
+    "arguments": {
+      "rank_sections": {
+        "municipio_id": "29070",
+        "metric": "local_vote_pct",
+        "year": null,
+        "order": "desc",
+        "limit": 10,
+        "filters": {},
+        "election_type": null,
+        "election_year": null
+      }
+    },
+    "validation_status": "passed",
+    "real_result": "passed",
+    "tool_result_status": "ok",
+    "row_count": 10,
+    "answer_preview": "La sección destacada es 2907001038, con 0,0 en Voto localista.",
+    "chartSpec_status": "present",
+    "failure_reason": "passed",
+    "action_recommended": "keep_available",
+    "last_validated_at": "2026-06-14T17:32:55.174521+00:00"
+  },
+  {
+    "id": "electoral-competitividad-1",
+    "category": "Electoral - Competitividad",
+    "question": "¿Cuáles son las secciones más disputadas?",
+    "status": "available",
+    "ui_status": "available",
+    "required_tool": "rank_sections",
+    "selected_tool": "rank_sections",
+    "arguments": {
+      "rank_sections": {
+        "municipio_id": "29070",
+        "metric": "margin_pct",
+        "year": null,
+        "order": "asc",
+        "limit": 10,
+        "filters": {},
+        "election_type": "MUNICIPALES",
+        "election_year": null
+      }
+    },
+    "validation_status": "passed",
+    "real_result": "passed",
+    "tool_result_status": "ok",
+    "row_count": 10,
+    "answer_preview": "La sección más disputada es Sección 03 · Las Cañadas, con un margen de 0,1 puntos. Resultados principales • Sección 03 · Las Cañadas — marg…",
+    "chartSpec_status": "present",
+    "failure_reason": "passed",
+    "action_recommended": "keep_available",
+    "last_validated_at": "2026-06-14T17:32:55.174521+00:00"
+  },
+  {
+    "id": "electoral-competitividad-2",
+    "category": "Electoral - Competitividad",
+    "question": "¿Dónde hay empate técnico entre PP y PSOE?",
+    "status": "coming_soon",
+    "ui_status": "coming_soon",
+    "required_tool": null,
+    "selected_tool": null,
+    "arguments": {},
+    "validation_status": "failed",
+    "real_result": "failed",
+    "tool_result_status": "empty_or_unknown",
+    "row_count": 0,
+    "answer_preview": "No encuentro una operacion analitica aprobada en Semantic Layer v2 para responder con datos internos de SocTrace.",
+    "chartSpec_status": "missing",
+    "failure_reason": "no tool selected",
+    "action_recommended": "keep_coming_soon",
+    "last_validated_at": "2026-06-14T17:32:55.174521+00:00"
+  },
+  {
+    "id": "electoral-competitividad-3",
+    "category": "Electoral - Competitividad",
+    "question": "¿Dónde tiene más margen de victoria el partido ganador?",
+    "status": "available",
+    "ui_status": "available",
+    "required_tool": "rank_sections",
+    "selected_tool": "rank_sections",
+    "arguments": {
+      "rank_sections": {
+        "municipio_id": "29070",
+        "metric": "winner_party",
+        "year": null,
+        "order": "desc",
+        "limit": 10,
+        "filters": {},
+        "election_type": "MUNICIPALES",
+        "election_year": null
+      }
+    },
+    "validation_status": "passed",
+    "real_result": "passed",
+    "tool_result_status": "ok",
+    "row_count": 10,
+    "answer_preview": "En Sección 01 · Mijas Oeste / Valtocado, el partido ganador registrado es PSOE.",
+    "chartSpec_status": "present",
+    "failure_reason": "passed",
+    "action_recommended": "keep_available",
+    "last_validated_at": "2026-06-14T17:32:55.174521+00:00"
+  },
+  {
+    "id": "electoral-competitividad-4",
+    "category": "Electoral - Competitividad",
+    "question": "¿En qué sección gana con más diferencia el PSOE?",
+    "status": "available",
+    "ui_status": "available",
+    "required_tool": "rank_sections",
+    "selected_tool": "rank_sections",
+    "arguments": {
+      "rank_sections": {
+        "municipio_id": "29070",
+        "metric": "winner_party",
+        "year": null,
+        "order": "desc",
+        "limit": 1,
+        "filters": {},
+        "election_type": "MUNICIPALES",
+        "election_year": null
+      }
+    },
+    "validation_status": "passed",
+    "real_result": "passed",
+    "tool_result_status": "ok",
+    "row_count": 1,
+    "answer_preview": "En Sección 01 · Mijas Oeste / Valtocado, el partido ganador registrado es PSOE.",
+    "chartSpec_status": "present",
+    "failure_reason": "passed",
+    "action_recommended": "keep_available",
+    "last_validated_at": "2026-06-14T17:32:55.174521+00:00"
+  },
+  {
+    "id": "electoral-competitividad-5",
+    "category": "Electoral - Competitividad",
+    "question": "¿En qué sección gana con más diferencia el PP?",
+    "status": "available",
+    "ui_status": "available",
+    "required_tool": "rank_sections",
+    "selected_tool": "rank_sections",
+    "arguments": {
+      "rank_sections": {
+        "municipio_id": "29070",
+        "metric": "winner_party",
+        "year": null,
+        "order": "desc",
+        "limit": 1,
+        "filters": {},
+        "election_type": "MUNICIPALES",
+        "election_year": null
+      }
+    },
+    "validation_status": "passed",
+    "real_result": "passed",
+    "tool_result_status": "ok",
+    "row_count": 1,
+    "answer_preview": "En Sección 01 · Mijas Oeste / Valtocado, el partido ganador registrado es PSOE.",
+    "chartSpec_status": "present",
+    "failure_reason": "passed",
+    "action_recommended": "keep_available",
+    "last_validated_at": "2026-06-14T17:32:55.174521+00:00"
+  },
+  {
+    "id": "electoral-competitividad-6",
+    "category": "Electoral - Competitividad",
+    "question": "¿Cuáles son las secciones más competitivas?",
+    "status": "coming_soon",
+    "ui_status": "coming_soon",
+    "required_tool": null,
+    "selected_tool": null,
+    "arguments": {},
+    "validation_status": "failed",
+    "real_result": "failed",
+    "tool_result_status": "empty_or_unknown",
+    "row_count": 0,
+    "answer_preview": "No encuentro una operacion analitica aprobada en Semantic Layer v2 para responder con datos internos de SocTrace.",
+    "chartSpec_status": "missing",
+    "failure_reason": "no tool selected",
+    "action_recommended": "keep_coming_soon",
+    "last_validated_at": "2026-06-14T17:32:55.174521+00:00"
+  },
+  {
+    "id": "electoral-competitividad-7",
+    "category": "Electoral - Competitividad",
+    "question": "¿Qué secciones son más volátiles electoralmente?",
+    "status": "coming_soon",
+    "ui_status": "coming_soon",
+    "required_tool": null,
+    "selected_tool": null,
+    "arguments": {},
+    "validation_status": "failed",
+    "real_result": "failed",
+    "tool_result_status": "empty_or_unknown",
+    "row_count": 0,
+    "answer_preview": "No encuentro una operacion analitica aprobada en Semantic Layer v2 para responder con datos internos de SocTrace.",
+    "chartSpec_status": "missing",
+    "failure_reason": "no tool selected",
+    "action_recommended": "keep_coming_soon",
+    "last_validated_at": "2026-06-14T17:32:55.174521+00:00"
+  },
+  {
+    "id": "electoral-competitividad-8",
+    "category": "Electoral - Competitividad",
+    "question": "¿Qué secciones son más conservadoras?",
+    "status": "coming_soon",
+    "ui_status": "coming_soon",
+    "required_tool": null,
+    "selected_tool": null,
+    "arguments": {},
+    "validation_status": "failed",
+    "real_result": "failed",
+    "tool_result_status": "empty_or_unknown",
+    "row_count": 0,
+    "answer_preview": "No encuentro una operacion analitica aprobada en Semantic Layer v2 para responder con datos internos de SocTrace.",
+    "chartSpec_status": "missing",
+    "failure_reason": "no tool selected",
+    "action_recommended": "keep_coming_soon",
+    "last_validated_at": "2026-06-14T17:32:55.174521+00:00"
+  },
+  {
+    "id": "electoral-competitividad-9",
+    "category": "Electoral - Competitividad",
+    "question": "¿Qué secciones son más progresistas?",
+    "status": "coming_soon",
+    "ui_status": "coming_soon",
+    "required_tool": null,
+    "selected_tool": null,
+    "arguments": {},
+    "validation_status": "failed",
+    "real_result": "failed",
+    "tool_result_status": "empty_or_unknown",
+    "row_count": 0,
+    "answer_preview": "No encuentro una operacion analitica aprobada en Semantic Layer v2 para responder con datos internos de SocTrace.",
+    "chartSpec_status": "missing",
+    "failure_reason": "no tool selected",
+    "action_recommended": "keep_coming_soon",
+    "last_validated_at": "2026-06-14T17:32:55.174521+00:00"
+  },
+  {
+    "id": "consultoria-politica-movilizacion-1",
+    "category": "Consultoria politica - Movilizacion",
+    "question": "¿Dónde debería concentrar esfuerzos el PSOE?",
+    "status": "coming_soon",
+    "ui_status": "coming_soon",
+    "required_tool": null,
+    "selected_tool": null,
+    "arguments": {},
+    "validation_status": "failed",
+    "real_result": "failed",
+    "tool_result_status": "empty_or_unknown",
+    "row_count": 0,
+    "answer_preview": "No encuentro una operacion analitica aprobada en Semantic Layer v2 para responder con datos internos de SocTrace.",
+    "chartSpec_status": "missing",
+    "failure_reason": "no tool selected",
+    "action_recommended": "keep_coming_soon",
+    "last_validated_at": "2026-06-14T17:32:55.174521+00:00"
+  },
+  {
+    "id": "consultoria-politica-movilizacion-2",
+    "category": "Consultoria politica - Movilizacion",
+    "question": "¿Dónde debería concentrar esfuerzos el PP?",
+    "status": "coming_soon",
+    "ui_status": "coming_soon",
+    "required_tool": null,
+    "selected_tool": null,
+    "arguments": {},
+    "validation_status": "failed",
+    "real_result": "failed",
+    "tool_result_status": "empty_or_unknown",
+    "row_count": 0,
+    "answer_preview": "No encuentro una operacion analitica aprobada en Semantic Layer v2 para responder con datos internos de SocTrace.",
+    "chartSpec_status": "missing",
+    "failure_reason": "no tool selected",
+    "action_recommended": "keep_coming_soon",
+    "last_validated_at": "2026-06-14T17:32:55.174521+00:00"
+  },
+  {
+    "id": "consultoria-politica-movilizacion-3",
+    "category": "Consultoria politica - Movilizacion",
+    "question": "¿Qué secciones tienen más abstencionistas potenciales?",
+    "status": "available",
+    "ui_status": "available",
+    "required_tool": "mobilizable_abstention_opportunity",
+    "selected_tool": "mobilizable_abstention_opportunity",
+    "arguments": {},
+    "validation_status": "passed",
+    "real_result": "passed",
+    "tool_result_status": "ok",
+    "row_count": 10,
+    "answer_preview": "La zona con mayor abstención movilizable en términos generales es Sección 26 · Mijas Golf. Indicadores principales • Sección 26 · Mijas Gol…",
+    "chartSpec_status": "present",
+    "failure_reason": "passed",
+    "action_recommended": "keep_available",
+    "last_validated_at": "2026-06-14T17:32:55.174521+00:00"
+  },
+  {
+    "id": "consultoria-politica-movilizacion-4",
+    "category": "Consultoria politica - Movilizacion",
+    "question": "¿Dónde hay más jóvenes que no votaron?",
+    "status": "available",
+    "ui_status": "available",
+    "required_tool": "rank_sections",
+    "selected_tool": "rank_sections",
+    "arguments": {
+      "rank_sections": {
+        "municipio_id": "29070",
+        "metric": "population_under_30",
+        "year": null,
+        "order": "desc",
+        "limit": 10,
+        "filters": {},
+        "election_type": null,
+        "election_year": null
+      }
+    },
+    "validation_status": "passed",
+    "real_result": "passed",
+    "tool_result_status": "ok",
+    "row_count": 10,
+    "answer_preview": "La sección con más población joven es Sección 23 · Riviera Sur, con 1.459 personas menores de 30 años.",
+    "chartSpec_status": "present",
+    "failure_reason": "passed",
+    "action_recommended": "keep_available",
+    "last_validated_at": "2026-06-14T17:32:55.174521+00:00"
+  },
+  {
+    "id": "consultoria-politica-movilizacion-5",
+    "category": "Consultoria politica - Movilizacion",
+    "question": "¿Qué secciones combinan alta abstención y mucho voto de izquierdas?",
+    "status": "available",
+    "ui_status": "available",
+    "required_tool": "cross_metric_ranking",
+    "selected_tool": "cross_metric_ranking",
+    "arguments": {
+      "cross_metric_ranking": {
+        "municipio_id": "29070",
+        "metrics": [
+          {
+            "metric": "abstention_pct",
+            "direction": "high",
+            "weight": 1.0,
+            "party": null
+          },
+          {
+            "metric": "left_bloc_pct",
+            "direction": "high",
+            "weight": 1.0,
+            "party": null
+          }
+        ],
+        "limit": 10
+      }
+    },
+    "validation_status": "passed",
+    "real_result": "passed",
+    "tool_result_status": "ok",
+    "row_count": 10,
+    "answer_preview": "La sección que mejor combina abstención y voto de izquierdas es Sección 33 · La Vega. Resultados principales • Sección 33 · La Vega — 0,917…",
+    "chartSpec_status": "present",
+    "failure_reason": "passed",
+    "action_recommended": "keep_available",
+    "last_validated_at": "2026-06-14T17:32:55.174521+00:00"
+  },
+  {
+    "id": "consultoria-politica-movilizacion-6",
+    "category": "Consultoria politica - Movilizacion",
+    "question": "¿Qué secciones combinan alta abstención y mucho voto de derechas?",
+    "status": "available",
+    "ui_status": "available",
+    "required_tool": "cross_metric_ranking",
+    "selected_tool": "cross_metric_ranking",
+    "arguments": {
+      "cross_metric_ranking": {
+        "municipio_id": "29070",
+        "metrics": [
+          {
+            "metric": "abstention_pct",
+            "direction": "high",
+            "weight": 1.0,
+            "party": null
+          },
+          {
+            "metric": "right_bloc_pct",
+            "direction": "high",
+            "weight": 1.0,
+            "party": null
+          }
+        ],
+        "limit": 10
+      }
+    },
+    "validation_status": "passed",
+    "real_result": "passed",
+    "tool_result_status": "ok",
+    "row_count": 10,
+    "answer_preview": "La sección que mejor combina abstención y voto de derechas es Sección 11 · Calahonda Sur / El Zoco. Resultados principales • Sección 11 · C…",
+    "chartSpec_status": "present",
+    "failure_reason": "passed",
+    "action_recommended": "keep_available",
+    "last_validated_at": "2026-06-14T17:32:55.174521+00:00"
+  },
+  {
+    "id": "consultoria-politica-segmentacion-1",
+    "category": "Consultoria politica - Segmentacion",
+    "question": "¿Dónde vive el votante medio del PP?",
+    "status": "coming_soon",
+    "ui_status": "coming_soon",
+    "required_tool": null,
+    "selected_tool": null,
+    "arguments": {},
+    "validation_status": "failed",
+    "real_result": "failed",
+    "tool_result_status": "empty_or_unknown",
+    "row_count": 0,
+    "answer_preview": "No encuentro una operacion analitica aprobada en Semantic Layer v2 para responder con datos internos de SocTrace.",
+    "chartSpec_status": "missing",
+    "failure_reason": "no tool selected",
+    "action_recommended": "keep_coming_soon",
+    "last_validated_at": "2026-06-14T17:32:55.174521+00:00"
+  },
+  {
+    "id": "consultoria-politica-segmentacion-2",
+    "category": "Consultoria politica - Segmentacion",
+    "question": "¿Dónde vive el votante medio del PSOE?",
+    "status": "coming_soon",
+    "ui_status": "coming_soon",
+    "required_tool": null,
+    "selected_tool": null,
+    "arguments": {},
+    "validation_status": "failed",
+    "real_result": "failed",
+    "tool_result_status": "empty_or_unknown",
+    "row_count": 0,
+    "answer_preview": "No encuentro una operacion analitica aprobada en Semantic Layer v2 para responder con datos internos de SocTrace.",
+    "chartSpec_status": "missing",
+    "failure_reason": "no tool selected",
+    "action_recommended": "keep_coming_soon",
+    "last_validated_at": "2026-06-14T17:32:55.174521+00:00"
+  },
+  {
+    "id": "consultoria-politica-segmentacion-3",
+    "category": "Consultoria politica - Segmentacion",
+    "question": "¿Qué características tienen las secciones donde gana VOX?",
+    "status": "available",
+    "ui_status": "available",
+    "required_tool": "rank_sections",
+    "selected_tool": "rank_sections",
+    "arguments": {
+      "rank_sections": {
+        "municipio_id": "29070",
+        "metric": "winner_party",
+        "year": null,
+        "order": "desc",
+        "limit": 10,
+        "filters": {},
+        "election_type": "MUNICIPALES",
+        "election_year": null
+      }
+    },
+    "validation_status": "passed",
+    "real_result": "passed",
+    "tool_result_status": "ok",
+    "row_count": 10,
+    "answer_preview": "En Sección 01 · Mijas Oeste / Valtocado, el partido ganador registrado es PSOE.",
+    "chartSpec_status": "present",
+    "failure_reason": "passed",
+    "action_recommended": "keep_available",
+    "last_validated_at": "2026-06-14T17:32:55.174521+00:00"
+  },
+  {
+    "id": "consultoria-politica-segmentacion-4",
+    "category": "Consultoria politica - Segmentacion",
+    "question": "¿Qué secciones son más sensibles a una campaña de movilización?",
+    "status": "coming_soon",
+    "ui_status": "coming_soon",
+    "required_tool": null,
+    "selected_tool": null,
+    "arguments": {},
+    "validation_status": "failed",
+    "real_result": "failed",
+    "tool_result_status": "empty_or_unknown",
+    "row_count": 0,
+    "answer_preview": "No encuentro una operacion analitica aprobada en Semantic Layer v2 para responder con datos internos de SocTrace.",
+    "chartSpec_status": "missing",
+    "failure_reason": "no tool selected",
+    "action_recommended": "keep_coming_soon",
+    "last_validated_at": "2026-06-14T17:32:55.174521+00:00"
+  },
+  {
+    "id": "consultoria-politica-oportunidades-1",
+    "category": "Consultoria politica - Oportunidades",
+    "question": "¿Cuáles son las mejores secciones para ganar un concejal adicional?",
+    "status": "coming_soon",
+    "ui_status": "coming_soon",
+    "required_tool": null,
+    "selected_tool": null,
+    "arguments": {
+      "dhondt_calculator": {
+        "municipality": "29070",
+        "year": 2023,
+        "seats": 25,
+        "thresholdPct": 5
+      }
+    },
+    "validation_status": "failed",
+    "real_result": "failed",
+    "tool_result_status": "empty_or_unknown",
+    "row_count": 0,
+    "answer_preview": "El reparto D'Hondt municipal calculado para 2023 asigna concejales asi: {'PSOE': 10, 'PP': 9, 'VOX': 3, 'LOCAL': 2, 'CS': 1}.",
+    "chartSpec_status": "missing",
+    "failure_reason": "no tool selected",
+    "action_recommended": "keep_coming_soon",
+    "last_validated_at": "2026-06-14T17:32:55.174521+00:00"
+  },
+  {
+    "id": "consultoria-politica-oportunidades-2",
+    "category": "Consultoria politica - Oportunidades",
+    "question": "¿Dónde sería más eficiente invertir 10.000 € en campaña?",
+    "status": "coming_soon",
+    "ui_status": "coming_soon",
+    "required_tool": null,
+    "selected_tool": null,
+    "arguments": {},
+    "validation_status": "failed",
+    "real_result": "failed",
+    "tool_result_status": "empty_or_unknown",
+    "row_count": 0,
+    "answer_preview": "No encuentro una operacion analitica aprobada en Semantic Layer v2 para responder con datos internos de SocTrace.",
+    "chartSpec_status": "missing",
+    "failure_reason": "no tool selected",
+    "action_recommended": "keep_coming_soon",
+    "last_validated_at": "2026-06-14T17:32:55.174521+00:00"
+  },
+  {
+    "id": "consultoria-politica-oportunidades-3",
+    "category": "Consultoria politica - Oportunidades",
+    "question": "¿Qué secciones presentan más indecisión estructural?",
+    "status": "coming_soon",
+    "ui_status": "coming_soon",
+    "required_tool": null,
+    "selected_tool": null,
+    "arguments": {},
+    "validation_status": "failed",
+    "real_result": "failed",
+    "tool_result_status": "empty_or_unknown",
+    "row_count": 0,
+    "answer_preview": "No encuentro una operacion analitica aprobada en Semantic Layer v2 para responder con datos internos de SocTrace.",
+    "chartSpec_status": "missing",
+    "failure_reason": "no tool selected",
+    "action_recommended": "keep_coming_soon",
+    "last_validated_at": "2026-06-14T17:32:55.174521+00:00"
+  },
+  {
+    "id": "sociologia-estructura-social-1",
+    "category": "Sociologia - Estructura social",
+    "question": "¿Qué secciones tienen más jóvenes y menos renta?",
+    "status": "available",
+    "ui_status": "available",
+    "required_tool": "cross_metric_ranking",
+    "selected_tool": "cross_metric_ranking",
+    "arguments": {
+      "cross_metric_ranking": {
+        "municipio_id": "29070",
+        "metrics": [
+          {
+            "metric": "income_individual",
+            "direction": "low",
+            "weight": 1.0,
+            "party": null
+          },
+          {
+            "metric": "population_under_30",
+            "direction": "high",
+            "weight": 1.0,
+            "party": null
+          }
+        ],
+        "limit": 10
+      }
+    },
+    "validation_status": "passed",
+    "real_result": "passed",
+    "tool_result_status": "ok",
+    "row_count": 10,
+    "answer_preview": "La sección que mejor combina renta individual y población joven es Sección 09 · Barrio de las flores Este. Resultados principales • Sección…",
+    "chartSpec_status": "present",
+    "failure_reason": "passed",
+    "action_recommended": "keep_available",
+    "last_validated_at": "2026-06-14T17:32:55.174521+00:00"
+  },
+  {
+    "id": "sociologia-estructura-social-2",
+    "category": "Sociologia - Estructura social",
+    "question": "¿Qué secciones tienen más mayores y más renta?",
+    "status": "available",
+    "ui_status": "available",
+    "required_tool": "rank_sections",
+    "selected_tool": "rank_sections",
+    "arguments": {
+      "rank_sections": {
+        "municipio_id": "29070",
+        "metric": "population_over_65",
+        "year": null,
+        "order": "desc",
+        "limit": 10,
+        "filters": {},
+        "election_type": null,
+        "election_year": null
+      }
+    },
+    "validation_status": "passed",
+    "real_result": "passed",
+    "tool_result_status": "ok",
+    "row_count": 10,
+    "answer_preview": "La sección con más personas mayores de 65 años es Sección 23 · Riviera Sur, con 912 personas.",
+    "chartSpec_status": "present",
+    "failure_reason": "passed",
+    "action_recommended": "keep_available",
+    "last_validated_at": "2026-06-14T17:32:55.174521+00:00"
+  },
+  {
+    "id": "sociologia-estructura-social-3",
+    "category": "Sociologia - Estructura social",
+    "question": "¿Dónde existe mayor polarización demográfica?",
+    "status": "available",
+    "ui_status": "available",
+    "required_tool": "cross_metric_ranking",
+    "selected_tool": "cross_metric_ranking",
+    "arguments": {
+      "cross_metric_ranking": {
+        "municipio_id": "29070",
+        "metrics": [
+          {
+            "metric": "population_under_30_pct",
+            "direction": "high",
+            "weight": 1.0,
+            "party": null
+          },
+          {
+            "metric": "population_over_65_pct",
+            "direction": "high",
+            "weight": 1.0,
+            "party": null
+          }
+        ],
+        "limit": 10
+      }
+    },
+    "validation_status": "passed",
+    "real_result": "passed",
+    "tool_result_status": "ok",
+    "row_count": 10,
+    "answer_preview": "La mayor polarización demográfica aparece en Sección 16 · El Juncal. Resultados principales • Sección 16 · El Juncal: índice 0,658; jóvenes…",
+    "chartSpec_status": "present",
+    "failure_reason": "passed",
+    "action_recommended": "keep_available",
+    "last_validated_at": "2026-06-14T17:32:55.174521+00:00"
+  },
+  {
+    "id": "sociologia-estructura-social-4",
+    "category": "Sociologia - Estructura social",
+    "question": "¿Qué zonas son más homogéneas?",
+    "status": "available",
+    "ui_status": "available",
+    "required_tool": "cross_metric_ranking",
+    "selected_tool": "cross_metric_ranking",
+    "arguments": {
+      "cross_metric_ranking": {
+        "municipio_id": "29070",
+        "metrics": [
+          {
+            "metric": "population_under_30_pct",
+            "direction": "low",
+            "weight": 1.0,
+            "party": null
+          },
+          {
+            "metric": "population_over_65_pct",
+            "direction": "low",
+            "weight": 1.0,
+            "party": null
+          }
+        ],
+        "limit": 10
+      }
+    },
+    "validation_status": "passed",
+    "real_result": "passed",
+    "tool_result_status": "ok",
+    "row_count": 10,
+    "answer_preview": "Las zonas más homogéneas aparecen encabezadas por Sección 26 · Mijas Golf. Resultados principales • Sección 26 · Mijas Golf: índice 0,658; …",
+    "chartSpec_status": "present",
+    "failure_reason": "passed",
+    "action_recommended": "keep_available",
+    "last_validated_at": "2026-06-14T17:32:55.174521+00:00"
+  },
+  {
+    "id": "sociologia-vulnerabilidad-1",
+    "category": "Sociologia - Vulnerabilidad",
+    "question": "¿Qué secciones presentan más vulnerabilidad social?",
+    "status": "coming_soon",
+    "ui_status": "coming_soon",
+    "required_tool": null,
+    "selected_tool": null,
+    "arguments": {},
+    "validation_status": "failed",
+    "real_result": "failed",
+    "tool_result_status": "empty_or_unknown",
+    "row_count": 0,
+    "answer_preview": "No encuentro una operacion analitica aprobada en Semantic Layer v2 para responder con datos internos de SocTrace.",
+    "chartSpec_status": "missing",
+    "failure_reason": "no tool selected",
+    "action_recommended": "keep_coming_soon",
+    "last_validated_at": "2026-06-14T17:32:55.174521+00:00"
+  },
+  {
+    "id": "sociologia-vulnerabilidad-2",
+    "category": "Sociologia - Vulnerabilidad",
+    "question": "¿Qué zonas combinan envejecimiento y baja renta?",
+    "status": "coming_soon",
+    "ui_status": "coming_soon",
+    "required_tool": "cross_metric_ranking",
+    "selected_tool": "compare_years",
+    "arguments": {
+      "compare_years": {
+        "municipio_id": "29070",
+        "metric": "average_age",
+        "start_year": 2021,
+        "end_year": null,
+        "direction": "largest_increase",
+        "order_by": "delta_abs",
+        "limit": 10
+      }
+    },
+    "validation_status": "failed",
+    "real_result": "failed",
+    "tool_result_status": "ok",
+    "row_count": 10,
+    "answer_preview": "comparando 2021 con 2025, la zona destacada es Sección 19 · Barrio de las flores Oeste, con una variación de 5,4 en Edad media.",
+    "chartSpec_status": "present",
+    "failure_reason": "tool mismatch: expected cross_metric_ranking, got compare_years",
+    "action_recommended": "keep_coming_soon",
+    "last_validated_at": "2026-06-14T17:32:55.174521+00:00"
+  },
+  {
+    "id": "sociologia-vulnerabilidad-3",
+    "category": "Sociologia - Vulnerabilidad",
+    "question": "¿Dónde hay más riesgo de exclusión social?",
+    "status": "coming_soon",
+    "ui_status": "coming_soon",
+    "required_tool": null,
+    "selected_tool": null,
+    "arguments": {},
+    "validation_status": "failed",
+    "real_result": "failed",
+    "tool_result_status": "empty_or_unknown",
+    "row_count": 0,
+    "answer_preview": "No encuentro una operacion analitica aprobada en Semantic Layer v2 para responder con datos internos de SocTrace.",
+    "chartSpec_status": "missing",
+    "failure_reason": "no tool selected",
+    "action_recommended": "keep_coming_soon",
+    "last_validated_at": "2026-06-14T17:32:55.174521+00:00"
+  },
+  {
+    "id": "sociologia-vulnerabilidad-4",
+    "category": "Sociologia - Vulnerabilidad",
+    "question": "¿Qué secciones requieren más servicios públicos?",
+    "status": "coming_soon",
+    "ui_status": "coming_soon",
+    "required_tool": null,
+    "selected_tool": null,
+    "arguments": {},
+    "validation_status": "failed",
+    "real_result": "failed",
+    "tool_result_status": "empty_or_unknown",
+    "row_count": 0,
+    "answer_preview": "No encuentro una operacion analitica aprobada en Semantic Layer v2 para responder con datos internos de SocTrace.",
+    "chartSpec_status": "missing",
+    "failure_reason": "no tool selected",
+    "action_recommended": "keep_coming_soon",
+    "last_validated_at": "2026-06-14T17:32:55.174521+00:00"
+  },
+  {
+    "id": "sociologia-cohesion-1",
+    "category": "Sociologia - Cohesion",
+    "question": "¿Qué zonas parecen más cohesionadas socialmente?",
+    "status": "coming_soon",
+    "ui_status": "coming_soon",
+    "required_tool": null,
+    "selected_tool": null,
+    "arguments": {},
+    "validation_status": "failed",
+    "real_result": "failed",
+    "tool_result_status": "empty_or_unknown",
+    "row_count": 0,
+    "answer_preview": "No encuentro una operacion analitica aprobada en Semantic Layer v2 para responder con datos internos de SocTrace.",
+    "chartSpec_status": "missing",
+    "failure_reason": "no tool selected",
+    "action_recommended": "keep_coming_soon",
+    "last_validated_at": "2026-06-14T17:32:55.174521+00:00"
+  },
+  {
+    "id": "sociologia-cohesion-2",
+    "category": "Sociologia - Cohesion",
+    "question": "¿Qué zonas muestran perfiles más diversos?",
+    "status": "coming_soon",
+    "ui_status": "coming_soon",
+    "required_tool": null,
+    "selected_tool": null,
+    "arguments": {},
+    "validation_status": "failed",
+    "real_result": "failed",
+    "tool_result_status": "empty_or_unknown",
+    "row_count": 0,
+    "answer_preview": "No encuentro una operacion analitica aprobada en Semantic Layer v2 para responder con datos internos de SocTrace.",
+    "chartSpec_status": "missing",
+    "failure_reason": "no tool selected",
+    "action_recommended": "keep_coming_soon",
+    "last_validated_at": "2026-06-14T17:32:55.174521+00:00"
+  },
+  {
+    "id": "ciencia-politica-estabilidad-electoral-1",
+    "category": "Ciencia politica - Estabilidad electoral",
+    "question": "¿Qué secciones son más estables?",
+    "status": "coming_soon",
+    "ui_status": "coming_soon",
+    "required_tool": null,
+    "selected_tool": null,
+    "arguments": {},
+    "validation_status": "failed",
+    "real_result": "failed",
+    "tool_result_status": "empty_or_unknown",
+    "row_count": 0,
+    "answer_preview": "No encuentro una operacion analitica aprobada en Semantic Layer v2 para responder con datos internos de SocTrace.",
+    "chartSpec_status": "missing",
+    "failure_reason": "no tool selected",
+    "action_recommended": "keep_coming_soon",
+    "last_validated_at": "2026-06-14T17:32:55.174521+00:00"
+  },
+  {
+    "id": "ciencia-politica-estabilidad-electoral-2",
+    "category": "Ciencia politica - Estabilidad electoral",
+    "question": "¿Qué secciones son más volátiles?",
+    "status": "coming_soon",
+    "ui_status": "coming_soon",
+    "required_tool": null,
+    "selected_tool": null,
+    "arguments": {},
+    "validation_status": "failed",
+    "real_result": "failed",
+    "tool_result_status": "empty_or_unknown",
+    "row_count": 0,
+    "answer_preview": "No encuentro una operacion analitica aprobada en Semantic Layer v2 para responder con datos internos de SocTrace.",
+    "chartSpec_status": "missing",
+    "failure_reason": "no tool selected",
+    "action_recommended": "keep_coming_soon",
+    "last_validated_at": "2026-06-14T17:32:55.174521+00:00"
+  },
+  {
+    "id": "ciencia-politica-estabilidad-electoral-3",
+    "category": "Ciencia politica - Estabilidad electoral",
+    "question": "¿Qué secciones cambian de partido ganador según la elección?",
+    "status": "available",
+    "ui_status": "coming_soon",
+    "required_tool": "winner_switch_by_election_type",
+    "selected_tool": "winner_switch_by_election_type",
+    "arguments": {
+      "winner_switch_by_election_type": {
+        "municipio_id": "29070"
+      }
+    },
+    "validation_status": "passed",
+    "real_result": "passed",
+    "tool_result_status": "ok",
+    "row_count": 10,
+    "answer_preview": "Las secciones que más cambian de partido ganador según la elección aparecen encabezadas por Sección 11 · Calahonda Sur / El Zoco. Resultado…",
+    "chartSpec_status": "present",
+    "failure_reason": "passed",
+    "action_recommended": "keep_available",
+    "last_validated_at": "2026-06-14T17:32:55.174521+00:00"
+  },
+  {
+    "id": "ciencia-politica-estabilidad-electoral-4",
+    "category": "Ciencia politica - Estabilidad electoral",
+    "question": "¿Dónde existen patrones electorales persistentes?",
+    "status": "coming_soon",
+    "ui_status": "coming_soon",
+    "required_tool": null,
+    "selected_tool": null,
+    "arguments": {},
+    "validation_status": "failed",
+    "real_result": "failed",
+    "tool_result_status": "empty_or_unknown",
+    "row_count": 0,
+    "answer_preview": "No encuentro una operacion analitica aprobada en Semantic Layer v2 para responder con datos internos de SocTrace.",
+    "chartSpec_status": "missing",
+    "failure_reason": "no tool selected",
+    "action_recommended": "keep_coming_soon",
+    "last_validated_at": "2026-06-14T17:32:55.174521+00:00"
+  },
+  {
+    "id": "ciencia-politica-comportamiento-politico-1",
+    "category": "Ciencia politica - Comportamiento politico",
+    "question": "¿La juventud vota más a la izquierda?",
+    "status": "available",
+    "ui_status": "available",
+    "required_tool": "rank_sections",
+    "selected_tool": "rank_sections",
+    "arguments": {
+      "rank_sections": {
+        "municipio_id": "29070",
+        "metric": "left_bloc_pct",
+        "year": null,
+        "order": "desc",
+        "limit": 1,
+        "filters": {},
+        "election_type": null,
+        "election_year": null
+      }
+    },
+    "validation_status": "passed",
+    "real_result": "passed",
+    "tool_result_status": "ok",
+    "row_count": 1,
+    "answer_preview": "La sección destacada es Sección 04 · Centro Salud, con 37,1 en Voto de izquierdas.",
+    "chartSpec_status": "present",
+    "failure_reason": "passed",
+    "action_recommended": "keep_available",
+    "last_validated_at": "2026-06-14T17:32:55.174521+00:00"
+  },
+  {
+    "id": "ciencia-politica-comportamiento-politico-2",
+    "category": "Ciencia politica - Comportamiento politico",
+    "question": "¿La renta alta favorece al PP?",
+    "status": "available",
+    "ui_status": "available",
+    "required_tool": "rank_sections",
+    "selected_tool": "rank_sections",
+    "arguments": {
+      "rank_sections": {
+        "municipio_id": "29070",
+        "metric": "income_individual",
+        "year": null,
+        "order": "desc",
+        "limit": 1,
+        "filters": {},
+        "election_type": null,
+        "election_year": null
+      }
+    },
+    "validation_status": "passed",
+    "real_result": "passed",
+    "tool_result_status": "ok",
+    "row_count": 1,
+    "answer_preview": "La sección destacada es Sección 36 · Sierrezuela (Las Lagunas), con 15.573,0 en Renta individual.",
+    "chartSpec_status": "present",
+    "failure_reason": "passed",
+    "action_recommended": "keep_available",
+    "last_validated_at": "2026-06-14T17:32:55.174521+00:00"
+  },
+  {
+    "id": "ciencia-politica-comportamiento-politico-3",
+    "category": "Ciencia politica - Comportamiento politico",
+    "question": "¿Existe relación entre abstención y renta?",
+    "status": "available",
+    "ui_status": "available",
+    "required_tool": "correlation_analysis",
+    "selected_tool": "correlation_analysis",
+    "arguments": {
+      "correlation_analysis": {
+        "municipio_id": "29070",
+        "x_metric": "income_individual",
+        "y_metric": "abstention_pct",
+        "year": null,
+        "method": "pearson"
+      }
+    },
+    "validation_status": "passed",
+    "real_result": "passed",
+    "tool_result_status": "ok",
+    "row_count": 37,
+    "answer_preview": "La correlación observada entre las dos métricas es 0,20. Es una lectura exploratoria por sección: no demuestra causalidad.",
+    "chartSpec_status": "present",
+    "failure_reason": "passed",
+    "action_recommended": "keep_available",
+    "last_validated_at": "2026-06-14T17:32:55.174521+00:00"
+  },
+  {
+    "id": "ciencia-politica-comportamiento-politico-4",
+    "category": "Ciencia politica - Comportamiento politico",
+    "question": "¿Existe relación entre edad y participación?",
+    "status": "available",
+    "ui_status": "available",
+    "required_tool": "correlation_analysis",
+    "selected_tool": "correlation_analysis",
+    "arguments": {
+      "correlation_analysis": {
+        "municipio_id": "29070",
+        "x_metric": "average_age",
+        "y_metric": "participation_pct",
+        "year": null,
+        "method": "pearson"
+      }
+    },
+    "validation_status": "passed",
+    "real_result": "passed",
+    "tool_result_status": "ok",
+    "row_count": 37,
+    "answer_preview": "La correlación observada entre las dos métricas es 0,10. Es una lectura exploratoria por sección: no demuestra causalidad.",
+    "chartSpec_status": "present",
+    "failure_reason": "passed",
+    "action_recommended": "keep_available",
+    "last_validated_at": "2026-06-14T17:32:55.174521+00:00"
+  },
+  {
+    "id": "economia-renta-1",
+    "category": "Economia - Renta",
+    "question": "¿Cuál es la sección más rica?",
+    "status": "available",
+    "ui_status": "available",
+    "required_tool": "rank_sections",
+    "selected_tool": "rank_sections",
+    "arguments": {
+      "rank_sections": {
+        "municipio_id": "29070",
+        "metric": "income_individual",
+        "year": null,
+        "order": "desc",
+        "limit": 1,
+        "filters": {},
+        "election_type": null,
+        "election_year": null
+      }
+    },
+    "validation_status": "passed",
+    "real_result": "passed",
+    "tool_result_status": "ok",
+    "row_count": 1,
+    "answer_preview": "La sección destacada es Sección 36 · Sierrezuela (Las Lagunas), con 15.573,0 en Renta individual.",
+    "chartSpec_status": "present",
+    "failure_reason": "passed",
+    "action_recommended": "keep_available",
+    "last_validated_at": "2026-06-14T17:32:55.174521+00:00"
+  },
+  {
+    "id": "economia-renta-2",
+    "category": "Economia - Renta",
+    "question": "¿Cuál es la más pobre?",
+    "status": "coming_soon",
+    "ui_status": "coming_soon",
+    "required_tool": null,
+    "selected_tool": null,
+    "arguments": {},
+    "validation_status": "failed",
+    "real_result": "failed",
+    "tool_result_status": "empty_or_unknown",
+    "row_count": 0,
+    "answer_preview": "He entendido la pregunta, pero el plan ejecutado no contiene los datos necesarios: sql validation failed: Relaciones no aprobadas: marts.di…",
+    "chartSpec_status": "missing",
+    "failure_reason": "no tool selected",
+    "action_recommended": "keep_coming_soon",
+    "last_validated_at": "2026-06-14T17:32:55.174521+00:00"
+  },
+  {
+    "id": "economia-renta-3",
+    "category": "Economia - Renta",
+    "question": "¿Qué secciones tienen mayor renta media?",
+    "status": "available",
+    "ui_status": "available",
+    "required_tool": "rank_sections",
+    "selected_tool": "rank_sections",
+    "arguments": {
+      "rank_sections": {
+        "municipio_id": "29070",
+        "metric": "income_individual",
+        "year": null,
+        "order": "desc",
+        "limit": 10,
+        "filters": {},
+        "election_type": null,
+        "election_year": null
+      }
+    },
+    "validation_status": "passed",
+    "real_result": "passed",
+    "tool_result_status": "ok",
+    "row_count": 10,
+    "answer_preview": "La sección destacada es Sección 36 · Sierrezuela (Las Lagunas), con 15.573,0 en Renta individual.",
+    "chartSpec_status": "present",
+    "failure_reason": "passed",
+    "action_recommended": "keep_available",
+    "last_validated_at": "2026-06-14T17:32:55.174521+00:00"
+  },
+  {
+    "id": "economia-renta-4",
+    "category": "Economia - Renta",
+    "question": "¿Qué secciones tienen menor renta media?",
+    "status": "available",
+    "ui_status": "available",
+    "required_tool": "rank_sections",
+    "selected_tool": "rank_sections",
+    "arguments": {
+      "rank_sections": {
+        "municipio_id": "29070",
+        "metric": "income_individual",
+        "year": null,
+        "order": "asc",
+        "limit": 10,
+        "filters": {},
+        "election_type": null,
+        "election_year": null
+      }
+    },
+    "validation_status": "passed",
+    "real_result": "passed",
+    "tool_result_status": "ok",
+    "row_count": 10,
+    "answer_preview": "La sección destacada es Sección 15 · Barrio de los ríos, con 9.044,0 en Renta individual.",
+    "chartSpec_status": "present",
+    "failure_reason": "passed",
+    "action_recommended": "keep_available",
+    "last_validated_at": "2026-06-14T17:32:55.174521+00:00"
+  },
+  {
+    "id": "economia-renta-5",
+    "category": "Economia - Renta",
+    "question": "¿Qué secciones tienen mayor renta?",
+    "status": "available",
+    "ui_status": "available",
+    "required_tool": "rank_sections",
+    "selected_tool": "rank_sections",
+    "arguments": {
+      "rank_sections": {
+        "municipio_id": "29070",
+        "metric": "income_individual",
+        "year": null,
+        "order": "desc",
+        "limit": 10,
+        "filters": {},
+        "election_type": null,
+        "election_year": null
+      }
+    },
+    "validation_status": "passed",
+    "real_result": "passed",
+    "tool_result_status": "ok",
+    "row_count": 10,
+    "answer_preview": "La sección destacada es Sección 36 · Sierrezuela (Las Lagunas), con 15.573,0 en Renta individual.",
+    "chartSpec_status": "present",
+    "failure_reason": "passed",
+    "action_recommended": "keep_available",
+    "last_validated_at": "2026-06-14T17:32:55.174521+00:00"
+  },
+  {
+    "id": "economia-renta-6",
+    "category": "Economia - Renta",
+    "question": "¿Qué secciones tienen menor renta?",
+    "status": "available",
+    "ui_status": "available",
+    "required_tool": "rank_sections",
+    "selected_tool": "rank_sections",
+    "arguments": {
+      "rank_sections": {
+        "municipio_id": "29070",
+        "metric": "income_individual",
+        "year": null,
+        "order": "asc",
+        "limit": 10,
+        "filters": {},
+        "election_type": null,
+        "election_year": null
+      }
+    },
+    "validation_status": "passed",
+    "real_result": "passed",
+    "tool_result_status": "ok",
+    "row_count": 10,
+    "answer_preview": "La sección destacada es Sección 15 · Barrio de los ríos, con 9.044,0 en Renta individual.",
+    "chartSpec_status": "present",
+    "failure_reason": "passed",
+    "action_recommended": "keep_available",
+    "last_validated_at": "2026-06-14T17:32:55.174521+00:00"
+  },
+  {
+    "id": "economia-renta-7",
+    "category": "Economia - Renta",
+    "question": "¿Qué zonas combinan renta alta y población joven?",
+    "status": "available",
+    "ui_status": "available",
+    "required_tool": "cross_metric_ranking",
+    "selected_tool": "cross_metric_ranking",
+    "arguments": {
+      "cross_metric_ranking": {
+        "municipio_id": "29070",
+        "metrics": [
+          {
+            "metric": "income_individual",
+            "direction": "high",
+            "weight": 1.0,
+            "party": null
+          },
+          {
+            "metric": "population_under_30",
+            "direction": "high",
+            "weight": 1.0,
+            "party": null
+          }
+        ],
+        "limit": 10
+      }
+    },
+    "validation_status": "passed",
+    "real_result": "passed",
+    "tool_result_status": "ok",
+    "row_count": 10,
+    "answer_preview": "La sección que mejor combina renta individual y población joven es Sección 30 · Parque Los Olivos / La Noria. Resultados principales • Secc…",
+    "chartSpec_status": "present",
+    "failure_reason": "passed",
+    "action_recommended": "keep_available",
+    "last_validated_at": "2026-06-14T17:32:55.174521+00:00"
+  },
+  {
+    "id": "economia-renta-8",
+    "category": "Economia - Renta",
+    "question": "¿Qué zonas combinan renta baja y envejecimiento?",
+    "status": "coming_soon",
+    "ui_status": "coming_soon",
+    "required_tool": "cross_metric_ranking",
+    "selected_tool": "compare_years",
+    "arguments": {
+      "compare_years": {
+        "municipio_id": "29070",
+        "metric": "average_age",
+        "start_year": 2021,
+        "end_year": null,
+        "direction": "largest_increase",
+        "order_by": "delta_abs",
+        "limit": 10
+      }
+    },
+    "validation_status": "failed",
+    "real_result": "failed",
+    "tool_result_status": "ok",
+    "row_count": 10,
+    "answer_preview": "comparando 2021 con 2025, la zona destacada es Sección 19 · Barrio de las flores Oeste, con una variación de 5,4 en Edad media.",
+    "chartSpec_status": "present",
+    "failure_reason": "tool mismatch: expected cross_metric_ranking, got compare_years",
+    "action_recommended": "keep_coming_soon",
+    "last_validated_at": "2026-06-14T17:32:55.174521+00:00"
+  },
+  {
+    "id": "economia-renta-9",
+    "category": "Economia - Renta",
+    "question": "¿Qué zonas combinan renta baja y abstención elevada?",
+    "status": "available",
+    "ui_status": "available",
+    "required_tool": "cross_metric_ranking",
+    "selected_tool": "cross_metric_ranking",
+    "arguments": {
+      "cross_metric_ranking": {
+        "municipio_id": "29070",
+        "metrics": [
+          {
+            "metric": "income_individual",
+            "direction": "low",
+            "weight": 1.0,
+            "party": null
+          },
+          {
+            "metric": "abstention_pct",
+            "direction": "high",
+            "weight": 1.0,
+            "party": null
+          }
+        ],
+        "limit": 10
+      }
+    },
+    "validation_status": "passed",
+    "real_result": "passed",
+    "tool_result_status": "ok",
+    "row_count": 10,
+    "answer_preview": "La sección que mejor combina renta individual y abstención es Sección 15 · Barrio de los ríos. Resultados principales • Sección 15 · Barrio…",
+    "chartSpec_status": "present",
+    "failure_reason": "passed",
+    "action_recommended": "keep_available",
+    "last_validated_at": "2026-06-14T17:32:55.174521+00:00"
+  },
+  {
+    "id": "economia-desigualdad-1",
+    "category": "Economia - Desigualdad",
+    "question": "¿Qué zonas muestran mayor desigualdad?",
+    "status": "coming_soon",
+    "ui_status": "coming_soon",
+    "required_tool": null,
+    "selected_tool": null,
+    "arguments": {},
+    "validation_status": "failed",
+    "real_result": "failed",
+    "tool_result_status": "empty_or_unknown",
+    "row_count": 0,
+    "answer_preview": "Entiendo que preguntas por poblacion, pero no encuentro una metrica v2 compatible en el catalogo semantico.",
+    "chartSpec_status": "missing",
+    "failure_reason": "no tool selected",
+    "action_recommended": "keep_coming_soon",
+    "last_validated_at": "2026-06-14T17:32:55.174521+00:00"
+  },
+  {
+    "id": "economia-desigualdad-2",
+    "category": "Economia - Desigualdad",
+    "question": "¿Dónde existe más diferencia entre renta individual y renta del hogar?",
+    "status": "available",
+    "ui_status": "available",
+    "required_tool": "rank_sections",
+    "selected_tool": "rank_sections",
+    "arguments": {
+      "rank_sections": {
+        "municipio_id": "29070",
+        "metric": "income_individual",
+        "year": null,
+        "order": "desc",
+        "limit": 10,
+        "filters": {},
+        "election_type": null,
+        "election_year": null
+      }
+    },
+    "validation_status": "passed",
+    "real_result": "passed",
+    "tool_result_status": "ok",
+    "row_count": 10,
+    "answer_preview": "La sección destacada es Sección 36 · Sierrezuela (Las Lagunas), con 15.573,0 en Renta individual.",
+    "chartSpec_status": "present",
+    "failure_reason": "passed",
+    "action_recommended": "keep_available",
+    "last_validated_at": "2026-06-14T17:32:55.174521+00:00"
+  },
+  {
+    "id": "economia-desarrollo-1",
+    "category": "Economia - Desarrollo",
+    "question": "¿Qué zonas tienen mejor perfil económico?",
+    "status": "coming_soon",
+    "ui_status": "coming_soon",
+    "required_tool": null,
+    "selected_tool": null,
+    "arguments": {},
+    "validation_status": "failed",
+    "real_result": "failed",
+    "tool_result_status": "empty_or_unknown",
+    "row_count": 0,
+    "answer_preview": "No encuentro una operacion analitica aprobada en Semantic Layer v2 para responder con datos internos de SocTrace.",
+    "chartSpec_status": "missing",
+    "failure_reason": "no tool selected",
+    "action_recommended": "keep_coming_soon",
+    "last_validated_at": "2026-06-14T17:32:55.174521+00:00"
+  },
+  {
+    "id": "economia-desarrollo-2",
+    "category": "Economia - Desarrollo",
+    "question": "¿Qué zonas muestran señales de vulnerabilidad económica?",
+    "status": "coming_soon",
+    "ui_status": "coming_soon",
+    "required_tool": null,
+    "selected_tool": null,
+    "arguments": {},
+    "validation_status": "failed",
+    "real_result": "failed",
+    "tool_result_status": "empty_or_unknown",
+    "row_count": 0,
+    "answer_preview": "No encuentro una operacion analitica aprobada en Semantic Layer v2 para responder con datos internos de SocTrace.",
+    "chartSpec_status": "missing",
+    "failure_reason": "no tool selected",
+    "action_recommended": "keep_coming_soon",
+    "last_validated_at": "2026-06-14T17:32:55.174521+00:00"
+  },
+  {
+    "id": "inmobiliario-mercado-1",
+    "category": "Inmobiliario - Mercado",
+    "question": "¿Qué secciones tienen mayor valor inmobiliario?",
+    "status": "available",
+    "ui_status": "available",
+    "required_tool": "rank_sections",
+    "selected_tool": "rank_sections",
+    "arguments": {
+      "rank_sections": {
+        "municipio_id": "29070",
+        "metric": "market_price_estimated_m2",
+        "year": null,
+        "order": "desc",
+        "limit": 10,
+        "filters": {},
+        "election_type": null,
+        "election_year": null
+      }
+    },
+    "validation_status": "passed",
+    "real_result": "passed",
+    "tool_result_status": "ok",
+    "row_count": 10,
+    "answer_preview": "La sección con mayor valor inmobiliario estimado es Sección 01 · Mijas Oeste / Valtocado. Resultados principales • Sección 01 · Mijas Oeste…",
+    "chartSpec_status": "present",
+    "failure_reason": "passed",
+    "action_recommended": "keep_available",
+    "last_validated_at": "2026-06-14T17:32:55.174521+00:00"
+  },
+  {
+    "id": "inmobiliario-mercado-2",
+    "category": "Inmobiliario - Mercado",
+    "question": "¿Qué zonas tienen mayor valor inmobiliario?",
+    "status": "available",
+    "ui_status": "available",
+    "required_tool": "rank_sections",
+    "selected_tool": "rank_sections",
+    "arguments": {
+      "rank_sections": {
+        "municipio_id": "29070",
+        "metric": "market_price_estimated_m2",
+        "year": null,
+        "order": "desc",
+        "limit": 10,
+        "filters": {},
+        "election_type": null,
+        "election_year": null
+      }
+    },
+    "validation_status": "passed",
+    "real_result": "passed",
+    "tool_result_status": "ok",
+    "row_count": 10,
+    "answer_preview": "La sección con mayor valor inmobiliario estimado es Sección 01 · Mijas Oeste / Valtocado. Resultados principales • Sección 01 · Mijas Oeste…",
+    "chartSpec_status": "present",
+    "failure_reason": "passed",
+    "action_recommended": "keep_available",
+    "last_validated_at": "2026-06-14T17:32:55.174521+00:00"
+  },
+  {
+    "id": "inmobiliario-mercado-3",
+    "category": "Inmobiliario - Mercado",
+    "question": "¿Qué secciones tienen menor valor inmobiliario?",
+    "status": "available",
+    "ui_status": "available",
+    "required_tool": "rank_sections",
+    "selected_tool": "rank_sections",
+    "arguments": {
+      "rank_sections": {
+        "municipio_id": "29070",
+        "metric": "market_price_estimated_m2",
+        "year": null,
+        "order": "asc",
+        "limit": 10,
+        "filters": {},
+        "election_type": null,
+        "election_year": null
+      }
+    },
+    "validation_status": "passed",
+    "real_result": "passed",
+    "tool_result_status": "ok",
+    "row_count": 10,
+    "answer_preview": "La sección con menor valor inmobiliario estimado es Sección 01 · Mijas Oeste / Valtocado. Resultados principales • Sección 01 · Mijas Oeste…",
+    "chartSpec_status": "present",
+    "failure_reason": "passed",
+    "action_recommended": "keep_available",
+    "last_validated_at": "2026-06-14T17:32:55.174521+00:00"
+  },
+  {
+    "id": "inmobiliario-mercado-4",
+    "category": "Inmobiliario - Mercado",
+    "question": "¿Dónde está el mercado más tensionado?",
+    "status": "coming_soon",
+    "ui_status": "coming_soon",
+    "required_tool": null,
+    "selected_tool": null,
+    "arguments": {},
+    "validation_status": "failed",
+    "real_result": "failed",
+    "tool_result_status": "empty_or_unknown",
+    "row_count": 0,
+    "answer_preview": "No encuentro una operacion analitica aprobada en Semantic Layer v2 para responder con datos internos de SocTrace.",
+    "chartSpec_status": "missing",
+    "failure_reason": "no tool selected",
+    "action_recommended": "keep_coming_soon",
+    "last_validated_at": "2026-06-14T17:32:55.174521+00:00"
+  },
+  {
+    "id": "inmobiliario-mercado-5",
+    "category": "Inmobiliario - Mercado",
+    "question": "¿Dónde están las oportunidades inmobiliarias?",
+    "status": "available",
+    "ui_status": "available",
+    "required_tool": "cross_metric_ranking",
+    "selected_tool": "cross_metric_ranking",
+    "arguments": {
+      "cross_metric_ranking": {
+        "municipio_id": "29070",
+        "metrics": [
+          {
+            "metric": "market_to_cadastral_ratio",
+            "direction": "low",
+            "weight": 1.0,
+            "party": null
+          },
+          {
+            "metric": "residential_pressure_index",
+            "direction": "low",
+            "weight": 1.0,
+            "party": null
+          }
+        ],
+        "limit": 10
+      }
+    },
+    "validation_status": "passed",
+    "real_result": "passed",
+    "tool_result_status": "ok",
+    "row_count": 10,
+    "answer_preview": "Las mejores oportunidades inmobiliarias aparecen encabezadas por Sección 18 · Camino Campanales. Resultados principales • Sección 18 · Cami…",
+    "chartSpec_status": "present",
+    "failure_reason": "passed",
+    "action_recommended": "keep_available",
+    "last_validated_at": "2026-06-14T17:32:55.174521+00:00"
+  },
+  {
+    "id": "inmobiliario-mercado-6",
+    "category": "Inmobiliario - Mercado",
+    "question": "¿Qué zonas muestran mejor oportunidad inmobiliaria?",
+    "status": "available",
+    "ui_status": "available",
+    "required_tool": "cross_metric_ranking",
+    "selected_tool": "cross_metric_ranking",
+    "arguments": {
+      "cross_metric_ranking": {
+        "municipio_id": "29070",
+        "metrics": [
+          {
+            "metric": "market_to_cadastral_ratio",
+            "direction": "low",
+            "weight": 1.0,
+            "party": null
+          },
+          {
+            "metric": "residential_pressure_index",
+            "direction": "low",
+            "weight": 1.0,
+            "party": null
+          }
+        ],
+        "limit": 10
+      }
+    },
+    "validation_status": "passed",
+    "real_result": "passed",
+    "tool_result_status": "ok",
+    "row_count": 10,
+    "answer_preview": "Las mejores oportunidades inmobiliarias aparecen encabezadas por Sección 18 · Camino Campanales. Resultados principales • Sección 18 · Cami…",
+    "chartSpec_status": "present",
+    "failure_reason": "passed",
+    "action_recommended": "keep_available",
+    "last_validated_at": "2026-06-14T17:32:55.174521+00:00"
+  },
+  {
+    "id": "inmobiliario-mercado-7",
+    "category": "Inmobiliario - Mercado",
+    "question": "¿Qué secciones tienen mayor presión residencial?",
+    "status": "available",
+    "ui_status": "available",
+    "required_tool": "rank_sections",
+    "selected_tool": "rank_sections",
+    "arguments": {
+      "rank_sections": {
+        "municipio_id": "29070",
+        "metric": "residential_pressure_index",
+        "year": null,
+        "order": "desc",
+        "limit": 10,
+        "filters": {},
+        "election_type": null,
+        "election_year": null
+      }
+    },
+    "validation_status": "passed",
+    "real_result": "passed",
+    "tool_result_status": "ok",
+    "row_count": 10,
+    "answer_preview": "El mercado más tensionado aparece en Sección 07 · Cala de Mijas. Resultados principales • Sección 07 · Cala de Mijas: 67,100 • Sección 30 ·…",
+    "chartSpec_status": "present",
+    "failure_reason": "passed",
+    "action_recommended": "keep_available",
+    "last_validated_at": "2026-06-14T17:32:55.174521+00:00"
+  },
+  {
+    "id": "inmobiliario-mercado-8",
+    "category": "Inmobiliario - Mercado",
+    "question": "¿Qué secciones son consideradas zona prime?",
+    "status": "coming_soon",
+    "ui_status": "coming_soon",
+    "required_tool": null,
+    "selected_tool": null,
+    "arguments": {},
+    "validation_status": "failed",
+    "real_result": "failed",
+    "tool_result_status": "empty_or_unknown",
+    "row_count": 0,
+    "answer_preview": "No encuentro una operacion analitica aprobada en Semantic Layer v2 para responder con datos internos de SocTrace.",
+    "chartSpec_status": "missing",
+    "failure_reason": "no tool selected",
+    "action_recommended": "keep_coming_soon",
+    "last_validated_at": "2026-06-14T17:32:55.174521+00:00"
+  },
+  {
+    "id": "inmobiliario-construccion-1",
+    "category": "Inmobiliario - Construccion",
+    "question": "¿Qué zonas tienen mayor intensidad edificatoria?",
+    "status": "available",
+    "ui_status": "available",
+    "required_tool": "rank_sections",
+    "selected_tool": "rank_sections",
+    "arguments": {
+      "rank_sections": {
+        "municipio_id": "29070",
+        "metric": "building_intensity",
+        "year": null,
+        "order": "desc",
+        "limit": 10,
+        "filters": {},
+        "election_type": null,
+        "election_year": null
+      }
+    },
+    "validation_status": "passed",
+    "real_result": "passed",
+    "tool_result_status": "ok",
+    "row_count": 10,
+    "answer_preview": "La sección destacada es Sección 19 · Barrio de las flores Oeste. Resultados principales • Sección 19 · Barrio de las flores Oeste: 0,644 • …",
+    "chartSpec_status": "present",
+    "failure_reason": "passed",
+    "action_recommended": "keep_available",
+    "last_validated_at": "2026-06-14T17:32:55.174521+00:00"
+  },
+  {
+    "id": "inmobiliario-construccion-2",
+    "category": "Inmobiliario - Construccion",
+    "question": "¿Qué zonas tienen más presión urbanística?",
+    "status": "available",
+    "ui_status": "available",
+    "required_tool": "rank_sections",
+    "selected_tool": "rank_sections",
+    "arguments": {
+      "rank_sections": {
+        "municipio_id": "29070",
+        "metric": "residential_pressure_index",
+        "year": null,
+        "order": "desc",
+        "limit": 10,
+        "filters": {},
+        "election_type": null,
+        "election_year": null
+      }
+    },
+    "validation_status": "passed",
+    "real_result": "passed",
+    "tool_result_status": "ok",
+    "row_count": 10,
+    "answer_preview": "El mercado más tensionado aparece en Sección 07 · Cala de Mijas. Resultados principales • Sección 07 · Cala de Mijas: 67,100 • Sección 30 ·…",
+    "chartSpec_status": "present",
+    "failure_reason": "passed",
+    "action_recommended": "keep_available",
+    "last_validated_at": "2026-06-14T17:32:55.174521+00:00"
+  },
+  {
+    "id": "inmobiliario-construccion-3",
+    "category": "Inmobiliario - Construccion",
+    "question": "¿Dónde se concentra más superficie construida?",
+    "status": "available",
+    "ui_status": "available",
+    "required_tool": "rank_sections",
+    "selected_tool": "rank_sections",
+    "arguments": {
+      "rank_sections": {
+        "municipio_id": "29070",
+        "metric": "built_footprint",
+        "year": null,
+        "order": "desc",
+        "limit": 10,
+        "filters": {},
+        "election_type": null,
+        "election_year": null
+      }
+    },
+    "validation_status": "passed",
+    "real_result": "passed",
+    "tool_result_status": "ok",
+    "row_count": 10,
+    "answer_preview": "La sección destacada es Sección 28 · Cerros del Águila / La Ponderosa. Resultados principales • Sección 28 · Cerros del Águila / La Pondero…",
+    "chartSpec_status": "present",
+    "failure_reason": "passed",
+    "action_recommended": "keep_available",
+    "last_validated_at": "2026-06-14T17:32:55.174521+00:00"
+  },
+  {
+    "id": "inmobiliario-inversion-1",
+    "category": "Inmobiliario - Inversion",
+    "question": "¿Qué zonas combinan renta alta y valor inmobiliario alto?",
+    "status": "coming_soon",
+    "ui_status": "coming_soon",
+    "required_tool": "cross_metric_ranking",
+    "selected_tool": "rank_sections",
+    "arguments": {
+      "rank_sections": {
+        "municipio_id": "29070",
+        "metric": "market_price_estimated_m2",
+        "year": null,
+        "order": "desc",
+        "limit": 10,
+        "filters": {},
+        "election_type": null,
+        "election_year": null
+      }
+    },
+    "validation_status": "failed",
+    "real_result": "failed",
+    "tool_result_status": "ok",
+    "row_count": 10,
+    "answer_preview": "La sección con mayor valor inmobiliario estimado es Sección 01 · Mijas Oeste / Valtocado. Resultados principales • Sección 01 · Mijas Oeste…",
+    "chartSpec_status": "present",
+    "failure_reason": "tool mismatch: expected cross_metric_ranking, got rank_sections",
+    "action_recommended": "keep_coming_soon",
+    "last_validated_at": "2026-06-14T17:32:55.174521+00:00"
+  },
+  {
+    "id": "inmobiliario-inversion-2",
+    "category": "Inmobiliario - Inversion",
+    "question": "¿Qué zonas parecen infravaloradas?",
+    "status": "available",
+    "ui_status": "available",
+    "required_tool": "cross_metric_ranking",
+    "selected_tool": "cross_metric_ranking",
+    "arguments": {
+      "cross_metric_ranking": {
+        "municipio_id": "29070",
+        "metrics": [
+          {
+            "metric": "market_to_cadastral_ratio",
+            "direction": "low",
+            "weight": 1.0,
+            "party": null
+          },
+          {
+            "metric": "residential_pressure_index",
+            "direction": "low",
+            "weight": 1.0,
+            "party": null
+          }
+        ],
+        "limit": 10
+      }
+    },
+    "validation_status": "passed",
+    "real_result": "passed",
+    "tool_result_status": "ok",
+    "row_count": 10,
+    "answer_preview": "Las mejores oportunidades inmobiliarias aparecen encabezadas por Sección 18 · Camino Campanales. Resultados principales • Sección 18 · Cami…",
+    "chartSpec_status": "present",
+    "failure_reason": "passed",
+    "action_recommended": "keep_available",
+    "last_validated_at": "2026-06-14T17:32:55.174521+00:00"
+  },
+  {
+    "id": "inmobiliario-inversion-3",
+    "category": "Inmobiliario - Inversion",
+    "question": "¿Qué zonas tienen mayor potencial de revalorización?",
+    "status": "available",
+    "ui_status": "available",
+    "required_tool": "cross_metric_ranking",
+    "selected_tool": "cross_metric_ranking",
+    "arguments": {
+      "cross_metric_ranking": {
+        "municipio_id": "29070",
+        "metrics": [
+          {
+            "metric": "market_to_cadastral_ratio",
+            "direction": "low",
+            "weight": 1.0,
+            "party": null
+          },
+          {
+            "metric": "building_intensity",
+            "direction": "high",
+            "weight": 1.0,
+            "party": null
+          }
+        ],
+        "limit": 10
+      }
+    },
+    "validation_status": "passed",
+    "real_result": "passed",
+    "tool_result_status": "ok",
+    "row_count": 10,
+    "answer_preview": "El mayor potencial comparativo de revalorización aparece en Sección 19 · Barrio de las flores Oeste. Resultados principales • Sección 19 · …",
+    "chartSpec_status": "present",
+    "failure_reason": "passed",
+    "action_recommended": "keep_available",
+    "last_validated_at": "2026-06-14T17:32:55.174521+00:00"
+  },
+  {
+    "id": "estadistica-rankings-1",
+    "category": "Estadistica - Rankings",
+    "question": "Ordena las secciones por población.",
+    "status": "coming_soon",
+    "ui_status": "coming_soon",
+    "required_tool": null,
+    "selected_tool": null,
+    "arguments": {},
+    "validation_status": "failed",
+    "real_result": "failed",
+    "tool_result_status": "empty_or_unknown",
+    "row_count": 0,
+    "answer_preview": "Entiendo que preguntas por poblacion, pero no encuentro una metrica v2 compatible en el catalogo semantico.",
+    "chartSpec_status": "missing",
+    "failure_reason": "no tool selected",
+    "action_recommended": "keep_coming_soon",
+    "last_validated_at": "2026-06-14T17:32:55.174521+00:00"
+  },
+  {
+    "id": "estadistica-rankings-2",
+    "category": "Estadistica - Rankings",
+    "question": "Ordena las secciones por renta.",
+    "status": "available",
+    "ui_status": "available",
+    "required_tool": "rank_sections",
+    "selected_tool": "rank_sections",
+    "arguments": {
+      "rank_sections": {
+        "municipio_id": "29070",
+        "metric": "income_individual",
+        "year": null,
+        "order": "desc",
+        "limit": 10,
+        "filters": {},
+        "election_type": null,
+        "election_year": null
+      }
+    },
+    "validation_status": "passed",
+    "real_result": "passed",
+    "tool_result_status": "ok",
+    "row_count": 10,
+    "answer_preview": "La sección destacada es Sección 36 · Sierrezuela (Las Lagunas), con 15.573,0 en Renta individual.",
+    "chartSpec_status": "present",
+    "failure_reason": "passed",
+    "action_recommended": "keep_available",
+    "last_validated_at": "2026-06-14T17:32:55.174521+00:00"
+  },
+  {
+    "id": "estadistica-rankings-3",
+    "category": "Estadistica - Rankings",
+    "question": "Ordena las secciones por edad media.",
+    "status": "available",
+    "ui_status": "available",
+    "required_tool": "rank_sections",
+    "selected_tool": "rank_sections",
+    "arguments": {
+      "rank_sections": {
+        "municipio_id": "29070",
+        "metric": "average_age",
+        "year": null,
+        "order": "asc",
+        "limit": 10,
+        "filters": {},
+        "election_type": null,
+        "election_year": null
+      }
+    },
+    "validation_status": "passed",
+    "real_result": "passed",
+    "tool_result_status": "ok",
+    "row_count": 10,
+    "answer_preview": "Ordeno las secciones de menor a mayor edad media. La sección más joven es Sección 25 · María Zambrano Este, con una edad media de 34,6 años…",
+    "chartSpec_status": "present",
+    "failure_reason": "passed",
+    "action_recommended": "keep_available",
+    "last_validated_at": "2026-06-14T17:32:55.174521+00:00"
+  },
+  {
+    "id": "estadistica-rankings-4",
+    "category": "Estadistica - Rankings",
+    "question": "Ordena las secciones por abstención.",
+    "status": "available",
+    "ui_status": "available",
+    "required_tool": "rank_sections",
+    "selected_tool": "rank_sections",
+    "arguments": {
+      "rank_sections": {
+        "municipio_id": "29070",
+        "metric": "abstention_pct",
+        "year": null,
+        "order": "desc",
+        "limit": 10,
+        "filters": {},
+        "election_type": "MUNICIPALES",
+        "election_year": null
+      }
+    },
+    "validation_status": "passed",
+    "real_result": "passed",
+    "tool_result_status": "ok",
+    "row_count": 10,
+    "answer_preview": "La sección destacada es Sección 27 · Torrenueva, con 62,0 en Abstencion.",
+    "chartSpec_status": "present",
+    "failure_reason": "passed",
+    "action_recommended": "keep_available",
+    "last_validated_at": "2026-06-14T17:32:55.174521+00:00"
+  },
+  {
+    "id": "estadistica-desviaciones-1",
+    "category": "Estadistica - Desviaciones",
+    "question": "¿Qué secciones están por encima de la media?",
+    "status": "coming_soon",
+    "ui_status": "coming_soon",
+    "required_tool": null,
+    "selected_tool": null,
+    "arguments": {},
+    "validation_status": "failed",
+    "real_result": "failed",
+    "tool_result_status": "empty_or_unknown",
+    "row_count": 0,
+    "answer_preview": "No encuentro una operacion analitica aprobada en Semantic Layer v2 para responder con datos internos de SocTrace.",
+    "chartSpec_status": "missing",
+    "failure_reason": "no tool selected",
+    "action_recommended": "keep_coming_soon",
+    "last_validated_at": "2026-06-14T17:32:55.174521+00:00"
+  },
+  {
+    "id": "estadistica-desviaciones-2",
+    "category": "Estadistica - Desviaciones",
+    "question": "¿Qué secciones son outliers?",
+    "status": "coming_soon",
+    "ui_status": "coming_soon",
+    "required_tool": null,
+    "selected_tool": null,
+    "arguments": {},
+    "validation_status": "failed",
+    "real_result": "failed",
+    "tool_result_status": "empty_or_unknown",
+    "row_count": 0,
+    "answer_preview": "No encuentro una operacion analitica aprobada en Semantic Layer v2 para responder con datos internos de SocTrace.",
+    "chartSpec_status": "missing",
+    "failure_reason": "no tool selected",
+    "action_recommended": "keep_coming_soon",
+    "last_validated_at": "2026-06-14T17:32:55.174521+00:00"
+  },
+  {
+    "id": "estadistica-desviaciones-3",
+    "category": "Estadistica - Desviaciones",
+    "question": "¿Qué variable presenta más dispersión?",
+    "status": "coming_soon",
+    "ui_status": "coming_soon",
+    "required_tool": null,
+    "selected_tool": null,
+    "arguments": {},
+    "validation_status": "failed",
+    "real_result": "failed",
+    "tool_result_status": "empty_or_unknown",
+    "row_count": 0,
+    "answer_preview": "No encuentro una operacion analitica aprobada en Semantic Layer v2 para responder con datos internos de SocTrace.",
+    "chartSpec_status": "missing",
+    "failure_reason": "no tool selected",
+    "action_recommended": "keep_coming_soon",
+    "last_validated_at": "2026-06-14T17:32:55.174521+00:00"
+  },
+  {
+    "id": "estadistica-distribuciones-1",
+    "category": "Estadistica - Distribuciones",
+    "question": "¿Cómo se distribuye la renta?",
+    "status": "available",
+    "ui_status": "available",
+    "required_tool": "rank_sections",
+    "selected_tool": "rank_sections",
+    "arguments": {
+      "rank_sections": {
+        "municipio_id": "29070",
+        "metric": "income_individual",
+        "year": null,
+        "order": "desc",
+        "limit": 1,
+        "filters": {},
+        "election_type": null,
+        "election_year": null
+      }
+    },
+    "validation_status": "passed",
+    "real_result": "passed",
+    "tool_result_status": "ok",
+    "row_count": 1,
+    "answer_preview": "La sección destacada es Sección 36 · Sierrezuela (Las Lagunas), con 15.573,0 en Renta individual.",
+    "chartSpec_status": "present",
+    "failure_reason": "passed",
+    "action_recommended": "keep_available",
+    "last_validated_at": "2026-06-14T17:32:55.174521+00:00"
+  },
+  {
+    "id": "estadistica-distribuciones-2",
+    "category": "Estadistica - Distribuciones",
+    "question": "¿Cómo se distribuye la edad?",
+    "status": "coming_soon",
+    "ui_status": "coming_soon",
+    "required_tool": null,
+    "selected_tool": null,
+    "arguments": {},
+    "validation_status": "failed",
+    "real_result": "failed",
+    "tool_result_status": "empty_or_unknown",
+    "row_count": 0,
+    "answer_preview": "Entiendo que preguntas por poblacion, pero no encuentro una metrica v2 compatible en el catalogo semantico.",
+    "chartSpec_status": "missing",
+    "failure_reason": "no tool selected",
+    "action_recommended": "keep_coming_soon",
+    "last_validated_at": "2026-06-14T17:32:55.174521+00:00"
+  },
+  {
+    "id": "estadistica-distribuciones-3",
+    "category": "Estadistica - Distribuciones",
+    "question": "¿Cómo se distribuye la abstención?",
+    "status": "available",
+    "ui_status": "available",
+    "required_tool": "rank_sections",
+    "selected_tool": "rank_sections",
+    "arguments": {
+      "rank_sections": {
+        "municipio_id": "29070",
+        "metric": "abstention_pct",
+        "year": null,
+        "order": "desc",
+        "limit": 1,
+        "filters": {},
+        "election_type": "MUNICIPALES",
+        "election_year": null
+      }
+    },
+    "validation_status": "passed",
+    "real_result": "passed",
+    "tool_result_status": "ok",
+    "row_count": 1,
+    "answer_preview": "La sección destacada es Sección 27 · Torrenueva, con 62,0 en Abstencion.",
+    "chartSpec_status": "present",
+    "failure_reason": "passed",
+    "action_recommended": "keep_available",
+    "last_validated_at": "2026-06-14T17:32:55.174521+00:00"
+  },
+  {
+    "id": "data-science-correlaciones-1",
+    "category": "Data Science - Correlaciones",
+    "question": "¿Qué variables se relacionan más con la abstención?",
+    "status": "coming_soon",
+    "ui_status": "coming_soon",
+    "required_tool": "correlation_analysis",
+    "selected_tool": "rank_sections",
+    "arguments": {
+      "rank_sections": {
+        "municipio_id": "29070",
+        "metric": "abstention_pct",
+        "year": null,
+        "order": "desc",
+        "limit": 1,
+        "filters": {},
+        "election_type": "MUNICIPALES",
+        "election_year": null
+      }
+    },
+    "validation_status": "failed",
+    "real_result": "failed",
+    "tool_result_status": "ok",
+    "row_count": 1,
+    "answer_preview": "La sección destacada es Sección 27 · Torrenueva, con 62,0 en Abstencion.",
+    "chartSpec_status": "present",
+    "failure_reason": "tool mismatch: expected correlation_analysis, got rank_sections",
+    "action_recommended": "keep_coming_soon",
+    "last_validated_at": "2026-06-14T17:32:55.174521+00:00"
+  },
+  {
+    "id": "data-science-correlaciones-2",
+    "category": "Data Science - Correlaciones",
+    "question": "¿Qué variables se relacionan más con el voto al PP?",
+    "status": "coming_soon",
+    "ui_status": "coming_soon",
+    "required_tool": "correlation_analysis",
+    "selected_tool": "party_strength",
+    "arguments": {
+      "party_strength": {
+        "municipio_id": "29070",
+        "party": "PP",
+        "election_type": "MUNICIPALES",
+        "election_year": null,
+        "historical": false,
+        "limit": 1
+      }
+    },
+    "validation_status": "failed",
+    "real_result": "failed",
+    "tool_result_status": "ok",
+    "row_count": 1,
+    "answer_preview": "La sección destacada es Sección 07 · Cala de Mijas, con 44,4 en voto a PP.",
+    "chartSpec_status": "present",
+    "failure_reason": "tool mismatch: expected correlation_analysis, got party_strength",
+    "action_recommended": "keep_coming_soon",
+    "last_validated_at": "2026-06-14T17:32:55.174521+00:00"
+  },
+  {
+    "id": "data-science-correlaciones-3",
+    "category": "Data Science - Correlaciones",
+    "question": "¿Qué variables se relacionan más con el voto al PSOE?",
+    "status": "coming_soon",
+    "ui_status": "coming_soon",
+    "required_tool": "correlation_analysis",
+    "selected_tool": "party_strength",
+    "arguments": {
+      "party_strength": {
+        "municipio_id": "29070",
+        "party": "PSOE",
+        "election_type": "MUNICIPALES",
+        "election_year": null,
+        "historical": false,
+        "limit": 1
+      }
+    },
+    "validation_status": "failed",
+    "real_result": "failed",
+    "tool_result_status": "ok",
+    "row_count": 1,
+    "answer_preview": "La sección destacada es Sección 02 · Mijas Este, con 45,9 en voto a PSOE.",
+    "chartSpec_status": "present",
+    "failure_reason": "tool mismatch: expected correlation_analysis, got party_strength",
+    "action_recommended": "keep_coming_soon",
+    "last_validated_at": "2026-06-14T17:32:55.174521+00:00"
+  },
+  {
+    "id": "data-science-clustering-1",
+    "category": "Data Science - Clustering",
+    "question": "Agrupa secciones similares.",
+    "status": "coming_soon",
+    "ui_status": "coming_soon",
+    "required_tool": null,
+    "selected_tool": null,
+    "arguments": {},
+    "validation_status": "failed",
+    "real_result": "failed",
+    "tool_result_status": "empty_or_unknown",
+    "row_count": 0,
+    "answer_preview": "Reconozco una tecnica analitica avanzada, pero esta marcada como pending en Semantic Layer v2.",
+    "chartSpec_status": "missing",
+    "failure_reason": "no tool selected",
+    "action_recommended": "keep_coming_soon",
+    "last_validated_at": "2026-06-14T17:32:55.174521+00:00"
+  },
+  {
+    "id": "data-science-clustering-2",
+    "category": "Data Science - Clustering",
+    "question": "¿Qué secciones se parecen a Riviera Sur?",
+    "status": "coming_soon",
+    "ui_status": "coming_soon",
+    "required_tool": null,
+    "selected_tool": null,
+    "arguments": {},
+    "validation_status": "failed",
+    "real_result": "failed",
+    "tool_result_status": "empty_or_unknown",
+    "row_count": 0,
+    "answer_preview": "No encuentro una operacion analitica aprobada en Semantic Layer v2 para responder con datos internos de SocTrace.",
+    "chartSpec_status": "missing",
+    "failure_reason": "no tool selected",
+    "action_recommended": "keep_coming_soon",
+    "last_validated_at": "2026-06-14T17:32:55.174521+00:00"
+  },
+  {
+    "id": "data-science-clustering-3",
+    "category": "Data Science - Clustering",
+    "question": "¿Qué secciones tienen perfiles equivalentes?",
+    "status": "coming_soon",
+    "ui_status": "coming_soon",
+    "required_tool": null,
+    "selected_tool": null,
+    "arguments": {},
+    "validation_status": "failed",
+    "real_result": "failed",
+    "tool_result_status": "empty_or_unknown",
+    "row_count": 0,
+    "answer_preview": "No encuentro una operacion analitica aprobada en Semantic Layer v2 para responder con datos internos de SocTrace.",
+    "chartSpec_status": "missing",
+    "failure_reason": "no tool selected",
+    "action_recommended": "keep_coming_soon",
+    "last_validated_at": "2026-06-14T17:32:55.174521+00:00"
+  },
+  {
+    "id": "data-science-scores-1",
+    "category": "Data Science - Scores",
+    "question": "Crea un índice de vulnerabilidad.",
+    "status": "coming_soon",
+    "ui_status": "coming_soon",
+    "required_tool": null,
+    "selected_tool": null,
+    "arguments": {},
+    "validation_status": "failed",
+    "real_result": "failed",
+    "tool_result_status": "empty_or_unknown",
+    "row_count": 0,
+    "answer_preview": "No encuentro una operacion analitica aprobada en Semantic Layer v2 para responder con datos internos de SocTrace.",
+    "chartSpec_status": "missing",
+    "failure_reason": "no tool selected",
+    "action_recommended": "keep_coming_soon",
+    "last_validated_at": "2026-06-14T17:32:55.174521+00:00"
+  },
+  {
+    "id": "data-science-scores-2",
+    "category": "Data Science - Scores",
+    "question": "Crea un índice de oportunidad electoral.",
+    "status": "coming_soon",
+    "ui_status": "coming_soon",
+    "required_tool": null,
+    "selected_tool": null,
+    "arguments": {},
+    "validation_status": "failed",
+    "real_result": "failed",
+    "tool_result_status": "empty_or_unknown",
+    "row_count": 0,
+    "answer_preview": "No encuentro una operacion analitica aprobada en Semantic Layer v2 para responder con datos internos de SocTrace.",
+    "chartSpec_status": "missing",
+    "failure_reason": "no tool selected",
+    "action_recommended": "keep_coming_soon",
+    "last_validated_at": "2026-06-14T17:32:55.174521+00:00"
+  },
+  {
+    "id": "data-science-scores-3",
+    "category": "Data Science - Scores",
+    "question": "Crea un índice de presión inmobiliaria.",
+    "status": "coming_soon",
+    "ui_status": "coming_soon",
+    "required_tool": null,
+    "selected_tool": null,
+    "arguments": {},
+    "validation_status": "failed",
+    "real_result": "failed",
+    "tool_result_status": "empty_or_unknown",
+    "row_count": 0,
+    "answer_preview": "Entiendo que preguntas por vivienda o presion residencial, pero no he reconocido una metrica concreta del catalogo v2.",
+    "chartSpec_status": "missing",
+    "failure_reason": "no tool selected",
+    "action_recommended": "keep_coming_soon",
+    "last_validated_at": "2026-06-14T17:32:55.174521+00:00"
+  },
+  {
+    "id": "data-science-scores-4",
+    "category": "Data Science - Scores",
+    "question": "¿Qué zonas concentran más población y crecimiento?",
+    "status": "available",
+    "ui_status": "available",
+    "required_tool": "population_growth",
+    "selected_tool": "population_growth",
+    "arguments": {
+      "population_growth": {
+        "municipio_id": "29070",
+        "start_year": null,
+        "end_year": null,
+        "rank_by": "growth_abs",
+        "order": "desc",
+        "limit": 10
+      }
+    },
+    "validation_status": "passed",
+    "real_result": "passed",
+    "tool_result_status": "ok",
+    "row_count": 10,
+    "answer_preview": "comparando 2021 con 2025, las zonas con mayor crecimiento son: • Zona historica Sección 30 · Parque Los Olivos / La Noria: +922 habitantes …",
+    "chartSpec_status": "present",
+    "failure_reason": "passed",
+    "action_recommended": "keep_available",
+    "last_validated_at": "2026-06-14T17:32:55.174521+00:00"
+  },
+  {
+    "id": "data-science-scores-5",
+    "category": "Data Science - Scores",
+    "question": "¿Qué zonas combinan juventud y crecimiento?",
+    "status": "available",
+    "ui_status": "available",
+    "required_tool": "population_growth",
+    "selected_tool": "population_growth",
+    "arguments": {
+      "population_growth": {
+        "municipio_id": "29070",
+        "start_year": null,
+        "end_year": null,
+        "rank_by": "growth_abs",
+        "order": "desc",
+        "limit": 10
+      }
+    },
+    "validation_status": "passed",
+    "real_result": "passed",
+    "tool_result_status": "ok",
+    "row_count": 10,
+    "answer_preview": "comparando 2021 con 2025, las zonas con mayor crecimiento son: • Zona historica Sección 30 · Parque Los Olivos / La Noria: +922 habitantes …",
+    "chartSpec_status": "present",
+    "failure_reason": "passed",
+    "action_recommended": "keep_available",
+    "last_validated_at": "2026-06-14T17:32:55.174521+00:00"
+  },
+  {
+    "id": "data-science-scores-6",
+    "category": "Data Science - Scores",
+    "question": "¿Qué secciones presentan mejores indicadores territoriales?",
+    "status": "coming_soon",
+    "ui_status": "coming_soon",
+    "required_tool": null,
+    "selected_tool": null,
+    "arguments": {},
+    "validation_status": "failed",
+    "real_result": "failed",
+    "tool_result_status": "empty_or_unknown",
+    "row_count": 0,
+    "answer_preview": "No encuentro una operacion analitica aprobada en Semantic Layer v2 para responder con datos internos de SocTrace.",
+    "chartSpec_status": "missing",
+    "failure_reason": "no tool selected",
+    "action_recommended": "keep_coming_soon",
+    "last_validated_at": "2026-06-14T17:32:55.174521+00:00"
+  },
+  {
+    "id": "data-science-prediccion-1",
+    "category": "Data Science - Prediccion",
+    "question": "¿Qué secciones podrían aumentar la abstención?",
+    "status": "available",
+    "ui_status": "coming_soon",
+    "required_tool": "abstention_increase_risk",
+    "selected_tool": "abstention_increase_risk",
+    "arguments": {
+      "abstention_increase_risk": {
+        "municipio_id": "29070"
+      }
+    },
+    "validation_status": "passed",
+    "real_result": "passed",
+    "tool_result_status": "ok",
+    "row_count": 10,
+    "answer_preview": "La principal señal territorial de riesgo de aumento de abstención aparece en Sección 26 · Mijas Golf. Indicadores principales • Sección 26 …",
+    "chartSpec_status": "present",
+    "failure_reason": "passed",
+    "action_recommended": "keep_available",
+    "last_validated_at": "2026-06-14T17:32:55.174521+00:00"
+  },
+  {
+    "id": "data-science-prediccion-2",
+    "category": "Data Science - Prediccion",
+    "question": "¿Qué secciones podrían cambiar de ganador?",
+    "status": "coming_soon",
+    "ui_status": "coming_soon",
+    "required_tool": "population_growth",
+    "selected_tool": "population_growth",
+    "arguments": {
+      "population_growth": {
+        "municipio_id": "29070",
+        "start_year": null,
+        "end_year": null,
+        "rank_by": "growth_abs",
+        "order": "desc",
+        "limit": 10
+      }
+    },
+    "validation_status": "failed",
+    "real_result": "failed",
+    "tool_result_status": "ok",
+    "row_count": 10,
+    "answer_preview": "comparando 2021 con 2025, las zonas con mayor crecimiento son: • Zona historica Sección 30 · Parque Los Olivos / La Noria: +922 habitantes …",
+    "chartSpec_status": "present",
+    "failure_reason": "no supported executable tool for this forecast-style question",
+    "action_recommended": "keep_coming_soon",
+    "last_validated_at": "2026-06-14T17:32:55.174521+00:00"
+  },
+  {
+    "id": "data-science-prediccion-3",
+    "category": "Data Science - Prediccion",
+    "question": "¿Qué secciones podrían crecer más demográficamente?",
+    "status": "coming_soon",
+    "ui_status": "coming_soon",
+    "required_tool": null,
+    "selected_tool": null,
+    "arguments": {},
+    "validation_status": "failed",
+    "real_result": "failed",
+    "tool_result_status": "empty_or_unknown",
+    "row_count": 0,
+    "answer_preview": "No encuentro una operacion analitica aprobada en Semantic Layer v2 para responder con datos internos de SocTrace.",
+    "chartSpec_status": "missing",
+    "failure_reason": "no tool selected",
+    "action_recommended": "keep_coming_soon",
+    "last_validated_at": "2026-06-14T17:32:55.174521+00:00"
+  },
+  {
+    "id": "conversacional-contexto-1-1",
+    "category": "Conversacional - Contexto 1",
+    "question": "¿Cuál es la sección más joven?",
+    "status": "available",
+    "ui_status": "available",
+    "required_tool": "rank_sections",
+    "selected_tool": "rank_sections",
+    "arguments": {
+      "rank_sections": {
+        "municipio_id": "29070",
+        "metric": "average_age",
+        "year": null,
+        "order": "asc",
+        "limit": 1,
+        "filters": {},
+        "election_type": null,
+        "election_year": null
+      }
+    },
+    "validation_status": "passed",
+    "real_result": "passed",
+    "tool_result_status": "ok",
+    "row_count": 1,
+    "answer_preview": "Ordeno las secciones de menor a mayor edad media. La sección más joven es Sección 25 · María Zambrano Este, con una edad media de 34,6 años…",
+    "chartSpec_status": "present",
+    "failure_reason": "passed",
+    "action_recommended": "keep_available",
+    "last_validated_at": "2026-06-14T17:32:55.174521+00:00"
+  },
+  {
+    "id": "conversacional-contexto-1-2",
+    "category": "Conversacional - Contexto 1",
+    "question": "¿Siempre ha sido la más joven?",
+    "status": "coming_soon",
+    "ui_status": "coming_soon",
+    "required_tool": "compare_years",
+    "selected_tool": "rank_sections",
+    "arguments": {
+      "rank_sections": {
+        "municipio_id": "29070",
+        "metric": "average_age",
+        "year": null,
+        "order": "asc",
+        "limit": 1,
+        "filters": {},
+        "election_type": null,
+        "election_year": null
+      }
+    },
+    "validation_status": "failed",
+    "real_result": "failed",
+    "tool_result_status": "ok",
+    "row_count": 1,
+    "answer_preview": "Ordeno las secciones de menor a mayor edad media. La sección más joven es Sección 25 · María Zambrano Este, con una edad media de 34,6 años…",
+    "chartSpec_status": "present",
+    "failure_reason": "tool mismatch: expected compare_years, got rank_sections",
+    "action_recommended": "keep_coming_soon",
+    "last_validated_at": "2026-06-14T17:32:55.174521+00:00"
+  },
+  {
+    "id": "conversacional-contexto-1-3",
+    "category": "Conversacional - Contexto 1",
+    "question": "¿Qué partido es históricamente más fuerte allí?",
+    "status": "coming_soon",
+    "ui_status": "coming_soon",
+    "required_tool": "historical_party_average",
+    "selected_tool": "historical_party_average",
+    "arguments": {
+      "historical_party_average": {
+        "municipio_id": "29070",
+        "party": null,
+        "election_type": "MUNICIPALES",
+        "limit": 10
+      }
+    },
+    "validation_status": "failed",
+    "real_result": "failed",
+    "tool_result_status": "ok",
+    "row_count": 10,
+    "answer_preview": "He ejecutado la herramienta analítica y devuelvo el resultado en tabla.",
+    "chartSpec_status": "present",
+    "failure_reason": "answer is too thin or not useful",
+    "action_recommended": "keep_coming_soon",
+    "last_validated_at": "2026-06-14T17:32:55.174521+00:00"
+  },
+  {
+    "id": "conversacional-contexto-1-4",
+    "category": "Conversacional - Contexto 1",
+    "question": "¿Y qué renta tiene?",
+    "status": "coming_soon",
+    "ui_status": "coming_soon",
+    "required_tool": "section_profile",
+    "selected_tool": "rank_sections",
+    "arguments": {
+      "rank_sections": {
+        "municipio_id": "29070",
+        "metric": "income_individual",
+        "year": null,
+        "order": "desc",
+        "limit": 1,
+        "filters": {},
+        "election_type": null,
+        "election_year": null
+      }
+    },
+    "validation_status": "failed",
+    "real_result": "failed",
+    "tool_result_status": "ok",
+    "row_count": 1,
+    "answer_preview": "La sección destacada es Sección 36 · Sierrezuela (Las Lagunas), con 15.573,0 en Renta individual.",
+    "chartSpec_status": "present",
+    "failure_reason": "tool mismatch: expected section_profile, got rank_sections",
+    "action_recommended": "keep_coming_soon",
+    "last_validated_at": "2026-06-14T17:32:55.174521+00:00"
+  },
+  {
+    "id": "conversacional-contexto-1-5",
+    "category": "Conversacional - Contexto 1",
+    "question": "¿Está por encima o por debajo de la media de Mijas?",
+    "status": "coming_soon",
+    "ui_status": "coming_soon",
+    "required_tool": null,
+    "selected_tool": null,
+    "arguments": {},
+    "validation_status": "failed",
+    "real_result": "failed",
+    "tool_result_status": "empty_or_unknown",
+    "row_count": 0,
+    "answer_preview": "No encuentro una operacion analitica aprobada en Semantic Layer v2 para responder con datos internos de SocTrace.",
+    "chartSpec_status": "missing",
+    "failure_reason": "no tool selected",
+    "action_recommended": "keep_coming_soon",
+    "last_validated_at": "2026-06-14T17:32:55.174521+00:00"
+  },
+  {
+    "id": "conversacional-contexto-2-1",
+    "category": "Conversacional - Contexto 2",
+    "question": "¿Dónde gana siempre el PP?",
+    "status": "available",
+    "ui_status": "available",
+    "required_tool": "persistent_winner",
+    "selected_tool": "persistent_winner",
+    "arguments": {
+      "persistent_winner": {
+        "municipio_id": "29070",
+        "party": "PP",
+        "election_type": "MUNICIPALES",
+        "limit": 50
+      }
+    },
+    "validation_status": "passed",
+    "real_result": "passed",
+    "tool_result_status": "ok",
+    "row_count": 37,
+    "answer_preview": "PP gana en todas las elecciones disponibles en 13 secciones.",
+    "chartSpec_status": "present",
+    "failure_reason": "passed",
+    "action_recommended": "keep_available",
+    "last_validated_at": "2026-06-14T17:32:55.174521+00:00"
+  },
+  {
+    "id": "conversacional-contexto-2-2",
+    "category": "Conversacional - Contexto 2",
+    "question": "¿Cuál de esas secciones tiene más población?",
+    "status": "available",
+    "ui_status": "available",
+    "required_tool": "rank_sections",
+    "selected_tool": "rank_sections",
+    "arguments": {
+      "rank_sections": {
+        "municipio_id": "29070",
+        "metric": "population_total",
+        "year": null,
+        "order": "desc",
+        "limit": 1,
+        "filters": {},
+        "election_type": null,
+        "election_year": null
+      }
+    },
+    "validation_status": "passed",
+    "real_result": "passed",
+    "tool_result_status": "ok",
+    "row_count": 1,
+    "answer_preview": "La sección más poblada de Mijas es Sección 23 · Riviera Sur, con aproximadamente 5.351 habitantes.",
+    "chartSpec_status": "present",
+    "failure_reason": "passed",
+    "action_recommended": "keep_available",
+    "last_validated_at": "2026-06-14T17:32:55.174521+00:00"
+  },
+  {
+    "id": "conversacional-contexto-2-3",
+    "category": "Conversacional - Contexto 2",
+    "question": "¿Y cuál es la más joven?",
+    "status": "available",
+    "ui_status": "available",
+    "required_tool": "rank_sections",
+    "selected_tool": "rank_sections",
+    "arguments": {
+      "rank_sections": {
+        "municipio_id": "29070",
+        "metric": "average_age",
+        "year": null,
+        "order": "asc",
+        "limit": 1,
+        "filters": {},
+        "election_type": null,
+        "election_year": null
+      }
+    },
+    "validation_status": "passed",
+    "real_result": "passed",
+    "tool_result_status": "ok",
+    "row_count": 1,
+    "answer_preview": "Ordeno las secciones de menor a mayor edad media. La sección más joven es Sección 25 · María Zambrano Este, con una edad media de 34,6 años…",
+    "chartSpec_status": "present",
+    "failure_reason": "passed",
+    "action_recommended": "keep_available",
+    "last_validated_at": "2026-06-14T17:32:55.174521+00:00"
+  },
+  {
+    "id": "conversacional-contexto-2-4",
+    "category": "Conversacional - Contexto 2",
+    "question": "¿Qué partido queda segundo en ella?",
+    "status": "coming_soon",
+    "ui_status": "coming_soon",
+    "required_tool": null,
+    "selected_tool": null,
+    "arguments": {},
+    "validation_status": "failed",
+    "real_result": "failed",
+    "tool_result_status": "empty_or_unknown",
+    "row_count": 0,
+    "answer_preview": "No tengo una probabilidad exacta porque falta una capa de sondeos actuales, pero puedo estimar la fortaleza electoral con los datos históri…",
+    "chartSpec_status": "missing",
+    "failure_reason": "no tool selected",
+    "action_recommended": "keep_coming_soon",
+    "last_validated_at": "2026-06-14T17:32:55.174521+00:00"
+  }
+]

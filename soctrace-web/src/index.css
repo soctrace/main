@@ -1,0 +1,153 @@
+@import url("https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color: #f5f7fb;
+  background:
+    radial-gradient(circle at top left, rgba(74, 111, 165, 0.16), transparent 26%),
+    radial-gradient(circle at 85% 10%, rgba(244, 124, 42, 0.1), transparent 18%),
+    linear-gradient(180deg, #05070c 0%, #090b11 45%, #0c1018 100%);
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+html,
+body,
+#root {
+  min-height: 100%;
+}
+
+body {
+  margin: 0;
+  overflow-x: hidden;
+  background-color: #05070c;
+  color: #f5f7fb;
+  font-family: "Manrope", ui-sans-serif, system-ui, sans-serif;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+::selection {
+  background: rgba(74, 111, 165, 0.32);
+  color: #f5f7fb;
+}
+
+@layer base {
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: "Space Grotesk", "Manrope", ui-sans-serif, system-ui, sans-serif;
+    letter-spacing: -0.04em;
+  }
+}
+
+@layer components {
+  .landing-shell {
+    @apply relative min-h-screen overflow-hidden bg-[linear-gradient(180deg,#05070c_0%,#090b11_45%,#0c1018_100%)];
+  }
+
+  .landing-shell::before {
+    content: "";
+    @apply pointer-events-none absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.03)_1px,transparent_1px)] bg-[size:72px_72px] opacity-[0.08];
+  }
+
+  .landing-shell::after {
+    content: "";
+    @apply pointer-events-none absolute inset-x-0 top-0 h-[38rem] bg-[radial-gradient(circle_at_top,rgba(74,111,165,0.18),transparent_40%),radial-gradient(circle_at_80%_0%,rgba(244,124,42,0.1),transparent_26%)];
+  }
+}
+
+@layer utilities {
+  .brand-mark {
+    font-family: "Manrope", ui-sans-serif, system-ui, sans-serif;
+  }
+
+  .font-manrope {
+    font-family: "Manrope", ui-sans-serif, system-ui, sans-serif;
+  }
+
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .panel-dark {
+    @apply rounded-[2rem] border border-white/10 bg-[linear-gradient(180deg,rgba(20,24,35,0.88),rgba(10,13,20,0.92))] shadow-[0_28px_120px_rgba(0,0,0,0.34),0_0_0_1px_rgba(74,111,165,0.08)];
+  }
+
+  .panel-soft {
+    @apply rounded-[1.5rem] border border-[rgba(74,111,165,0.18)] bg-white/[0.03] backdrop-blur-md;
+  }
+
+  .chip {
+    @apply inline-flex items-center gap-2 rounded-full border border-[rgba(74,111,165,0.22)] bg-[linear-gradient(90deg,rgba(74,111,165,0.1),rgba(244,124,42,0.08))] px-3 py-1 text-[0.68rem] font-semibold uppercase tracking-[0.24em] text-slate-300;
+  }
+
+  .section-copy {
+    @apply max-w-2xl text-[1.03rem] leading-7 text-slate-300;
+  }
+
+  .demo-input {
+    @apply w-full rounded-2xl border border-white/[0.09] bg-white/[0.045] px-4 py-3 text-sm text-white outline-none transition placeholder:text-slate-600 focus:border-[rgba(244,124,42,0.4)] focus:bg-white/[0.065] focus:ring-2 focus:ring-[rgba(74,111,165,0.18)];
+  }
+
+  select.demo-input {
+    @apply appearance-none text-slate-100;
+  }
+
+  select.demo-input option {
+    color: #0f172a;
+  }
+
+  .dashboard-shell {
+    background:
+      radial-gradient(circle at top left, rgba(37, 99, 235, 0.16), transparent 24%),
+      radial-gradient(circle at 84% 0%, rgba(217, 70, 239, 0.12), transparent 20%),
+      linear-gradient(180deg, #04070b 0%, #071018 44%, #09111d 100%);
+  }
+
+  .dashboard-shell::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    background-image:
+      linear-gradient(rgba(255, 255, 255, 0.025) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255, 255, 255, 0.025) 1px, transparent 1px);
+    background-size: 72px 72px;
+    opacity: 0.06;
+  }
+
+  .dashboard-map-shell canvas {
+    border-radius: 1.4rem;
+  }
+
+  .dashboard-map-shell .maplibregl-map {
+    border-radius: 1.4rem;
+    overflow: hidden;
+    background: #05070c;
+  }
+}

@@ -1,0 +1,7 @@
+Continuamos SocTrace.
+Lee docs/ARCHITECTURE.md + DATA_MODEL.md + ROADMAP.md
+Hoy quiero trabajar frontend web.
+
+
+
+Esta última query me devuelve el número de habitantes por sección que pertenecen a cada cohorte de edad. me gustaría crear una nueva tabla dentro de mi Dataset en la que aparezca la edad media de cada sección. Necesito esa tabla 

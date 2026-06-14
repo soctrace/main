@@ -1,0 +1,10 @@
+source_file=Resultados Málaga.xls
+sheets=['Mesas', 'MesasSinEscrutar', 'Municipios']
+mesas_rows=1781
+mijas_mesas=73
+mijas_sections=41
+mesa_rule=Mesa '<distrito>-<seccion>-<mesa>', example 1-001-A => distrito 01, seccion 001, mesa A
+mijas_pending_tables=0
+party_columns=['PACMA', 'PCPA', 'ADELANTE ANDALUCÍA', 'FE de las JONS', 'VOX', 'PARTIDO AUTÓNOMOS', 'ANDALUCISTAS-PA', 'PP', 'PorA', 'CONECTA', 'ESCAÑOS EN BLANCO', 'SOCIEDAD UNIDA', 'SALF', 'PSOE-A', 'MUNDO+JUSTO', '29', 'NA']
+municipality_validation_all_ok=True
+election_date=2026-05-17 (Junta Electoral de Andalucía calendar)

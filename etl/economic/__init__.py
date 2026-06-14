@@ -1,0 +1,1 @@
+"""ETL económico de SocTrace."""

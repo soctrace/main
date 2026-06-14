@@ -1,0 +1,13 @@
+project:
+  name: soctrace
+  database: mijas
+  default_municipio: "Mijas"
+
+paths:
+  data_raw: "data/raw"
+  data_external: "data/external"
+
+etl:
+  default_year: 2023
+  default_encoding: "utf-8"
+  default_crs: "EPSG:4326"

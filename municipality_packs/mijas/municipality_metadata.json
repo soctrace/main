@@ -1,0 +1,18 @@
+{
+  "slug": "mijas",
+  "municipality_id": "29070",
+  "name": "Mijas",
+  "province": "Malaga",
+  "country": "Spain",
+  "pack_version": "1.1.0",
+  "documents": [
+    "historical_context.md",
+    "political_context.md",
+    "political_context_structured.md",
+    "contextual_hypotheses.yaml",
+    "forecast_counterweights_methodology.md",
+    "electoral_history.md",
+    "methodology.md",
+    "glossary.md"
+  ]
+}

@@ -1,0 +1,19 @@
+lineages:
+  - municipio_id: "29070"
+    lineage_group_id: MIJAS_25_LINEAGE
+    lineage_group_name: Zona historica Seccion 25 / Maria Zambrano
+    base_year: 2021
+    base_section_id: "2907001025"
+    current_year: 2025
+    current_section_id: "2907001025"
+    relationship_type: original
+    notes: Seccion 25 original
+  - municipio_id: "29070"
+    lineage_group_id: MIJAS_25_LINEAGE
+    lineage_group_name: Zona historica Seccion 25 / Maria Zambrano
+    base_year: 2021
+    base_section_id: "2907001025"
+    current_year: 2025
+    current_section_id: "2907001037"
+    relationship_type: split_child
+    notes: La Seccion 37 surge de la antigua Seccion 25

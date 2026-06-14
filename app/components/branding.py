@@ -821,7 +821,7 @@ def render_sidebar_brand() -> None:
     st.sidebar.markdown("</div>", unsafe_allow_html=True)
 
 
-def render_section_header(title: str, description: str, eyebrow: str = "SocTrace") -> None:
+def render_section_header(title: str, description: str, eyebrow: str = "soctrace") -> None:
     st.markdown(
         f"""
         <div class="soc-section-head">

@@ -476,7 +476,7 @@ class SemanticOperationInterpreter:
                 "No tengo una probabilidad exacta porque falta una capa de sondeos actuales, "
                 "pero puedo estimar la fortaleza electoral con los datos históricos y territoriales disponibles."
             )
-        return "No encuentro una operacion analitica aprobada en Semantic Layer v2 para responder con datos internos de SocTrace."
+        return "No encuentro una operacion analitica aprobada en Semantic Layer v2 para responder con datos internos de soctrace."
 
     def _operation(self, operation: AnalyticalOperationName, metric: str, municipio_id: str, **kwargs: Any) -> AnalyticalOperation:
         definition = self.catalog.metric(metric)

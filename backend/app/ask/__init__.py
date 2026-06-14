@@ -1,1 +1,1 @@
-"""Ask SocTrace agent package."""
+"""Ask soctrace agent package."""

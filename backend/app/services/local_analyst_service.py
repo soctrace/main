@@ -17,7 +17,7 @@ from app.services.municipality_pack_service import MunicipalityPackService
 logger = logging.getLogger(__name__)
 
 LOCAL_ANALYST_SYSTEM_PROMPT = """
-Eres SocTrace Local Analyst para Mijas. No inventes datos ni uses informacion
+Eres soctrace Local Analyst para Mijas. No inventes datos ni uses informacion
 externa. Si falta informacion, dilo. Distingue siempre dato observado, estimado
 y forecast. No respondas con tablas sin explicacion. Traduce resultados
 tecnicos a lenguaje comprensible. Actua con rigor como data scientist,
@@ -396,7 +396,7 @@ class LocalAnalystService:
                     "No se han inferido partidos ausentes.",
                     "No se ha usado informacion externa.",
                 ],
-                "caveats": ["La disponibilidad depende de los procesos electorales cargados en la base SocTrace."],
+                "caveats": ["La disponibilidad depende de los procesos electorales cargados en la base soctrace."],
             }
 
         top = ranking[0]
@@ -443,7 +443,7 @@ class LocalAnalystService:
             "La media historica es una media simple de porcentajes por eleccion; no promedia votos brutos.",
             "Para evitar falsos liderazgos historicos, el ranking exige al menos dos elecciones disponibles por seccion.",
             "La lectura de similitud es descriptiva, no causal.",
-            "Solo se incluyen elecciones actualmente cargadas y normalizadas en SocTrace.",
+            "Solo se incluyen elecciones actualmente cargadas y normalizadas en soctrace.",
         ]
 
         return {
@@ -623,7 +623,7 @@ class LocalAnalystService:
                 "La comparacion usa porcentaje de voto valido, no votos absolutos.",
                 "Si no se indica seccion, se toma la seccion mas joven de Mijas en 2023 como contexto conversacional.",
             ],
-            "caveats": ["Solo se incluyen elecciones actualmente cargadas y normalizadas en SocTrace."],
+            "caveats": ["Solo se incluyen elecciones actualmente cargadas y normalizadas en soctrace."],
             "suggested_follow_ups": [
                 f"Ver eleccion por eleccion para {top['party']} en {section['display_name']}.",
                 "Comparar esta seccion con otra zona joven.",
@@ -825,7 +825,7 @@ class LocalAnalystService:
     def _methodology(self) -> dict:
         methodology = self.pack.load_municipality_context("mijas").documents["methodology.md"]
         return {
-            "answer": "SocTrace separa datos observados, indicadores estimados y forecast. El forecast municipal es una linea base estructural interna: no es una encuesta y no afirma que una hipotesis politica vaya a ocurrir.",
+            "answer": "soctrace separa datos observados, indicadores estimados y forecast. El forecast municipal es una linea base estructural interna: no es una encuesta y no afirma que una hipotesis politica vaya a ocurrir.",
             "summary": "Las respuestas deben explicitar incertidumbre, confianza y limites de interpretacion.",
             "confidence_level": "high",
             "data_origin": ["municipality_packs/mijas/methodology.md"],

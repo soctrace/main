@@ -114,7 +114,7 @@ function AskTestsPanel({
             <p className="text-sm font-semibold">Consultas disponibles</p>
           </div>
           <p className="mt-2 text-xs leading-5 text-slate-500">
-            Explora algunas de las preguntas que actualmente puede responder el agente SocTrace utilizando datos reales del municipio.
+            Explora algunas de las preguntas que actualmente puede responder el agente soctrace utilizando datos reales del municipio.
           </p>
         </div>
         <button type="button" onClick={onClose} className="rounded-full border border-white/10 px-3 py-1 text-[0.65rem] text-slate-400 transition hover:border-cyan-200/25 hover:text-cyan-100">
@@ -153,7 +153,7 @@ function AskTestsPanel({
                       key={test.id}
                       type="button"
                       disabled={!runnable}
-                      title={runnable ? undefined : "Esta consulta estará disponible en futuras versiones del agente SocTrace."}
+                      title={runnable ? undefined : "Esta consulta estará disponible en futuras versiones del agente soctrace."}
                       aria-label={runnable ? test.title : `${test.title}. Próximamente.`}
                       onClick={() => runnable && onRunTest(test)}
                       className={`group flex items-start gap-2 rounded-xl border px-3 py-2 text-left transition ${
@@ -265,10 +265,10 @@ function AskChartPanel({
         <div>
           <div className="flex items-center gap-2 text-cyan-100">
             <BarChart3 className="h-4 w-4" />
-            <p className="text-sm font-semibold">Salida de Ask SocTrace</p>
+            <p className="text-sm font-semibold">Salida de Ask soctrace</p>
           </div>
           <p className="mt-2 text-xs leading-5 text-slate-500">
-            Visualización generada desde la última consulta ejecutada en Ask SocTrace.
+            Visualización generada desde la última consulta ejecutada en Ask soctrace.
           </p>
         </div>
         <div className="flex gap-2">
@@ -1374,7 +1374,7 @@ function SocioeconomicIntelligencePanel({
       })
       .catch((error) => {
         if (active) {
-          console.error("[SocTrace] productive potential latest-data preload failed", error);
+          console.error("[soctrace] productive potential latest-data preload failed", error);
         }
       });
 
@@ -2980,7 +2980,7 @@ function CampaignBuilderIntroBox() {
       </p>
       <p className="mt-2 text-xs leading-5 text-slate-400">
         En base al trabajo previo con la información histórica, estructuras de comunicación y reciente actualidad política,
-        SocTrace ha proyectado varios posibles escenarios para los comicios de mayo de 2027.
+        soctrace ha proyectado varios posibles escenarios para los comicios de mayo de 2027.
       </p>
     </div>
   );

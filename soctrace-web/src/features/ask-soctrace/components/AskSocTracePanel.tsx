@@ -301,10 +301,10 @@ export function AskSocTracePanel() {
               <Bot className="h-4 w-4" />
             </div>
             <div className="flex flex-wrap items-center gap-2">
-              <p className="text-base font-semibold text-white">Pregunta a SocTrace</p>
+              <p className="text-base font-semibold text-white">Pregunta a soctrace</p>
               <span className="rounded-full border border-violet-300/16 bg-violet-400/10 px-2 py-0.5 text-[0.6rem] font-semibold uppercase tracking-[0.16em] text-violet-200">Beta</span>
               <p className="max-w-[34rem] text-[0.66rem] font-normal leading-4 text-slate-500">
-                El agente inteligente SocTrace está en pruebas. Consulta la lista de tests predefinidos en entrenamiento
+                El agente inteligente soctrace está en pruebas. Consulta la lista de tests predefinidos en entrenamiento
               </p>
               <button
                 type="button"
@@ -345,7 +345,7 @@ export function AskSocTracePanel() {
               {message.role === "user" ? <UserRound className="mt-2 h-4 w-4 shrink-0 text-slate-500" /> : null}
             </div>
           ))}
-          {isThinking ? <p role="status" className="px-6 py-2 text-xs text-cyan-100/55">SocTrace está analizando los datos...</p> : null}
+          {isThinking ? <p role="status" className="px-6 py-2 text-xs text-cyan-100/55">soctrace está analizando los datos...</p> : null}
         </div>
 
         <form className="mt-3 flex gap-3" onSubmit={submit}>
@@ -357,7 +357,7 @@ export function AskSocTracePanel() {
           </Button>
         </form>
         <p className="mt-2 text-center text-[0.62rem] leading-4 text-slate-600">
-          SocTrace puede cometer errores. Verifica la información importante con el análisis directo de variables del panel.
+          soctrace puede cometer errores. Verifica la información importante con el análisis directo de variables del panel.
         </p>
       </div>
     </Panel>

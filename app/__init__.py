@@ -1,1 +1,1 @@
-"""SocTrace Streamlit app package."""
+"""soctrace Streamlit app package."""

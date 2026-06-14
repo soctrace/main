@@ -1,2 +1,1 @@
-"""Validated Ask SocTrace test catalog helpers."""
-
+"""Validated Ask soctrace test catalog helpers."""

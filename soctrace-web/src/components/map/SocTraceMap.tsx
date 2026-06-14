@@ -713,7 +713,7 @@ export function SocTraceMap() {
     if (!styledSectionCollection) {
       return;
     }
-    console.debug("[SocTrace] map state", {
+    console.debug("[soctrace] map state", {
       features: styledSectionCollection.features.length,
       firstGeometryType: styledSectionCollection.features[0]?.geometry?.type,
       firstSectionId: styledSectionCollection.features[0]?.properties.section_id,
@@ -746,7 +746,7 @@ export function SocTraceMap() {
         layers: [isHousingHeatLayer ? "housing-heat-circles" : "sections-fill"],
       }).length;
       setMapDiagnostics({ sourceFeatures, renderedFeatures });
-      console.debug("[SocTrace] render diagnostics", {
+      console.debug("[soctrace] render diagnostics", {
         sourceFeatures,
         renderedFeatures,
       });

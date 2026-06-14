@@ -383,7 +383,7 @@ def build_tool_registry(session: Session) -> ToolRegistry:
         [
             AskTool(
                 "demographics_age_range",
-                "Counts population in an age range using approved SocTrace demographic data.",
+                "Counts population in an age range using approved soctrace demographic data.",
                 _object_schema(
                     {
                         "municipality": municipality_property,
@@ -510,7 +510,7 @@ def build_tool_registry(session: Session) -> ToolRegistry:
             ),
             AskTool(
                 "dhondt_calculator",
-                "Calculates the municipal D'Hondt seat allocation from observed SocTrace votes.",
+                "Calculates the municipal D'Hondt seat allocation from observed soctrace votes.",
                 _object_schema(
                     {
                         "municipality": municipality_property,

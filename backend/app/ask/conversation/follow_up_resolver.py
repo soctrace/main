@@ -121,7 +121,7 @@ class FollowUpResolver:
         if context.startYear and context.endYear:
             return f"La respuesta anterior compara el periodo {context.startYear}-{context.endYear}."
         if context.year == requested_year:
-            return f"Sí. Los datos que acabo de mostrar corresponden a {requested_year}, el último año disponible para esa variable en SocTrace."
+            return f"Sí. Los datos que acabo de mostrar corresponden a {requested_year}, el último año disponible para esa variable en soctrace."
         if context.year:
             return f"No. La respuesta anterior usa datos de {context.year}. Si quieres, puedo recalcularlo para {requested_year} si esa variable está disponible."
         return "No puedo confirmarlo con precisión porque la respuesta anterior no dejó registrado un año único."

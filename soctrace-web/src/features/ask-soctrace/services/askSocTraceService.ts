@@ -204,7 +204,7 @@ function adaptAgentResponse(response: AskSocTraceAgentResponse): AskSocTraceResp
     table,
     chart_spec: chartPayload || chartRows.length ? {
       kind: String(chartPayload?.type ?? ((response.resultType ?? response.result_type) === "entity_list" ? "table" : "bar")),
-      title: String(chartPayload?.title ?? table?.title ?? "Visualización Ask SocTrace"),
+      title: String(chartPayload?.title ?? table?.title ?? "Visualización Ask soctrace"),
       x: chartPayload?.x ? String(chartPayload.x) : undefined,
       y: chartPayload?.y ? String(chartPayload.y) : undefined,
       series: chartPayload?.series ? String(chartPayload.series) : undefined,

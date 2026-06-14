@@ -56,7 +56,7 @@ def ensure_authenticated() -> None:
     left, center, right = st.columns([1.45, 0.8, 1.45])
     with center:
         logo_markup = (
-            f'<img src="{logo_data_uri}" alt="SocTrace" class="soc-auth-logo-image" />'
+            f'<img src="{logo_data_uri}" alt="soctrace" class="soc-auth-logo-image" />'
             if logo_data_uri
             else '<div class="soc-auth-logo-fallback">ST</div>'
         )

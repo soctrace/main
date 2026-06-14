@@ -83,4 +83,4 @@ if "densidad" in table_df.columns:
 if debug_mode:
     table_df.insert(0, "seccion_id", section)
 dataframe_auto_height(present_table(table_df), use_container_width=True, hide_index=True)
-render_export_buttons(ts, base_name=f"soctrace_tendencias_{section}", title=f"SocTrace Tendencias {section}")
+render_export_buttons(ts, base_name=f"soctrace_tendencias_{section}", title=f"soctrace Tendencias {section}")

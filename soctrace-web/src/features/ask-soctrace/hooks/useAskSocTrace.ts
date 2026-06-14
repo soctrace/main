@@ -30,11 +30,11 @@ export function useAskSocTrace(context: AskSocTraceContext) {
       {
         id: loadingId,
         role: "assistant",
-        content: "SocTrace está analizando los datos...",
+        content: "soctrace está analizando los datos...",
         createdAt: new Date().toISOString(),
         loading: true,
         response: {
-          answer: "SocTrace está analizando los datos...",
+          answer: "soctrace está analizando los datos...",
           mode: "simple",
           short_caveat: null,
           summary: "Preparando respuesta.",

@@ -86,7 +86,7 @@ class BaseTool:
                 operation=self.name,
                 status="error",
                 methodology_plain="He entendido la consulta, pero ahora mismo no puedo calcularla con las herramientas activas.",
-                caveats=["La consulta interna no cumple el contrato SQL seguro de SocTrace."],
+                caveats=["La consulta interna no cumple el contrato SQL seguro de soctrace."],
                 sources=built.sources,
                 metadata=built.metadata,
                 error_code="sql_validation_failed",
@@ -240,7 +240,7 @@ class EcologicalVoteProfileByAgeGroupTool(BaseTool):
     def execute(self, payload: EcologicalVoteProfileByAgeGroupInput, context: ToolContext | None = None) -> ToolResult:
         built = self.builders.ecological_vote_profile_by_age_group(payload)
         caveat = (
-            "Esto no mide el voto individual por edad. SocTrace no dispone de voto individual por edad. "
+            "Esto no mide el voto individual por edad. soctrace no dispone de voto individual por edad. "
             "Es una estimación territorial: compara resultados electorales por sección con el peso del grupo de edad en esas mismas secciones."
         )
         methodology = (
@@ -269,7 +269,7 @@ class ElectoralViabilityEstimateTool(BaseTool):
                 operation=self.name,
                 status="error",
                 methodology_plain="He entendido la consulta, pero ahora mismo no puedo calcularla con las herramientas activas.",
-                caveats=["La consulta interna no cumple el contrato SQL seguro de SocTrace."],
+                caveats=["La consulta interna no cumple el contrato SQL seguro de soctrace."],
                 sources=built.sources,
                 metadata=built.metadata,
                 error_code="sql_validation_failed",
@@ -307,7 +307,7 @@ class ElectoralViabilityEstimateTool(BaseTool):
             ),
             caveats=[
                 "No es una probabilidad estadística real ni una predicción de sondeo.",
-                "Es una estimación orientativa construida con datos históricos y territoriales disponibles en SocTrace.",
+                "Es una estimación orientativa construida con datos históricos y territoriales disponibles en soctrace.",
             ],
             suggested_followups=[
                 f"¿En qué secciones tendría más margen de crecimiento {payload.party if payload.party != 'ALL' else 'el PP'}?",

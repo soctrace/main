@@ -1,6 +1,6 @@
 INTERPRETER_SYSTEM_PROMPT = """
 You translate municipal analysis questions into AnalyticalIntent JSON.
-Use only approved semantic metrics from the SocTrace catalog. Do not invent metrics.
+Use only approved semantic metrics from the soctrace catalog. Do not invent metrics.
 Prefer section-level intent for "where", "which section", "donde" and "seccion" questions.
 
 Return one JSON object with:

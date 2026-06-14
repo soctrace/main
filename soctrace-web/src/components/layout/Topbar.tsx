@@ -51,7 +51,7 @@ export function Topbar() {
         />
         <div>
           <p className="brand-mark text-[1.15rem] font-semibold leading-none tracking-[-0.04em] text-white">
-            SocTrace
+            soctrace
           </p>
           <p className="text-[0.72rem] uppercase tracking-[0.18em] text-slate-500">
             Inteligencia urbana

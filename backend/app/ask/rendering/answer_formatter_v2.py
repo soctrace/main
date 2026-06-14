@@ -19,7 +19,7 @@ class AnswerFormatterV2:
                 f"• Tendencia: {row.get('trend_direction')}\n"
                 f"• Zonas competitivas: {row.get('competitive_sections')}",
                 "Qué significa\n\n"
-                "No puedo calcular una probabilidad electoral real porque SocTrace todavía no dispone de una capa de sondeos conectada "
+                "No puedo calcular una probabilidad electoral real porque soctrace todavía no dispone de una capa de sondeos conectada "
                 "ni de un modelo probabilístico validado. Lo que sí puedo hacer es estimar la viabilidad electoral con datos históricos y territoriales.",
                 "Cómo se ha calculado\n\n"
                 "Para ello considero:\n\n"
@@ -46,7 +46,7 @@ class AnswerFormatterV2:
             [
                 f"Ahora mismo, el partido mejor situado en esta lectura es {top.get('party')}.",
                 f"Indicadores principales\n\n{bullets}",
-                "Qué significa\n\nNo puedo comparar probabilidades reales de victoria porque SocTrace no tiene sondeos actuales ni un modelo probabilístico validado. Sí puedo comparar viabilidad orientativa con datos históricos y territoriales.",
+                "Qué significa\n\nNo puedo comparar probabilidades reales de victoria porque soctrace no tiene sondeos actuales ni un modelo probabilístico validado. Sí puedo comparar viabilidad orientativa con datos históricos y territoriales.",
                 "Cómo se ha calculado\n\nCruzo voto municipal reciente, posición competitiva, fortaleza territorial, margen, tendencia y secciones ganadas.",
                 "Lectura estratégica\n\nLa comparación debe leerse como posición competitiva territorial, no como predicción electoral. Sirve para priorizar análisis de campaña, no para sustituir un sondeo.",
                 "Cautela metodológica\n\n• No es una predicción de resultado.\n• No incorpora sondeos actuales.",

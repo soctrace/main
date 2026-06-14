@@ -1,1 +1,1 @@
-"""UI components for SocTrace Streamlit app."""
+"""UI components for soctrace Streamlit app."""

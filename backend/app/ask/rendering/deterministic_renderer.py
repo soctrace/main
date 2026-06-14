@@ -102,7 +102,7 @@ class DeterministicRenderer:
             + "\n\nResultados principales\n\n"
             + bullets
             + "\n\nQué significa\n\nEl ranking ordena las secciones según el valor observado de la métrica consultada.\n\n"
-            + "Cómo se ha calculado\n\nUso la última observación disponible de las vistas aprobadas de SocTrace y ordeno las secciones por esa variable.\n\n"
+            + "Cómo se ha calculado\n\nUso la última observación disponible de las vistas aprobadas de soctrace y ordeno las secciones por esa variable.\n\n"
             + "Interpretación útil\n\nLas primeras posiciones señalan las zonas donde conviene mirar con más detalle para análisis territorial.\n\n"
             + "Cautela metodológica\n\n• Es una comparación por sección, no una medición individual.\n• Los resultados dependen del último año o elección disponible."
         )
@@ -173,7 +173,7 @@ class DeterministicRenderer:
             + ("\n\nResultados principales\n\n" + bullets if bullets else "")
             + "\n\nQué significa\n\nLa comparación muestra qué zonas cambian más entre los años disponibles.\n\n"
             + "Cómo se ha calculado\n\nComparo el valor inicial y final de cada sección o zona histórica y ordeno la variación.\n\n"
-            + "Cautela metodológica\n\n• Los cambios de seccionado pueden afectar la comparación.\n• Cuando hay lineage disponible, SocTrace agrupa secciones para reducir rupturas administrativas."
+            + "Cautela metodológica\n\n• Los cambios de seccionado pueden afectar la comparación.\n• Cuando hay lineage disponible, soctrace agrupa secciones para reducir rupturas administrativas."
         )
 
     def _correlation_answer(self, first: dict[str, Any]) -> str:

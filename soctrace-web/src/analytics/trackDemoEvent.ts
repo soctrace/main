@@ -44,6 +44,6 @@ export async function trackDemoEvent(
   });
 
   if (error) {
-    console.debug("[SocTrace] demo_access_logs insert skipped", error.message);
+    console.debug("[soctrace] demo_access_logs insert skipped", error.message);
   }
 }

@@ -293,7 +293,7 @@ export function useDashboardBootstrap() {
         if (!active) {
           return;
         }
-        console.debug("[SocTrace] sections GeoJSON loaded", {
+        console.debug("[soctrace] sections GeoJSON loaded", {
           apiBaseUrl: getApiBaseUrl(),
           municipalityId: selectedMunicipalityId,
           layer: activeLayer,
@@ -314,7 +314,7 @@ export function useDashboardBootstrap() {
           setStatus(null);
         } catch (error) {
         if (active) {
-          console.error("[SocTrace] sections GeoJSON failed", error);
+          console.error("[soctrace] sections GeoJSON failed", error);
           let backendMessage = `Backend unavailable at ${getApiBaseUrl()}.`;
           try {
             const health = await fetchApiHealth();
@@ -394,7 +394,7 @@ export function useDashboardBootstrap() {
       })
       .catch((error) => {
         if (active) {
-          console.error("[SocTrace] electoral history preload failed", error);
+          console.error("[soctrace] electoral history preload failed", error);
           setStatus("Electoral history is partially unavailable for this election type.", "warning");
         }
       });
@@ -437,7 +437,7 @@ export function useDashboardBootstrap() {
       })
       .catch((error) => {
         if (active) {
-          console.error("[SocTrace] municipality income summaries failed", error);
+          console.error("[soctrace] municipality income summaries failed", error);
           setStatus("Municipality income overview is temporarily unavailable.", "warning");
         }
       });
@@ -481,7 +481,7 @@ export function useDashboardBootstrap() {
       })
       .catch((error) => {
         if (active) {
-          console.error("[SocTrace] municipality age structure summaries failed", error);
+          console.error("[soctrace] municipality age structure summaries failed", error);
           setStatus("Municipality age structure overview is temporarily unavailable.", "warning");
         }
       });
@@ -523,7 +523,7 @@ export function useDashboardBootstrap() {
       })
       .catch((error) => {
         if (active) {
-          console.error("[SocTrace] municipality population summaries failed", error);
+          console.error("[soctrace] municipality population summaries failed", error);
           setStatus("Municipality population overview is temporarily unavailable.", "warning");
         }
       });
@@ -604,7 +604,7 @@ export function useDashboardBootstrap() {
               message.includes("(404)");
 
             if (isExpectedTemporalGap) {
-              console.debug("[SocTrace] section detail not available for year", {
+              console.debug("[soctrace] section detail not available for year", {
                 sectionId: selectedSectionId,
                 year: detailYear,
               });
@@ -615,7 +615,7 @@ export function useDashboardBootstrap() {
             return;
           }
 
-          console.debug("[SocTrace] section detail loaded", {
+          console.debug("[soctrace] section detail loaded", {
             sectionId: selectedSectionId,
             year: detailYear,
             label: detail.display.label,
@@ -630,7 +630,7 @@ export function useDashboardBootstrap() {
       })
       .catch((error) => {
         if (active) {
-          console.error("[SocTrace] section detail failed", error);
+          console.error("[soctrace] section detail failed", error);
           setError(error instanceof Error ? error.message : "Unable to load section detail");
         }
       })

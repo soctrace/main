@@ -18,7 +18,7 @@ def to_csv_bytes(df: pd.DataFrame) -> bytes:
     return _sanitize_df_for_export(df).to_csv(index=False).encode("utf-8")
 
 
-def to_pdf_bytes(df: pd.DataFrame, title: str = "SocTrace Export") -> bytes:
+def to_pdf_bytes(df: pd.DataFrame, title: str = "soctrace Export") -> bytes:
     from fpdf import FPDF
 
     export_df = _sanitize_df_for_export(df).head(300)
@@ -64,7 +64,7 @@ def to_pdf_bytes(df: pd.DataFrame, title: str = "SocTrace Export") -> bytes:
 def render_export_buttons(
     df: pd.DataFrame,
     base_name: str,
-    title: str = "SocTrace Export",
+    title: str = "soctrace Export",
 ) -> None:
     if df.empty:
         return

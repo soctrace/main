@@ -126,5 +126,5 @@ dataframe_auto_height(present_table(detail_df), use_container_width=True, hide_i
 render_export_buttons(
     profile,
     base_name=f"soctrace_perfil_{selected_section}",
-    title=f"SocTrace Perfil {selected_section}",
+    title=f"soctrace Perfil {selected_section}",
 )

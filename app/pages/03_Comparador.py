@@ -75,7 +75,7 @@ if debug_mode:
     table_cols = ["seccion_id"] + table_cols
 table_df = agg[table_cols].copy()
 dataframe_auto_height(present_table(table_df), use_container_width=True, hide_index=True)
-render_export_buttons(agg, base_name="soctrace_comparador", title="SocTrace Comparador")
+render_export_buttons(agg, base_name="soctrace_comparador", title="soctrace Comparador")
 
 metric = st.selectbox(
     "Metrica a visualizar",

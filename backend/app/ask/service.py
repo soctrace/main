@@ -45,9 +45,9 @@ logger = logging.getLogger(__name__)
 CONVERSATION_STATE = conversation_store._states
 
 ASK_SOCTRACE_SYSTEM_PROMPT = """
-You are Ask SocTrace, a municipal territorial intelligence analyst for Mijas.
+You are Ask soctrace, a municipal territorial intelligence analyst for Mijas.
 
-You can answer analytical questions by generating safe read-only SQL against the approved SocTrace semantic catalog.
+You can answer analytical questions by generating safe read-only SQL against the approved soctrace semantic catalog.
 You do not invent numbers.
 If data is unavailable, say what is missing.
 You explain methodology in clear language.
@@ -189,7 +189,7 @@ class AskSocTraceService:
                 response = self._ask_with_fallback(payload)
             return self._with_session_memory(payload, response)
         except Exception as exc:
-            logger.exception("Ask SocTrace failed")
+            logger.exception("Ask soctrace failed")
             error = str(exc)
             return self._with_session_memory(payload, AskResponse(
                 answer="No he podido acceder temporalmente a los datos necesarios para responder la consulta.",
@@ -1945,7 +1945,7 @@ LIMIT 50
                 "Si no hay una métrica gobernada, la respuesta se detiene antes de inventar datos."
             ),
             caveats=[
-                "Si la variable existe en SocTrace, debe añadirse al catálogo semántico con sus campos y relaciones aprobadas.",
+                "Si la variable existe en soctrace, debe añadirse al catálogo semántico con sus campos y relaciones aprobadas.",
             ],
             sources=[],
             suggestedFollowUps=[
@@ -1965,7 +1965,7 @@ LIMIT 50
             return None
         validation = self.sql_validator.validate(plan.sql)
         if not validation.ok:
-            logger.warning("Ask SocTrace SQL validation failed", extra={"error": validation.error, "sql": plan.sql})
+            logger.warning("Ask soctrace SQL validation failed", extra={"error": validation.error, "sql": plan.sql})
             return AskResponse(
                 answer="No he podido acceder temporalmente a los datos necesarios para responder la consulta.",
                 methodology=plan.methodology,
@@ -2427,7 +2427,7 @@ LIMIT 50
             f"Resultados principales\n\n{ranking}\n\n"
             "Qué significa\n\nLa mayor polarización demográfica aparece en las secciones donde conviven, con mayor intensidad, población joven y población mayor. No significa conflicto social.\n\n"
             "Cómo se ha calculado\n\nEl índice combina el peso relativo de menores de 30 años y mayores de 65 años. Cuanto más alto es, más marcada es esa convivencia de extremos de edad.\n\n"
-            "Interpretación útil\n\nEn SocTrace se interpreta como una estructura de edad más dual: secciones con peso relevante tanto de jóvenes como de mayores.\n\n"
+            "Interpretación útil\n\nEn soctrace se interpreta como una estructura de edad más dual: secciones con peso relevante tanto de jóvenes como de mayores.\n\n"
             "Cautela metodológica\n\nEs un proxy territorial comparativo. No mide relaciones sociales, convivencia real ni conflicto; solo resume la estructura de edad disponible por sección."
         )
 
@@ -2600,7 +2600,7 @@ LIMIT 50
             "Las zonas con más abstención movilizable no son simplemente las que tienen más abstención. "
             "Son secciones donde la abstención tiene más valor estratégico porque coincide con peso electoral, competitividad y, si hay contexto político, afinidad territorial.\n\n"
             "Cómo se ha calculado\n\n"
-            "SocTrace combina cuatro factores:\n"
+            "soctrace combina cuatro factores:\n"
             "• Nivel de abstención.\n"
             "• Peso electoral de la sección, usando censo o población como aproximación.\n"
             "• Competitividad electoral, dando más peso a márgenes estrechos.\n"
@@ -2729,7 +2729,7 @@ LIMIT 50
             return (
                 f"Aproximadamente {_format_int(total)} personas tendrán {target_age} años en Mijas en {target_year}.\n\n"
                 f"La estimación se calcula tomando como referencia a quienes tenían aproximadamente {source_age} años en {source_year}. "
-                "Como SocTrace dispone aquí de cohortes quinquenales, uso una quinta parte del tramo 15-19 como aproximación.\n\n"
+                "Como soctrace dispone aquí de cohortes quinquenales, uso una quinta parte del tramo 15-19 como aproximación.\n\n"
                 f"Las secciones con más nuevos potenciales votantes serían:\n\n{top_lines}\n\n"
                 f"Desde el punto de vista electoral, esta cohorte es relevante porque previsiblemente podrá votar por primera vez "
                 f"en las elecciones municipales de mayo de {target_year}. Este cálculo no predice participación electoral; solo estima "
@@ -3391,7 +3391,7 @@ LIMIT 50
             return AskResponse(
                 answer="He entendido la pregunta, pero no hay datos disponibles para ese año/rango/proceso electoral en el dataset actual.",
                 data=tool_results,
-                methodology="Se intento resolver la pregunta mediante herramientas aprobadas de SocTrace.",
+                methodology="Se intento resolver la pregunta mediante herramientas aprobadas de soctrace.",
                 caveats=caveats,
                 sources=sources,
                 suggestedFollowUps=["Concretar año, seccion, partido o indicador disponible."],
@@ -3481,7 +3481,7 @@ LIMIT 50
                 ),
                 data=data,
                 methodology="Comparacion de porcentaje de voto valido por eleccion disponible, no de votos absolutos.",
-                caveats=caveats + ["Solo se incluyen elecciones cargadas y normalizadas en SocTrace."],
+                caveats=caveats + ["Solo se incluyen elecciones cargadas y normalizadas en soctrace."],
                 sources=sources + ["core.resultados_seccion", "core.election", "core.candidatura_alias"],
                 suggestedFollowUps=["Comparar con PSOE y VOX en la misma seccion."],
             )
@@ -3503,7 +3503,7 @@ LIMIT 50
                 ),
                 data={"tools": tool_results},
                 methodology="Media simple no ponderada de porcentajes por seccion y eleccion; la similitud, si aparece, compara las secciones lideres con medias municipales.",
-                caveats=caveats + ["Resultado descriptivo, no causal.", "Solo usa procesos disponibles en SocTrace."],
+                caveats=caveats + ["Resultado descriptivo, no causal.", "Solo usa procesos disponibles en soctrace."],
                 sources=sources + ["core.resultados_seccion", "marts.dim_seccion_display"],
                 suggestedFollowUps=["Pedir la tabla completa por seccion.", "Comparar con otro partido."],
             )

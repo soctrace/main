@@ -28,7 +28,7 @@ class DemoRequestEmailService:
     def _body(self, request: DemoRequest) -> str:
         return "\n".join(
             [
-                "Nueva solicitud de demo gratuita de SocTrace",
+                "Nueva solicitud de demo gratuita de soctrace",
                 "",
                 f"Organización: {request.organization}",
                 f"Nombre: {request.firstName}",

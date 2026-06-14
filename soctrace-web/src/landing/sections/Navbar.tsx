@@ -12,14 +12,14 @@ export function Navbar({ items }: NavbarProps) {
   return (
     <header className="sticky top-0 z-30 border-b border-white/[0.05] bg-[#07090d]/92 backdrop-blur-md">
       <div className="mx-auto flex max-w-[1400px] items-center justify-between px-6 py-4 sm:px-8 lg:px-10">
-        <Link to="/" className="flex items-center gap-3" aria-label="Ir al inicio de SocTrace">
+        <Link to="/" className="flex items-center gap-3" aria-label="Ir al inicio de soctrace">
           <img
             src={soctraceBrandIcon}
             alt=""
             className="h-10 w-10 rounded-lg object-contain"
           />
           <p className="brand-mark text-[1.9rem] font-semibold leading-none tracking-[-0.04em] text-white">
-            SocTrace
+            soctrace
           </p>
         </Link>
 

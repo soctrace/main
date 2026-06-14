@@ -1,5 +1,5 @@
 import { FormEvent, useState } from "react";
-import { ArrowLeft, ArrowRight, LockKeyhole, Loader2 } from "lucide-react";
+import { ArrowLeft, ArrowRight, Eye, EyeOff, LockKeyhole, Loader2 } from "lucide-react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useAuth } from "@/auth/AuthProvider";
 import { canAccessDashboard, getAuthorizedUser } from "@/auth/accessControl";
@@ -21,6 +21,7 @@ export function LoginPage() {
   const from = (location.state as LocationState | null)?.from?.pathname || "/dashboard";
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
 
@@ -75,7 +76,7 @@ export function LoginPage() {
               Volver a Inicio
             </Link>
             <h1 className="mt-8 max-w-2xl text-balance text-4xl font-semibold leading-tight text-white sm:text-5xl">
-              Acceso privado a la demo friends & family de SocTrace.
+              Acceso privado a la demo friends & family de soctrace.
             </h1>
             <p className="section-copy mt-6">
               Valida tus credenciales para entrar al panel MVP. El acceso está limitado a usuarios autorizados manualmente.
@@ -92,7 +93,7 @@ export function LoginPage() {
               </div>
               <div>
                 <h2 className="text-2xl font-semibold text-white">Acceder</h2>
-                <p className="mt-1 text-sm text-slate-400">Demo privada SocTrace</p>
+                <p className="mt-1 text-sm text-slate-400">Demo privada soctrace</p>
               </div>
             </div>
 
@@ -109,13 +110,23 @@ export function LoginPage() {
 
             <label className="block">
               <span className="text-sm font-semibold text-slate-200">Contraseña</span>
-              <input
-                className="demo-input mt-2"
-                type="password"
-                value={password}
-                onChange={(event) => setPassword(event.target.value)}
-                autoComplete="current-password"
-              />
+              <div className="relative mt-2">
+                <input
+                  className="demo-input pr-12"
+                  type={showPassword ? "text" : "password"}
+                  value={password}
+                  onChange={(event) => setPassword(event.target.value)}
+                  autoComplete="current-password"
+                />
+                <button
+                  type="button"
+                  className="absolute inset-y-0 right-3 flex h-full w-8 items-center justify-center rounded-full text-slate-400 transition hover:text-white focus:outline-none focus:ring-2 focus:ring-[rgba(244,124,42,0.4)]"
+                  aria-label={showPassword ? "Ocultar contraseña" : "Mostrar contraseña"}
+                  onClick={() => setShowPassword((current) => !current)}
+                >
+                  {showPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
+                </button>
+              </div>
             </label>
 
             {error ? (

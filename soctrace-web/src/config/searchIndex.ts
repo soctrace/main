@@ -234,7 +234,7 @@ export const dashboardSearchIndex: DashboardSearchItem[] = [
   },
   {
     id: "ask-soctrace",
-    label: "Pregunta a SocTrace",
+    label: "Pregunta a soctrace",
     description: "Analista IA",
     category: "tool",
     focusElementId: "ask-soctrace-input",

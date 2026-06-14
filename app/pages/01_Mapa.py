@@ -170,4 +170,4 @@ if metric_col == "pob_total":
 if debug_mode:
     table_view["seccion_id"] = sections_df["seccion_id"].values
 dataframe_auto_height(present_table(table_view), use_container_width=True, hide_index=True)
-render_export_buttons(sections_df, base_name="soctrace_mapa_listado", title="SocTrace Mapa Listado Secciones")
+render_export_buttons(sections_df, base_name="soctrace_mapa_listado", title="soctrace Mapa Listado Secciones")

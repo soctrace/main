@@ -55,7 +55,7 @@ class RankSectionsInput(StrictToolInput):
     year: int | None = Field(default=None, description="Data year. If omitted, the latest available year is used.")
     order: Literal["asc", "desc"] = Field(default="desc", description="Sort direction. Use asc for lowest/youngest average_age, desc for highest.")
     limit: int = Field(default=5, ge=1, le=50, description="Maximum number of sections to return.")
-    filters: dict[str, Any] = Field(default_factory=dict, description="Optional structured filters already resolved by SocTrace.")
+    filters: dict[str, Any] = Field(default_factory=dict, description="Optional structured filters already resolved by soctrace.")
     election_type: str | None = Field(default=None, description="Election type for electoral metrics, e.g. municipal.")
     election_year: int | None = Field(default=None, description="Election year for electoral metrics. If omitted, latest election is used.")
 
@@ -65,7 +65,7 @@ class AggregateMunicipalityInput(StrictToolInput):
     metric: str = Field(description="Canonical metric key to aggregate at municipality level.")
     year: int | None = Field(default=None, description="Data year. If omitted, latest available year is used.")
     aggregation: Literal["sum", "avg", "weighted_avg", "count"] = Field(default="sum", description="Aggregation method appropriate for the metric.")
-    filters: dict[str, Any] = Field(default_factory=dict, description="Optional structured filters already resolved by SocTrace.")
+    filters: dict[str, Any] = Field(default_factory=dict, description="Optional structured filters already resolved by soctrace.")
 
 
 class CompareYearsInput(StrictToolInput):

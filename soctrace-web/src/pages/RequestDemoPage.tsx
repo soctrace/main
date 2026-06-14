@@ -105,7 +105,7 @@ export function RequestDemoPage() {
                 Volver a Inicio
               </Link>
               <h1 className="mt-6 max-w-3xl text-balance text-4xl font-semibold leading-tight text-white sm:text-5xl lg:text-6xl">
-                Solicita acceso a una demo gratuita de SocTrace
+                Solicita acceso a una demo gratuita de soctrace
               </h1>
               <p className="section-copy mt-6">
                 Cuéntanos quién eres y qué quieres analizar. Prepararemos una demo del MVP alineada con tu contexto territorial, estratégico o académico.

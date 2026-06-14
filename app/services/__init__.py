@@ -1,1 +1,1 @@
-"""Data and config services for SocTrace Streamlit app."""
+"""Data and config services for soctrace Streamlit app."""

@@ -6,7 +6,7 @@ from app.services.local_analyst_service import extract_party, normalize
 
 
 PLANNER_PROMPT = """
-You are the SocTrace planning engine.
+You are the soctrace planning engine.
 
 Your job is not to answer.
 Your job is to understand the question, resolve references, build a tool execution plan,

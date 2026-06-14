@@ -38,10 +38,12 @@ class GeoRepository:
 
     def get_sections_bbox(self, municipality_id: str, year: int) -> list[float] | None:
         query = text(load_sql("geo_sections_bbox.sql"))
-        row = self.session.execute(
-            query,
-            {"municipality_id": municipality_id, "year": year},
-        ).mappings().first()
+        params = {"municipality_id": municipality_id, "year": year}
+        try:
+            row = self.session.execute(query, params).mappings().first()
+        except SQLAlchemyError:
+            logger.exception("Geo sections bbox SQL failed", extra={"params": params})
+            raise
         if not row or row["min_lon"] is None:
             return None
         return [

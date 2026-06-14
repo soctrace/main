@@ -261,6 +261,10 @@ class GeoService:
                 election_id=election_id,
             )
         except SQLAlchemyError as exc:
+            logger.exception(
+                "Geo sections service failed while querying sections",
+                extra={"municipality_id": municipality_id, "year": year, "layer": layer, "election_id": election_id},
+            )
             raise HTTPException(status_code=500, detail="Map data query failed") from exc
         if not rows:
             logger.warning(
@@ -278,7 +282,14 @@ class GeoService:
                 extra={"municipality_id": municipality_id, "year": year, "rows": len(rows)},
             )
             raise HTTPException(status_code=500, detail="Map data serialization failed") from exc
-        bbox = self.repository.get_sections_bbox(municipality_id=municipality_id, year=year)
+        try:
+            bbox = self.repository.get_sections_bbox(municipality_id=municipality_id, year=year)
+        except SQLAlchemyError as exc:
+            logger.exception(
+                "Geo sections service failed while querying bbox",
+                extra={"municipality_id": municipality_id, "year": year},
+            )
+            raise HTTPException(status_code=500, detail="Map data query failed") from exc
         logger.info(
             "Geo sections response built",
             extra={

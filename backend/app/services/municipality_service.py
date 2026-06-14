@@ -1,4 +1,7 @@
+import logging
+
 from fastapi import Depends
+from sqlalchemy.exc import SQLAlchemyError
 from sqlalchemy.orm import Session
 
 from app.core.database import get_db_session
@@ -7,13 +10,21 @@ from app.schemas.municipality import MunicipalityListResponse, MunicipalitySumma
 from app.services.naming import municipality_name_from_id
 
 
+logger = logging.getLogger(__name__)
+
+
 class MunicipalityService:
     def __init__(self, session: Session):
         self.repository = MunicipalityRepository(session=session)
 
     def list_municipalities(self) -> MunicipalityListResponse:
         items = []
-        for row in self.repository.list_municipalities():
+        try:
+            rows = self.repository.list_municipalities()
+        except SQLAlchemyError:
+            logger.exception("Municipalities service failed while listing municipalities")
+            raise
+        for row in rows:
             available_years = [
                 int(year)
                 for year in (row.get("available_years") or [])
@@ -35,4 +46,3 @@ def get_municipality_service(
     session: Session = Depends(get_db_session),
 ) -> MunicipalityService:
     return MunicipalityService(session=session)
-

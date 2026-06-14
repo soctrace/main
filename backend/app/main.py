@@ -9,7 +9,7 @@ from app.api.v1.routes.ask import router as ask_router
 from app.api.v1.routes.request_demo import router as request_demo_router
 from app.ask.diagnostics import diagnostics_banner
 from app.core.config import get_settings
-from app.core.database import SessionLocal
+from app.core.database import SessionLocal, database_diagnostics
 
 
 settings = get_settings()
@@ -36,6 +36,15 @@ def healthcheck() -> dict[str, str]:
 
 @app.on_event("startup")
 def log_ai_agent_diagnostics() -> None:
+    db_diag = database_diagnostics()
+    logging.getLogger(__name__).info(
+        "Database startup diagnostics: DATABASE_URL exists=%s driver=%s host=%s database=%s parse_error=%s",
+        db_diag["database_url_exists"],
+        db_diag["driver"],
+        db_diag["host"],
+        db_diag["database"],
+        db_diag["url_parse_error"],
+    )
     session = SessionLocal()
     try:
         logging.getLogger(__name__).info("\n%s", diagnostics_banner(session=session, settings=settings))

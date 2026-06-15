@@ -1,0 +1,14 @@
+-- soctrace MVP Supabase deployment entrypoint.
+-- Execute with psql from the repository root:
+--   psql "$DATABASE_URL" -v ON_ERROR_STOP=1 -f sql/deploy/deploy_all.psql
+--
+-- Data loading is not performed by this file. Load raw/core data with the ETL
+-- commands listed in deployment_order.md before running 04_marts_objects.sql.
+
+\ir 00_extensions_and_schemas.sql
+\ir 01_core_base_tables.sql
+\ir 02_raw_staging_core_objects.sql
+
+-- Stop here on a fresh empty database, load data, then run:
+-- \ir 04_marts_objects.sql
+-- \ir 99_validate_mvp_objects.sql

@@ -1,0 +1,10 @@
+-- soctrace MVP Supabase deployment: extensions and schemas.
+-- Run first.
+
+CREATE EXTENSION IF NOT EXISTS postgis;
+
+CREATE SCHEMA IF NOT EXISTS raw;
+CREATE SCHEMA IF NOT EXISTS staging;
+CREATE SCHEMA IF NOT EXISTS core;
+CREATE SCHEMA IF NOT EXISTS marts;
+CREATE SCHEMA IF NOT EXISTS qa;

@@ -5,10 +5,12 @@ import { AiDock } from "@/components/layout/AiDock";
 import { SocTraceMap } from "@/components/map/SocTraceMap";
 import { useDashboardBootstrap } from "@/hooks/useDashboardBootstrap";
 import { useDemoAccessTracking } from "@/hooks/useDemoAccessTracking";
+import { useUserEventTracking } from "@/hooks/useUserEventTracking";
 
 export function DashboardPage() {
   useDashboardBootstrap();
   useDemoAccessTracking();
+  useUserEventTracking();
 
   return (
     <div className="dashboard-shell min-h-screen p-3 text-slate-100 lg:p-3">

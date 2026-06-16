@@ -8,22 +8,27 @@ export type SocTraceAccess = {
   deniedLayers?: string[];
 };
 
+export const FRIENDS_AND_FAMILY_ALLOWED_EMAILS = [
+  "espaciotania@gmail.com",
+  "acatafal@gmail.com",
+  "aureliano.daponte@gmail.com",
+  "angelmartinezx2@gmail.com",
+  "agantoniomaldonado@gmail.com",
+  "guillermo.quero.resina@gmail.com",
+  "antoniotorroles81@gmail.com",
+] as const;
+
 export const AUTHORIZED_USERS: SocTraceAccess[] = [
   {
     email: "soctrace@gmail.com",
     role: "admin",
     access: "full",
   },
-  {
-    email: "espaciotania@gmail.com",
-    role: "demo_full",
-    access: "full",
-  },
-  {
-    email: "acatafal@gmail.com",
-    role: "demo_full",
-    access: "full",
-  },
+  ...FRIENDS_AND_FAMILY_ALLOWED_EMAILS.map((email) => ({
+    email,
+    role: "demo_full" as const,
+    access: "full" as const,
+  })),
 ];
 
 export function getAuthorizedUser(email?: string | null): SocTraceAccess | null {

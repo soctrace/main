@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
+    "check:demo-access": "node scripts/check-demo-allowlist.mjs",
     "preview": "vite preview"
   },
   "dependencies": {

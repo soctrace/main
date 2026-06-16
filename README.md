@@ -64,11 +64,21 @@ La demo del dashboard usa Supabase Auth con email y contrasena. No hay registro
 publico: los usuarios se crean manualmente en Supabase Auth y despues se validan
 contra `soctrace-web/src/auth/accessControl.ts`.
 
-Usuarios autorizados iniciales:
+Usuarios autorizados iniciales y friends & family:
 
 - `soctrace@gmail.com`: `admin`, acceso `full`
 - `espaciotania@gmail.com`: `demo_full`, acceso `full`
 - `acatafal@gmail.com`: `demo_full`, acceso `full`
+- `aureliano.daponte@gmail.com`: `demo_full`, acceso `full`
+- `angelmartinezx2@gmail.com`: `demo_full`, acceso `full`
+- `agantoniomaldonado@gmail.com`: `demo_full`, acceso `full`
+- `guillermo.quero.resina@gmail.com`: `demo_full`, acceso `full`
+- `antoniotorroles81@gmail.com`: `demo_full`, acceso `full`
+
+La allowlist friends & family vive en la constante
+`FRIENDS_AND_FAMILY_ALLOWED_EMAILS`. Supabase Auth valida credenciales; esta
+allowlist local decide el acceso posterior al dashboard. No hay actualmente una
+tabla Supabase de perfiles/accesos para esta autorización.
 
 Variables frontend:
 

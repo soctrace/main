@@ -1,4 +1,5 @@
 import { useCallback, useState } from "react";
+import { trackEvent } from "@/analytics/trackEvent";
 import { askSocTraceService } from "../services/askSocTraceService";
 import type { AskSocTraceContext, AskSocTraceMessage, AskSocTraceResponse } from "../types";
 
@@ -64,6 +65,20 @@ export function useAskSocTrace(context: AskSocTraceContext) {
           ? { id: loadingId, role: "assistant", content: response.answer, createdAt: new Date().toISOString(), response }
           : message
       )));
+      void trackEvent({
+        event_type: "ask_query",
+        question: trimmed,
+        layer: context.activeLayer,
+        year: context.activeYear,
+        section_id: context.selectedSectionId,
+        metadata: {
+          status: "ok",
+          resultType: response.result_type ?? null,
+          confidence: response.confidence_level,
+          auditId: response.audit_id,
+          conversationId: nextConversationId ?? null,
+        },
+      });
       return response;
     } catch {
       const response: AskSocTraceResponse = {
@@ -89,6 +104,17 @@ export function useAskSocTrace(context: AskSocTraceContext) {
             }
           : message
       )));
+      void trackEvent({
+        event_type: "ask_query",
+        question: trimmed,
+        layer: context.activeLayer,
+        year: context.activeYear,
+        section_id: context.selectedSectionId,
+        metadata: {
+          status: "error",
+          resultType: null,
+        },
+      });
       return response;
     } finally {
       setIsThinking(false);

@@ -24,6 +24,7 @@ export const FRIENDS_AND_FAMILY_ALLOWED_EMAILS = [
   "agantoniomaldonado@gmail.com",
   "guillermo.quero.resina@gmail.com",
   "antoniotorroles81@gmail.com",
+  "ricardocubiles@gmail.com",
 ] as const;
 
 export const FRIENDS_AND_FAMILY_ALLOWED_EMAIL_SET = new Set<string>(

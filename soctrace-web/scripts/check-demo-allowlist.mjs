@@ -16,7 +16,7 @@ const sandbox = {
 };
 vm.runInNewContext(output, sandbox, { filename: "accessControl.ts" });
 
-const { canAccessDashboard, getAuthorizedUser } = sandbox.exports;
+const { canAccessDashboard, getAuthorizedUser, normalizeDemoAccessEmail } = sandbox.exports;
 
 const allowedEmails = [
   "soctrace@gmail.com",
@@ -34,6 +34,19 @@ for (const email of allowedEmails) {
   assert.ok(getAuthorizedUser(email), `${email} should resolve an authorized profile`);
 }
 
+assert.equal(canAccessDashboard(" AURELIANO.DAPONTE@GMAIL.COM "), true);
+assert.equal(
+  canAccessDashboard({ email: undefined, user_metadata: { email: "angelmartinezx2@gmail.com" } }),
+  true,
+);
+assert.equal(
+  canAccessDashboard({ email: undefined, identities: [{ email: "agantoniomaldonado@gmail.com" }] }),
+  true,
+);
+assert.equal(
+  normalizeDemoAccessEmail({ email: undefined, identities: [{ email: "GUILLERMO.QUERO.RESINA@GMAIL.COM" }] }),
+  "guillermo.quero.resina@gmail.com",
+);
 assert.equal(canAccessDashboard("not-authorized@example.com"), false);
 
 console.log(`Demo access allowlist OK (${allowedEmails.length} authorized emails checked).`);

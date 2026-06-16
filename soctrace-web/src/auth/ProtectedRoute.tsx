@@ -5,7 +5,7 @@ import { isSupabaseConfigured } from "@/lib/supabaseClient";
 
 export function ProtectedRoute({ children }: { children: JSX.Element }) {
   const location = useLocation();
-  const { session, loading, email, bypassAuth } = useAuth();
+  const { session, loading, bypassAuth } = useAuth();
 
   if (loading) {
     return <div className="min-h-screen bg-[#05070c]" />;
@@ -15,7 +15,7 @@ export function ProtectedRoute({ children }: { children: JSX.Element }) {
     return children;
   }
 
-  if (!isSupabaseConfigured || !session || !canAccessDashboard(email)) {
+  if (!isSupabaseConfigured || !session || !canAccessDashboard(session.user)) {
     return <Navigate to="/login" replace state={{ from: location }} />;
   }
 

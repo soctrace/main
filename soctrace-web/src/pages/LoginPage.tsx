@@ -2,7 +2,7 @@ import { FormEvent, useState } from "react";
 import { ArrowLeft, ArrowRight, Eye, EyeOff, LockKeyhole, Loader2 } from "lucide-react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useAuth } from "@/auth/AuthProvider";
-import { canAccessDashboard, getAuthorizedUser } from "@/auth/accessControl";
+import { canAccessDashboard, getAuthorizedUser, normalizeDemoAccessEmail } from "@/auth/accessControl";
 import { getOrCreateDemoSessionId, trackDemoEvent } from "@/lib/demoAnalytics";
 import { isSupabaseConfigured, supabase } from "@/lib/supabaseClient";
 import { navItems } from "@/landing/data/content";
@@ -46,8 +46,10 @@ export function LoginPage() {
 
     getOrCreateDemoSessionId();
 
-    if (!canAccessDashboard(session.user.email)) {
-      await trackDemoEvent("login_denied", session.user.email ?? normalizedEmail, {
+    const accessEmail = normalizeDemoAccessEmail(session.user) ?? normalizedEmail;
+
+    if (!canAccessDashboard(session.user)) {
+      await trackDemoEvent("login_denied", accessEmail, {
         reason: "email_not_authorized",
       });
       await supabase.auth.signOut();
@@ -56,8 +58,8 @@ export function LoginPage() {
       return;
     }
 
-    const authorizedUser = getAuthorizedUser(session.user.email);
-    await trackDemoEvent("login_success", session.user.email ?? normalizedEmail, {
+    const authorizedUser = getAuthorizedUser(session.user);
+    await trackDemoEvent("login_success", accessEmail, {
       role: authorizedUser?.role,
       access: authorizedUser?.access,
     });

@@ -8,6 +8,14 @@ export type SocTraceAccess = {
   deniedLayers?: string[];
 };
 
+type DemoAccessIdentity = {
+  email?: string | null;
+  user_metadata?: {
+    email?: unknown;
+  } | null;
+  identities?: unknown[] | null;
+};
+
 export const FRIENDS_AND_FAMILY_ALLOWED_EMAILS = [
   "espaciotania@gmail.com",
   "acatafal@gmail.com",
@@ -17,6 +25,10 @@ export const FRIENDS_AND_FAMILY_ALLOWED_EMAILS = [
   "guillermo.quero.resina@gmail.com",
   "antoniotorroles81@gmail.com",
 ] as const;
+
+export const FRIENDS_AND_FAMILY_ALLOWED_EMAIL_SET = new Set<string>(
+  FRIENDS_AND_FAMILY_ALLOWED_EMAILS.map((email) => email.trim().toLowerCase()),
+);
 
 export const AUTHORIZED_USERS: SocTraceAccess[] = [
   {
@@ -31,18 +43,52 @@ export const AUTHORIZED_USERS: SocTraceAccess[] = [
   })),
 ];
 
-export function getAuthorizedUser(email?: string | null): SocTraceAccess | null {
-  if (!email) return null;
-  const normalizedEmail = email.trim().toLowerCase();
+const AUTHORIZED_EMAILS = AUTHORIZED_USERS.map((user) => user.email.trim().toLowerCase());
+
+function stringValue(value: unknown): string | null {
+  return typeof value === "string" && value.trim().length > 0 ? value : null;
+}
+
+export function getRawDemoAccessEmail(identity?: string | DemoAccessIdentity | null): string | null {
+  if (!identity) return null;
+  if (typeof identity === "string") return stringValue(identity);
+  const firstIdentity = identity.identities?.[0] as { email?: unknown } | undefined;
+
+  return (
+    stringValue(identity.email) ??
+    stringValue(identity.user_metadata?.email) ??
+    stringValue(firstIdentity?.email) ??
+    null
+  );
+}
+
+export function normalizeDemoAccessEmail(identity?: string | DemoAccessIdentity | null): string | null {
+  return getRawDemoAccessEmail(identity)?.trim().toLowerCase() ?? null;
+}
+
+export function getAuthorizedUser(identity?: string | DemoAccessIdentity | null): SocTraceAccess | null {
+  const normalizedEmail = normalizeDemoAccessEmail(identity);
+  if (!normalizedEmail) return null;
   return AUTHORIZED_USERS.find((user) => user.email.toLowerCase() === normalizedEmail) ?? null;
 }
 
-export function canAccessDashboard(email?: string | null): boolean {
-  return Boolean(getAuthorizedUser(email));
+export function canAccessDashboard(identity?: string | DemoAccessIdentity | null): boolean {
+  const rawEmail = getRawDemoAccessEmail(identity);
+  const normalizedEmail = normalizeDemoAccessEmail(identity);
+  const allowed = Boolean(normalizedEmail && getAuthorizedUser(normalizedEmail));
+
+  console.info("[DemoAccess]", {
+    rawEmail,
+    normalizedEmail,
+    allowed,
+    allowedEmails: AUTHORIZED_EMAILS,
+  });
+
+  return allowed;
 }
 
-export function canAccessLayer(email: string | null | undefined, layerId: string): boolean {
-  const user = getAuthorizedUser(email);
+export function canAccessLayer(identity: string | DemoAccessIdentity | null | undefined, layerId: string): boolean {
+  const user = getAuthorizedUser(identity);
   if (!user) return false;
   if (user.role === "admin") return true;
   if (user.access === "full") return true;

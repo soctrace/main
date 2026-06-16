@@ -1,7 +1,7 @@
 import type { Session } from "@supabase/supabase-js";
 import { createContext, ReactNode, useContext, useEffect, useMemo, useState } from "react";
 import type { SocTraceAccess } from "@/auth/accessControl";
-import { getAuthorizedUser, mockUser } from "@/auth/accessControl";
+import { getAuthorizedUser, mockUser, normalizeDemoAccessEmail } from "@/auth/accessControl";
 import { clearDemoSessionId, trackDemoEvent } from "@/lib/demoAnalytics";
 import { shouldBypassAuth } from "@/lib/authConfig";
 import { supabase } from "@/lib/supabaseClient";
@@ -57,8 +57,8 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
   const value = useMemo<AuthContextValue>(
     () => {
-      const email = shouldBypassAuth ? mockUser.email : session?.user.email ?? null;
-      const authorizedUser = shouldBypassAuth ? mockUser : getAuthorizedUser(email);
+      const email = shouldBypassAuth ? mockUser.email : normalizeDemoAccessEmail(session?.user);
+      const authorizedUser = shouldBypassAuth ? mockUser : getAuthorizedUser(session?.user);
       return {
         session,
         user: shouldBypassAuth ? mockUser : session?.user ?? null,

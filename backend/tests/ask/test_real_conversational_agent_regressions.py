@@ -147,6 +147,17 @@ class RealConversationalAgentRegressionTest(unittest.IsolatedAsyncioTestCase):
         self.assertTrue(response.data["rows"])
         self.assertIn("Sección", response.answer)
 
+    async def test_most_populated_section_defaults_to_population_total_2025(self):
+        executor = ConversationalExecutor()
+        response = await self.loop(FakeProvider([None]), executor).run("¿Cuál es la sección más poblada de Mijas?", "conv-pop")
+
+        self.assertEqual(response.data["tool"], "rank_sections")
+        self.assertEqual(response.data["tool_args"]["metric"], "population_total")
+        self.assertEqual(response.data["tool_args"]["year"], 2025)
+        self.assertEqual(response.data["rows"][0]["section_name"], "Sección 23 · Riviera Sur")
+        self.assertEqual(response.data["rows"][0]["value"], 5351)
+        self.assertIn("Sección 23 · Riviera Sur", response.answer)
+
     async def test_participation_uses_rank_sections_desc(self):
         executor = ConversationalExecutor()
         response = await self.loop(FakeProvider([None]), executor).run("¿En qué sección hay mayor participación en unas elecciones?", "conv-p")

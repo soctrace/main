@@ -56,6 +56,7 @@ SELECT
     COALESCE(v.label_cliente, d.label_cliente, v.seccion_id) AS section_name,
     v.anio AS year,
     v.pob_total::bigint AS population_total,
+    v.pob_total::bigint AS total_population,
     ROUND((COALESCE(a.population_0_14, 0) + COALESCE(a.population_15_19, 0) * 0.6)::numeric, 0)::bigint AS population_under_18,
     COALESCE(v.pob_0_14, 0)::bigint + COALESCE(v.pob_15_29, 0)::bigint AS population_under_30,
     ROUND(

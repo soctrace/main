@@ -18,3 +18,8 @@ data/tmp/
 *.sqlite3
 
 .ipynb_checkpoints/
+
+# Local DB dumps / restore artifacts
+*.dump
+restore_list.txt
+restore_catastro_cp.list

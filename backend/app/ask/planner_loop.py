@@ -129,7 +129,7 @@ class AskPlannerLoop:
                 if self._requires_tool(question):
                     last_error_hint = "La pregunta requiere una herramienta. Devuelve exactamente una function call válida."
                     continue
-                if self._deterministic_plan(question, active_municipality):
+                if self._deterministic_plan(question, active_municipality, active_year):
                     break
                 return None
 
@@ -248,7 +248,7 @@ class AskPlannerLoop:
             logger.info("ask_llm_observability", extra=observability)
             return response
 
-        fallback_call = self._deterministic_plan(question, active_municipality)
+        fallback_call = self._deterministic_plan(question, active_municipality, active_year)
         if fallback_call:
             fallback_response = await self._run_tool_call(
                 question=question,
@@ -411,10 +411,15 @@ class AskPlannerLoop:
             return f"Argumentos inválidos para `{tool_name}`: {exc.errors()[:3]}"
         return None
 
-    def _deterministic_plan(self, question: str, active_municipality: str) -> LLMToolCall | None:
+    def _deterministic_plan(self, question: str, active_municipality: str, active_year: int | None = None) -> LLMToolCall | None:
         text = self._normalized_question(question)
         base = {"municipio_id": active_municipality}
 
+        if re.search(r"seccion mas poblada|mas poblada|mayor poblacion|mas habitantes", text):
+            return LLMToolCall(
+                tool_name="rank_sections",
+                arguments={**base, "metric": "population_total", "order": "desc", "year": active_year or 2025, "limit": 1},
+            )
         if re.search(r"menor abstencion", text):
             return LLMToolCall(tool_name="rank_sections", arguments={**base, "metric": "abstention_pct", "order": "asc", "election_type": "MUNICIPALES", "limit": 5})
         if re.search(r"mayor abstencion", text):

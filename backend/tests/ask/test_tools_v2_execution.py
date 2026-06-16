@@ -36,6 +36,11 @@ class ToolsV2ExecutionTest(unittest.IsolatedAsyncioTestCase):
         result = await self.execute_ok("rank_sections", {"metric": "population_total", "limit": 5})
         self.assertEqual(result.chart_spec["type"], "bar")
 
+    async def test_rank_sections_total_population_alias_defaults_to_2025(self):
+        result = await self.execute_ok("rank_sections", {"metric": "total_population", "limit": 1})
+        self.assertEqual(result.metadata["metric"], "population_total")
+        self.assertIn("year = 2025", self.query_executor.sql[-1])
+
     async def test_rank_sections_average_age_asc(self):
         result = await self.execute_ok("rank_sections", {"metric": "average_age", "order": "asc", "limit": 5})
         self.assertEqual(result.metadata["metric"], "average_age")

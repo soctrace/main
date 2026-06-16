@@ -13,9 +13,13 @@ class QueryExecutor:
 
     def execute(self, sql: str) -> list[dict[str, Any]]:
         limited_sql = self._with_limit(sql)
-        self.session.execute(text(f"SET LOCAL statement_timeout = {int(self.timeout_ms)}"))
-        rows = self.session.execute(text(limited_sql)).mappings().all()
-        return [{key: self._json_value(value) for key, value in dict(row).items()} for row in rows]
+        try:
+            self.session.execute(text(f"SET LOCAL statement_timeout = {int(self.timeout_ms)}"))
+            rows = self.session.execute(text(limited_sql)).mappings().all()
+            return [{key: self._json_value(value) for key, value in dict(row).items()} for row in rows]
+        except Exception:
+            self.session.rollback()
+            raise
 
     def _with_limit(self, sql: str) -> str:
         if " limit " in f" {sql.lower()} ":

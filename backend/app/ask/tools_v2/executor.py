@@ -33,6 +33,7 @@ class ToolExecutorV2:
         status = getattr(tool, "status", "supported")
         if status == "pending" or status == "hidden":
             return self._controlled_result(PendingToolError(), tool_name, "pending_tool", "La herramienta solicitada no está activa.")
+        arguments = self._normalize_arguments(tool_name, arguments, context)
         try:
             payload = tool.input_schema.model_validate(arguments)
             raw_result = tool.execute(payload, context)
@@ -68,6 +69,53 @@ class ToolExecutorV2:
             )
             self._log_execution(tool_name, result, context, started)
             return result
+
+    def _normalize_arguments(self, tool_name: str, arguments: dict[str, Any], context: ToolContext) -> dict[str, Any]:
+        normalized = self._normalize_metric_aliases(dict(arguments))
+        if self._uses_population_metric(normalized) and tool_name in self._year_default_tools() and normalized.get("year") is None:
+            normalized["year"] = context.active_year or 2025
+        return normalized
+
+    def _normalize_metric_aliases(self, value: Any) -> Any:
+        if isinstance(value, dict):
+            return {key: self._normalize_metric_aliases(item) for key, item in value.items()}
+        if isinstance(value, list):
+            return [self._normalize_metric_aliases(item) for item in value]
+        if value == "total_population":
+            return "population_total"
+        return value
+
+    def _uses_population_metric(self, arguments: dict[str, Any]) -> bool:
+        population_metrics = {
+            "population_total",
+            "population_density",
+            "population_under_18",
+            "population_under_30",
+            "population_over_65",
+            "population_under_18_pct",
+            "population_under_30_pct",
+            "population_over_65_pct",
+            "average_age",
+        }
+
+        def walk(value: Any) -> bool:
+            if isinstance(value, dict):
+                return any(walk(item) for item in value.values())
+            if isinstance(value, list):
+                return any(walk(item) for item in value)
+            return value in population_metrics
+
+        return walk(arguments)
+
+    def _year_default_tools(self) -> set[str]:
+        return {
+            "rank_sections",
+            "aggregate_municipality",
+            "filter_sections",
+            "section_profile",
+            "cross_metric_ranking",
+            "correlation_analysis",
+        }
 
     def _controlled_result(self, _error: Exception, tool_name: str, code: str, message: str) -> ToolResult:
         return ToolResult(

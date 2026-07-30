@@ -1,6 +1,12 @@
+import logging
 from typing import Any, Literal
 
 from pydantic import BaseModel, Field, ConfigDict, model_validator
+
+from app.ask.section_reference import detect_section_references
+
+
+logger = logging.getLogger(__name__)
 
 
 class AskRequest(BaseModel):
@@ -42,6 +48,19 @@ class AskRequest(BaseModel):
             self.selectedSectionId = self.selected_section_id
         if not self.question:
             raise ValueError("question or message is required")
+        detection = detect_section_references(self.question)
+        if self.selectedSectionId is None and detection.selected_section_id is not None:
+            self.selectedSectionId = detection.selected_section_id
+            self.selected_section_id = detection.selected_section_id
+        logger.info(
+            "section_reference_detection user_query=%r detected_sections=%s "
+            "selected_section_id=%s confidence=%.2f entities=%s",
+            self.question,
+            list(detection.section_ids),
+            detection.selected_section_id,
+            detection.confidence,
+            list(detection.entities),
+        )
         return self
 
 

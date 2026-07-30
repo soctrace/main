@@ -7,6 +7,7 @@ from fastapi import Depends
 from sqlalchemy.orm import Session
 
 from app.core.database import get_db_session
+from app.ask.section_reference import detect_section_references
 from app.repositories.analyst_repository import AnalystRepository
 from app.repositories.forecast_repository import ForecastRepository
 from app.schemas.analyst import AnalystAnswer, AnalystChartSpec, AnalystTable
@@ -135,14 +136,11 @@ def extract_party(question: str) -> str | None:
 
 
 def extract_section_hint(question: str) -> str | None:
-    text = normalize(question)
-    section_id_match = re.search(r"\b29\d{8}\b", text)
-    if section_id_match:
-        return section_id_match.group(0)
+    detection = detect_section_references(question)
+    if detection.selected_section_id is not None:
+        return detection.selected_section_id
 
-    section_number_match = re.search(r"\b(?:seccion|section)\s+0?(\d{1,3})\b", text)
-    if section_number_match:
-        return section_number_match.group(1)
+    text = normalize(question)
 
     # Named section references normally appear after location prepositions in
     # questions such as "en La Sierrezuela" or "en Cala de Mijas".

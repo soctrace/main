@@ -8,6 +8,11 @@ from pydantic import BaseModel, Field
 class AnalyticalExplanationContext(BaseModel):
     methodology: str = ""
     warnings: list[str] = Field(default_factory=list)
+    metric: str | None = None
+    year: int | None = None
+    territory: str | None = None
+    operation: str | None = None
+    response_type: str | None = None
 
 
 class OrchestratorConversationContext(BaseModel):

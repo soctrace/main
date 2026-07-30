@@ -45,6 +45,7 @@ class Settings(BaseSettings):
     ask_llm_fallback_to_legacy: bool = True
     ask_llm_debug: bool = False
     ask_analyst_enabled: bool = True
+    enable_methodology_explanation_layer: bool = False
     smtp_host: str | None = None
     smtp_port: int = 587
     smtp_user: str | None = None

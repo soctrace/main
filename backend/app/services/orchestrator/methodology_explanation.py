@@ -41,9 +41,9 @@ class MethodologyExplanationLayer:
             return "period"
         if re.search(r"\b(de donde|procedencia|fuente|datos? (?:has|han|utiliz)|origen (?:del|de ese)|donde.*numero|donde.*valor|where.*(?:value|number).*come|what data.*use|data provenance)\b", text):
             return "provenance"
-        if re.search(r"\b(como.*calcul\w*|metodologia|metodo|formula|criterio|ordenad[oa]|obtuviste|llegaste.*resultado|how.*calculat\w*|methodology|method used|how.*obtain\w*)\b", text):
+        if re.search(r"\b(como.*calcul\w*|metodologia|metodo|formula|criterio|ordenad[oa]|obtuviste|llegaste.*resultado|que variables?.*(?:usado|tenido)|how.*calculat\w*|methodology|method used|how.*obtain\w*)\b", text):
             return "calculation"
-        if re.search(r"\b(que significa|como.*interpret\w*|explica|explicame|por que (?:esas|estas|elegiste|seleccionaste)|limitacion\w*|supuesto\w*|what does.*mean|how.*interpret\w*|explain|why (?:those|these)|limitations?|assumptions?)\b", text):
+        if re.search(r"\b(que significa|como.*interpret\w*|explica|explicame|por que (?:esas|estas|elegiste|seleccionaste|aparece)|limitacion\w*|supuesto\w*|what does.*mean|how.*interpret\w*|explain|why (?:those|these)|limitations?|assumptions?)\b", text):
             return "interpretation"
         if text in {"por que", "por que?", "why", "explain"}:
             return "interpretation"

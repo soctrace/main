@@ -92,7 +92,7 @@ class BaseTool:
                 error_code="sql_validation_failed",
                 error_message="No se ha podido validar la consulta interna.",
             )
-        rows = self.query_executor.execute(built.sql)
+        rows = self.query_executor.execute(built.sql, built.parameters)
         return self.normalizer.normalize(
             tool_name=self.name,
             operation=self.name,

@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from pathlib import Path
 from typing import Any
 
@@ -41,6 +41,7 @@ class BuiltSql:
     sql: str
     sources: list[str]
     metadata: dict[str, Any]
+    parameters: dict[str, Any] = field(default_factory=dict)
 
 
 class ToolSqlBuilders:
@@ -417,7 +418,7 @@ LIMIT {int(payload.limit)}
         return BuiltSql(sql, [metric.view], {"metric": metric.metric_id, "value_label": metric.label, "condition": condition.model_dump()})
 
     def section_profile(self, payload: SectionProfileInput) -> BuiltSql:
-        section_filter = self._section_filter(payload.section)
+        section_filter, section_parameters = self._bound_section_filter(payload.section)
         year_filter = f"AND profile.year = {int(payload.year)}" if payload.year else ""
         sql = f"""
 WITH target AS (
@@ -473,7 +474,12 @@ WHERE (profile.year = latest_profile.year {year_filter} OR profile.year IS NULL)
   AND (housing.year = latest_housing.year OR housing.year IS NULL)
 LIMIT 1
 """.strip()
-        return BuiltSql(sql, ["marts.agent_section_lookup", "marts.agent_section_profile", "marts.agent_income_sources", "marts.agent_electoral_summary", "marts.agent_housing_profile"], {"section": payload.section})
+        return BuiltSql(
+            sql,
+            ["marts.agent_section_lookup", "marts.agent_section_profile", "marts.agent_income_sources", "marts.agent_electoral_summary", "marts.agent_housing_profile"],
+            {"section": payload.section},
+            section_parameters,
+        )
 
     def party_strength(self, payload: PartyStrengthInput) -> BuiltSql:
         election_type = self._election_type(payload.election_type)
@@ -1023,6 +1029,20 @@ LIMIT {int(payload.limit)}
             return f"pct_rank <= {float(value or 0.25)}"
         raise ValueError(f"Unsupported operator `{operator}`.")
 
+    def _bound_section_filter(self, section: str) -> tuple[str, dict[str, str]]:
+        cleaned = section.strip()
+        like = "%" + cleaned.lower().replace("'", "''") + "%"
+        clauses = [
+            f"LOWER(section_id) = {self._literal(cleaned.lower())}",
+            f"LOWER(section_name) LIKE {self._literal(like)}",
+            f"LOWER(display_name) LIKE {self._literal(like)}",
+        ]
+        digits = "".join(ch for ch in cleaned if ch.isdigit())
+        if digits:
+            clauses.append("section_number = :section_number")
+        parameters = {"section_number": str(int(digits)).zfill(2)} if digits else {}
+        return " OR ".join(clauses), parameters
+
     def _section_filter(self, section: str) -> str:
         cleaned = section.strip()
         like = "%" + cleaned.lower().replace("'", "''") + "%"
@@ -1033,7 +1053,7 @@ LIMIT {int(payload.limit)}
         ]
         digits = "".join(ch for ch in cleaned if ch.isdigit())
         if digits:
-            clauses.append(f"section_number = {int(digits)}")
+            clauses.append(f"section_number = {self._literal(str(int(digits)).zfill(2))}")
         return " OR ".join(clauses)
 
     def _section_lineage_values(self, municipality_id: str) -> str:

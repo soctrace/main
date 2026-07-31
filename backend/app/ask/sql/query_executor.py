@@ -11,11 +11,11 @@ class QueryExecutor:
         self.row_limit = row_limit
         self.timeout_ms = timeout_ms
 
-    def execute(self, sql: str) -> list[dict[str, Any]]:
+    def execute(self, sql: str, parameters: dict[str, Any] | None = None) -> list[dict[str, Any]]:
         limited_sql = self._with_limit(sql)
         try:
             self.session.execute(text(f"SET LOCAL statement_timeout = {int(self.timeout_ms)}"))
-            rows = self.session.execute(text(limited_sql)).mappings().all()
+            rows = self.session.execute(text(limited_sql), parameters or {}).mappings().all()
             return [{key: self._json_value(value) for key, value in dict(row).items()} for row in rows]
         except Exception:
             self.session.rollback()

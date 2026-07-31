@@ -3,7 +3,10 @@ import logging
 import pytest
 
 from app.ask.section_winner import resolve_section_winner
+from app.ask.sql.query_executor import QueryExecutor
 from app.ask.tools_v2 import ToolResult
+from app.ask.tools_v2.schemas import SectionProfileInput
+from app.ask.tools_v2.sql_builders import ToolSqlBuilders
 from app.schemas.ask import AskRequest
 
 
@@ -65,6 +68,7 @@ def test_honors_requested_section_end_to_end(question: str, expected: str) -> No
     ]
     assert resolution.response.data["requested_section_id"] == expected
     assert resolution.response.data["effective_section_id"] == expected
+    assert resolution.response.data["response_section_id"] == expected
     assert resolution.response.data["territorial_match"] is True
     assert f"Sección {int(expected):02d}" in resolution.response.answer
 
@@ -96,6 +100,7 @@ def test_rejects_a_row_from_another_section(caplog: pytest.LogCaptureFixture) ->
     assert resolution is not None
     assert resolution.response.data["requested_section_id"] == "18"
     assert resolution.response.data["effective_section_id"] is None
+    assert resolution.response.data["response_section_id"] is None
     assert resolution.response.data["territorial_match"] is False
     assert "Sección 01" not in resolution.response.answer
     assert "territorial_match" in caplog.records[-1].__dict__
@@ -120,3 +125,62 @@ def test_structured_observability_reports_matching_section(caplog: pytest.LogCap
     assert record.tool_name == "section_profile"
     assert record.row_count == 1
     assert record.territorial_match is True
+
+
+@pytest.mark.parametrize(
+    ("section", "expected_parameter"),
+    [("18", "18"), ("07", "07"), ("7", "07"), ("37", "37")],
+)
+def test_section_profile_binds_visible_section_number_as_database_text(
+    section: str,
+    expected_parameter: str,
+) -> None:
+    built = ToolSqlBuilders().section_profile(
+        SectionProfileInput(municipio_id="29070", section=section, year=2023)
+    )
+
+    assert "section_number = :section_number" in built.sql
+    assert "CAST(section_number" not in built.sql
+    assert built.parameters == {"section_number": expected_parameter}
+    assert isinstance(built.parameters["section_number"], str)
+
+
+class RecordingSession:
+    def __init__(self) -> None:
+        self.calls: list[tuple[str, dict[str, object]]] = []
+
+    def execute(self, statement, parameters=None):
+        self.calls.append((str(statement), parameters or {}))
+        if len(self.calls) == 1:
+            return None
+        return RecordingResult()
+
+    def rollback(self) -> None:
+        raise AssertionError("The query should not fail")
+
+
+class RecordingResult:
+    def mappings(self):
+        return self
+
+    def all(self):
+        return []
+
+
+def test_query_executor_passes_text_section_parameter_to_sqlalchemy() -> None:
+    session = RecordingSession()
+    QueryExecutor(session).execute(  # type: ignore[arg-type]
+        "SELECT section_id FROM marts.agent_section_lookup WHERE section_number = :section_number",
+        {"section_number": "18"},
+    )
+
+    assert session.calls[-1][1] == {"section_number": "18"}
+    assert isinstance(session.calls[-1][1]["section_number"], str)
+
+
+def test_multiple_requested_sections_are_not_collapsed_to_one() -> None:
+    executor = FakeToolExecutor()
+    payload = AskRequest(question="Compara los ganadores electorales de las secciones 18 y 23 en 2023")
+
+    assert resolve_section_winner(payload, executor) is None  # type: ignore[arg-type]
+    assert executor.calls == []

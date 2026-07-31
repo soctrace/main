@@ -419,7 +419,16 @@ LIMIT {int(payload.limit)}
 
     def section_profile(self, payload: SectionProfileInput) -> BuiltSql:
         section_filter, section_parameters = self._bound_section_filter(payload.section)
-        year_filter = f"AND profile.year = {int(payload.year)}" if payload.year else ""
+        profile_year = (
+            f"COALESCE(MAX(year) FILTER (WHERE year = {int(payload.year)}), MAX(year))"
+            if payload.year
+            else "MAX(year)"
+        )
+        election_year = (
+            f"COALESCE(MAX(election_year) FILTER (WHERE election_year = {int(payload.year)}), MAX(election_year))"
+            if payload.year
+            else "MAX(election_year)"
+        )
         sql = f"""
 WITH target AS (
     SELECT section_id, section_name, municipio_id, municipio_nombre
@@ -430,7 +439,7 @@ WITH target AS (
     LIMIT 1
 ),
 latest_profile AS (
-    SELECT MAX(year) AS year FROM marts.agent_section_profile WHERE municipio_id = {self._literal(payload.municipio_id)}
+    SELECT {profile_year} AS year FROM marts.agent_section_profile WHERE municipio_id = {self._literal(payload.municipio_id)}
 ),
 latest_income AS (
     SELECT MAX(year) AS year FROM marts.agent_income_sources WHERE municipio_id = {self._literal(payload.municipio_id)}
@@ -439,7 +448,7 @@ latest_housing AS (
     SELECT MAX(year) AS year FROM marts.agent_housing_profile WHERE municipio_id = {self._literal(payload.municipio_id)}
 ),
 latest_election AS (
-    SELECT MAX(election_year) AS election_year FROM marts.agent_electoral_summary WHERE municipio_id = {self._literal(payload.municipio_id)} AND election_type = 'MUNICIPALES'
+    SELECT {election_year} AS election_year FROM marts.agent_electoral_summary WHERE municipio_id = {self._literal(payload.municipio_id)} AND election_type = 'MUNICIPALES'
 )
 SELECT
     target.section_id,
@@ -467,7 +476,7 @@ LEFT JOIN marts.agent_electoral_summary electoral ON electoral.section_id = targ
 LEFT JOIN latest_election ON latest_election.election_year = electoral.election_year
 LEFT JOIN marts.agent_housing_profile housing ON housing.section_id = target.section_id AND housing.municipio_id = target.municipio_id
 LEFT JOIN latest_housing ON latest_housing.year = housing.year
-WHERE (profile.year = latest_profile.year {year_filter} OR profile.year IS NULL)
+WHERE (profile.year = latest_profile.year OR profile.year IS NULL)
   AND (income.year = latest_income.year OR income.year IS NULL)
   AND (electoral.election_year = latest_election.election_year OR electoral.election_year IS NULL)
   AND (electoral.election_type = 'MUNICIPALES' OR electoral.election_type IS NULL)

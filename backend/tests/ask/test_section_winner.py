@@ -7,6 +7,7 @@ from app.ask.sql.query_executor import QueryExecutor
 from app.ask.tools_v2 import ToolResult
 from app.ask.tools_v2.schemas import SectionProfileInput
 from app.ask.tools_v2.sql_builders import ToolSqlBuilders
+from app.core.database import SessionLocal
 from app.schemas.ask import AskRequest
 
 
@@ -184,3 +185,59 @@ def test_multiple_requested_sections_are_not_collapsed_to_one() -> None:
 
     assert resolve_section_winner(payload, executor) is None  # type: ignore[arg-type]
     assert executor.calls == []
+
+
+def test_explicit_year_resolves_once_without_contradictory_profile_predicate() -> None:
+    built = ToolSqlBuilders().section_profile(
+        SectionProfileInput(municipio_id="29070", section="18", year=2023)
+    )
+
+    assert "COALESCE(MAX(year) FILTER (WHERE year = 2023), MAX(year)) AS year" in built.sql
+    assert "COALESCE(MAX(election_year) FILTER (WHERE election_year = 2023), MAX(election_year)) AS election_year" in built.sql
+    assert "profile.year = 2023" not in built.sql
+    assert built.sql.count("profile.year = latest_profile.year") == 1
+
+
+def test_missing_explicit_year_uses_latest_available_year_once() -> None:
+    built = ToolSqlBuilders().section_profile(
+        SectionProfileInput(municipio_id="29070", section="18")
+    )
+
+    assert "SELECT MAX(year) AS year FROM marts.agent_section_profile" in built.sql
+    assert "SELECT MAX(election_year) AS election_year FROM marts.agent_electoral_summary" in built.sql
+    assert "FILTER (WHERE year" not in built.sql
+    assert "FILTER (WHERE election_year" not in built.sql
+
+
+def test_requested_year_without_profile_data_falls_back_to_canonical_latest_year() -> None:
+    built = ToolSqlBuilders().section_profile(
+        SectionProfileInput(municipio_id="29070", section="18", year=1900)
+    )
+
+    with SessionLocal() as session:
+        rows = QueryExecutor(session).execute(built.sql, built.parameters)
+
+    assert len(rows) == 1
+    assert rows[0]["section_id"] == "2907001018"
+    assert rows[0]["year"] != 1900
+
+
+@pytest.mark.parametrize(
+    ("section", "winner"),
+    [("7", "PP"), ("18", "PSOE"), ("23", "PP"), ("37", "PSOE")],
+)
+def test_clean_head_section_profile_returns_municipal_2023_winner(
+    section: str,
+    winner: str,
+) -> None:
+    built = ToolSqlBuilders().section_profile(
+        SectionProfileInput(municipio_id="29070", section=section, year=2023)
+    )
+
+    with SessionLocal() as session:
+        rows = QueryExecutor(session).execute(built.sql, built.parameters)
+
+    assert len(rows) == 1
+    assert rows[0]["election_year"] == 2023
+    assert rows[0]["winner_party"] == winner
+    assert str(int(rows[0]["section_id"][-3:])) == str(int(section))

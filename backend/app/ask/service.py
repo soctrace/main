@@ -27,6 +27,7 @@ from app.ask.llm.provider import LLMProvider
 from app.ask.orchestration import AgentExecutionPlan, AgentPlanStep, AnswerCheck
 from app.ask.planner import ExecutionPlan, SocTracePlanner
 from app.ask.planner_loop import AskPlannerLoop
+from app.ask.participation_trend import resolve_participation_trend
 from app.ask.reference_resolver import resolve_references
 from app.ask.section_comparison import resolve_section_comparison
 from app.ask.section_winner import resolve_section_winner
@@ -163,6 +164,11 @@ class AskSocTraceService:
                 self._selected_tool_names.append(section_winner.tool_name)
                 self._tool_inputs.append({section_winner.tool_name: section_winner.tool_arguments})
                 return self._with_session_memory(payload, section_winner.response)
+            participation_trend = resolve_participation_trend(payload, self.query_executor)
+            if participation_trend:
+                self._selected_tool_names.append(participation_trend.tool_name)
+                self._tool_inputs.append({participation_trend.tool_name: participation_trend.tool_arguments})
+                return self._with_session_memory(payload, participation_trend.response)
             policy_response = self._ask_with_conversational_policy(payload, state)
             if policy_response:
                 return self._with_session_memory(payload, policy_response)

@@ -28,6 +28,7 @@ from app.ask.orchestration import AgentExecutionPlan, AgentPlanStep, AnswerCheck
 from app.ask.planner import ExecutionPlan, SocTracePlanner
 from app.ask.planner_loop import AskPlannerLoop
 from app.ask.reference_resolver import resolve_references
+from app.ask.section_comparison import resolve_section_comparison
 from app.ask.section_winner import resolve_section_winner
 from app.ask.sql import QueryExecutor, SemanticPlan, SqlGenerator, SqlValidator
 from app.ask.semantic_layer import AnalyticalOperation
@@ -152,6 +153,11 @@ class AskSocTraceService:
             previous_response = self._previous_context_response(payload, state)
             if previous_response:
                 return self._with_session_memory(payload, previous_response)
+            section_comparison = resolve_section_comparison(payload, self.tools_v2_executor)
+            if section_comparison:
+                self._selected_tool_names.append(section_comparison.tool_name)
+                self._tool_inputs.append({section_comparison.tool_name: section_comparison.tool_arguments})
+                return self._with_session_memory(payload, section_comparison.response)
             section_winner = resolve_section_winner(payload, self.tools_v2_executor)
             if section_winner:
                 self._selected_tool_names.append(section_winner.tool_name)

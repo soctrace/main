@@ -1,6 +1,7 @@
 import {
   Bell,
   Command,
+  Flag,
   LogOut,
   Shield,
   Zap,
@@ -89,6 +90,14 @@ export function Topbar() {
               ? "Datos de prueba"
               : "Backend desconectado"}
         </div>
+        <button
+          type="button"
+          onClick={() => navigate("/dashboard/campaigns")}
+          className="flex h-10 items-center gap-2 rounded-xl border border-orange-300/15 bg-orange-300/[0.05] px-3 text-sm text-orange-100 transition hover:border-orange-300/30 hover:bg-orange-300/[0.09]"
+        >
+          <Flag className="h-4 w-4" />
+          <span className="hidden 2xl:inline">Campañas</span>
+        </button>
         <HoverTooltip content={<BetaTooltip />} tooltipClassName="w-max" autoFlip placement="bottom">
           <Button variant="secondary" size="sm">
             <Zap className="h-4 w-4" />

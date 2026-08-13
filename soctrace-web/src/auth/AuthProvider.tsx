@@ -28,6 +28,14 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   useEffect(() => {
     let mounted = true;
 
+    const testSessionEnabled = import.meta.env.DEV && import.meta.env.VITE_CAMPAIGN_TEST_MODE === "true";
+    const testSessionRequested = testSessionEnabled && new URLSearchParams(window.location.search).get("auditSession") === "member";
+    if (testSessionRequested) {
+      setSession({ user: { id: "00000000-0000-4000-8000-000000000001", email: "browser-test@soctrace.invalid", app_metadata: {}, user_metadata: {}, aud: "authenticated", created_at: new Date(0).toISOString() }, access_token: "development-test-token", refresh_token: "development-test-refresh", expires_in: 3600, token_type: "bearer" } as Session);
+      setLoading(false);
+      return undefined;
+    }
+
     if (shouldBypassAuth) {
       setLoading(false);
       return undefined;

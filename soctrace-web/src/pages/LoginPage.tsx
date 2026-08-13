@@ -9,16 +9,17 @@ import { navItems } from "@/landing/data/content";
 import { Footer } from "@/landing/sections/Footer";
 import { Navbar } from "@/landing/sections/Navbar";
 import { SocTraceInsightPreview } from "@/components/marketing/SocTraceInsightPreview";
+import { getSafeLoginReturnPath, type LoginReturnLocation } from "@/auth/returnUrl";
 
 type LocationState = {
-  from?: { pathname?: string };
+  from?: LoginReturnLocation;
 };
 
 export function LoginPage() {
   const navigate = useNavigate();
   const location = useLocation();
   const { signIn } = useAuth();
-  const from = (location.state as LocationState | null)?.from?.pathname || "/dashboard";
+  const from = getSafeLoginReturnPath((location.state as LocationState | null)?.from);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);

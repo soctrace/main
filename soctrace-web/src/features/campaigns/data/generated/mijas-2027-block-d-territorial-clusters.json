@@ -1,0 +1,5577 @@
+{
+  "metadata": {
+    "snapshotVersion": "2026-08-04.1",
+    "campaignSlug": "mijas-2027",
+    "block": "D",
+    "seed": 29070,
+    "status": "reproducible_statistical_analysis"
+  },
+  "sourceCatalogue": [
+    {
+      "domain": "accessibility",
+      "source": "marts.accessibility_profile",
+      "fields": "OSM-derived counts, distances and score",
+      "status": "provisional 2026 geography"
+    },
+    {
+      "domain": "built_environment",
+      "source": "marts.v_land_built_environment",
+      "fields": "footprint, building parts, parcels and intensity",
+      "status": "canonical mart"
+    },
+    {
+      "domain": "crosswalk",
+      "source": "core.seccion_historica + PostGIS intersections",
+      "fields": "official geometry identity and maximum-area overlap",
+      "status": "derived and spatially verified"
+    },
+    {
+      "domain": "display_names",
+      "source": "marts.agent_section_universe",
+      "fields": "client-neutral section display names",
+      "status": "canonical presentation metadata"
+    },
+    {
+      "domain": "election_identity",
+      "source": "core.election + core.election_type",
+      "fields": "election ID, type, official name, date, source file",
+      "status": "canonical"
+    },
+    {
+      "domain": "electoral_section_mart",
+      "source": "marts.v_resultados_seccion_eleccion",
+      "fields": "joined election, candidacy, normalization and section results",
+      "status": "preferred analytical mart"
+    },
+    {
+      "domain": "historical_geography",
+      "source": "core.seccion_historica",
+      "fields": "official yearly section geometries",
+      "status": "canonical"
+    },
+    {
+      "domain": "income",
+      "source": "marts.agent_income_sources + marts.v_income_level",
+      "fields": "individual and household income 2019-2023",
+      "status": "canonical marts; separate concepts"
+    },
+    {
+      "domain": "municipal_results",
+      "source": "core.resultados_municipio + marts.v_resultados_municipio",
+      "fields": "municipal party totals and 2023 validated seats",
+      "status": "seats only verified for 2023"
+    },
+    {
+      "domain": "party_catalogue",
+      "source": "core.candidatura + core.candidatura_alias",
+      "fields": "official candidacies and project normalization",
+      "status": "canonical; normalization inherited"
+    },
+    {
+      "domain": "polling_table_party_results",
+      "source": "core.resultados_mesa",
+      "fields": "party votes by polling table",
+      "status": "canonical where populated"
+    },
+    {
+      "domain": "polling_table_totals",
+      "source": "core.datos_mesa",
+      "fields": "census, voters, blank/null and candidacy votes",
+      "status": "canonical where populated"
+    },
+    {
+      "domain": "population_demography",
+      "source": "marts.v_population_layer + marts.v_poblacion_seccion_anio + marts.agent_section_profile",
+      "fields": "population, density, sex and age structure",
+      "status": "canonical marts; Block A formulas"
+    },
+    {
+      "domain": "section_results",
+      "source": "core.resultados_seccion",
+      "fields": "section totals and party votes",
+      "status": "canonical all 12 elections"
+    },
+    {
+      "domain": "socioeconomic",
+      "source": "marts.v_socioeconomic_profile",
+      "fields": "education, activity, occupation and branch variables",
+      "status": "canonical 2024 mart"
+    }
+  ],
+  "geographyDefinition": {
+    "universe": "official 2023/2024 primary geography",
+    "sections": 37
+  },
+  "featureCatalogue": [
+    {
+      "feature": "population",
+      "source": "marts.v_population_layer",
+      "year": 2024,
+      "geography": "official_2023_2024_37_sections",
+      "missing": 0,
+      "variance": 1109086.6021021022,
+      "skewness": 0.538450799315064,
+      "outlier_count": 0,
+      "transformation": "log1p then z-score",
+      "accepted_feature_sets": "A_structural",
+      "status": "accepted",
+      "reason": ""
+    },
+    {
+      "feature": "density_per_km2",
+      "source": "marts.v_population_layer",
+      "year": 2024,
+      "geography": "official_2023_2024_37_sections",
+      "missing": 0,
+      "variance": 233322531.10587704,
+      "skewness": 1.4118380963233574,
+      "outlier_count": 1,
+      "transformation": "log1p then z-score",
+      "accepted_feature_sets": "A_structural|C_integrated|D_reduced",
+      "status": "accepted",
+      "reason": ""
+    },
+    {
+      "feature": "growth_percent_2023_2024",
+      "source": "marts.v_poblacion_seccion_anio",
+      "year": "2023-2024",
+      "geography": "official_2023_2024_37_sections",
+      "missing": 0,
+      "variance": 6.218535585585587,
+      "skewness": -1.1631659420690832,
+      "outlier_count": 1,
+      "transformation": "z-score",
+      "accepted_feature_sets": "A_structural|C_integrated|D_reduced",
+      "status": "accepted",
+      "reason": ""
+    },
+    {
+      "feature": "contribution_to_growth_pct_2023_2024",
+      "source": "Block C derived",
+      "year": "various",
+      "geography": "official_2023_2024_37_sections",
+      "missing": 0,
+      "variance": 12.933996696696697,
+      "skewness": 0.18538992028665477,
+      "outlier_count": 0,
+      "transformation": "z-score",
+      "accepted_feature_sets": "",
+      "status": "rejected/sensitivity only",
+      "reason": "redundant, incomplete, scale-dominated, or sensitivity-only"
+    },
+    {
+      "feature": "average_age",
+      "source": "marts.agent_section_profile",
+      "year": 2024,
+      "geography": "official_2023_2024_37_sections",
+      "missing": 0,
+      "variance": 10.817263213213213,
+      "skewness": -0.18906733620139718,
+      "outlier_count": 0,
+      "transformation": "z-score",
+      "accepted_feature_sets": "A_structural|C_integrated|D_reduced",
+      "status": "accepted",
+      "reason": ""
+    },
+    {
+      "feature": "under_30_pct",
+      "source": "marts.agent_section_profile",
+      "year": 2024,
+      "geography": "official_2023_2024_37_sections",
+      "missing": 0,
+      "variance": 20.436638888888893,
+      "skewness": -0.023836168523868037,
+      "outlier_count": 0,
+      "transformation": "z-score",
+      "accepted_feature_sets": "A_structural|C_integrated",
+      "status": "accepted",
+      "reason": ""
+    },
+    {
+      "feature": "over_65_pct",
+      "source": "marts.agent_section_profile",
+      "year": 2024,
+      "geography": "official_2023_2024_37_sections",
+      "missing": 0,
+      "variance": 26.604248798798796,
+      "skewness": -0.13860721319168234,
+      "outlier_count": 0,
+      "transformation": "z-score",
+      "accepted_feature_sets": "A_structural",
+      "status": "accepted",
+      "reason": ""
+    },
+    {
+      "feature": "men_pct",
+      "source": "Block C derived",
+      "year": "various",
+      "geography": "official_2023_2024_37_sections",
+      "missing": 0,
+      "variance": 1.5345345345345345,
+      "skewness": 0.45754539075164413,
+      "outlier_count": 0,
+      "transformation": "z-score",
+      "accepted_feature_sets": "",
+      "status": "rejected/sensitivity only",
+      "reason": "redundant, incomplete, scale-dominated, or sensitivity-only"
+    },
+    {
+      "feature": "dependency_ratio",
+      "source": "Block C derived",
+      "year": "various",
+      "geography": "official_2023_2024_37_sections",
+      "missing": 0,
+      "variance": 0.004478528528528529,
+      "skewness": -0.12570273373901916,
+      "outlier_count": 0,
+      "transformation": "z-score",
+      "accepted_feature_sets": "",
+      "status": "rejected/sensitivity only",
+      "reason": "redundant, incomplete, scale-dominated, or sensitivity-only"
+    },
+    {
+      "feature": "income_individual",
+      "source": "marts.agent_income_sources",
+      "year": 2023,
+      "geography": "official_2023_2024_37_sections",
+      "missing": 0,
+      "variance": 3015118.3798798798,
+      "skewness": 0.3931870719595566,
+      "outlier_count": 0,
+      "transformation": "z-score",
+      "accepted_feature_sets": "A_structural|C_integrated|D_reduced",
+      "status": "accepted",
+      "reason": ""
+    },
+    {
+      "feature": "income_household",
+      "source": "marts.agent_income_sources",
+      "year": 2023,
+      "geography": "official_2023_2024_37_sections",
+      "missing": 0,
+      "variance": 25197776.421921924,
+      "skewness": 1.8191349811594864,
+      "outlier_count": 1,
+      "transformation": "z-score",
+      "accepted_feature_sets": "A_structural",
+      "status": "accepted",
+      "reason": ""
+    },
+    {
+      "feature": "individual_change_2019_2023",
+      "source": "Block C derived",
+      "year": "various",
+      "geography": "official_2023_2024_37_sections",
+      "missing": 7,
+      "variance": 872185.2367816092,
+      "skewness": -0.26249571986470505,
+      "outlier_count": 1,
+      "transformation": "z-score",
+      "accepted_feature_sets": "",
+      "status": "rejected/sensitivity only",
+      "reason": "redundant, incomplete, scale-dominated, or sensitivity-only"
+    },
+    {
+      "feature": "building_intensity",
+      "source": "marts.v_land_built_environment",
+      "year": 2023,
+      "geography": "official_2023_2024_37_sections",
+      "missing": 0,
+      "variance": 0.0376479597897898,
+      "skewness": 0.5914519222213717,
+      "outlier_count": 0,
+      "transformation": "log1p then z-score",
+      "accepted_feature_sets": "A_structural|C_integrated|D_reduced",
+      "status": "accepted",
+      "reason": ""
+    },
+    {
+      "feature": "average_plot_size_m2",
+      "source": "marts.v_land_built_environment",
+      "year": 2023,
+      "geography": "official_2023_2024_37_sections",
+      "missing": 0,
+      "variance": 42940184.999871925,
+      "skewness": 1.7836859161920995,
+      "outlier_count": 0,
+      "transformation": "log1p then z-score",
+      "accepted_feature_sets": "A_structural|C_integrated",
+      "status": "accepted",
+      "reason": ""
+    },
+    {
+      "feature": "parcel_density_per_km2",
+      "source": "Block C derived",
+      "year": "various",
+      "geography": "official_2023_2024_37_sections",
+      "missing": 0,
+      "variance": 2031305.14418964,
+      "skewness": 1.3200412340339205,
+      "outlier_count": 0,
+      "transformation": "log1p then z-score",
+      "accepted_feature_sets": "",
+      "status": "rejected/sensitivity only",
+      "reason": "redundant, incomplete, scale-dominated, or sensitivity-only"
+    },
+    {
+      "feature": "building_parts_density",
+      "source": "Block C derived",
+      "year": "various",
+      "geography": "official_2023_2024_37_sections",
+      "missing": 0,
+      "variance": 13897575.398407198,
+      "skewness": 1.1340350374753827,
+      "outlier_count": 0,
+      "transformation": "log1p then z-score",
+      "accepted_feature_sets": "",
+      "status": "rejected/sensitivity only",
+      "reason": "redundant, incomplete, scale-dominated, or sensitivity-only"
+    },
+    {
+      "feature": "built_footprint_density",
+      "source": "Block C derived",
+      "year": "various",
+      "geography": "official_2023_2024_37_sections",
+      "missing": 0,
+      "variance": 37645853786.04317,
+      "skewness": 0.5919124138684506,
+      "outlier_count": 0,
+      "transformation": "log1p then z-score",
+      "accepted_feature_sets": "",
+      "status": "rejected/sensitivity only",
+      "reason": "redundant, incomplete, scale-dominated, or sensitivity-only"
+    },
+    {
+      "feature": "pct_higher_studies",
+      "source": "marts.v_socioeconomic_profile",
+      "year": 2024,
+      "geography": "official_2023_2024_37_sections",
+      "missing": 0,
+      "variance": 56.52644022297298,
+      "skewness": -0.12476834864105918,
+      "outlier_count": 0,
+      "transformation": "z-score",
+      "accepted_feature_sets": "A_structural|C_integrated|D_reduced",
+      "status": "accepted",
+      "reason": ""
+    },
+    {
+      "feature": "pct_no_studies",
+      "source": "Block C derived",
+      "year": "various",
+      "geography": "official_2023_2024_37_sections",
+      "missing": 0,
+      "variance": 18.014230860465464,
+      "skewness": 0.69102727037683,
+      "outlier_count": 0,
+      "transformation": "z-score",
+      "accepted_feature_sets": "",
+      "status": "rejected/sensitivity only",
+      "reason": "redundant, incomplete, scale-dominated, or sensitivity-only"
+    },
+    {
+      "feature": "pct_employed",
+      "source": "Block C derived",
+      "year": "various",
+      "geography": "official_2023_2024_37_sections",
+      "missing": 0,
+      "variance": 39.20744347369369,
+      "skewness": 0.1277239317222233,
+      "outlier_count": 0,
+      "transformation": "z-score",
+      "accepted_feature_sets": "",
+      "status": "rejected/sensitivity only",
+      "reason": "redundant, incomplete, scale-dominated, or sensitivity-only"
+    },
+    {
+      "feature": "pct_unemployed",
+      "source": "marts.v_socioeconomic_profile",
+      "year": 2024,
+      "geography": "official_2023_2024_37_sections",
+      "missing": 0,
+      "variance": 5.471799368678678,
+      "skewness": 3.460989754125979e-05,
+      "outlier_count": 0,
+      "transformation": "z-score",
+      "accepted_feature_sets": "A_structural|C_integrated",
+      "status": "accepted",
+      "reason": ""
+    },
+    {
+      "feature": "pct_directors_managers_professionals",
+      "source": "Block C derived",
+      "year": "various",
+      "geography": "official_2023_2024_37_sections",
+      "missing": 37,
+      "variance": null,
+      "skewness": 0,
+      "outlier_count": 0,
+      "transformation": "z-score",
+      "accepted_feature_sets": "",
+      "status": "rejected/sensitivity only",
+      "reason": "all values missing"
+    },
+    {
+      "feature": "pct_skilled_workers",
+      "source": "Block C derived",
+      "year": "various",
+      "geography": "official_2023_2024_37_sections",
+      "missing": 37,
+      "variance": null,
+      "skewness": 0,
+      "outlier_count": 0,
+      "transformation": "z-score",
+      "accepted_feature_sets": "",
+      "status": "rejected/sensitivity only",
+      "reason": "all values missing"
+    },
+    {
+      "feature": "pct_elementary_occupations",
+      "source": "Block C derived",
+      "year": "various",
+      "geography": "official_2023_2024_37_sections",
+      "missing": 37,
+      "variance": null,
+      "skewness": 0,
+      "outlier_count": 0,
+      "transformation": "z-score",
+      "accepted_feature_sets": "",
+      "status": "rejected/sensitivity only",
+      "reason": "all values missing"
+    },
+    {
+      "feature": "pct_agriculture",
+      "source": "Block C derived",
+      "year": "various",
+      "geography": "official_2023_2024_37_sections",
+      "missing": 37,
+      "variance": null,
+      "skewness": 0,
+      "outlier_count": 0,
+      "transformation": "z-score",
+      "accepted_feature_sets": "",
+      "status": "rejected/sensitivity only",
+      "reason": "all values missing"
+    },
+    {
+      "feature": "pct_industry",
+      "source": "Block C derived",
+      "year": "various",
+      "geography": "official_2023_2024_37_sections",
+      "missing": 37,
+      "variance": null,
+      "skewness": 0,
+      "outlier_count": 0,
+      "transformation": "z-score",
+      "accepted_feature_sets": "",
+      "status": "rejected/sensitivity only",
+      "reason": "all values missing"
+    },
+    {
+      "feature": "pct_construction",
+      "source": "Block C derived",
+      "year": "various",
+      "geography": "official_2023_2024_37_sections",
+      "missing": 37,
+      "variance": null,
+      "skewness": 0,
+      "outlier_count": 0,
+      "transformation": "z-score",
+      "accepted_feature_sets": "",
+      "status": "rejected/sensitivity only",
+      "reason": "all values missing"
+    },
+    {
+      "feature": "pct_services",
+      "source": "Block C derived",
+      "year": "various",
+      "geography": "official_2023_2024_37_sections",
+      "missing": 37,
+      "variance": null,
+      "skewness": 0,
+      "outlier_count": 0,
+      "transformation": "z-score",
+      "accepted_feature_sets": "",
+      "status": "rejected/sensitivity only",
+      "reason": "all values missing"
+    },
+    {
+      "feature": "participation_municipal_2023",
+      "source": "core.resultados_seccion",
+      "year": 2023,
+      "geography": "official_2023_2024_37_sections",
+      "missing": 0,
+      "variance": 51.88899155768769,
+      "skewness": -0.22247370475822068,
+      "outlier_count": 0,
+      "transformation": "z-score",
+      "accepted_feature_sets": "B_electoral|C_integrated|D_reduced",
+      "status": "accepted",
+      "reason": ""
+    },
+    {
+      "feature": "margin_municipal_2023",
+      "source": "core.resultados_seccion",
+      "year": 2023,
+      "geography": "official_2023_2024_37_sections",
+      "missing": 0,
+      "variance": 31.676304665075072,
+      "skewness": 0.030238886533297163,
+      "outlier_count": 0,
+      "transformation": "z-score",
+      "accepted_feature_sets": "B_electoral|C_integrated|D_reduced",
+      "status": "accepted",
+      "reason": ""
+    },
+    {
+      "feature": "fragmentation_municipal_2023",
+      "source": "core.resultados_seccion",
+      "year": 2023,
+      "geography": "official_2023_2024_37_sections",
+      "missing": 0,
+      "variance": 0.0005914860810810811,
+      "skewness": -0.8736283670032795,
+      "outlier_count": 1,
+      "transformation": "z-score",
+      "accepted_feature_sets": "B_electoral|C_integrated",
+      "status": "accepted",
+      "reason": ""
+    },
+    {
+      "feature": "effective_parties_municipal_2023",
+      "source": "Block C derived",
+      "year": "various",
+      "geography": "official_2023_2024_37_sections",
+      "missing": 0,
+      "variance": 0.1357732335885886,
+      "skewness": -0.3004611858553827,
+      "outlier_count": 0,
+      "transformation": "z-score",
+      "accepted_feature_sets": "",
+      "status": "rejected/sensitivity only",
+      "reason": "redundant, incomplete, scale-dominated, or sensitivity-only"
+    },
+    {
+      "feature": "share_pp",
+      "source": "core.resultados_seccion",
+      "year": 2023,
+      "geography": "official_2023_2024_37_sections",
+      "missing": 0,
+      "variance": 35.123705762192195,
+      "skewness": 0.3527629912936029,
+      "outlier_count": 0,
+      "transformation": "z-score",
+      "accepted_feature_sets": "B_electoral|C_integrated|D_reduced",
+      "status": "accepted",
+      "reason": ""
+    },
+    {
+      "feature": "share_psoe",
+      "source": "core.resultados_seccion",
+      "year": 2023,
+      "geography": "official_2023_2024_37_sections",
+      "missing": 0,
+      "variance": 42.15683149713213,
+      "skewness": -0.46824464944501343,
+      "outlier_count": 0,
+      "transformation": "z-score",
+      "accepted_feature_sets": "B_electoral|C_integrated|D_reduced",
+      "status": "accepted",
+      "reason": ""
+    },
+    {
+      "feature": "share_vox",
+      "source": "core.resultados_seccion",
+      "year": 2023,
+      "geography": "official_2023_2024_37_sections",
+      "missing": 0,
+      "variance": 14.409901352702706,
+      "skewness": 0.461190283791517,
+      "outlier_count": 0,
+      "transformation": "z-score",
+      "accepted_feature_sets": "B_electoral|C_integrated",
+      "status": "accepted",
+      "reason": ""
+    },
+    {
+      "feature": "share_cs",
+      "source": "core.resultados_seccion",
+      "year": 2023,
+      "geography": "official_2023_2024_37_sections",
+      "missing": 0,
+      "variance": 5.695014464639639,
+      "skewness": 0.6649191806977939,
+      "outlier_count": 0,
+      "transformation": "z-score",
+      "accepted_feature_sets": "B_electoral",
+      "status": "accepted",
+      "reason": ""
+    },
+    {
+      "feature": "share_other_local",
+      "source": "Block C derived",
+      "year": "various",
+      "geography": "official_2023_2024_37_sections",
+      "missing": 0,
+      "variance": 6.264350986036036,
+      "skewness": 0.4534141366396563,
+      "outlier_count": 0,
+      "transformation": "z-score",
+      "accepted_feature_sets": "",
+      "status": "rejected/sensitivity only",
+      "reason": "redundant, incomplete, scale-dominated, or sensitivity-only"
+    },
+    {
+      "feature": "congress_participation_change_pp",
+      "source": "core.resultados_seccion",
+      "year": 2023,
+      "geography": "official_2023_2024_37_sections",
+      "missing": 0,
+      "variance": 26.111772238303303,
+      "skewness": -0.20706669642477712,
+      "outlier_count": 0,
+      "transformation": "z-score",
+      "accepted_feature_sets": "B_electoral",
+      "status": "accepted",
+      "reason": ""
+    },
+    {
+      "feature": "european_participation_change_pp",
+      "source": "core.resultados_seccion",
+      "year": 2024,
+      "geography": "official_2023_2024_37_sections",
+      "missing": 0,
+      "variance": 24.020622034009012,
+      "skewness": -0.10110051918681587,
+      "outlier_count": 0,
+      "transformation": "z-score",
+      "accepted_feature_sets": "B_electoral|C_integrated",
+      "status": "accepted",
+      "reason": ""
+    },
+    {
+      "feature": "congress_winner_changed",
+      "source": "core.resultados_seccion",
+      "year": 2023,
+      "geography": "official_2023_2024_37_sections",
+      "missing": 0,
+      "variance": 0.22522522522522526,
+      "skewness": 0.7505553499465134,
+      "outlier_count": 0,
+      "transformation": "z-score",
+      "accepted_feature_sets": "B_electoral",
+      "status": "accepted",
+      "reason": ""
+    },
+    {
+      "feature": "european_winner_changed",
+      "source": "core.resultados_seccion",
+      "year": 2024,
+      "geography": "official_2023_2024_37_sections",
+      "missing": 0,
+      "variance": 0.23423423423423426,
+      "skewness": 0.6227523687795274,
+      "outlier_count": 0,
+      "transformation": "z-score",
+      "accepted_feature_sets": "B_electoral",
+      "status": "accepted",
+      "reason": ""
+    },
+    {
+      "feature": "volatility_2015_2019",
+      "source": "Block C derived",
+      "year": "various",
+      "geography": "official_2023_2024_37_sections",
+      "missing": 0,
+      "variance": 20.429953616456455,
+      "skewness": -0.06874910067848349,
+      "outlier_count": 0,
+      "transformation": "z-score",
+      "accepted_feature_sets": "",
+      "status": "rejected/sensitivity only",
+      "reason": "redundant, incomplete, scale-dominated, or sensitivity-only"
+    },
+    {
+      "feature": "volatility_2019_2023",
+      "source": "Block C derived",
+      "year": "various",
+      "geography": "official_2023_2024_37_sections",
+      "missing": 0,
+      "variance": 17.827181359234235,
+      "skewness": -0.2893961245241163,
+      "outlier_count": 0,
+      "transformation": "z-score",
+      "accepted_feature_sets": "",
+      "status": "rejected/sensitivity only",
+      "reason": "redundant, incomplete, scale-dominated, or sensitivity-only"
+    },
+    {
+      "feature": "history_overlap_pct",
+      "source": "Block C derived",
+      "year": "various",
+      "geography": "official_2023_2024_37_sections",
+      "missing": 0,
+      "variance": 19.598982558363367,
+      "skewness": -3.427032988918026,
+      "outlier_count": 1,
+      "transformation": "z-score",
+      "accepted_feature_sets": "",
+      "status": "rejected/sensitivity only",
+      "reason": "redundant, incomplete, scale-dominated, or sensitivity-only"
+    },
+    {
+      "feature": "evidence_completeness",
+      "source": "Block C derived",
+      "year": "various",
+      "geography": "official_2023_2024_37_sections",
+      "missing": 0,
+      "variance": 3.572144144144152,
+      "skewness": -1.5871507864874068,
+      "outlier_count": 0,
+      "transformation": "z-score",
+      "accepted_feature_sets": "",
+      "status": "rejected/sensitivity only",
+      "reason": "redundant, incomplete, scale-dominated, or sensitivity-only"
+    }
+  ],
+  "preprocessingPipeline": {
+    "missing": "median only where present; no zero imputation",
+    "skew": "log1p for positive scale variables",
+    "standardization": "sample z-score",
+    "partyShares": "selected shares; no raw vote counts; dependent residual excluded",
+    "determinism": "fixed seed 29070; canonical labels ordered by first standardized feature centroid"
+  },
+  "featureSetDefinitions": {
+    "A_structural": [
+      "population",
+      "density_per_km2",
+      "growth_percent_2023_2024",
+      "average_age",
+      "under_30_pct",
+      "over_65_pct",
+      "income_individual",
+      "income_household",
+      "building_intensity",
+      "average_plot_size_m2",
+      "pct_higher_studies",
+      "pct_unemployed"
+    ],
+    "B_electoral": [
+      "participation_municipal_2023",
+      "margin_municipal_2023",
+      "fragmentation_municipal_2023",
+      "share_pp",
+      "share_psoe",
+      "share_vox",
+      "share_cs",
+      "congress_participation_change_pp",
+      "european_participation_change_pp",
+      "congress_winner_changed",
+      "european_winner_changed"
+    ],
+    "C_integrated": [
+      "density_per_km2",
+      "growth_percent_2023_2024",
+      "average_age",
+      "under_30_pct",
+      "income_individual",
+      "building_intensity",
+      "average_plot_size_m2",
+      "pct_higher_studies",
+      "pct_unemployed",
+      "participation_municipal_2023",
+      "margin_municipal_2023",
+      "fragmentation_municipal_2023",
+      "share_pp",
+      "share_psoe",
+      "share_vox",
+      "european_participation_change_pp"
+    ],
+    "D_reduced": [
+      "density_per_km2",
+      "growth_percent_2023_2024",
+      "average_age",
+      "income_individual",
+      "building_intensity",
+      "pct_higher_studies",
+      "participation_municipal_2023",
+      "margin_municipal_2023",
+      "share_pp",
+      "share_psoe"
+    ]
+  },
+  "pcaDiagnostics": {
+    "A_structural": {
+      "explained_variance_pct": [
+        52.46018326821989,
+        19.609831603537845,
+        9.250367486439249,
+        7.17836748001377,
+        6.210280893894101,
+        2.6889057145824964,
+        1.0208385278275771,
+        0.636569622162632,
+        0.5172846755464454,
+        0.17064721273195146,
+        0.14407235477857375,
+        0.11265116026546079
+      ],
+      "cumulative_variance_pct": [
+        52.46018326821989,
+        72.07001487175773,
+        81.32038235819698,
+        88.49874983821076,
+        94.70903073210485,
+        97.39793644668734,
+        98.41877497451492,
+        99.05534459667754,
+        99.57262927222399,
+        99.74327648495594,
+        99.88734883973451,
+        99.99999999999997
+      ]
+    },
+    "B_electoral": {
+      "explained_variance_pct": [
+        47.04183873727998,
+        21.939528044469228,
+        11.09476649704123,
+        7.82985602074678,
+        4.205157434350747,
+        2.8956699747176065,
+        1.9162013906533348,
+        1.5942274892133776,
+        1.0298488871949742,
+        0.4287255641205404,
+        0.024179960212230192
+      ],
+      "cumulative_variance_pct": [
+        47.04183873727998,
+        68.98136678174922,
+        80.07613327879045,
+        87.90598929953723,
+        92.11114673388798,
+        95.00681670860558,
+        96.92301809925893,
+        98.5172455884723,
+        99.54709447566728,
+        99.97582003978782,
+        100.00000000000006
+      ]
+    },
+    "C_integrated": {
+      "explained_variance_pct": [
+        46.42031226309687,
+        19.949250758527718,
+        11.650550203061009,
+        6.477948217313316,
+        4.973420670146635,
+        3.8702565935850357,
+        1.8838168735672642,
+        1.7525107122967405,
+        0.9248557796310173,
+        0.7182685284472445,
+        0.49958354388773796,
+        0.3917487246880116,
+        0.2747248733162368,
+        0.13988287623692436,
+        0.06451611222723803,
+        0.00835326997099857
+      ],
+      "cumulative_variance_pct": [
+        46.42031226309687,
+        66.36956302162459,
+        78.02011322468559,
+        84.4980614419989,
+        89.47148211214554,
+        93.34173870573058,
+        95.22555557929785,
+        96.97806629159459,
+        97.9029220712256,
+        98.62119059967284,
+        99.12077414356058,
+        99.5125228682486,
+        99.78724774156483,
+        99.92713061780175,
+        99.99164673002899,
+        99.99999999999999
+      ]
+    },
+    "D_reduced": {
+      "explained_variance_pct": [
+        48.61456848740924,
+        17.912068327891017,
+        11.527040585813921,
+        8.585882037398438,
+        4.858059341852341,
+        4.364984384980415,
+        2.1860253048149536,
+        1.0783001051100034,
+        0.6845318859065077,
+        0.18853953882319796
+      ],
+      "cumulative_variance_pct": [
+        48.61456848740924,
+        66.52663681530025,
+        78.05367740111417,
+        86.6395594385126,
+        91.49761878036495,
+        95.86260316534536,
+        98.04862847016031,
+        99.12692857527031,
+        99.81146046117682,
+        100.00000000000001
+      ]
+    }
+  },
+  "modelEvaluation": [
+    {
+      "feature_set": "A_structural",
+      "method": "kmeans",
+      "k": 3,
+      "silhouette": 0.28268019436771324,
+      "calinski_harabasz": 20.129866603903103,
+      "davies_bouldin": 1.2908019756333207,
+      "within_dispersion": 197.792253830182,
+      "between_separation": 234.20774616981802,
+      "minimum_cluster_size": 9,
+      "cluster_sizes": "9|10|18"
+    },
+    {
+      "feature_set": "A_structural",
+      "method": "ward",
+      "k": 3,
+      "silhouette": 0.2801259568310974,
+      "calinski_harabasz": 19.861399846976862,
+      "davies_bouldin": 1.2199864540004675,
+      "within_dispersion": 199.2328026197385,
+      "between_separation": 232.7671973802615,
+      "minimum_cluster_size": 6,
+      "cluster_sizes": "6|13|18"
+    },
+    {
+      "feature_set": "A_structural",
+      "method": "pam",
+      "k": 3,
+      "silhouette": 0.26803391843625884,
+      "calinski_harabasz": 19.801994785112285,
+      "davies_bouldin": 1.2805061800534483,
+      "within_dispersion": 199.5544003220964,
+      "between_separation": 232.44559967790366,
+      "minimum_cluster_size": 7,
+      "cluster_sizes": "7|12|18"
+    },
+    {
+      "feature_set": "A_structural",
+      "method": "kmeans",
+      "k": 4,
+      "silhouette": 0.21651634276203113,
+      "calinski_harabasz": 17.722059560783006,
+      "davies_bouldin": 1.474992383844706,
+      "within_dispersion": 165.4477454843929,
+      "between_separation": 266.5522545156071,
+      "minimum_cluster_size": 8,
+      "cluster_sizes": "8|9|10|10"
+    },
+    {
+      "feature_set": "A_structural",
+      "method": "ward",
+      "k": 4,
+      "silhouette": 0.24855990803343445,
+      "calinski_harabasz": 17.119470396375405,
+      "davies_bouldin": 1.185321733658121,
+      "within_dispersion": 168.9932254418466,
+      "between_separation": 263.0067745581534,
+      "minimum_cluster_size": 3,
+      "cluster_sizes": "3|6|13|15"
+    },
+    {
+      "feature_set": "A_structural",
+      "method": "pam",
+      "k": 4,
+      "silhouette": 0.14558303006016934,
+      "calinski_harabasz": 14.062309533983917,
+      "davies_bouldin": 1.9066291311376107,
+      "within_dispersion": 189.6074259858772,
+      "between_separation": 242.39257401412283,
+      "minimum_cluster_size": 5,
+      "cluster_sizes": "5|9|10|13"
+    },
+    {
+      "feature_set": "A_structural",
+      "method": "kmeans",
+      "k": 5,
+      "silhouette": 0.23256309586317755,
+      "calinski_harabasz": 15.407715362387634,
+      "davies_bouldin": 1.3822357159464589,
+      "within_dispersion": 147.6436271757314,
+      "between_separation": 284.35637282426865,
+      "minimum_cluster_size": 3,
+      "cluster_sizes": "3|5|9|10|10"
+    },
+    {
+      "feature_set": "A_structural",
+      "method": "ward",
+      "k": 5,
+      "silhouette": 0.2306325920140713,
+      "calinski_harabasz": 15.285300214803534,
+      "davies_bouldin": 1.3645056039044978,
+      "within_dispersion": 148.4198171429571,
+      "between_separation": 283.5801828570429,
+      "minimum_cluster_size": 3,
+      "cluster_sizes": "3|6|6|9|13"
+    },
+    {
+      "feature_set": "A_structural",
+      "method": "pam",
+      "k": 5,
+      "silhouette": 0.12147619023757125,
+      "calinski_harabasz": 11.170960768051378,
+      "davies_bouldin": 1.6387700494619726,
+      "within_dispersion": 180.2726551795705,
+      "between_separation": 251.72734482042952,
+      "minimum_cluster_size": 2,
+      "cluster_sizes": "2|3|9|10|13"
+    },
+    {
+      "feature_set": "A_structural",
+      "method": "kmeans",
+      "k": 6,
+      "silhouette": 0.22766604152484565,
+      "calinski_harabasz": 14.055742080810061,
+      "davies_bouldin": 1.2764314179046208,
+      "within_dispersion": 132.22917182271343,
+      "between_separation": 299.7708281772866,
+      "minimum_cluster_size": 3,
+      "cluster_sizes": "3|4|5|6|9|10"
+    },
+    {
+      "feature_set": "A_structural",
+      "method": "ward",
+      "k": 6,
+      "silhouette": 0.21027157780361394,
+      "calinski_harabasz": 14.157614791359274,
+      "davies_bouldin": 1.3750926692150152,
+      "within_dispersion": 131.5674762220591,
+      "between_separation": 300.4325237779409,
+      "minimum_cluster_size": 3,
+      "cluster_sizes": "3|3|6|6|9|10"
+    },
+    {
+      "feature_set": "A_structural",
+      "method": "pam",
+      "k": 6,
+      "silhouette": 0.18607529243206036,
+      "calinski_harabasz": 12.050601176534329,
+      "davies_bouldin": 1.4490099789257735,
+      "within_dispersion": 146.75680949314412,
+      "between_separation": 285.2431905068559,
+      "minimum_cluster_size": 3,
+      "cluster_sizes": "3|4|5|6|6|13"
+    },
+    {
+      "feature_set": "A_structural",
+      "method": "kmeans",
+      "k": 7,
+      "silhouette": 0.2507773640482916,
+      "calinski_harabasz": 13.248106551038331,
+      "davies_bouldin": 1.1366294159542987,
+      "within_dispersion": 118.36844518408923,
+      "between_separation": 313.6315548159108,
+      "minimum_cluster_size": 1,
+      "cluster_sizes": "1|3|3|5|7|8|10"
+    },
+    {
+      "feature_set": "A_structural",
+      "method": "ward",
+      "k": 7,
+      "silhouette": 0.24233829193938655,
+      "calinski_harabasz": 13.642944126896156,
+      "davies_bouldin": 1.2170418894774913,
+      "within_dispersion": 115.86152837757909,
+      "between_separation": 316.138471622421,
+      "minimum_cluster_size": 1,
+      "cluster_sizes": "1|3|3|6|6|9|9"
+    },
+    {
+      "feature_set": "A_structural",
+      "method": "pam",
+      "k": 7,
+      "silhouette": 0.13545822390997336,
+      "calinski_harabasz": 11.023778284143681,
+      "davies_bouldin": 1.4792784279323463,
+      "within_dispersion": 134.79966844882188,
+      "between_separation": 297.2003315511781,
+      "minimum_cluster_size": 3,
+      "cluster_sizes": "3|4|4|4|6|6|10"
+    },
+    {
+      "feature_set": "A_structural",
+      "method": "kmeans",
+      "k": 8,
+      "silhouette": 0.19183943290501107,
+      "calinski_harabasz": 12.761230247600238,
+      "davies_bouldin": 1.2676377741323774,
+      "within_dispersion": 105.87464702321684,
+      "between_separation": 326.1253529767832,
+      "minimum_cluster_size": 2,
+      "cluster_sizes": "2|2|3|4|6|6|7|7"
+    },
+    {
+      "feature_set": "A_structural",
+      "method": "ward",
+      "k": 8,
+      "silhouette": 0.2435514533108775,
+      "calinski_harabasz": 13.510715180588784,
+      "davies_bouldin": 1.1341466966383578,
+      "within_dispersion": 101.37972377054496,
+      "between_separation": 330.62027622945504,
+      "minimum_cluster_size": 1,
+      "cluster_sizes": "1|3|3|4|5|6|6|9"
+    },
+    {
+      "feature_set": "A_structural",
+      "method": "pam",
+      "k": 8,
+      "silhouette": 0.18834953311638133,
+      "calinski_harabasz": 11.656367497811956,
+      "davies_bouldin": 1.2785800987132419,
+      "within_dispersion": 113.27861502186295,
+      "between_separation": 318.72138497813705,
+      "minimum_cluster_size": 2,
+      "cluster_sizes": "2|3|4|4|5|5|6|8"
+    },
+    {
+      "feature_set": "A_structural",
+      "method": "kmeans",
+      "k": 9,
+      "silhouette": 0.21959633683570423,
+      "calinski_harabasz": 11.899168479248486,
+      "davies_bouldin": 1.1433058289733589,
+      "within_dispersion": 98.1871197810149,
+      "between_separation": 333.81288021898513,
+      "minimum_cluster_size": 1,
+      "cluster_sizes": "1|3|4|4|5|5|5|5|5"
+    },
+    {
+      "feature_set": "A_structural",
+      "method": "ward",
+      "k": 9,
+      "silhouette": 0.2534526948401149,
+      "calinski_harabasz": 13.34683028710858,
+      "davies_bouldin": 1.0938234618954814,
+      "within_dispersion": 89.74982084060068,
+      "between_separation": 342.2501791593994,
+      "minimum_cluster_size": 1,
+      "cluster_sizes": "1|3|3|4|4|5|5|6|6"
+    },
+    {
+      "feature_set": "A_structural",
+      "method": "pam",
+      "k": 9,
+      "silhouette": 0.24658885990909746,
+      "calinski_harabasz": 11.80501677243898,
+      "davies_bouldin": 1.073130152228095,
+      "within_dispersion": 98.7911364280753,
+      "between_separation": 333.2088635719247,
+      "minimum_cluster_size": 1,
+      "cluster_sizes": "1|2|3|3|4|4|5|6|9"
+    },
+    {
+      "feature_set": "A_structural",
+      "method": "kmeans",
+      "k": 10,
+      "silhouette": 0.25078340528383963,
+      "calinski_harabasz": 12.519546945245342,
+      "davies_bouldin": 0.9724536099770482,
+      "within_dispersion": 83.50759236544918,
+      "between_separation": 348.4924076345509,
+      "minimum_cluster_size": 1,
+      "cluster_sizes": "1|2|2|2|3|4|5|5|5|8"
+    },
+    {
+      "feature_set": "A_structural",
+      "method": "ward",
+      "k": 10,
+      "silhouette": 0.26631309197392283,
+      "calinski_harabasz": 13.411147509794219,
+      "davies_bouldin": 1.0710171121727554,
+      "within_dispersion": 78.97071178152191,
+      "between_separation": 353.0292882184782,
+      "minimum_cluster_size": 1,
+      "cluster_sizes": "1|3|3|3|3|4|4|5|5|6"
+    },
+    {
+      "feature_set": "A_structural",
+      "method": "pam",
+      "k": 10,
+      "silhouette": 0.2198395257791631,
+      "calinski_harabasz": 10.805844496324013,
+      "davies_bouldin": 1.0906983854325079,
+      "within_dispersion": 93.87328680582176,
+      "between_separation": 338.12671319417825,
+      "minimum_cluster_size": 1,
+      "cluster_sizes": "1|1|2|2|3|3|4|6|7|8"
+    },
+    {
+      "feature_set": "B_electoral",
+      "method": "kmeans",
+      "k": 3,
+      "silhouette": 0.2835793145799535,
+      "calinski_harabasz": 16.44868697661732,
+      "davies_bouldin": 1.3258222855236166,
+      "within_dispersion": 201.26350564092633,
+      "between_separation": 194.73649435907365,
+      "minimum_cluster_size": 10,
+      "cluster_sizes": "10|12|15"
+    },
+    {
+      "feature_set": "B_electoral",
+      "method": "ward",
+      "k": 3,
+      "silhouette": 0.27639709909270116,
+      "calinski_harabasz": 15.038058749738303,
+      "davies_bouldin": 1.2976225400134775,
+      "within_dispersion": 210.12509068000222,
+      "between_separation": 185.87490931999776,
+      "minimum_cluster_size": 12,
+      "cluster_sizes": "12|12|13"
+    },
+    {
+      "feature_set": "B_electoral",
+      "method": "pam",
+      "k": 3,
+      "silhouette": 0.2793769772195722,
+      "calinski_harabasz": 16.280376690555503,
+      "davies_bouldin": 1.2914646261679514,
+      "within_dispersion": 202.28136425842936,
+      "between_separation": 193.7186357415706,
+      "minimum_cluster_size": 11,
+      "cluster_sizes": "11|11|15"
+    },
+    {
+      "feature_set": "B_electoral",
+      "method": "kmeans",
+      "k": 4,
+      "silhouette": 0.25715375981065197,
+      "calinski_harabasz": 15.461753845090863,
+      "davies_bouldin": 1.2169682280863923,
+      "within_dispersion": 164.61493918734027,
+      "between_separation": 231.38506081265973,
+      "minimum_cluster_size": 6,
+      "cluster_sizes": "6|9|11|11"
+    },
+    {
+      "feature_set": "B_electoral",
+      "method": "ward",
+      "k": 4,
+      "silhouette": 0.2774866469795649,
+      "calinski_harabasz": 14.837647798277128,
+      "davies_bouldin": 1.150046443410265,
+      "within_dispersion": 168.591198162027,
+      "between_separation": 227.408801837973,
+      "minimum_cluster_size": 6,
+      "cluster_sizes": "6|6|12|13"
+    },
+    {
+      "feature_set": "B_electoral",
+      "method": "pam",
+      "k": 4,
+      "silhouette": 0.23847637041447667,
+      "calinski_harabasz": 12.60483842428839,
+      "davies_bouldin": 1.2291034529814227,
+      "within_dispersion": 184.53843748906402,
+      "between_separation": 211.46156251093595,
+      "minimum_cluster_size": 2,
+      "cluster_sizes": "2|11|11|13"
+    },
+    {
+      "feature_set": "B_electoral",
+      "method": "kmeans",
+      "k": 5,
+      "silhouette": 0.28369971637634295,
+      "calinski_harabasz": 14.913965008890793,
+      "davies_bouldin": 1.1034394544522388,
+      "within_dispersion": 138.2562991071511,
+      "between_separation": 257.7437008928489,
+      "minimum_cluster_size": 2,
+      "cluster_sizes": "2|6|8|10|11"
+    },
+    {
+      "feature_set": "B_electoral",
+      "method": "ward",
+      "k": 5,
+      "silhouette": 0.31746904808171295,
+      "calinski_harabasz": 14.545181403075306,
+      "davies_bouldin": 0.9540372850674756,
+      "within_dispersion": 140.5178314319469,
+      "between_separation": 255.48216856805308,
+      "minimum_cluster_size": 1,
+      "cluster_sizes": "1|6|6|12|12"
+    },
+    {
+      "feature_set": "B_electoral",
+      "method": "pam",
+      "k": 5,
+      "silhouette": 0.28073766600531486,
+      "calinski_harabasz": 12.997412706766633,
+      "davies_bouldin": 1.0896728037542336,
+      "within_dispersion": 150.87573141709402,
+      "between_separation": 245.12426858290596,
+      "minimum_cluster_size": 1,
+      "cluster_sizes": "1|6|7|11|12"
+    },
+    {
+      "feature_set": "B_electoral",
+      "method": "kmeans",
+      "k": 6,
+      "silhouette": 0.26353382465928943,
+      "calinski_harabasz": 14.088954024788997,
+      "davies_bouldin": 1.101292758264361,
+      "within_dispersion": 121.01165969424754,
+      "between_separation": 274.98834030575244,
+      "minimum_cluster_size": 2,
+      "cluster_sizes": "2|5|6|6|8|10"
+    },
+    {
+      "feature_set": "B_electoral",
+      "method": "ward",
+      "k": 6,
+      "silhouette": 0.303826705754981,
+      "calinski_harabasz": 14.279050101761403,
+      "davies_bouldin": 0.9659670686319952,
+      "within_dispersion": 119.88837313254233,
+      "between_separation": 276.1116268674577,
+      "minimum_cluster_size": 1,
+      "cluster_sizes": "1|5|6|6|7|12"
+    },
+    {
+      "feature_set": "B_electoral",
+      "method": "pam",
+      "k": 6,
+      "silhouette": 0.2808155776411036,
+      "calinski_harabasz": 10.865191102836238,
+      "davies_bouldin": 0.8687124970717247,
+      "within_dispersion": 143.87181398700804,
+      "between_separation": 252.12818601299193,
+      "minimum_cluster_size": 1,
+      "cluster_sizes": "1|1|2|11|11|11"
+    },
+    {
+      "feature_set": "B_electoral",
+      "method": "kmeans",
+      "k": 7,
+      "silhouette": 0.27683147648873563,
+      "calinski_harabasz": 14.132384479076489,
+      "davies_bouldin": 0.999903498566778,
+      "within_dispersion": 103.48945277392698,
+      "between_separation": 292.510547226073,
+      "minimum_cluster_size": 1,
+      "cluster_sizes": "1|4|5|5|6|7|9"
+    },
+    {
+      "feature_set": "B_electoral",
+      "method": "ward",
+      "k": 7,
+      "silhouette": 0.3122640843790309,
+      "calinski_harabasz": 14.459283882470594,
+      "davies_bouldin": 0.9179251970559876,
+      "within_dispersion": 101.75091806865684,
+      "between_separation": 294.24908193134314,
+      "minimum_cluster_size": 1,
+      "cluster_sizes": "1|2|5|6|6|7|10"
+    },
+    {
+      "feature_set": "B_electoral",
+      "method": "pam",
+      "k": 7,
+      "silhouette": 0.2674773582243386,
+      "calinski_harabasz": 12.415178016494469,
+      "davies_bouldin": 1.1504065344045515,
+      "within_dispersion": 113.6939282575624,
+      "between_separation": 282.3060717424376,
+      "minimum_cluster_size": 2,
+      "cluster_sizes": "2|3|4|5|6|6|11"
+    },
+    {
+      "feature_set": "B_electoral",
+      "method": "kmeans",
+      "k": 8,
+      "silhouette": 0.2626421955942863,
+      "calinski_harabasz": 14.159328522796345,
+      "davies_bouldin": 1.0436824524376147,
+      "within_dispersion": 89.63800600330381,
+      "between_separation": 306.3619939966961,
+      "minimum_cluster_size": 2,
+      "cluster_sizes": "2|3|3|4|5|6|7|7"
+    },
+    {
+      "feature_set": "B_electoral",
+      "method": "ward",
+      "k": 8,
+      "silhouette": 0.3098025969519924,
+      "calinski_harabasz": 14.74985365373022,
+      "davies_bouldin": 0.9337180465318257,
+      "within_dispersion": 86.83621139576059,
+      "between_separation": 309.1637886042394,
+      "minimum_cluster_size": 1,
+      "cluster_sizes": "1|2|4|5|6|6|6|7"
+    },
+    {
+      "feature_set": "B_electoral",
+      "method": "pam",
+      "k": 8,
+      "silhouette": 0.25083370345936395,
+      "calinski_harabasz": 12.532460960137785,
+      "davies_bouldin": 1.1538175398808133,
+      "within_dispersion": 98.3832163463663,
+      "between_separation": 297.61678365363366,
+      "minimum_cluster_size": 2,
+      "cluster_sizes": "2|3|4|4|5|6|6|7"
+    },
+    {
+      "feature_set": "B_electoral",
+      "method": "kmeans",
+      "k": 9,
+      "silhouette": 0.2885391000652902,
+      "calinski_harabasz": 14.013166785149206,
+      "davies_bouldin": 0.9385821455029397,
+      "within_dispersion": 79.14045569275902,
+      "between_separation": 316.8595443072409,
+      "minimum_cluster_size": 1,
+      "cluster_sizes": "1|3|3|3|4|5|5|6|7"
+    },
+    {
+      "feature_set": "B_electoral",
+      "method": "ward",
+      "k": 9,
+      "silhouette": 0.30219897974106885,
+      "calinski_harabasz": 14.29215777287268,
+      "davies_bouldin": 0.9074938021808998,
+      "within_dispersion": 77.89948907227006,
+      "between_separation": 318.10051092772994,
+      "minimum_cluster_size": 1,
+      "cluster_sizes": "1|2|2|4|4|5|6|6|7"
+    },
+    {
+      "feature_set": "B_electoral",
+      "method": "pam",
+      "k": 9,
+      "silhouette": 0.23441504267484736,
+      "calinski_harabasz": 9.835720864491924,
+      "davies_bouldin": 0.9796768036067139,
+      "within_dispersion": 103.93138954268335,
+      "between_separation": 292.06861045731665,
+      "minimum_cluster_size": 1,
+      "cluster_sizes": "1|1|2|3|4|5|6|6|9"
+    },
+    {
+      "feature_set": "B_electoral",
+      "method": "kmeans",
+      "k": 10,
+      "silhouette": 0.29637328045001626,
+      "calinski_harabasz": 13.761838536284111,
+      "davies_bouldin": 0.8946298286235074,
+      "within_dispersion": 70.87528002541924,
+      "between_separation": 325.12471997458067,
+      "minimum_cluster_size": 1,
+      "cluster_sizes": "1|2|2|2|4|4|5|5|6|6"
+    },
+    {
+      "feature_set": "B_electoral",
+      "method": "ward",
+      "k": 10,
+      "silhouette": 0.28245137089760186,
+      "calinski_harabasz": 13.970294151769618,
+      "davies_bouldin": 0.9343709956144197,
+      "within_dispersion": 70.00467931642295,
+      "between_separation": 325.995320683577,
+      "minimum_cluster_size": 1,
+      "cluster_sizes": "1|2|2|2|4|4|5|5|6|6"
+    },
+    {
+      "feature_set": "B_electoral",
+      "method": "pam",
+      "k": 10,
+      "silhouette": 0.25998736291838165,
+      "calinski_harabasz": 10.445814282602647,
+      "davies_bouldin": 0.8301625184306527,
+      "within_dispersion": 88.35463401700682,
+      "between_separation": 307.64536598299316,
+      "minimum_cluster_size": 1,
+      "cluster_sizes": "1|1|1|2|3|4|4|4|6|11"
+    },
+    {
+      "feature_set": "C_integrated",
+      "method": "kmeans",
+      "k": 3,
+      "silhouette": 0.34365837171079205,
+      "calinski_harabasz": 19.531768456420757,
+      "davies_bouldin": 1.108059076093114,
+      "within_dispersion": 268.0406783942313,
+      "between_separation": 307.9593216057687,
+      "minimum_cluster_size": 6,
+      "cluster_sizes": "6|12|19"
+    },
+    {
+      "feature_set": "C_integrated",
+      "method": "ward",
+      "k": 3,
+      "silhouette": 0.34365837171079205,
+      "calinski_harabasz": 19.531768456420757,
+      "davies_bouldin": 1.108059076093114,
+      "within_dispersion": 268.0406783942313,
+      "between_separation": 307.9593216057687,
+      "minimum_cluster_size": 6,
+      "cluster_sizes": "6|12|19"
+    },
+    {
+      "feature_set": "C_integrated",
+      "method": "pam",
+      "k": 3,
+      "silhouette": 0.2512171007209756,
+      "calinski_harabasz": 15.382508128371875,
+      "davies_bouldin": 1.4563953061319876,
+      "within_dispersion": 302.38547184740014,
+      "between_separation": 273.61452815259986,
+      "minimum_cluster_size": 8,
+      "cluster_sizes": "8|14|15"
+    },
+    {
+      "feature_set": "C_integrated",
+      "method": "kmeans",
+      "k": 4,
+      "silhouette": 0.30634538325471555,
+      "calinski_harabasz": 17.151162034770632,
+      "davies_bouldin": 0.994037549675556,
+      "within_dispersion": 225.0706380139531,
+      "between_separation": 350.9293619860469,
+      "minimum_cluster_size": 6,
+      "cluster_sizes": "6|6|6|19"
+    },
+    {
+      "feature_set": "C_integrated",
+      "method": "ward",
+      "k": 4,
+      "silhouette": 0.30634538325471555,
+      "calinski_harabasz": 17.151162034770632,
+      "davies_bouldin": 0.994037549675556,
+      "within_dispersion": 225.0706380139531,
+      "between_separation": 350.9293619860469,
+      "minimum_cluster_size": 6,
+      "cluster_sizes": "6|6|6|19"
+    },
+    {
+      "feature_set": "C_integrated",
+      "method": "pam",
+      "k": 4,
+      "silhouette": 0.21403951021561948,
+      "calinski_harabasz": 15.645318257678278,
+      "davies_bouldin": 1.4526787016698988,
+      "within_dispersion": 237.790366725088,
+      "between_separation": 338.20963327491205,
+      "minimum_cluster_size": 8,
+      "cluster_sizes": "8|9|10|10"
+    },
+    {
+      "feature_set": "C_integrated",
+      "method": "kmeans",
+      "k": 5,
+      "silhouette": 0.2318117306305433,
+      "calinski_harabasz": 16.147393807878498,
+      "davies_bouldin": 1.2442138042087096,
+      "within_dispersion": 190.82804697940372,
+      "between_separation": 385.17195302059633,
+      "minimum_cluster_size": 6,
+      "cluster_sizes": "6|6|6|8|11"
+    },
+    {
+      "feature_set": "C_integrated",
+      "method": "ward",
+      "k": 5,
+      "silhouette": 0.2363768911938262,
+      "calinski_harabasz": 16.12850569975228,
+      "davies_bouldin": 1.1113098949015374,
+      "within_dispersion": 190.97742965687712,
+      "between_separation": 385.0225703431229,
+      "minimum_cluster_size": 5,
+      "cluster_sizes": "5|6|6|6|14"
+    },
+    {
+      "feature_set": "C_integrated",
+      "method": "pam",
+      "k": 5,
+      "silhouette": 0.22039231071658408,
+      "calinski_harabasz": 15.183367519311803,
+      "davies_bouldin": 1.3002560449064908,
+      "within_dispersion": 198.76318641636186,
+      "between_separation": 377.2368135836382,
+      "minimum_cluster_size": 5,
+      "cluster_sizes": "5|6|7|9|10"
+    },
+    {
+      "feature_set": "C_integrated",
+      "method": "kmeans",
+      "k": 6,
+      "silhouette": 0.22439857605258437,
+      "calinski_harabasz": 14.567431344754187,
+      "davies_bouldin": 1.3282957527472707,
+      "within_dispersion": 171.96156523719912,
+      "between_separation": 404.038434762801,
+      "minimum_cluster_size": 5,
+      "cluster_sizes": "5|5|6|6|7|8"
+    },
+    {
+      "feature_set": "C_integrated",
+      "method": "ward",
+      "k": 6,
+      "silhouette": 0.2287959609497801,
+      "calinski_harabasz": 14.584342957666163,
+      "davies_bouldin": 1.11282834386063,
+      "within_dispersion": 171.82164513325583,
+      "between_separation": 404.1783548667442,
+      "minimum_cluster_size": 2,
+      "cluster_sizes": "2|5|6|6|6|12"
+    },
+    {
+      "feature_set": "C_integrated",
+      "method": "pam",
+      "k": 6,
+      "silhouette": 0.14356435186134728,
+      "calinski_harabasz": 10.872698296234372,
+      "davies_bouldin": 1.4507607125670046,
+      "within_dispersion": 209.17607387156136,
+      "between_separation": 366.82392612843876,
+      "minimum_cluster_size": 2,
+      "cluster_sizes": "2|4|7|7|8|9"
+    },
+    {
+      "feature_set": "C_integrated",
+      "method": "kmeans",
+      "k": 7,
+      "silhouette": 0.2650800398636281,
+      "calinski_harabasz": 13.718529433723441,
+      "davies_bouldin": 1.072798581132044,
+      "within_dispersion": 153.85824031728532,
+      "between_separation": 422.1417596827147,
+      "minimum_cluster_size": 1,
+      "cluster_sizes": "1|3|4|5|6|7|11"
+    },
+    {
+      "feature_set": "C_integrated",
+      "method": "ward",
+      "k": 7,
+      "silhouette": 0.22307559349112485,
+      "calinski_harabasz": 13.486977385354846,
+      "davies_bouldin": 1.17399493182505,
+      "within_dispersion": 155.78533688700782,
+      "between_separation": 420.2146631129921,
+      "minimum_cluster_size": 2,
+      "cluster_sizes": "2|2|4|5|6|6|12"
+    },
+    {
+      "feature_set": "C_integrated",
+      "method": "pam",
+      "k": 7,
+      "silhouette": 0.20084611967039523,
+      "calinski_harabasz": 10.999714051163432,
+      "davies_bouldin": 1.105384302622184,
+      "within_dispersion": 180.00321698190464,
+      "between_separation": 395.99678301809536,
+      "minimum_cluster_size": 1,
+      "cluster_sizes": "1|1|5|6|7|8|9"
+    },
+    {
+      "feature_set": "C_integrated",
+      "method": "kmeans",
+      "k": 8,
+      "silhouette": 0.25601599747389847,
+      "calinski_harabasz": 12.588491545109163,
+      "davies_bouldin": 1.0495492837992777,
+      "within_dispersion": 142.62363176986466,
+      "between_separation": 433.37636823013537,
+      "minimum_cluster_size": 1,
+      "cluster_sizes": "1|2|2|4|6|7|7|8"
+    },
+    {
+      "feature_set": "C_integrated",
+      "method": "ward",
+      "k": 8,
+      "silhouette": 0.253058819153562,
+      "calinski_harabasz": 12.882205670043794,
+      "davies_bouldin": 1.084561413268558,
+      "within_dispersion": 140.1631077964352,
+      "between_separation": 435.8368922035648,
+      "minimum_cluster_size": 1,
+      "cluster_sizes": "1|2|2|4|5|6|6|11"
+    },
+    {
+      "feature_set": "C_integrated",
+      "method": "pam",
+      "k": 8,
+      "silhouette": 0.23994555990104754,
+      "calinski_harabasz": 10.7322194395008,
+      "davies_bouldin": 0.9694842293601243,
+      "within_dispersion": 160.4217431133016,
+      "between_separation": 415.57825688669845,
+      "minimum_cluster_size": 1,
+      "cluster_sizes": "1|1|1|5|6|7|8|8"
+    },
+    {
+      "feature_set": "C_integrated",
+      "method": "kmeans",
+      "k": 9,
+      "silhouette": 0.2293968034498715,
+      "calinski_harabasz": 11.780339272735018,
+      "davies_bouldin": 1.1956886308297179,
+      "within_dispersion": 131.93424334479175,
+      "between_separation": 444.06575665520825,
+      "minimum_cluster_size": 1,
+      "cluster_sizes": "1|2|3|4|4|5|5|6|7"
+    },
+    {
+      "feature_set": "C_integrated",
+      "method": "ward",
+      "k": 9,
+      "silhouette": 0.27729779802943993,
+      "calinski_harabasz": 12.533653559970976,
+      "davies_bouldin": 0.9393879652950942,
+      "within_dispersion": 125.73553447812236,
+      "between_separation": 450.26446552187764,
+      "minimum_cluster_size": 1,
+      "cluster_sizes": "1|1|2|2|3|5|6|6|11"
+    },
+    {
+      "feature_set": "C_integrated",
+      "method": "pam",
+      "k": 9,
+      "silhouette": 0.24428463970684677,
+      "calinski_harabasz": 10.354854628728756,
+      "davies_bouldin": 1.0366975952697304,
+      "within_dispersion": 145.5085638949773,
+      "between_separation": 430.49143610502273,
+      "minimum_cluster_size": 1,
+      "cluster_sizes": "1|1|2|3|5|5|6|7|7"
+    },
+    {
+      "feature_set": "C_integrated",
+      "method": "kmeans",
+      "k": 10,
+      "silhouette": 0.2694404829807325,
+      "calinski_harabasz": 11.601854417558773,
+      "davies_bouldin": 0.9709906545248057,
+      "within_dispersion": 118.341133296198,
+      "between_separation": 457.65886670380206,
+      "minimum_cluster_size": 1,
+      "cluster_sizes": "1|1|2|2|4|4|4|6|6|7"
+    },
+    {
+      "feature_set": "C_integrated",
+      "method": "ward",
+      "k": 10,
+      "silhouette": 0.2793259721191472,
+      "calinski_harabasz": 12.407148880947304,
+      "davies_bouldin": 0.9848805819911242,
+      "within_dispersion": 112.15572805536195,
+      "between_separation": 463.844271944638,
+      "minimum_cluster_size": 1,
+      "cluster_sizes": "1|1|2|2|3|3|5|6|6|8"
+    },
+    {
+      "feature_set": "C_integrated",
+      "method": "pam",
+      "k": 10,
+      "silhouette": 0.07935887461532944,
+      "calinski_harabasz": 5.1867423767451415,
+      "davies_bouldin": 1.4691160923266255,
+      "within_dispersion": 211.07296656952,
+      "between_separation": 364.92703343048,
+      "minimum_cluster_size": 1,
+      "cluster_sizes": "1|1|1|3|3|3|5|6|6|8"
+    },
+    {
+      "feature_set": "D_reduced",
+      "method": "kmeans",
+      "k": 3,
+      "silhouette": 0.3448179781260475,
+      "calinski_harabasz": 20.64285130916525,
+      "davies_bouldin": 1.0177241487814344,
+      "within_dispersion": 162.580670357187,
+      "between_separation": 197.419329642813,
+      "minimum_cluster_size": 7,
+      "cluster_sizes": "7|10|20"
+    },
+    {
+      "feature_set": "D_reduced",
+      "method": "ward",
+      "k": 3,
+      "silhouette": 0.3374175941111574,
+      "calinski_harabasz": 20.20056107605074,
+      "davies_bouldin": 1.0730105571732598,
+      "within_dispersion": 164.513647723985,
+      "between_separation": 195.486352276015,
+      "minimum_cluster_size": 7,
+      "cluster_sizes": "7|11|19"
+    },
+    {
+      "feature_set": "D_reduced",
+      "method": "pam",
+      "k": 3,
+      "silhouette": 0.33826320530693677,
+      "calinski_harabasz": 19.677041532394405,
+      "davies_bouldin": 0.9743442235315651,
+      "within_dispersion": 166.86187719351926,
+      "between_separation": 193.1381228064808,
+      "minimum_cluster_size": 7,
+      "cluster_sizes": "7|9|21"
+    },
+    {
+      "feature_set": "D_reduced",
+      "method": "kmeans",
+      "k": 4,
+      "silhouette": 0.250502894488062,
+      "calinski_harabasz": 17.391672981247286,
+      "davies_bouldin": 1.4022377498714098,
+      "within_dispersion": 139.4775152072082,
+      "between_separation": 220.52248479279183,
+      "minimum_cluster_size": 7,
+      "cluster_sizes": "7|10|10|10"
+    },
+    {
+      "feature_set": "D_reduced",
+      "method": "ward",
+      "k": 4,
+      "silhouette": 0.32675488694384736,
+      "calinski_harabasz": 17.024128973214804,
+      "davies_bouldin": 1.0047702635817726,
+      "within_dispersion": 141.30680042847828,
+      "between_separation": 218.69319957152175,
+      "minimum_cluster_size": 4,
+      "cluster_sizes": "4|7|7|19"
+    },
+    {
+      "feature_set": "D_reduced",
+      "method": "pam",
+      "k": 4,
+      "silhouette": 0.1948001616807833,
+      "calinski_harabasz": 14.956490727649982,
+      "davies_bouldin": 1.599468185169517,
+      "within_dispersion": 152.56299634455735,
+      "between_separation": 207.4370036554427,
+      "minimum_cluster_size": 6,
+      "cluster_sizes": "6|7|9|15"
+    },
+    {
+      "feature_set": "D_reduced",
+      "method": "kmeans",
+      "k": 5,
+      "silhouette": 0.23753922385917403,
+      "calinski_harabasz": 15.81695794340991,
+      "davies_bouldin": 1.3137748310929147,
+      "within_dispersion": 120.92224400962546,
+      "between_separation": 239.0777559903746,
+      "minimum_cluster_size": 4,
+      "cluster_sizes": "4|7|7|9|10",
+      "selection_score": 0.09628995713864677
+    },
+    {
+      "feature_set": "D_reduced",
+      "method": "ward",
+      "k": 5,
+      "silhouette": 0.24540463855000522,
+      "calinski_harabasz": 16.244073534335563,
+      "davies_bouldin": 1.2769394438058168,
+      "within_dispersion": 118.7919181948204,
+      "between_separation": 241.20808180517966,
+      "minimum_cluster_size": 4,
+      "cluster_sizes": "4|7|7|9|10"
+    },
+    {
+      "feature_set": "D_reduced",
+      "method": "pam",
+      "k": 5,
+      "silhouette": 0.17046904471032912,
+      "calinski_harabasz": 13.334105282392436,
+      "davies_bouldin": 1.5500014815504422,
+      "within_dispersion": 134.9951151866179,
+      "between_separation": 225.00488481338215,
+      "minimum_cluster_size": 4,
+      "cluster_sizes": "4|6|6|7|14"
+    },
+    {
+      "feature_set": "D_reduced",
+      "method": "kmeans",
+      "k": 6,
+      "silhouette": 0.24869251801489217,
+      "calinski_harabasz": 14.994678751611287,
+      "davies_bouldin": 1.217887736503538,
+      "within_dispersion": 105.30945178068889,
+      "between_separation": 254.69054821931115,
+      "minimum_cluster_size": 2,
+      "cluster_sizes": "2|4|7|7|8|9"
+    },
+    {
+      "feature_set": "D_reduced",
+      "method": "ward",
+      "k": 6,
+      "silhouette": 0.2784463229877957,
+      "calinski_harabasz": 15.306778230963165,
+      "davies_bouldin": 1.0894968286523141,
+      "within_dispersion": 103.78123473587527,
+      "between_separation": 256.2187652641248,
+      "minimum_cluster_size": 1,
+      "cluster_sizes": "1|4|7|7|9|9"
+    },
+    {
+      "feature_set": "D_reduced",
+      "method": "pam",
+      "k": 6,
+      "silhouette": 0.20992341590214694,
+      "calinski_harabasz": 11.734298185430747,
+      "davies_bouldin": 1.3005739845079323,
+      "within_dispersion": 124.45427063397474,
+      "between_separation": 235.54572936602528,
+      "minimum_cluster_size": 1,
+      "cluster_sizes": "1|4|7|7|9|9"
+    },
+    {
+      "feature_set": "D_reduced",
+      "method": "kmeans",
+      "k": 7,
+      "silhouette": 0.282251095186877,
+      "calinski_harabasz": 14.185468240949845,
+      "davies_bouldin": 1.066134098064794,
+      "within_dispersion": 93.82100959923639,
+      "between_separation": 266.17899040076367,
+      "minimum_cluster_size": 1,
+      "cluster_sizes": "1|2|3|6|6|9|10"
+    },
+    {
+      "feature_set": "D_reduced",
+      "method": "ward",
+      "k": 7,
+      "silhouette": 0.27183149555225794,
+      "calinski_harabasz": 14.504062385435368,
+      "davies_bouldin": 1.0077736864020164,
+      "within_dispersion": 92.2884660861292,
+      "between_separation": 267.7115339138708,
+      "minimum_cluster_size": 1,
+      "cluster_sizes": "1|3|4|6|7|7|9"
+    },
+    {
+      "feature_set": "D_reduced",
+      "method": "pam",
+      "k": 7,
+      "silhouette": 0.26132780273124556,
+      "calinski_harabasz": 11.613551883402634,
+      "davies_bouldin": 0.9816113335123807,
+      "within_dispersion": 108.34528417720516,
+      "between_separation": 251.65471582279488,
+      "minimum_cluster_size": 1,
+      "cluster_sizes": "1|1|2|6|6|9|12"
+    },
+    {
+      "feature_set": "D_reduced",
+      "method": "kmeans",
+      "k": 8,
+      "silhouette": 0.24401800897234707,
+      "calinski_harabasz": 12.861598692606512,
+      "davies_bouldin": 1.2496172004709034,
+      "within_dispersion": 87.70810344416442,
+      "between_separation": 272.2918965558356,
+      "minimum_cluster_size": 1,
+      "cluster_sizes": "1|2|4|4|5|7|7|7"
+    },
+    {
+      "feature_set": "D_reduced",
+      "method": "ward",
+      "k": 8,
+      "silhouette": 0.2836555763775841,
+      "calinski_harabasz": 14.207181970111066,
+      "davies_bouldin": 0.9936909121943706,
+      "within_dispersion": 81.27658814495713,
+      "between_separation": 278.7234118550429,
+      "minimum_cluster_size": 1,
+      "cluster_sizes": "1|2|3|4|6|7|7|7"
+    },
+    {
+      "feature_set": "D_reduced",
+      "method": "pam",
+      "k": 8,
+      "silhouette": 0.24446115987136438,
+      "calinski_harabasz": 10.19803776053616,
+      "davies_bouldin": 1.0385171191335443,
+      "within_dispersion": 103.99829170184309,
+      "between_separation": 256.0017082981569,
+      "minimum_cluster_size": 1,
+      "cluster_sizes": "1|1|2|2|5|6|9|11"
+    },
+    {
+      "feature_set": "D_reduced",
+      "method": "kmeans",
+      "k": 9,
+      "silhouette": 0.2502931267287993,
+      "calinski_harabasz": 13.805200777222389,
+      "davies_bouldin": 1.0408165904043853,
+      "within_dispersion": 72.81048143968655,
+      "between_separation": 287.18951856031345,
+      "minimum_cluster_size": 1,
+      "cluster_sizes": "1|2|3|3|4|4|6|7|7"
+    },
+    {
+      "feature_set": "D_reduced",
+      "method": "ward",
+      "k": 9,
+      "silhouette": 0.3035013483699101,
+      "calinski_harabasz": 13.946215784382954,
+      "davies_bouldin": 0.9250667695948391,
+      "within_dispersion": 72.22196581609944,
+      "between_separation": 287.7780341839006,
+      "minimum_cluster_size": 1,
+      "cluster_sizes": "1|1|2|3|4|6|6|7|7"
+    },
+    {
+      "feature_set": "D_reduced",
+      "method": "pam",
+      "k": 9,
+      "silhouette": 0.25998705833993535,
+      "calinski_harabasz": 12.51567997414887,
+      "davies_bouldin": 1.0059884419239937,
+      "within_dispersion": 78.67290068444072,
+      "between_separation": 281.32709931555934,
+      "minimum_cluster_size": 1,
+      "cluster_sizes": "1|2|2|2|4|6|6|7|7"
+    },
+    {
+      "feature_set": "D_reduced",
+      "method": "kmeans",
+      "k": 10,
+      "silhouette": 0.2442267946182219,
+      "calinski_harabasz": 12.042416301274846,
+      "davies_bouldin": 0.9571426111134324,
+      "within_dispersion": 71.79697585609766,
+      "between_separation": 288.2030241439024,
+      "minimum_cluster_size": 1,
+      "cluster_sizes": "1|2|2|3|3|4|4|5|6|7"
+    },
+    {
+      "feature_set": "D_reduced",
+      "method": "ward",
+      "k": 10,
+      "silhouette": 0.29778855727520176,
+      "calinski_harabasz": 13.783838881796955,
+      "davies_bouldin": 0.8793232127615962,
+      "within_dispersion": 64.34761484580996,
+      "between_separation": 295.6523851541901,
+      "minimum_cluster_size": 1,
+      "cluster_sizes": "1|1|2|2|2|3|6|6|7|7"
+    },
+    {
+      "feature_set": "D_reduced",
+      "method": "pam",
+      "k": 10,
+      "silhouette": 0.21858937738152603,
+      "calinski_harabasz": 10.543538785482689,
+      "davies_bouldin": 0.9805760814570291,
+      "within_dispersion": 79.74282180648763,
+      "between_separation": 280.25717819351235,
+      "minimum_cluster_size": 1,
+      "cluster_sizes": "1|1|2|2|3|3|4|5|7|9"
+    }
+  ],
+  "selectedSolution": {
+    "model": "kmeans",
+    "featureSet": "D_reduced",
+    "k": 5,
+    "metrics": {
+      "feature_set": "D_reduced",
+      "method": "kmeans",
+      "k": 5,
+      "silhouette": 0.23753922385917403,
+      "calinski_harabasz": 15.81695794340991,
+      "davies_bouldin": 1.3137748310929147,
+      "within_dispersion": 120.92224400962546,
+      "between_separation": 239.0777559903746,
+      "minimum_cluster_size": 4,
+      "cluster_sizes": "4|7|7|9|10",
+      "selection_score": 0.09628995713864677
+    },
+    "spatialDiagnostics": {
+      "adjacencyConsistency": 0.5227272727272727,
+      "disconnectedComponents": {
+        "Group 1": 1,
+        "Group 2": 1,
+        "Group 3": 1,
+        "Group 4": 1,
+        "Group 5": 2
+      },
+      "moransI": {
+        "density_per_km2": 0.705083857740718,
+        "growth_percent_2023_2024": -0.07089777643285433,
+        "average_age": 0.45063015107411214,
+        "income_individual": 0.5431876988414236,
+        "building_intensity": 0.6300873160198486,
+        "pct_higher_studies": 0.5091105204152968,
+        "participation_municipal_2023": 0.30548122231485675,
+        "margin_municipal_2023": 0.3328497931880051,
+        "share_pp": 0.6521839535315428,
+        "share_psoe": 0.530722470915359
+      },
+      "spatialConstraintUsed": false
+    }
+  },
+  "alternativeSolution": {
+    "model": "ward",
+    "featureSet": "C_integrated",
+    "k": 4,
+    "metrics": {
+      "feature_set": "C_integrated",
+      "method": "ward",
+      "k": 4,
+      "silhouette": 0.30634538325471555,
+      "calinski_harabasz": 17.151162034770632,
+      "davies_bouldin": 0.994037549675556,
+      "within_dispersion": 225.0706380139531,
+      "between_separation": 350.9293619860469,
+      "minimum_cluster_size": 6,
+      "cluster_sizes": "6|6|6|19"
+    }
+  },
+  "clusterProfiles": [
+    {
+      "cluster_id": "Group 1",
+      "section_count": 4,
+      "population_represented": 9674,
+      "section_ids": [
+        "2907001001",
+        "2907001002",
+        "2907001013",
+        "2907001032"
+      ],
+      "section_names": [
+        "Sección 01 · Mijas Oeste / Valtocado",
+        "Sección 02 · Mijas Este",
+        "Sección 13 · Osunillas",
+        "Sección 32 · Entrerríos"
+      ],
+      "representative_section": "2907001013",
+      "representative_name": "Sección 13 · Osunillas",
+      "high_stability_members": [
+        "2907001001",
+        "2907001002"
+      ],
+      "low_stability_members": [],
+      "nearest_cluster": "Group 2",
+      "nearest_cluster_distance": 3.0194330135366116,
+      "standardized_centroid": {
+        "density_per_km2": -1.4799923557770438,
+        "growth_percent_2023_2024": 0.6867578829609355,
+        "average_age": 1.122448518501018,
+        "income_individual": 0.43923344984742374,
+        "building_intensity": -1.0264767475221181,
+        "pct_higher_studies": -0.18425275543201092,
+        "participation_municipal_2023": 1.2422699273340307,
+        "margin_municipal_2023": -0.5083306474855518,
+        "share_pp": 0.12716226259169558,
+        "share_psoe": 0.9820670907010782
+      },
+      "original_means": {
+        "density_per_km2": 744.6450000000001,
+        "growth_percent_2023_2024": 3.1050000000000004,
+        "average_age": 44.6125,
+        "income_individual": 12416.5,
+        "building_intensity": 0.04405,
+        "pct_higher_studies": 24.287975000000003,
+        "participation_municipal_2023": 60.882349999999995,
+        "margin_municipal_2023": 7.2151499999999995,
+        "share_pp": 32.876825,
+        "share_psoe": 40.091975
+      },
+      "original_medians": {
+        "density_per_km2": 150.16500000000002,
+        "growth_percent_2023_2024": 2.81,
+        "average_age": 44.28,
+        "income_individual": 12233.5,
+        "building_intensity": 0.0141,
+        "pct_higher_studies": 23.82535,
+        "participation_municipal_2023": 59.5678,
+        "margin_municipal_2023": 6.30305,
+        "share_pp": 32.78685,
+        "share_psoe": 38.33415
+      },
+      "within_cluster_dispersion": 13.308111697195496,
+      "top_above": [
+        "participation_municipal_2023",
+        "average_age",
+        "share_psoe"
+      ],
+      "top_below": [
+        "density_per_km2",
+        "building_intensity",
+        "margin_municipal_2023"
+      ]
+    },
+    {
+      "cluster_id": "Group 2",
+      "section_count": 7,
+      "population_represented": 20848,
+      "section_ids": [
+        "2907001010",
+        "2907001017",
+        "2907001026",
+        "2907001028",
+        "2907001030",
+        "2907001035",
+        "2907001036"
+      ],
+      "section_names": [
+        "Sección 10 · El Coto / Lagarejo",
+        "Sección 17 · Campo Mijas",
+        "Sección 26 · Mijas Golf",
+        "Sección 28 · Cerros del Águila / La Ponderosa",
+        "Sección 30 · Parque Los Olivos / La Noria",
+        "Sección 35 · Media Legua / Puebla Tranquila",
+        "Sección 36 · Sierrezuela (Las Lagunas)"
+      ],
+      "representative_section": "2907001017",
+      "representative_name": "Sección 17 · Campo Mijas",
+      "high_stability_members": [
+        "2907001010",
+        "2907001017",
+        "2907001026",
+        "2907001028",
+        "2907001030",
+        "2907001035",
+        "2907001036"
+      ],
+      "low_stability_members": [],
+      "nearest_cluster": "Group 1",
+      "nearest_cluster_distance": 3.0194330135366116,
+      "standardized_centroid": {
+        "density_per_km2": -0.8373025883828474,
+        "growth_percent_2023_2024": 0.5386703679609948,
+        "average_age": 0.010612310974248926,
+        "income_individual": 1.3082268896344813,
+        "building_intensity": -0.8861295184860616,
+        "pct_higher_studies": 1.13352216313358,
+        "participation_municipal_2023": -0.2520429860222671,
+        "margin_municipal_2023": -0.8545926135717187,
+        "share_pp": 0.4812995279728887,
+        "share_psoe": -0.5851459157695504
+      },
+      "original_means": {
+        "density_per_km2": 1245.3714285714286,
+        "growth_percent_2023_2024": 2.7357142857142853,
+        "average_age": 40.955714285714286,
+        "income_individual": 13925.42857142857,
+        "building_intensity": 0.06645714285714287,
+        "pct_higher_studies": 34.195542857142854,
+        "participation_municipal_2023": 50.118214285714295,
+        "margin_municipal_2023": 5.266328571428572,
+        "share_pp": 34.97562857142857,
+        "share_psoe": 29.916328571428572
+      },
+      "original_medians": {
+        "density_per_km2": 483.77,
+        "growth_percent_2023_2024": 2.56,
+        "average_age": 40.84,
+        "income_individual": 14005.0,
+        "building_intensity": 0.0383,
+        "pct_higher_studies": 34.3349,
+        "participation_municipal_2023": 49.905,
+        "margin_municipal_2023": 6.8653,
+        "share_pp": 34.9741,
+        "share_psoe": 30.5921
+      },
+      "within_cluster_dispersion": 13.60406555690834,
+      "top_above": [
+        "income_individual",
+        "pct_higher_studies",
+        "growth_percent_2023_2024"
+      ],
+      "top_below": [
+        "building_intensity",
+        "margin_municipal_2023",
+        "density_per_km2"
+      ]
+    },
+    {
+      "cluster_id": "Group 3",
+      "section_count": 7,
+      "population_represented": 23508,
+      "section_ids": [
+        "2907001007",
+        "2907001011",
+        "2907001022",
+        "2907001023",
+        "2907001027",
+        "2907001031",
+        "2907001034"
+      ],
+      "section_names": [
+        "Sección 07 · Cala de Mijas",
+        "Sección 11 · Calahonda Sur / El Zoco",
+        "Sección 22 · El Chaparral",
+        "Sección 23 · Riviera Sur",
+        "Sección 27 · Torrenueva",
+        "Sección 31 · Calahonda Norte",
+        "Sección 34 · Riviera Norte"
+      ],
+      "representative_section": "2907001022",
+      "representative_name": "Sección 22 · El Chaparral",
+      "high_stability_members": [
+        "2907001007",
+        "2907001011",
+        "2907001022",
+        "2907001023",
+        "2907001027",
+        "2907001031",
+        "2907001034"
+      ],
+      "low_stability_members": [],
+      "nearest_cluster": "Group 2",
+      "nearest_cluster_distance": 3.0673698489617434,
+      "standardized_centroid": {
+        "density_per_km2": -0.4652210708287821,
+        "growth_percent_2023_2024": -0.14877651018186316,
+        "average_age": 0.8749756484010568,
+        "income_individual": 0.5663018870309607,
+        "building_intensity": -0.6270093669846675,
+        "pct_higher_studies": 0.9588061952359886,
+        "participation_municipal_2023": -1.2102272301648003,
+        "margin_municipal_2023": 1.2761454053261414,
+        "share_pp": 1.5175920699607557,
+        "share_psoe": -1.518109221552848
+      },
+      "original_means": {
+        "density_per_km2": 1686.7714285714287,
+        "growth_percent_2023_2024": 1.0214285714285716,
+        "average_age": 43.79857142857143,
+        "income_individual": 12637.142857142857,
+        "building_intensity": 0.10934285714285712,
+        "pct_higher_studies": 32.88195714285714,
+        "participation_municipal_2023": 43.21602857142857,
+        "margin_municipal_2023": 17.258485714285715,
+        "share_pp": 41.11724285714286,
+        "share_psoe": 23.858757142857144
+      },
+      "original_medians": {
+        "density_per_km2": 1663.18,
+        "growth_percent_2023_2024": 1.53,
+        "average_age": 44.99,
+        "income_individual": 12387.0,
+        "building_intensity": 0.1103,
+        "pct_higher_studies": 34.4714,
+        "participation_municipal_2023": 40.5308,
+        "margin_municipal_2023": 15.9127,
+        "share_pp": 41.0959,
+        "share_psoe": 24.3767
+      },
+      "within_cluster_dispersion": 21.666065303011905,
+      "top_above": [
+        "share_pp",
+        "margin_municipal_2023",
+        "pct_higher_studies"
+      ],
+      "top_below": [
+        "share_psoe",
+        "participation_municipal_2023",
+        "building_intensity"
+      ]
+    },
+    {
+      "cluster_id": "Group 4",
+      "section_count": 9,
+      "population_represented": 19865,
+      "section_ids": [
+        "2907001003",
+        "2907001014",
+        "2907001016",
+        "2907001018",
+        "2907001020",
+        "2907001024",
+        "2907001025",
+        "2907001029",
+        "2907001033"
+      ],
+      "section_names": [
+        "Sección 03 · Las Cañadas",
+        "Sección 14 · María Barranco Norte",
+        "Sección 16 · El Juncal",
+        "Sección 18 · Camino Campanales",
+        "Sección 20 · Parque Andalucía",
+        "Sección 24 · Doña Ermita / Pol San Rafael",
+        "Sección 25 · María Zambrano Este",
+        "Sección 29 · Doña Ermita Este",
+        "Sección 33 · La Vega"
+      ],
+      "representative_section": "2907001016",
+      "representative_name": "Sección 16 · El Juncal",
+      "high_stability_members": [],
+      "low_stability_members": [
+        "2907001003",
+        "2907001016",
+        "2907001029"
+      ],
+      "nearest_cluster": "Group 5",
+      "nearest_cluster_distance": 2.074465317881008,
+      "standardized_centroid": {
+        "density_per_km2": 0.47268652842354314,
+        "growth_percent_2023_2024": 0.08412794603338841,
+        "average_age": -0.8539440724240668,
+        "income_individual": -0.5241529025943732,
+        "building_intensity": 0.17874042299004658,
+        "pct_higher_studies": -0.2901820393571463,
+        "participation_municipal_2023": 0.19129497306038168,
+        "margin_municipal_2023": -0.45523168877761805,
+        "share_pp": -0.6611659304480157,
+        "share_psoe": 0.30852446963635505
+      },
+      "original_means": {
+        "density_per_km2": 12796.313333333332,
+        "growth_percent_2023_2024": 1.6022222222222224,
+        "average_age": 38.11222222222222,
+        "income_individual": 10743.666666666666,
+        "building_intensity": 0.25722222222222224,
+        "pct_higher_studies": 23.491555555555557,
+        "participation_municipal_2023": 53.31175555555555,
+        "margin_municipal_2023": 7.514,
+        "share_pp": 28.204777777777778,
+        "share_psoe": 35.718777777777774
+      },
+      "original_medians": {
+        "density_per_km2": 13873.8,
+        "growth_percent_2023_2024": 0.6,
+        "average_age": 38.41,
+        "income_individual": 10458.0,
+        "building_intensity": 0.2664,
+        "pct_higher_studies": 23.4969,
+        "participation_municipal_2023": 53.474,
+        "margin_municipal_2023": 9.3236,
+        "share_pp": 27.1802,
+        "share_psoe": 36.4769
+      },
+      "within_cluster_dispersion": 32.735777300740196,
+      "top_above": [
+        "density_per_km2",
+        "share_psoe",
+        "participation_municipal_2023"
+      ],
+      "top_below": [
+        "average_age",
+        "share_pp",
+        "income_individual"
+      ]
+    },
+    {
+      "cluster_id": "Group 5",
+      "section_count": 10,
+      "population_represented": 18316,
+      "section_ids": [
+        "2907001004",
+        "2907001005",
+        "2907001006",
+        "2907001008",
+        "2907001009",
+        "2907001012",
+        "2907001015",
+        "2907001019",
+        "2907001021",
+        "2907001037"
+      ],
+      "section_names": [
+        "Sección 04 · Centro Salud",
+        "Sección 05 · Los Santiago",
+        "Sección 06 · María Barranco Sur",
+        "Sección 08 · Barrio de los santos",
+        "Sección 09 · Barrio de las flores Este",
+        "Sección 12 · Avda Los Lirios / Ferrán Caballero",
+        "Sección 15 · Barrio de los ríos",
+        "Sección 19 · Barrio de las flores Oeste",
+        "Sección 21 · El Albero",
+        "Sección 37 · María Zambrano Oeste"
+      ],
+      "representative_section": "2907001009",
+      "representative_name": "Sección 09 · Barrio de las flores Este",
+      "high_stability_members": [],
+      "low_stability_members": [
+        "2907001006",
+        "2907001015",
+        "2907001021",
+        "2907001037"
+      ],
+      "nearest_cluster": "Group 4",
+      "nearest_cluster_distance": 2.074465317881008,
+      "standardized_centroid": {
+        "density_per_km2": 1.0783456281777706,
+        "growth_percent_2023_2024": -0.6233440050598162,
+        "average_age": -0.30034131378145557,
+        "income_individual": -1.0161259112698413,
+        "building_intensity": 1.308921538147315,
+        "pct_higher_studies": -1.1297649132644594,
+        "participation_municipal_2023": 0.354515704642996,
+        "margin_municipal_2023": 0.3179538246659795,
+        "share_pp": -0.8550396861870191,
+        "share_psoe": 0.801779737172531
+      },
+      "original_means": {
+        "density_per_km2": 31599.015000000003,
+        "growth_percent_2023_2024": -0.1620000000000001,
+        "average_age": 39.93300000000001,
+        "income_individual": 9889.4,
+        "building_intensity": 0.49232000000000004,
+        "pct_higher_studies": 17.17923,
+        "participation_municipal_2023": 54.4875,
+        "margin_municipal_2023": 11.86562,
+        "share_pp": 27.05578,
+        "share_psoe": 38.9214
+      },
+      "original_medians": {
+        "density_per_km2": 30539.73,
+        "growth_percent_2023_2024": 0.9,
+        "average_age": 40.325,
+        "income_individual": 9781.5,
+        "building_intensity": 0.48009999999999997,
+        "pct_higher_studies": 15.666049999999998,
+        "participation_municipal_2023": 53.7983,
+        "margin_municipal_2023": 13.02495,
+        "share_pp": 28.56425,
+        "share_psoe": 38.4811
+      },
+      "within_cluster_dispersion": 39.60822415176952,
+      "top_above": [
+        "building_intensity",
+        "density_per_km2",
+        "share_psoe"
+      ],
+      "top_below": [
+        "pct_higher_studies",
+        "income_individual",
+        "share_pp"
+      ]
+    }
+  ],
+  "territoryMembership": [
+    {
+      "seccion_id": "2907001001",
+      "display_name": "Sección 01 · Mijas Oeste / Valtocado",
+      "model": "kmeans",
+      "feature_set": "D_reduced",
+      "cluster_id": "Group 1",
+      "second_nearest_cluster": "Group 4",
+      "distance": 1.4252295281302632,
+      "second_distance": 3.835116689495726,
+      "assignment_margin": 2.4098871613654627,
+      "silhouette": 0.34408743515000256,
+      "stability": 0.94448198198198,
+      "assignment_confidence": "high stability",
+      "evidence_status": "verified Block C primary geography",
+      "representative_typical": false,
+      "transitional": false,
+      "outlier_score": -0.41973784746689075,
+      "evidence_completeness": 92.86,
+      "warnings": ""
+    },
+    {
+      "seccion_id": "2907001002",
+      "display_name": "Sección 02 · Mijas Este",
+      "model": "kmeans",
+      "feature_set": "D_reduced",
+      "cluster_id": "Group 1",
+      "second_nearest_cluster": "Group 4",
+      "distance": 2.3971804287997345,
+      "second_distance": 3.663997472489486,
+      "assignment_margin": 1.2668170436897515,
+      "silhouette": 0.15815630308669715,
+      "stability": 0.9302927927927912,
+      "assignment_confidence": "moderate stability",
+      "evidence_status": "verified Block C primary geography",
+      "representative_typical": false,
+      "transitional": false,
+      "outlier_score": 1.0985162198235563,
+      "evidence_completeness": 92.86,
+      "warnings": ""
+    },
+    {
+      "seccion_id": "2907001003",
+      "display_name": "Sección 03 · Las Cañadas",
+      "model": "kmeans",
+      "feature_set": "D_reduced",
+      "cluster_id": "Group 4",
+      "second_nearest_cluster": "Group 5",
+      "distance": 2.328929007728855,
+      "second_distance": 2.530842820140179,
+      "assignment_margin": 0.20191381241132422,
+      "silhouette": 0.025794541039778313,
+      "stability": 0.6894144144144146,
+      "assignment_confidence": "low stability",
+      "evidence_status": "verified Block C primary geography",
+      "representative_typical": false,
+      "transitional": true,
+      "outlier_score": 0.9919028121217462,
+      "evidence_completeness": 92.86,
+      "warnings": "weak assignment"
+    },
+    {
+      "seccion_id": "2907001004",
+      "display_name": "Sección 04 · Centro Salud",
+      "model": "kmeans",
+      "feature_set": "D_reduced",
+      "cluster_id": "Group 5",
+      "second_nearest_cluster": "Group 4",
+      "distance": 2.004956737215775,
+      "second_distance": 2.9876116963915855,
+      "assignment_margin": 0.9826549591758105,
+      "silhouette": 0.2052108074926235,
+      "stability": 0.8421171171171175,
+      "assignment_confidence": "moderate stability",
+      "evidence_status": "verified Block C primary geography",
+      "representative_typical": false,
+      "transitional": false,
+      "outlier_score": 0.48583587287923186,
+      "evidence_completeness": 92.86,
+      "warnings": ""
+    },
+    {
+      "seccion_id": "2907001005",
+      "display_name": "Sección 05 · Los Santiago",
+      "model": "kmeans",
+      "feature_set": "D_reduced",
+      "cluster_id": "Group 5",
+      "second_nearest_cluster": "Group 4",
+      "distance": 1.6704867259954637,
+      "second_distance": 3.0678959435687547,
+      "assignment_margin": 1.397409217573291,
+      "silhouette": 0.28444254627277765,
+      "stability": 0.8476351351351351,
+      "assignment_confidence": "moderate stability",
+      "evidence_status": "verified Block C primary geography",
+      "representative_typical": false,
+      "transitional": false,
+      "outlier_score": -0.03662925840686891,
+      "evidence_completeness": 92.86,
+      "warnings": ""
+    },
+    {
+      "seccion_id": "2907001006",
+      "display_name": "Sección 06 · María Barranco Sur",
+      "model": "kmeans",
+      "feature_set": "D_reduced",
+      "cluster_id": "Group 5",
+      "second_nearest_cluster": "Group 4",
+      "distance": 3.683512251930608,
+      "second_distance": 4.327550420790135,
+      "assignment_margin": 0.6440381688595269,
+      "silhouette": 0.05565739477243673,
+      "stability": 0.7819819819819819,
+      "assignment_confidence": "low stability",
+      "evidence_status": "verified Block C primary geography",
+      "representative_typical": false,
+      "transitional": true,
+      "outlier_score": 3.1078548818983482,
+      "evidence_completeness": 92.86,
+      "warnings": "weak assignment"
+    },
+    {
+      "seccion_id": "2907001007",
+      "display_name": "Sección 07 · Cala de Mijas",
+      "model": "kmeans",
+      "feature_set": "D_reduced",
+      "cluster_id": "Group 3",
+      "second_nearest_cluster": "Group 1",
+      "distance": 2.78587595798998,
+      "second_distance": 3.6152615644365644,
+      "assignment_margin": 0.8293856064465843,
+      "silhouette": 0.11517365714517092,
+      "stability": 0.9350225225225224,
+      "assignment_confidence": "moderate stability",
+      "evidence_status": "verified Block C primary geography",
+      "representative_typical": false,
+      "transitional": false,
+      "outlier_score": 1.7056853347698162,
+      "evidence_completeness": 92.86,
+      "warnings": ""
+    },
+    {
+      "seccion_id": "2907001008",
+      "display_name": "Sección 08 · Barrio de los santos",
+      "model": "kmeans",
+      "feature_set": "D_reduced",
+      "cluster_id": "Group 5",
+      "second_nearest_cluster": "Group 4",
+      "distance": 2.0057223592539013,
+      "second_distance": 2.768525104028791,
+      "assignment_margin": 0.7628027447748895,
+      "silhouette": 0.14229746583558117,
+      "stability": 0.8417792792792792,
+      "assignment_confidence": "moderate stability",
+      "evidence_status": "verified Block C primary geography",
+      "representative_typical": false,
+      "transitional": false,
+      "outlier_score": 0.4870318270911079,
+      "evidence_completeness": 92.86,
+      "warnings": ""
+    },
+    {
+      "seccion_id": "2907001009",
+      "display_name": "Sección 09 · Barrio de las flores Este",
+      "model": "kmeans",
+      "feature_set": "D_reduced",
+      "cluster_id": "Group 5",
+      "second_nearest_cluster": "Group 4",
+      "distance": 0.9381891950904977,
+      "second_distance": 2.2577125697428317,
+      "assignment_margin": 1.319523374652334,
+      "silhouette": 0.255721821298161,
+      "stability": 0.8483108108108108,
+      "assignment_confidence": "moderate stability",
+      "evidence_status": "verified Block C primary geography",
+      "representative_typical": true,
+      "transitional": false,
+      "outlier_score": -1.1805283010410275,
+      "evidence_completeness": 92.86,
+      "warnings": ""
+    },
+    {
+      "seccion_id": "2907001010",
+      "display_name": "Sección 10 · El Coto / Lagarejo",
+      "model": "kmeans",
+      "feature_set": "D_reduced",
+      "cluster_id": "Group 2",
+      "second_nearest_cluster": "Group 4",
+      "distance": 1.7147989743773182,
+      "second_distance": 3.121727841231994,
+      "assignment_margin": 1.406928866854676,
+      "silhouette": 0.34546176304457865,
+      "stability": 0.970608108108106,
+      "assignment_confidence": "high stability",
+      "evidence_status": "verified Block C primary geography",
+      "representative_typical": false,
+      "transitional": false,
+      "outlier_score": 0.032589517243418784,
+      "evidence_completeness": 92.86,
+      "warnings": ""
+    },
+    {
+      "seccion_id": "2907001011",
+      "display_name": "Sección 11 · Calahonda Sur / El Zoco",
+      "model": "kmeans",
+      "feature_set": "D_reduced",
+      "cluster_id": "Group 3",
+      "second_nearest_cluster": "Group 2",
+      "distance": 1.3587562859277125,
+      "second_distance": 3.0442773310412474,
+      "assignment_margin": 1.685521045113535,
+      "silhouette": 0.31847865126640695,
+      "stability": 0.9915540540540533,
+      "assignment_confidence": "high stability",
+      "evidence_status": "verified Block C primary geography",
+      "representative_typical": false,
+      "transitional": false,
+      "outlier_score": -0.5235736176385019,
+      "evidence_completeness": 92.86,
+      "warnings": ""
+    },
+    {
+      "seccion_id": "2907001012",
+      "display_name": "Sección 12 · Avda Los Lirios / Ferrán Caballero",
+      "model": "kmeans",
+      "feature_set": "D_reduced",
+      "cluster_id": "Group 5",
+      "second_nearest_cluster": "Group 4",
+      "distance": 1.5356311551742143,
+      "second_distance": 2.3072436040899444,
+      "assignment_margin": 0.7716124489157301,
+      "silhouette": 0.09464708989364695,
+      "stability": 0.8243243243243243,
+      "assignment_confidence": "moderate stability",
+      "evidence_status": "verified Block C primary geography",
+      "representative_typical": false,
+      "transitional": true,
+      "outlier_score": -0.24728292286163728,
+      "evidence_completeness": 92.86,
+      "warnings": "weak assignment"
+    },
+    {
+      "seccion_id": "2907001013",
+      "display_name": "Sección 13 · Osunillas",
+      "model": "kmeans",
+      "feature_set": "D_reduced",
+      "cluster_id": "Group 1",
+      "second_nearest_cluster": "Group 2",
+      "distance": 1.3880124291997626,
+      "second_distance": 2.130088488433172,
+      "assignment_margin": 0.7420760592334092,
+      "silhouette": -0.012835633914543907,
+      "stability": 0.8902027027027007,
+      "assignment_confidence": "low stability",
+      "evidence_status": "verified Block C primary geography",
+      "representative_typical": true,
+      "transitional": true,
+      "outlier_score": -0.47787351232924463,
+      "evidence_completeness": 92.86,
+      "warnings": "weak assignment"
+    },
+    {
+      "seccion_id": "2907001014",
+      "display_name": "Sección 14 · María Barranco Norte",
+      "model": "kmeans",
+      "feature_set": "D_reduced",
+      "cluster_id": "Group 4",
+      "second_nearest_cluster": "Group 1",
+      "distance": 2.8649745238449182,
+      "second_distance": 3.9218549779495917,
+      "assignment_margin": 1.0568804541046735,
+      "silhouette": 0.17195350287673697,
+      "stability": 0.8388513513513516,
+      "assignment_confidence": "moderate stability",
+      "evidence_status": "verified Block C primary geography",
+      "representative_typical": false,
+      "transitional": false,
+      "outlier_score": 1.8292427276827534,
+      "evidence_completeness": 92.86,
+      "warnings": ""
+    },
+    {
+      "seccion_id": "2907001015",
+      "display_name": "Sección 15 · Barrio de los ríos",
+      "model": "kmeans",
+      "feature_set": "D_reduced",
+      "cluster_id": "Group 5",
+      "second_nearest_cluster": "Group 4",
+      "distance": 2.171251072055674,
+      "second_distance": 3.18768772713755,
+      "assignment_margin": 1.016436655081876,
+      "silhouette": 0.18247738510235834,
+      "stability": 0.7534909909909905,
+      "assignment_confidence": "low stability",
+      "evidence_status": "verified Block C primary geography",
+      "representative_typical": false,
+      "transitional": false,
+      "outlier_score": 0.7455990461672367,
+      "evidence_completeness": 92.86,
+      "warnings": ""
+    },
+    {
+      "seccion_id": "2907001016",
+      "display_name": "Sección 16 · El Juncal",
+      "model": "kmeans",
+      "feature_set": "D_reduced",
+      "cluster_id": "Group 4",
+      "second_nearest_cluster": "Group 5",
+      "distance": 0.7811552712465203,
+      "second_distance": 1.6047235205746877,
+      "assignment_margin": 0.8235682493281674,
+      "silhouette": 0.14986208927689892,
+      "stability": 0.7951576576576579,
+      "assignment_confidence": "low stability",
+      "evidence_status": "verified Block C primary geography",
+      "representative_typical": true,
+      "transitional": false,
+      "outlier_score": -1.4258260762830455,
+      "evidence_completeness": 92.86,
+      "warnings": ""
+    },
+    {
+      "seccion_id": "2907001017",
+      "display_name": "Sección 17 · Campo Mijas",
+      "model": "kmeans",
+      "feature_set": "D_reduced",
+      "cluster_id": "Group 2",
+      "second_nearest_cluster": "Group 3",
+      "distance": 0.8642991752659482,
+      "second_distance": 3.108981895085968,
+      "assignment_margin": 2.2446827198200197,
+      "silhouette": 0.5120026354310341,
+      "stability": 0.970608108108106,
+      "assignment_confidence": "high stability",
+      "evidence_status": "verified Block C primary geography",
+      "representative_typical": true,
+      "transitional": false,
+      "outlier_score": -1.2959495872948112,
+      "evidence_completeness": 92.86,
+      "warnings": ""
+    },
+    {
+      "seccion_id": "2907001018",
+      "display_name": "Sección 18 · Camino Campanales",
+      "model": "kmeans",
+      "feature_set": "D_reduced",
+      "cluster_id": "Group 4",
+      "second_nearest_cluster": "Group 5",
+      "distance": 1.4217574255817036,
+      "second_distance": 2.7436938921715357,
+      "assignment_margin": 1.321936466589832,
+      "silhouette": 0.2706738248761045,
+      "stability": 0.805405405405406,
+      "assignment_confidence": "moderate stability",
+      "evidence_status": "verified Block C primary geography",
+      "representative_typical": false,
+      "transitional": false,
+      "outlier_score": -0.42516151013623865,
+      "evidence_completeness": 92.86,
+      "warnings": ""
+    },
+    {
+      "seccion_id": "2907001019",
+      "display_name": "Sección 19 · Barrio de las flores Oeste",
+      "model": "kmeans",
+      "feature_set": "D_reduced",
+      "cluster_id": "Group 5",
+      "second_nearest_cluster": "Group 4",
+      "distance": 1.1082994029438806,
+      "second_distance": 3.0029491126119114,
+      "assignment_margin": 1.8946497096680308,
+      "silhouette": 0.3390336427978441,
+      "stability": 0.8496621621621622,
+      "assignment_confidence": "moderate stability",
+      "evidence_status": "verified Block C primary geography",
+      "representative_typical": false,
+      "transitional": false,
+      "outlier_score": -0.9148044720048822,
+      "evidence_completeness": 92.86,
+      "warnings": ""
+    },
+    {
+      "seccion_id": "2907001020",
+      "display_name": "Sección 20 · Parque Andalucía",
+      "model": "kmeans",
+      "feature_set": "D_reduced",
+      "cluster_id": "Group 4",
+      "second_nearest_cluster": "Group 5",
+      "distance": 1.3084778317939312,
+      "second_distance": 2.035117219789187,
+      "assignment_margin": 0.7266393879952557,
+      "silhouette": 0.16768662439108728,
+      "stability": 0.8100225225225225,
+      "assignment_confidence": "moderate stability",
+      "evidence_status": "verified Block C primary geography",
+      "representative_typical": false,
+      "transitional": false,
+      "outlier_score": -0.6021120164744003,
+      "evidence_completeness": 92.86,
+      "warnings": ""
+    },
+    {
+      "seccion_id": "2907001021",
+      "display_name": "Sección 21 · El Albero",
+      "model": "kmeans",
+      "feature_set": "D_reduced",
+      "cluster_id": "Group 5",
+      "second_nearest_cluster": "Group 4",
+      "distance": 1.5839680399168374,
+      "second_distance": 1.7249711065706297,
+      "assignment_margin": 0.14100306665379225,
+      "silhouette": -0.0378167229362587,
+      "stability": 0.7058558558558558,
+      "assignment_confidence": "low stability",
+      "evidence_status": "verified Block C primary geography",
+      "representative_typical": false,
+      "transitional": true,
+      "outlier_score": -0.17177738877541104,
+      "evidence_completeness": 92.86,
+      "warnings": "weak assignment"
+    },
+    {
+      "seccion_id": "2907001022",
+      "display_name": "Sección 22 · El Chaparral",
+      "model": "kmeans",
+      "feature_set": "D_reduced",
+      "cluster_id": "Group 3",
+      "second_nearest_cluster": "Group 2",
+      "distance": 0.984929127461926,
+      "second_distance": 2.8583330334285537,
+      "assignment_margin": 1.8734039059666276,
+      "silhouette": 0.3383471106375366,
+      "stability": 0.9915540540540533,
+      "assignment_confidence": "high stability",
+      "evidence_status": "verified Block C primary geography",
+      "representative_typical": true,
+      "transitional": false,
+      "outlier_score": -1.1075173162485625,
+      "evidence_completeness": 92.86,
+      "warnings": ""
+    },
+    {
+      "seccion_id": "2907001023",
+      "display_name": "Sección 23 · Riviera Sur",
+      "model": "kmeans",
+      "feature_set": "D_reduced",
+      "cluster_id": "Group 3",
+      "second_nearest_cluster": "Group 2",
+      "distance": 1.3194685296279833,
+      "second_distance": 2.7649241217380935,
+      "assignment_margin": 1.4454555921101102,
+      "silhouette": 0.2643072208616877,
+      "stability": 0.9916666666666658,
+      "assignment_confidence": "high stability",
+      "evidence_status": "verified Block C primary geography",
+      "representative_typical": false,
+      "transitional": false,
+      "outlier_score": -0.5849437915389468,
+      "evidence_completeness": 92.86,
+      "warnings": ""
+    },
+    {
+      "seccion_id": "2907001024",
+      "display_name": "Sección 24 · Doña Ermita / Pol San Rafael",
+      "model": "kmeans",
+      "feature_set": "D_reduced",
+      "cluster_id": "Group 4",
+      "second_nearest_cluster": "Group 5",
+      "distance": 0.9819851885409201,
+      "second_distance": 2.4155440946720743,
+      "assignment_margin": 1.4335589061311542,
+      "silhouette": 0.28041423075271765,
+      "stability": 0.8388513513513517,
+      "assignment_confidence": "moderate stability",
+      "evidence_status": "verified Block C primary geography",
+      "representative_typical": false,
+      "transitional": false,
+      "outlier_score": -1.1121159510536676,
+      "evidence_completeness": 92.86,
+      "warnings": ""
+    },
+    {
+      "seccion_id": "2907001025",
+      "display_name": "Sección 25 · María Zambrano Este",
+      "model": "kmeans",
+      "feature_set": "D_reduced",
+      "cluster_id": "Group 4",
+      "second_nearest_cluster": "Group 5",
+      "distance": 1.7838430079956265,
+      "second_distance": 2.685143868811053,
+      "assignment_margin": 0.9013008608154265,
+      "silhouette": 0.18510493138231499,
+      "stability": 0.8200450450450452,
+      "assignment_confidence": "moderate stability",
+      "evidence_status": "verified Block C primary geography",
+      "representative_typical": false,
+      "transitional": false,
+      "outlier_score": 0.14044104018653386,
+      "evidence_completeness": 92.86,
+      "warnings": ""
+    },
+    {
+      "seccion_id": "2907001026",
+      "display_name": "Sección 26 · Mijas Golf",
+      "model": "kmeans",
+      "feature_set": "D_reduced",
+      "cluster_id": "Group 2",
+      "second_nearest_cluster": "Group 1",
+      "distance": 1.0457343651077116,
+      "second_distance": 3.427808292194014,
+      "assignment_margin": 2.3820739270863025,
+      "silhouette": 0.5080291148344961,
+      "stability": 0.970608108108106,
+      "assignment_confidence": "high stability",
+      "evidence_status": "verified Block C primary geography",
+      "representative_typical": false,
+      "transitional": false,
+      "outlier_score": -1.012535358513158,
+      "evidence_completeness": 92.86,
+      "warnings": ""
+    },
+    {
+      "seccion_id": "2907001027",
+      "display_name": "Sección 27 · Torrenueva",
+      "model": "kmeans",
+      "feature_set": "D_reduced",
+      "cluster_id": "Group 3",
+      "second_nearest_cluster": "Group 2",
+      "distance": 1.2224201677472715,
+      "second_distance": 3.847097521376342,
+      "assignment_margin": 2.62467735362907,
+      "silhouette": 0.45202905615477174,
+      "stability": 0.9916666666666658,
+      "assignment_confidence": "high stability",
+      "evidence_status": "verified Block C primary geography",
+      "representative_typical": false,
+      "transitional": false,
+      "outlier_score": -0.7365399987627651,
+      "evidence_completeness": 92.86,
+      "warnings": ""
+    },
+    {
+      "seccion_id": "2907001028",
+      "display_name": "Sección 28 · Cerros del Águila / La Ponderosa",
+      "model": "kmeans",
+      "feature_set": "D_reduced",
+      "cluster_id": "Group 2",
+      "second_nearest_cluster": "Group 3",
+      "distance": 1.409457356527671,
+      "second_distance": 2.7338392696166793,
+      "assignment_margin": 1.3243819130890084,
+      "silhouette": 0.34577065426483816,
+      "stability": 0.9689189189189168,
+      "assignment_confidence": "high stability",
+      "evidence_status": "verified Block C primary geography",
+      "representative_typical": false,
+      "transitional": false,
+      "outlier_score": -0.44437506285415435,
+      "evidence_completeness": 92.86,
+      "warnings": ""
+    },
+    {
+      "seccion_id": "2907001029",
+      "display_name": "Sección 29 · Doña Ermita Este",
+      "model": "kmeans",
+      "feature_set": "D_reduced",
+      "cluster_id": "Group 4",
+      "second_nearest_cluster": "Group 5",
+      "distance": 2.242507977093199,
+      "second_distance": 2.8203966997954484,
+      "assignment_margin": 0.5778887227022493,
+      "silhouette": 0.11794046386742332,
+      "stability": 0.7311936936936935,
+      "assignment_confidence": "low stability",
+      "evidence_status": "verified Block C primary geography",
+      "representative_typical": false,
+      "transitional": false,
+      "outlier_score": 0.8569072262627886,
+      "evidence_completeness": 92.86,
+      "warnings": ""
+    },
+    {
+      "seccion_id": "2907001030",
+      "display_name": "Sección 30 · Parque Los Olivos / La Noria",
+      "model": "kmeans",
+      "feature_set": "D_reduced",
+      "cluster_id": "Group 2",
+      "second_nearest_cluster": "Group 1",
+      "distance": 1.471878554986304,
+      "second_distance": 2.769618988121357,
+      "assignment_margin": 1.297740433135053,
+      "silhouette": 0.3279576772283495,
+      "stability": 0.970608108108106,
+      "assignment_confidence": "high stability",
+      "evidence_status": "verified Block C primary geography",
+      "representative_typical": false,
+      "transitional": false,
+      "outlier_score": -0.346868863333493,
+      "evidence_completeness": 92.86,
+      "warnings": ""
+    },
+    {
+      "seccion_id": "2907001031",
+      "display_name": "Sección 31 · Calahonda Norte",
+      "model": "kmeans",
+      "feature_set": "D_reduced",
+      "cluster_id": "Group 3",
+      "second_nearest_cluster": "Group 2",
+      "distance": 1.108904043690332,
+      "second_distance": 3.845428395993398,
+      "assignment_margin": 2.736524352303066,
+      "silhouette": 0.4801016179088894,
+      "stability": 0.9916666666666658,
+      "assignment_confidence": "high stability",
+      "evidence_status": "verified Block C primary geography",
+      "representative_typical": false,
+      "transitional": false,
+      "outlier_score": -0.9138599816279334,
+      "evidence_completeness": 88.1,
+      "warnings": ""
+    },
+    {
+      "seccion_id": "2907001032",
+      "display_name": "Sección 32 · Entrerríos",
+      "model": "kmeans",
+      "feature_set": "D_reduced",
+      "cluster_id": "Group 1",
+      "second_nearest_cluster": "Group 2",
+      "distance": 1.8983624462961701,
+      "second_distance": 3.090678289224332,
+      "assignment_margin": 1.192315842928162,
+      "silhouette": 0.14188790349912087,
+      "stability": 0.8931306306306285,
+      "assignment_confidence": "moderate stability",
+      "evidence_status": "verified Block C primary geography",
+      "representative_typical": false,
+      "transitional": false,
+      "outlier_score": 0.31932826881491205,
+      "evidence_completeness": 88.1,
+      "warnings": ""
+    },
+    {
+      "seccion_id": "2907001033",
+      "display_name": "Sección 33 · La Vega",
+      "model": "kmeans",
+      "feature_set": "D_reduced",
+      "cluster_id": "Group 4",
+      "second_nearest_cluster": "Group 5",
+      "distance": 2.363227278345128,
+      "second_distance": 3.6015328977255288,
+      "assignment_margin": 1.2383056193804007,
+      "silhouette": 0.2237927072682475,
+      "stability": 0.8450450450450452,
+      "assignment_confidence": "moderate stability",
+      "evidence_status": "verified Block C primary geography",
+      "representative_typical": false,
+      "transitional": false,
+      "outlier_score": 1.0454790666715565,
+      "evidence_completeness": 88.1,
+      "warnings": ""
+    },
+    {
+      "seccion_id": "2907001034",
+      "display_name": "Sección 34 · Riviera Norte",
+      "model": "kmeans",
+      "feature_set": "D_reduced",
+      "cluster_id": "Group 3",
+      "second_nearest_cluster": "Group 2",
+      "distance": 2.573651097901125,
+      "second_distance": 4.356388690642247,
+      "assignment_margin": 1.7827375927411224,
+      "silhouette": 0.2756726865224046,
+      "stability": 0.9916666666666658,
+      "assignment_confidence": "high stability",
+      "evidence_status": "verified Block C primary geography",
+      "representative_typical": false,
+      "transitional": false,
+      "outlier_score": 1.3741755262104391,
+      "evidence_completeness": 88.1,
+      "warnings": ""
+    },
+    {
+      "seccion_id": "2907001035",
+      "display_name": "Sección 35 · Media Legua / Puebla Tranquila",
+      "model": "kmeans",
+      "feature_set": "D_reduced",
+      "cluster_id": "Group 2",
+      "second_nearest_cluster": "Group 1",
+      "distance": 1.6005585777870208,
+      "second_distance": 2.843554678214562,
+      "assignment_margin": 1.2429961004275412,
+      "silhouette": 0.3066911555101934,
+      "stability": 0.9666666666666647,
+      "assignment_confidence": "high stability",
+      "evidence_status": "verified Block C primary geography",
+      "representative_typical": false,
+      "transitional": false,
+      "outlier_score": -0.14586182906700149,
+      "evidence_completeness": 88.1,
+      "warnings": ""
+    },
+    {
+      "seccion_id": "2907001036",
+      "display_name": "Sección 36 · Sierrezuela (Las Lagunas)",
+      "model": "kmeans",
+      "feature_set": "D_reduced",
+      "cluster_id": "Group 2",
+      "second_nearest_cluster": "Group 3",
+      "distance": 1.451954657082671,
+      "second_distance": 3.1075893970459036,
+      "assignment_margin": 1.6556347399632327,
+      "silhouette": 0.40319382092624506,
+      "stability": 0.970608108108106,
+      "assignment_confidence": "high stability",
+      "evidence_status": "verified Block C primary geography",
+      "representative_typical": false,
+      "transitional": false,
+      "outlier_score": -0.3779913603728342,
+      "evidence_completeness": 88.1,
+      "warnings": ""
+    },
+    {
+      "seccion_id": "2907001037",
+      "display_name": "Sección 37 · María Zambrano Oeste",
+      "model": "kmeans",
+      "feature_set": "D_reduced",
+      "cluster_id": "Group 5",
+      "second_nearest_cluster": "Group 4",
+      "distance": 1.8752830434173673,
+      "second_distance": 2.310158826619688,
+      "assignment_margin": 0.4348757832023209,
+      "silhouette": 0.04954410697108084,
+      "stability": 0.7286036036036034,
+      "assignment_confidence": "low stability",
+      "evidence_status": "verified Block C primary geography",
+      "representative_typical": false,
+      "transitional": true,
+      "outlier_score": 0.2832766562620128,
+      "evidence_completeness": 88.1,
+      "warnings": "weak assignment"
+    }
+  ],
+  "stability": {
+    "runs": [
+      {
+        "run": 1,
+        "test": "random_initialization",
+        "adjusted_rand_index": 0.6908201026620509
+      },
+      {
+        "run": 1,
+        "test": "repeated_80pct_subsample",
+        "adjusted_rand_index": 0.7214205044547622
+      },
+      {
+        "run": 2,
+        "test": "random_initialization",
+        "adjusted_rand_index": 0.5985706290093425
+      },
+      {
+        "run": 2,
+        "test": "repeated_80pct_subsample",
+        "adjusted_rand_index": 0.5465398837823561
+      },
+      {
+        "run": 3,
+        "test": "random_initialization",
+        "adjusted_rand_index": 0.634793337446021
+      },
+      {
+        "run": 3,
+        "test": "repeated_80pct_subsample",
+        "adjusted_rand_index": 0.5115718214512376
+      },
+      {
+        "run": 4,
+        "test": "random_initialization",
+        "adjusted_rand_index": 0.5985706290093425
+      },
+      {
+        "run": 4,
+        "test": "repeated_80pct_subsample",
+        "adjusted_rand_index": 0.6663198057578911
+      },
+      {
+        "run": 5,
+        "test": "random_initialization",
+        "adjusted_rand_index": 0.5481356372612707
+      },
+      {
+        "run": 5,
+        "test": "repeated_80pct_subsample",
+        "adjusted_rand_index": 0.57697804339353
+      },
+      {
+        "run": 6,
+        "test": "random_initialization",
+        "adjusted_rand_index": 0.5528619035412166
+      },
+      {
+        "run": 6,
+        "test": "repeated_80pct_subsample",
+        "adjusted_rand_index": 0.6533700137551581
+      },
+      {
+        "run": 7,
+        "test": "random_initialization",
+        "adjusted_rand_index": 0.6131561751252451
+      },
+      {
+        "run": 7,
+        "test": "repeated_80pct_subsample",
+        "adjusted_rand_index": 0.5372333348117266
+      },
+      {
+        "run": 8,
+        "test": "random_initialization",
+        "adjusted_rand_index": 0.7165836844121026
+      },
+      {
+        "run": 8,
+        "test": "repeated_80pct_subsample",
+        "adjusted_rand_index": 0.5087450529809779
+      },
+      {
+        "run": 9,
+        "test": "random_initialization",
+        "adjusted_rand_index": 0.57697804339353
+      },
+      {
+        "run": 9,
+        "test": "repeated_80pct_subsample",
+        "adjusted_rand_index": 0.5890791300323924
+      },
+      {
+        "run": 10,
+        "test": "random_initialization",
+        "adjusted_rand_index": 0.913472781603222
+      },
+      {
+        "run": 10,
+        "test": "repeated_80pct_subsample",
+        "adjusted_rand_index": 0.5827557852695877
+      },
+      {
+        "run": 11,
+        "test": "random_initialization",
+        "adjusted_rand_index": 0.5835988866927514
+      },
+      {
+        "run": 11,
+        "test": "repeated_80pct_subsample",
+        "adjusted_rand_index": 0.634793337446021
+      },
+      {
+        "run": 12,
+        "test": "random_initialization",
+        "adjusted_rand_index": 0.7692607509419255
+      },
+      {
+        "run": 12,
+        "test": "repeated_80pct_subsample",
+        "adjusted_rand_index": 0.44615762136517934
+      },
+      {
+        "run": 13,
+        "test": "random_initialization",
+        "adjusted_rand_index": 0.6676783004552352
+      },
+      {
+        "run": 13,
+        "test": "repeated_80pct_subsample",
+        "adjusted_rand_index": 0.6804441702652684
+      },
+      {
+        "run": 14,
+        "test": "random_initialization",
+        "adjusted_rand_index": 0.6272441555086753
+      },
+      {
+        "run": 14,
+        "test": "repeated_80pct_subsample",
+        "adjusted_rand_index": 0.8646046612938357
+      },
+      {
+        "run": 15,
+        "test": "random_initialization",
+        "adjusted_rand_index": 0.6272441555086753
+      },
+      {
+        "run": 15,
+        "test": "repeated_80pct_subsample",
+        "adjusted_rand_index": 0.6533700137551581
+      },
+      {
+        "run": 16,
+        "test": "random_initialization",
+        "adjusted_rand_index": 0.8365596985838638
+      },
+      {
+        "run": 16,
+        "test": "repeated_80pct_subsample",
+        "adjusted_rand_index": 0.5962063141483696
+      },
+      {
+        "run": 17,
+        "test": "random_initialization",
+        "adjusted_rand_index": 0.6272441555086753
+      },
+      {
+        "run": 17,
+        "test": "repeated_80pct_subsample",
+        "adjusted_rand_index": 0.6635052617903079
+      },
+      {
+        "run": 18,
+        "test": "random_initialization",
+        "adjusted_rand_index": 0.57697804339353
+      },
+      {
+        "run": 18,
+        "test": "repeated_80pct_subsample",
+        "adjusted_rand_index": 0.6215567006315137
+      },
+      {
+        "run": 19,
+        "test": "random_initialization",
+        "adjusted_rand_index": 0.6250487202806289
+      },
+      {
+        "run": 19,
+        "test": "repeated_80pct_subsample",
+        "adjusted_rand_index": 0.6272441555086753
+      },
+      {
+        "run": 20,
+        "test": "random_initialization",
+        "adjusted_rand_index": 0.6272441555086753
+      },
+      {
+        "run": 20,
+        "test": "repeated_80pct_subsample",
+        "adjusted_rand_index": 0.6430485582591917
+      },
+      {
+        "run": 21,
+        "test": "random_initialization",
+        "adjusted_rand_index": 0.8365596985838638
+      },
+      {
+        "run": 21,
+        "test": "repeated_80pct_subsample",
+        "adjusted_rand_index": 0.6663198057578911
+      },
+      {
+        "run": 22,
+        "test": "random_initialization",
+        "adjusted_rand_index": 0.6272441555086753
+      },
+      {
+        "run": 22,
+        "test": "repeated_80pct_subsample",
+        "adjusted_rand_index": 0.5619806488332385
+      },
+      {
+        "run": 23,
+        "test": "random_initialization",
+        "adjusted_rand_index": 0.7692607509419255
+      },
+      {
+        "run": 23,
+        "test": "repeated_80pct_subsample",
+        "adjusted_rand_index": 0.6228613032398981
+      },
+      {
+        "run": 24,
+        "test": "random_initialization",
+        "adjusted_rand_index": 0.6635052617903079
+      },
+      {
+        "run": 24,
+        "test": "repeated_80pct_subsample",
+        "adjusted_rand_index": 0.8318960077405242
+      },
+      {
+        "run": 25,
+        "test": "random_initialization",
+        "adjusted_rand_index": 0.574875526618154
+      },
+      {
+        "run": 25,
+        "test": "repeated_80pct_subsample",
+        "adjusted_rand_index": 0.6430485582591917
+      },
+      {
+        "run": 26,
+        "test": "random_initialization",
+        "adjusted_rand_index": 0.5524781979929007
+      },
+      {
+        "run": 26,
+        "test": "repeated_80pct_subsample",
+        "adjusted_rand_index": 0.6908201026620509
+      },
+      {
+        "run": 27,
+        "test": "random_initialization",
+        "adjusted_rand_index": 0.5619806488332385
+      },
+      {
+        "run": 27,
+        "test": "repeated_80pct_subsample",
+        "adjusted_rand_index": 0.6908201026620509
+      },
+      {
+        "run": 28,
+        "test": "random_initialization",
+        "adjusted_rand_index": 0.5115718214512376
+      },
+      {
+        "run": 28,
+        "test": "repeated_80pct_subsample",
+        "adjusted_rand_index": 0.6294140307323546
+      },
+      {
+        "run": 29,
+        "test": "random_initialization",
+        "adjusted_rand_index": 0.4963831699696101
+      },
+      {
+        "run": 29,
+        "test": "repeated_80pct_subsample",
+        "adjusted_rand_index": 0.5843227371377505
+      },
+      {
+        "run": 30,
+        "test": "random_initialization",
+        "adjusted_rand_index": 0.5465338950593642
+      },
+      {
+        "run": 30,
+        "test": "repeated_80pct_subsample",
+        "adjusted_rand_index": 0.5894702491025781
+      },
+      {
+        "run": 31,
+        "test": "random_initialization",
+        "adjusted_rand_index": 0.6504532107749266
+      },
+      {
+        "run": 31,
+        "test": "repeated_80pct_subsample",
+        "adjusted_rand_index": 0.5069710055521284
+      },
+      {
+        "run": 32,
+        "test": "random_initialization",
+        "adjusted_rand_index": 0.6272441555086753
+      },
+      {
+        "run": 32,
+        "test": "repeated_80pct_subsample",
+        "adjusted_rand_index": 0.5542553650848482
+      },
+      {
+        "run": 33,
+        "test": "random_initialization",
+        "adjusted_rand_index": 0.6113167004894354
+      },
+      {
+        "run": 33,
+        "test": "repeated_80pct_subsample",
+        "adjusted_rand_index": 0.7692607509419255
+      },
+      {
+        "run": 34,
+        "test": "random_initialization",
+        "adjusted_rand_index": 0.8365596985838638
+      },
+      {
+        "run": 34,
+        "test": "repeated_80pct_subsample",
+        "adjusted_rand_index": 0.4584186451753431
+      },
+      {
+        "run": 35,
+        "test": "random_initialization",
+        "adjusted_rand_index": 0.5985706290093425
+      },
+      {
+        "run": 35,
+        "test": "repeated_80pct_subsample",
+        "adjusted_rand_index": 0.6533700137551581
+      },
+      {
+        "run": 36,
+        "test": "random_initialization",
+        "adjusted_rand_index": 0.7734005125309473
+      },
+      {
+        "run": 36,
+        "test": "repeated_80pct_subsample",
+        "adjusted_rand_index": 0.57697804339353
+      },
+      {
+        "run": 37,
+        "test": "random_initialization",
+        "adjusted_rand_index": 0.6908201026620509
+      },
+      {
+        "run": 37,
+        "test": "repeated_80pct_subsample",
+        "adjusted_rand_index": 0.5698971025100099
+      },
+      {
+        "run": 38,
+        "test": "random_initialization",
+        "adjusted_rand_index": 0.5542728071276195
+      },
+      {
+        "run": 38,
+        "test": "repeated_80pct_subsample",
+        "adjusted_rand_index": 0.5985706290093425
+      },
+      {
+        "run": 39,
+        "test": "random_initialization",
+        "adjusted_rand_index": 0.5890791300323924
+      },
+      {
+        "run": 39,
+        "test": "repeated_80pct_subsample",
+        "adjusted_rand_index": 0.6533700137551581
+      },
+      {
+        "run": 40,
+        "test": "random_initialization",
+        "adjusted_rand_index": 0.8365596985838638
+      },
+      {
+        "run": 40,
+        "test": "repeated_80pct_subsample",
+        "adjusted_rand_index": 0.6113167004894354
+      },
+      {
+        "run": 41,
+        "test": "random_initialization",
+        "adjusted_rand_index": 0.5962063141483696
+      },
+      {
+        "run": 41,
+        "test": "repeated_80pct_subsample",
+        "adjusted_rand_index": 0.6430485582591917
+      },
+      {
+        "run": 42,
+        "test": "random_initialization",
+        "adjusted_rand_index": 0.5465338950593642
+      },
+      {
+        "run": 42,
+        "test": "repeated_80pct_subsample",
+        "adjusted_rand_index": 0.6822215860292012
+      },
+      {
+        "run": 43,
+        "test": "random_initialization",
+        "adjusted_rand_index": 0.6074028377544726
+      },
+      {
+        "run": 43,
+        "test": "repeated_80pct_subsample",
+        "adjusted_rand_index": 0.5041978576450639
+      },
+      {
+        "run": 44,
+        "test": "random_initialization",
+        "adjusted_rand_index": 0.5115718214512376
+      },
+      {
+        "run": 44,
+        "test": "repeated_80pct_subsample",
+        "adjusted_rand_index": 0.5831299057347805
+      },
+      {
+        "run": 45,
+        "test": "random_initialization",
+        "adjusted_rand_index": 0.7692607509419255
+      },
+      {
+        "run": 45,
+        "test": "repeated_80pct_subsample",
+        "adjusted_rand_index": 0.6215567006315137
+      },
+      {
+        "run": 46,
+        "test": "random_initialization",
+        "adjusted_rand_index": 0.6315587897357334
+      },
+      {
+        "run": 46,
+        "test": "repeated_80pct_subsample",
+        "adjusted_rand_index": 0.6113167004894354
+      },
+      {
+        "run": 47,
+        "test": "random_initialization",
+        "adjusted_rand_index": 0.57697804339353
+      },
+      {
+        "run": 47,
+        "test": "repeated_80pct_subsample",
+        "adjusted_rand_index": 0.5161011721159778
+      },
+      {
+        "run": 48,
+        "test": "random_initialization",
+        "adjusted_rand_index": 0.7115759386774068
+      },
+      {
+        "run": 48,
+        "test": "repeated_80pct_subsample",
+        "adjusted_rand_index": 0.5581177000788673
+      },
+      {
+        "run": 49,
+        "test": "random_initialization",
+        "adjusted_rand_index": 0.5985706290093425
+      },
+      {
+        "run": 49,
+        "test": "repeated_80pct_subsample",
+        "adjusted_rand_index": 0.6635052617903079
+      },
+      {
+        "run": 50,
+        "test": "random_initialization",
+        "adjusted_rand_index": 0.5894702491025781
+      },
+      {
+        "run": 50,
+        "test": "repeated_80pct_subsample",
+        "adjusted_rand_index": 0.6272441555086753
+      },
+      {
+        "run": 51,
+        "test": "random_initialization",
+        "adjusted_rand_index": 0.5985706290093425
+      },
+      {
+        "run": 51,
+        "test": "repeated_80pct_subsample",
+        "adjusted_rand_index": 0.5427627554141686
+      },
+      {
+        "run": 52,
+        "test": "random_initialization",
+        "adjusted_rand_index": 0.6908201026620509
+      },
+      {
+        "run": 52,
+        "test": "repeated_80pct_subsample",
+        "adjusted_rand_index": 0.6414698603129326
+      },
+      {
+        "run": 53,
+        "test": "random_initialization",
+        "adjusted_rand_index": 0.5962063141483696
+      },
+      {
+        "run": 53,
+        "test": "repeated_80pct_subsample",
+        "adjusted_rand_index": 0.7692607509419255
+      },
+      {
+        "run": 54,
+        "test": "random_initialization",
+        "adjusted_rand_index": 0.5524781979929007
+      },
+      {
+        "run": 54,
+        "test": "repeated_80pct_subsample",
+        "adjusted_rand_index": 0.48339327268880894
+      },
+      {
+        "run": 55,
+        "test": "random_initialization",
+        "adjusted_rand_index": 0.5153875786500022
+      },
+      {
+        "run": 55,
+        "test": "repeated_80pct_subsample",
+        "adjusted_rand_index": 0.6635052617903079
+      },
+      {
+        "run": 56,
+        "test": "random_initialization",
+        "adjusted_rand_index": 0.5894702491025781
+      },
+      {
+        "run": 56,
+        "test": "repeated_80pct_subsample",
+        "adjusted_rand_index": 0.6908201026620509
+      },
+      {
+        "run": 57,
+        "test": "random_initialization",
+        "adjusted_rand_index": 0.6635052617903079
+      },
+      {
+        "run": 57,
+        "test": "repeated_80pct_subsample",
+        "adjusted_rand_index": 0.4434761847916915
+      },
+      {
+        "run": 58,
+        "test": "random_initialization",
+        "adjusted_rand_index": 0.6272441555086753
+      },
+      {
+        "run": 58,
+        "test": "repeated_80pct_subsample",
+        "adjusted_rand_index": 0.6635052617903079
+      },
+      {
+        "run": 59,
+        "test": "random_initialization",
+        "adjusted_rand_index": 0.6272441555086753
+      },
+      {
+        "run": 59,
+        "test": "repeated_80pct_subsample",
+        "adjusted_rand_index": 0.6092018403680736
+      },
+      {
+        "run": 60,
+        "test": "random_initialization",
+        "adjusted_rand_index": 0.7732669475296822
+      },
+      {
+        "run": 60,
+        "test": "repeated_80pct_subsample",
+        "adjusted_rand_index": 0.5465338950593642
+      },
+      {
+        "run": 61,
+        "test": "random_initialization",
+        "adjusted_rand_index": 0.461509000382995
+      },
+      {
+        "run": 61,
+        "test": "repeated_80pct_subsample",
+        "adjusted_rand_index": 0.5528619035412166
+      },
+      {
+        "run": 62,
+        "test": "random_initialization",
+        "adjusted_rand_index": 0.7706117880053386
+      },
+      {
+        "run": 62,
+        "test": "repeated_80pct_subsample",
+        "adjusted_rand_index": 0.5526218383713757
+      },
+      {
+        "run": 63,
+        "test": "random_initialization",
+        "adjusted_rand_index": 0.556678021848937
+      },
+      {
+        "run": 63,
+        "test": "repeated_80pct_subsample",
+        "adjusted_rand_index": 0.5133793787997849
+      },
+      {
+        "run": 64,
+        "test": "random_initialization",
+        "adjusted_rand_index": 0.5985706290093425
+      },
+      {
+        "run": 64,
+        "test": "repeated_80pct_subsample",
+        "adjusted_rand_index": 0.498556908018572
+      },
+      {
+        "run": 65,
+        "test": "random_initialization",
+        "adjusted_rand_index": 0.5479854340420532
+      },
+      {
+        "run": 65,
+        "test": "repeated_80pct_subsample",
+        "adjusted_rand_index": 0.8585117137708232
+      },
+      {
+        "run": 66,
+        "test": "random_initialization",
+        "adjusted_rand_index": 0.6131561751252451
+      },
+      {
+        "run": 66,
+        "test": "repeated_80pct_subsample",
+        "adjusted_rand_index": 0.795144157814871
+      },
+      {
+        "run": 67,
+        "test": "random_initialization",
+        "adjusted_rand_index": 0.7195382269658026
+      },
+      {
+        "run": 67,
+        "test": "repeated_80pct_subsample",
+        "adjusted_rand_index": 0.6447289457891578
+      },
+      {
+        "run": 68,
+        "test": "random_initialization",
+        "adjusted_rand_index": 0.6058204495257893
+      },
+      {
+        "run": 68,
+        "test": "repeated_80pct_subsample",
+        "adjusted_rand_index": 0.5465338950593642
+      },
+      {
+        "run": 69,
+        "test": "random_initialization",
+        "adjusted_rand_index": 0.5914277534661159
+      },
+      {
+        "run": 69,
+        "test": "repeated_80pct_subsample",
+        "adjusted_rand_index": 0.5242924428225909
+      },
+      {
+        "run": 70,
+        "test": "random_initialization",
+        "adjusted_rand_index": 0.7195382269658026
+      },
+      {
+        "run": 70,
+        "test": "repeated_80pct_subsample",
+        "adjusted_rand_index": 0.4582701062215478
+      },
+      {
+        "run": 71,
+        "test": "random_initialization",
+        "adjusted_rand_index": 0.4399272095620166
+      },
+      {
+        "run": 71,
+        "test": "repeated_80pct_subsample",
+        "adjusted_rand_index": 0.5097133041593391
+      },
+      {
+        "run": 72,
+        "test": "random_initialization",
+        "adjusted_rand_index": 0.6533700137551581
+      },
+      {
+        "run": 72,
+        "test": "repeated_80pct_subsample",
+        "adjusted_rand_index": 0.7692607509419255
+      },
+      {
+        "run": 73,
+        "test": "random_initialization",
+        "adjusted_rand_index": 0.5962063141483696
+      },
+      {
+        "run": 73,
+        "test": "repeated_80pct_subsample",
+        "adjusted_rand_index": 0.5033961036320006
+      },
+      {
+        "run": 74,
+        "test": "random_initialization",
+        "adjusted_rand_index": 0.6918093475242942
+      },
+      {
+        "run": 74,
+        "test": "repeated_80pct_subsample",
+        "adjusted_rand_index": 0.47647951441578146
+      },
+      {
+        "run": 75,
+        "test": "random_initialization",
+        "adjusted_rand_index": 0.48339327268880894
+      },
+      {
+        "run": 75,
+        "test": "repeated_80pct_subsample",
+        "adjusted_rand_index": 0.6272441555086753
+      },
+      {
+        "run": 76,
+        "test": "random_initialization",
+        "adjusted_rand_index": 0.5821307566821433
+      },
+      {
+        "run": 76,
+        "test": "repeated_80pct_subsample",
+        "adjusted_rand_index": 0.5161011721159778
+      },
+      {
+        "run": 77,
+        "test": "random_initialization",
+        "adjusted_rand_index": 0.7827141580492787
+      },
+      {
+        "run": 77,
+        "test": "repeated_80pct_subsample",
+        "adjusted_rand_index": 0.6693476318141197
+      },
+      {
+        "run": 78,
+        "test": "random_initialization",
+        "adjusted_rand_index": 0.6635052617903079
+      },
+      {
+        "run": 78,
+        "test": "repeated_80pct_subsample",
+        "adjusted_rand_index": 1.0
+      },
+      {
+        "run": 79,
+        "test": "random_initialization",
+        "adjusted_rand_index": 0.6058204495257893
+      },
+      {
+        "run": 79,
+        "test": "repeated_80pct_subsample",
+        "adjusted_rand_index": 0.45521472392638035
+      },
+      {
+        "run": 80,
+        "test": "random_initialization",
+        "adjusted_rand_index": 0.7132647350066733
+      },
+      {
+        "run": 80,
+        "test": "repeated_80pct_subsample",
+        "adjusted_rand_index": 0.5843227371377505
+      },
+      {
+        "run": 81,
+        "test": "random_initialization",
+        "adjusted_rand_index": 0.5985706290093425
+      },
+      {
+        "run": 81,
+        "test": "repeated_80pct_subsample",
+        "adjusted_rand_index": 0.5337123944498663
+      },
+      {
+        "run": 82,
+        "test": "random_initialization",
+        "adjusted_rand_index": 0.5542728071276195
+      },
+      {
+        "run": 82,
+        "test": "repeated_80pct_subsample",
+        "adjusted_rand_index": 0.5248897829901982
+      },
+      {
+        "run": 83,
+        "test": "random_initialization",
+        "adjusted_rand_index": 0.6250487202806289
+      },
+      {
+        "run": 83,
+        "test": "repeated_80pct_subsample",
+        "adjusted_rand_index": 0.4835043289217743
+      },
+      {
+        "run": 84,
+        "test": "random_initialization",
+        "adjusted_rand_index": 0.7195382269658026
+      },
+      {
+        "run": 84,
+        "test": "repeated_80pct_subsample",
+        "adjusted_rand_index": 0.57697804339353
+      },
+      {
+        "run": 85,
+        "test": "random_initialization",
+        "adjusted_rand_index": 0.5619722493316925
+      },
+      {
+        "run": 85,
+        "test": "repeated_80pct_subsample",
+        "adjusted_rand_index": 0.6430485582591917
+      },
+      {
+        "run": 86,
+        "test": "random_initialization",
+        "adjusted_rand_index": 0.6533700137551581
+      },
+      {
+        "run": 86,
+        "test": "repeated_80pct_subsample",
+        "adjusted_rand_index": 0.5067741232846875
+      },
+      {
+        "run": 87,
+        "test": "random_initialization",
+        "adjusted_rand_index": 0.913472781603222
+      },
+      {
+        "run": 87,
+        "test": "repeated_80pct_subsample",
+        "adjusted_rand_index": 0.6635052617903079
+      },
+      {
+        "run": 88,
+        "test": "random_initialization",
+        "adjusted_rand_index": 0.6521571152607856
+      },
+      {
+        "run": 88,
+        "test": "repeated_80pct_subsample",
+        "adjusted_rand_index": 0.5465338950593642
+      },
+      {
+        "run": 89,
+        "test": "random_initialization",
+        "adjusted_rand_index": 0.45523700462148786
+      },
+      {
+        "run": 89,
+        "test": "repeated_80pct_subsample",
+        "adjusted_rand_index": 0.5463160559916085
+      },
+      {
+        "run": 90,
+        "test": "random_initialization",
+        "adjusted_rand_index": 0.5985706290093425
+      },
+      {
+        "run": 90,
+        "test": "repeated_80pct_subsample",
+        "adjusted_rand_index": 0.5087450529809779
+      },
+      {
+        "run": 91,
+        "test": "random_initialization",
+        "adjusted_rand_index": 0.7585644371941273
+      },
+      {
+        "run": 91,
+        "test": "repeated_80pct_subsample",
+        "adjusted_rand_index": 0.6074028377544726
+      },
+      {
+        "run": 92,
+        "test": "random_initialization",
+        "adjusted_rand_index": 0.6663198057578911
+      },
+      {
+        "run": 92,
+        "test": "repeated_80pct_subsample",
+        "adjusted_rand_index": 0.540771386627519
+      },
+      {
+        "run": 93,
+        "test": "random_initialization",
+        "adjusted_rand_index": 0.5619806488332385
+      },
+      {
+        "run": 93,
+        "test": "repeated_80pct_subsample",
+        "adjusted_rand_index": 0.47647951441578146
+      },
+      {
+        "run": 94,
+        "test": "random_initialization",
+        "adjusted_rand_index": 0.5115718214512376
+      },
+      {
+        "run": 94,
+        "test": "repeated_80pct_subsample",
+        "adjusted_rand_index": 0.6635052617903079
+      },
+      {
+        "run": 95,
+        "test": "random_initialization",
+        "adjusted_rand_index": 0.6272441555086753
+      },
+      {
+        "run": 95,
+        "test": "repeated_80pct_subsample",
+        "adjusted_rand_index": 0.461509000382995
+      },
+      {
+        "run": 96,
+        "test": "random_initialization",
+        "adjusted_rand_index": 0.5264148575730958
+      },
+      {
+        "run": 96,
+        "test": "repeated_80pct_subsample",
+        "adjusted_rand_index": 0.5890791300323924
+      },
+      {
+        "run": 97,
+        "test": "random_initialization",
+        "adjusted_rand_index": 0.7859678338226916
+      },
+      {
+        "run": 97,
+        "test": "repeated_80pct_subsample",
+        "adjusted_rand_index": 0.45523700462148786
+      },
+      {
+        "run": 98,
+        "test": "random_initialization",
+        "adjusted_rand_index": 0.4806181584030908
+      },
+      {
+        "run": 98,
+        "test": "repeated_80pct_subsample",
+        "adjusted_rand_index": 1.0
+      },
+      {
+        "run": 99,
+        "test": "random_initialization",
+        "adjusted_rand_index": 0.6215567006315137
+      },
+      {
+        "run": 99,
+        "test": "repeated_80pct_subsample",
+        "adjusted_rand_index": 0.5827557852695877
+      },
+      {
+        "run": 100,
+        "test": "random_initialization",
+        "adjusted_rand_index": 0.6908201026620509
+      },
+      {
+        "run": 100,
+        "test": "repeated_80pct_subsample",
+        "adjusted_rand_index": 0.5890791300323924
+      },
+      {
+        "run": 101,
+        "test": "random_initialization",
+        "adjusted_rand_index": 0.5713423709722837
+      },
+      {
+        "run": 101,
+        "test": "repeated_80pct_subsample",
+        "adjusted_rand_index": 0.5542728071276195
+      },
+      {
+        "run": 102,
+        "test": "random_initialization",
+        "adjusted_rand_index": 0.531665733844233
+      },
+      {
+        "run": 102,
+        "test": "repeated_80pct_subsample",
+        "adjusted_rand_index": 0.7884890216967649
+      },
+      {
+        "run": 103,
+        "test": "random_initialization",
+        "adjusted_rand_index": 0.7692607509419255
+      },
+      {
+        "run": 103,
+        "test": "repeated_80pct_subsample",
+        "adjusted_rand_index": 0.580549884897711
+      },
+      {
+        "run": 104,
+        "test": "random_initialization",
+        "adjusted_rand_index": 0.7827141580492787
+      },
+      {
+        "run": 104,
+        "test": "repeated_80pct_subsample",
+        "adjusted_rand_index": 0.7571831222918682
+      },
+      {
+        "run": 105,
+        "test": "random_initialization",
+        "adjusted_rand_index": 0.5542728071276195
+      },
+      {
+        "run": 105,
+        "test": "repeated_80pct_subsample",
+        "adjusted_rand_index": 0.913472781603222
+      },
+      {
+        "run": 106,
+        "test": "random_initialization",
+        "adjusted_rand_index": 0.5894702491025781
+      },
+      {
+        "run": 106,
+        "test": "repeated_80pct_subsample",
+        "adjusted_rand_index": 0.6447289457891578
+      },
+      {
+        "run": 107,
+        "test": "random_initialization",
+        "adjusted_rand_index": 0.6908201026620509
+      },
+      {
+        "run": 107,
+        "test": "repeated_80pct_subsample",
+        "adjusted_rand_index": 0.5087450529809779
+      },
+      {
+        "run": 108,
+        "test": "random_initialization",
+        "adjusted_rand_index": 0.6272441555086753
+      },
+      {
+        "run": 108,
+        "test": "repeated_80pct_subsample",
+        "adjusted_rand_index": 0.6131561751252451
+      },
+      {
+        "run": 109,
+        "test": "random_initialization",
+        "adjusted_rand_index": 0.6635052617903079
+      },
+      {
+        "run": 109,
+        "test": "repeated_80pct_subsample",
+        "adjusted_rand_index": 0.5161011721159778
+      },
+      {
+        "run": 110,
+        "test": "random_initialization",
+        "adjusted_rand_index": 0.5962063141483696
+      },
+      {
+        "run": 110,
+        "test": "repeated_80pct_subsample",
+        "adjusted_rand_index": 0.5242924428225909
+      },
+      {
+        "run": 111,
+        "test": "random_initialization",
+        "adjusted_rand_index": 0.6822215860292012
+      },
+      {
+        "run": 111,
+        "test": "repeated_80pct_subsample",
+        "adjusted_rand_index": 0.4806181584030908
+      },
+      {
+        "run": 112,
+        "test": "random_initialization",
+        "adjusted_rand_index": 0.727618502310744
+      },
+      {
+        "run": 112,
+        "test": "repeated_80pct_subsample",
+        "adjusted_rand_index": 0.5063258344488104
+      },
+      {
+        "run": 113,
+        "test": "random_initialization",
+        "adjusted_rand_index": 0.6635052617903079
+      },
+      {
+        "run": 113,
+        "test": "repeated_80pct_subsample",
+        "adjusted_rand_index": 0.718214512375714
+      },
+      {
+        "run": 114,
+        "test": "random_initialization",
+        "adjusted_rand_index": 0.574875526618154
+      },
+      {
+        "run": 114,
+        "test": "repeated_80pct_subsample",
+        "adjusted_rand_index": 0.5843227371377505
+      },
+      {
+        "run": 115,
+        "test": "random_initialization",
+        "adjusted_rand_index": 0.6430485582591917
+      },
+      {
+        "run": 115,
+        "test": "repeated_80pct_subsample",
+        "adjusted_rand_index": 0.5481356372612707
+      },
+      {
+        "run": 116,
+        "test": "random_initialization",
+        "adjusted_rand_index": 0.6272441555086753
+      },
+      {
+        "run": 116,
+        "test": "repeated_80pct_subsample",
+        "adjusted_rand_index": 0.6533700137551581
+      },
+      {
+        "run": 117,
+        "test": "random_initialization",
+        "adjusted_rand_index": 0.5454585057721629
+      },
+      {
+        "run": 117,
+        "test": "repeated_80pct_subsample",
+        "adjusted_rand_index": 0.6090720074680698
+      },
+      {
+        "run": 118,
+        "test": "random_initialization",
+        "adjusted_rand_index": 0.8771862632452445
+      },
+      {
+        "run": 118,
+        "test": "repeated_80pct_subsample",
+        "adjusted_rand_index": 0.39453717754172984
+      },
+      {
+        "run": 119,
+        "test": "random_initialization",
+        "adjusted_rand_index": 0.6635052617903079
+      },
+      {
+        "run": 119,
+        "test": "repeated_80pct_subsample",
+        "adjusted_rand_index": 0.49343436517845607
+      },
+      {
+        "run": 120,
+        "test": "random_initialization",
+        "adjusted_rand_index": 0.6272441555086753
+      },
+      {
+        "run": 120,
+        "test": "repeated_80pct_subsample",
+        "adjusted_rand_index": 0.6199118263921585
+      },
+      {
+        "run": 1,
+        "test": "without_income",
+        "adjusted_rand_index": 0.6908201026620509
+      },
+      {
+        "run": 1,
+        "test": "without_urban",
+        "adjusted_rand_index": 0.4390764539316053
+      },
+      {
+        "run": 1,
+        "test": "without_age",
+        "adjusted_rand_index": 0.5996520558407943
+      },
+      {
+        "run": 1,
+        "test": "without_electoral",
+        "adjusted_rand_index": 0.6051945903469953
+      },
+      {
+        "run": 1,
+        "test": "method_ward",
+        "adjusted_rand_index": 0.6250487202806289
+      },
+      {
+        "run": 1,
+        "test": "method_pam",
+        "adjusted_rand_index": 0.5311077389984825
+      }
+    ],
+    "meanRandomInitializationARI": 0.6355224348577322,
+    "meanSubsampleARI": 0.6034784698197768
+  },
+  "outliers": [
+    {
+      "seccion_id": "2907001006",
+      "display_name": "Sección 06 · María Barranco Sur",
+      "cluster_id": "Group 5",
+      "outlier_score": 3.1078548818983482,
+      "silhouette": 0.05565739477243673,
+      "distance_from_centroid": 3.683512251930608,
+      "driver_features": "growth_percent_2023_2024|pct_higher_studies|building_intensity",
+      "retain_in_closest_group": true,
+      "client_singularity_flag": true
+    },
+    {
+      "seccion_id": "2907001014",
+      "display_name": "Sección 14 · María Barranco Norte",
+      "cluster_id": "Group 4",
+      "outlier_score": 1.8292427276827534,
+      "silhouette": 0.17195350287673697,
+      "distance_from_centroid": 2.8649745238449182,
+      "driver_features": "growth_percent_2023_2024|margin_municipal_2023|building_intensity",
+      "retain_in_closest_group": true,
+      "client_singularity_flag": true
+    },
+    {
+      "seccion_id": "2907001007",
+      "display_name": "Sección 07 · Cala de Mijas",
+      "cluster_id": "Group 3",
+      "outlier_score": 1.7056853347698162,
+      "silhouette": 0.11517365714517092,
+      "distance_from_centroid": 2.78587595798998,
+      "driver_features": "participation_municipal_2023|pct_higher_studies|share_psoe",
+      "retain_in_closest_group": true,
+      "client_singularity_flag": true
+    },
+    {
+      "seccion_id": "2907001034",
+      "display_name": "Sección 34 · Riviera Norte",
+      "cluster_id": "Group 3",
+      "outlier_score": 1.3741755262104391,
+      "silhouette": 0.2756726865224046,
+      "distance_from_centroid": 2.573651097901125,
+      "driver_features": "average_age|margin_municipal_2023|share_psoe",
+      "retain_in_closest_group": true,
+      "client_singularity_flag": false
+    },
+    {
+      "seccion_id": "2907001002",
+      "display_name": "Sección 02 · Mijas Este",
+      "cluster_id": "Group 1",
+      "outlier_score": 1.0985162198235563,
+      "silhouette": 0.15815630308669715,
+      "distance_from_centroid": 2.3971804287997345,
+      "driver_features": "density_per_km2|participation_municipal_2023|margin_municipal_2023",
+      "retain_in_closest_group": true,
+      "client_singularity_flag": false
+    },
+    {
+      "seccion_id": "2907001033",
+      "display_name": "Sección 33 · La Vega",
+      "cluster_id": "Group 4",
+      "outlier_score": 1.0454790666715565,
+      "silhouette": 0.2237927072682475,
+      "distance_from_centroid": 2.363227278345128,
+      "driver_features": "participation_municipal_2023|average_age|growth_percent_2023_2024",
+      "retain_in_closest_group": true,
+      "client_singularity_flag": false
+    },
+    {
+      "seccion_id": "2907001003",
+      "display_name": "Sección 03 · Las Cañadas",
+      "cluster_id": "Group 4",
+      "outlier_score": 0.9919028121217462,
+      "silhouette": 0.025794541039778313,
+      "distance_from_centroid": 2.328929007728855,
+      "driver_features": "margin_municipal_2023|growth_percent_2023_2024|pct_higher_studies",
+      "retain_in_closest_group": true,
+      "client_singularity_flag": false
+    },
+    {
+      "seccion_id": "2907001029",
+      "display_name": "Sección 29 · Doña Ermita Este",
+      "cluster_id": "Group 4",
+      "outlier_score": 0.8569072262627886,
+      "silhouette": 0.11794046386742332,
+      "distance_from_centroid": 2.242507977093199,
+      "driver_features": "average_age|income_individual|participation_municipal_2023",
+      "retain_in_closest_group": true,
+      "client_singularity_flag": false
+    },
+    {
+      "seccion_id": "2907001015",
+      "display_name": "Sección 15 · Barrio de los ríos",
+      "cluster_id": "Group 5",
+      "outlier_score": 0.7455990461672367,
+      "silhouette": 0.18247738510235834,
+      "distance_from_centroid": 2.171251072055674,
+      "driver_features": "average_age|margin_municipal_2023|participation_municipal_2023",
+      "retain_in_closest_group": true,
+      "client_singularity_flag": false
+    },
+    {
+      "seccion_id": "2907001008",
+      "display_name": "Sección 08 · Barrio de los santos",
+      "cluster_id": "Group 5",
+      "outlier_score": 0.4870318270911079,
+      "silhouette": 0.14229746583558117,
+      "distance_from_centroid": 2.0057223592539013,
+      "driver_features": "margin_municipal_2023|average_age|share_pp",
+      "retain_in_closest_group": true,
+      "client_singularity_flag": false
+    },
+    {
+      "seccion_id": "2907001004",
+      "display_name": "Sección 04 · Centro Salud",
+      "cluster_id": "Group 5",
+      "outlier_score": 0.48583587287923186,
+      "silhouette": 0.2052108074926235,
+      "distance_from_centroid": 2.004956737215775,
+      "driver_features": "growth_percent_2023_2024|average_age|share_psoe",
+      "retain_in_closest_group": true,
+      "client_singularity_flag": false
+    },
+    {
+      "seccion_id": "2907001032",
+      "display_name": "Sección 32 · Entrerríos",
+      "cluster_id": "Group 1",
+      "outlier_score": 0.31932826881491205,
+      "silhouette": 0.14188790349912087,
+      "distance_from_centroid": 1.8983624462961701,
+      "driver_features": "growth_percent_2023_2024|density_per_km2|participation_municipal_2023",
+      "retain_in_closest_group": true,
+      "client_singularity_flag": false
+    },
+    {
+      "seccion_id": "2907001037",
+      "display_name": "Sección 37 · María Zambrano Oeste",
+      "cluster_id": "Group 5",
+      "outlier_score": 0.2832766562620128,
+      "silhouette": 0.04954410697108084,
+      "distance_from_centroid": 1.8752830434173673,
+      "driver_features": "average_age|share_pp|pct_higher_studies",
+      "retain_in_closest_group": true,
+      "client_singularity_flag": false
+    },
+    {
+      "seccion_id": "2907001025",
+      "display_name": "Sección 25 · María Zambrano Este",
+      "cluster_id": "Group 4",
+      "outlier_score": 0.14044104018653386,
+      "silhouette": 0.18510493138231499,
+      "distance_from_centroid": 1.7838430079956265,
+      "driver_features": "average_age|pct_higher_studies|density_per_km2",
+      "retain_in_closest_group": true,
+      "client_singularity_flag": false
+    },
+    {
+      "seccion_id": "2907001010",
+      "display_name": "Sección 10 · El Coto / Lagarejo",
+      "cluster_id": "Group 2",
+      "outlier_score": 0.032589517243418784,
+      "silhouette": 0.34546176304457865,
+      "distance_from_centroid": 1.7147989743773182,
+      "driver_features": "density_per_km2|margin_municipal_2023|building_intensity",
+      "retain_in_closest_group": true,
+      "client_singularity_flag": false
+    },
+    {
+      "seccion_id": "2907001005",
+      "display_name": "Sección 05 · Los Santiago",
+      "cluster_id": "Group 5",
+      "outlier_score": -0.03662925840686891,
+      "silhouette": 0.28444254627277765,
+      "distance_from_centroid": 1.6704867259954637,
+      "driver_features": "average_age|pct_higher_studies|margin_municipal_2023",
+      "retain_in_closest_group": true,
+      "client_singularity_flag": false
+    },
+    {
+      "seccion_id": "2907001035",
+      "display_name": "Sección 35 · Media Legua / Puebla Tranquila",
+      "cluster_id": "Group 2",
+      "outlier_score": -0.14586182906700149,
+      "silhouette": 0.3066911555101934,
+      "distance_from_centroid": 1.6005585777870208,
+      "driver_features": "margin_municipal_2023|average_age|income_individual",
+      "retain_in_closest_group": true,
+      "client_singularity_flag": false
+    },
+    {
+      "seccion_id": "2907001021",
+      "display_name": "Sección 21 · El Albero",
+      "cluster_id": "Group 5",
+      "outlier_score": -0.17177738877541104,
+      "silhouette": -0.0378167229362587,
+      "distance_from_centroid": 1.5839680399168374,
+      "driver_features": "growth_percent_2023_2024|pct_higher_studies|building_intensity",
+      "retain_in_closest_group": false,
+      "client_singularity_flag": true
+    },
+    {
+      "seccion_id": "2907001012",
+      "display_name": "Sección 12 · Avda Los Lirios / Ferrán Caballero",
+      "cluster_id": "Group 5",
+      "outlier_score": -0.24728292286163728,
+      "silhouette": 0.09464708989364695,
+      "distance_from_centroid": 1.5356311551742143,
+      "driver_features": "margin_municipal_2023|average_age|participation_municipal_2023",
+      "retain_in_closest_group": true,
+      "client_singularity_flag": false
+    },
+    {
+      "seccion_id": "2907001030",
+      "display_name": "Sección 30 · Parque Los Olivos / La Noria",
+      "cluster_id": "Group 2",
+      "outlier_score": -0.346868863333493,
+      "silhouette": 0.3279576772283495,
+      "distance_from_centroid": 1.471878554986304,
+      "driver_features": "share_pp|margin_municipal_2023|participation_municipal_2023",
+      "retain_in_closest_group": true,
+      "client_singularity_flag": false
+    },
+    {
+      "seccion_id": "2907001036",
+      "display_name": "Sección 36 · Sierrezuela (Las Lagunas)",
+      "cluster_id": "Group 2",
+      "outlier_score": -0.3779913603728342,
+      "silhouette": 0.40319382092624506,
+      "distance_from_centroid": 1.451954657082671,
+      "driver_features": "income_individual|participation_municipal_2023|margin_municipal_2023",
+      "retain_in_closest_group": true,
+      "client_singularity_flag": false
+    },
+    {
+      "seccion_id": "2907001001",
+      "display_name": "Sección 01 · Mijas Oeste / Valtocado",
+      "cluster_id": "Group 1",
+      "outlier_score": -0.41973784746689075,
+      "silhouette": 0.34408743515000256,
+      "distance_from_centroid": 1.4252295281302632,
+      "driver_features": "growth_percent_2023_2024|pct_higher_studies|income_individual",
+      "retain_in_closest_group": true,
+      "client_singularity_flag": false
+    },
+    {
+      "seccion_id": "2907001018",
+      "display_name": "Sección 18 · Camino Campanales",
+      "cluster_id": "Group 4",
+      "outlier_score": -0.42516151013623865,
+      "silhouette": 0.2706738248761045,
+      "distance_from_centroid": 1.4217574255817036,
+      "driver_features": "margin_municipal_2023|participation_municipal_2023|share_psoe",
+      "retain_in_closest_group": true,
+      "client_singularity_flag": false
+    },
+    {
+      "seccion_id": "2907001028",
+      "display_name": "Sección 28 · Cerros del Águila / La Ponderosa",
+      "cluster_id": "Group 2",
+      "outlier_score": -0.44437506285415435,
+      "silhouette": 0.34577065426483816,
+      "distance_from_centroid": 1.409457356527671,
+      "driver_features": "income_individual|margin_municipal_2023|participation_municipal_2023",
+      "retain_in_closest_group": true,
+      "client_singularity_flag": false
+    },
+    {
+      "seccion_id": "2907001013",
+      "display_name": "Sección 13 · Osunillas",
+      "cluster_id": "Group 1",
+      "outlier_score": -0.47787351232924463,
+      "silhouette": -0.012835633914543907,
+      "distance_from_centroid": 1.3880124291997626,
+      "driver_features": "income_individual|pct_higher_studies|participation_municipal_2023",
+      "retain_in_closest_group": false,
+      "client_singularity_flag": true
+    },
+    {
+      "seccion_id": "2907001011",
+      "display_name": "Sección 11 · Calahonda Sur / El Zoco",
+      "cluster_id": "Group 3",
+      "outlier_score": -0.5235736176385019,
+      "silhouette": 0.31847865126640695,
+      "distance_from_centroid": 1.3587562859277125,
+      "driver_features": "income_individual|average_age|growth_percent_2023_2024",
+      "retain_in_closest_group": true,
+      "client_singularity_flag": false
+    },
+    {
+      "seccion_id": "2907001023",
+      "display_name": "Sección 23 · Riviera Sur",
+      "cluster_id": "Group 3",
+      "outlier_score": -0.5849437915389468,
+      "silhouette": 0.2643072208616877,
+      "distance_from_centroid": 1.3194685296279833,
+      "driver_features": "share_pp|margin_municipal_2023|participation_municipal_2023",
+      "retain_in_closest_group": true,
+      "client_singularity_flag": false
+    },
+    {
+      "seccion_id": "2907001020",
+      "display_name": "Sección 20 · Parque Andalucía",
+      "cluster_id": "Group 4",
+      "outlier_score": -0.6021120164744003,
+      "silhouette": 0.16768662439108728,
+      "distance_from_centroid": 1.3084778317939312,
+      "driver_features": "participation_municipal_2023|growth_percent_2023_2024|building_intensity",
+      "retain_in_closest_group": true,
+      "client_singularity_flag": false
+    },
+    {
+      "seccion_id": "2907001027",
+      "display_name": "Sección 27 · Torrenueva",
+      "cluster_id": "Group 3",
+      "outlier_score": -0.7365399987627651,
+      "silhouette": 0.45202905615477174,
+      "distance_from_centroid": 1.2224201677472715,
+      "driver_features": "growth_percent_2023_2024|participation_municipal_2023|share_pp",
+      "retain_in_closest_group": true,
+      "client_singularity_flag": false
+    },
+    {
+      "seccion_id": "2907001031",
+      "display_name": "Sección 31 · Calahonda Norte",
+      "cluster_id": "Group 3",
+      "outlier_score": -0.9138599816279334,
+      "silhouette": 0.4801016179088894,
+      "distance_from_centroid": 1.108904043690332,
+      "driver_features": "participation_municipal_2023|margin_municipal_2023|share_psoe",
+      "retain_in_closest_group": true,
+      "client_singularity_flag": false
+    },
+    {
+      "seccion_id": "2907001019",
+      "display_name": "Sección 19 · Barrio de las flores Oeste",
+      "cluster_id": "Group 5",
+      "outlier_score": -0.9148044720048822,
+      "silhouette": 0.3390336427978441,
+      "distance_from_centroid": 1.1082994029438806,
+      "driver_features": "building_intensity|share_psoe|margin_municipal_2023",
+      "retain_in_closest_group": true,
+      "client_singularity_flag": false
+    },
+    {
+      "seccion_id": "2907001026",
+      "display_name": "Sección 26 · Mijas Golf",
+      "cluster_id": "Group 2",
+      "outlier_score": -1.012535358513158,
+      "silhouette": 0.5080291148344961,
+      "distance_from_centroid": 1.0457343651077116,
+      "driver_features": "participation_municipal_2023|margin_municipal_2023|share_pp",
+      "retain_in_closest_group": true,
+      "client_singularity_flag": false
+    },
+    {
+      "seccion_id": "2907001022",
+      "display_name": "Sección 22 · El Chaparral",
+      "cluster_id": "Group 3",
+      "outlier_score": -1.1075173162485625,
+      "silhouette": 0.3383471106375366,
+      "distance_from_centroid": 0.984929127461926,
+      "driver_features": "growth_percent_2023_2024|average_age|participation_municipal_2023",
+      "retain_in_closest_group": true,
+      "client_singularity_flag": false
+    },
+    {
+      "seccion_id": "2907001024",
+      "display_name": "Sección 24 · Doña Ermita / Pol San Rafael",
+      "cluster_id": "Group 4",
+      "outlier_score": -1.1121159510536676,
+      "silhouette": 0.28041423075271765,
+      "distance_from_centroid": 0.9819851885409201,
+      "driver_features": "density_per_km2|margin_municipal_2023|building_intensity",
+      "retain_in_closest_group": true,
+      "client_singularity_flag": false
+    },
+    {
+      "seccion_id": "2907001009",
+      "display_name": "Sección 09 · Barrio de las flores Este",
+      "cluster_id": "Group 5",
+      "outlier_score": -1.1805283010410275,
+      "silhouette": 0.255721821298161,
+      "distance_from_centroid": 0.9381891950904977,
+      "driver_features": "growth_percent_2023_2024|pct_higher_studies|share_pp",
+      "retain_in_closest_group": true,
+      "client_singularity_flag": false
+    },
+    {
+      "seccion_id": "2907001017",
+      "display_name": "Sección 17 · Campo Mijas",
+      "cluster_id": "Group 2",
+      "outlier_score": -1.2959495872948112,
+      "silhouette": 0.5120026354310341,
+      "distance_from_centroid": 0.8642991752659482,
+      "driver_features": "income_individual|average_age|margin_municipal_2023",
+      "retain_in_closest_group": true,
+      "client_singularity_flag": false
+    },
+    {
+      "seccion_id": "2907001016",
+      "display_name": "Sección 16 · El Juncal",
+      "cluster_id": "Group 4",
+      "outlier_score": -1.4258260762830455,
+      "silhouette": 0.14986208927689892,
+      "distance_from_centroid": 0.7811552712465203,
+      "driver_features": "average_age|participation_municipal_2023|share_psoe",
+      "retain_in_closest_group": true,
+      "client_singularity_flag": false
+    }
+  ],
+  "structuralGrouping": [
+    {
+      "sectionId": "2907001001",
+      "clusterId": "Group 1"
+    },
+    {
+      "sectionId": "2907001002",
+      "clusterId": "Group 1"
+    },
+    {
+      "sectionId": "2907001003",
+      "clusterId": "Group 2"
+    },
+    {
+      "sectionId": "2907001004",
+      "clusterId": "Group 2"
+    },
+    {
+      "sectionId": "2907001005",
+      "clusterId": "Group 2"
+    },
+    {
+      "sectionId": "2907001006",
+      "clusterId": "Group 2"
+    },
+    {
+      "sectionId": "2907001007",
+      "clusterId": "Group 5"
+    },
+    {
+      "sectionId": "2907001008",
+      "clusterId": "Group 2"
+    },
+    {
+      "sectionId": "2907001009",
+      "clusterId": "Group 2"
+    },
+    {
+      "sectionId": "2907001010",
+      "clusterId": "Group 4"
+    },
+    {
+      "sectionId": "2907001011",
+      "clusterId": "Group 5"
+    },
+    {
+      "sectionId": "2907001012",
+      "clusterId": "Group 3"
+    },
+    {
+      "sectionId": "2907001013",
+      "clusterId": "Group 6"
+    },
+    {
+      "sectionId": "2907001014",
+      "clusterId": "Group 3"
+    },
+    {
+      "sectionId": "2907001015",
+      "clusterId": "Group 3"
+    },
+    {
+      "sectionId": "2907001016",
+      "clusterId": "Group 3"
+    },
+    {
+      "sectionId": "2907001017",
+      "clusterId": "Group 4"
+    },
+    {
+      "sectionId": "2907001018",
+      "clusterId": "Group 3"
+    },
+    {
+      "sectionId": "2907001019",
+      "clusterId": "Group 2"
+    },
+    {
+      "sectionId": "2907001020",
+      "clusterId": "Group 3"
+    },
+    {
+      "sectionId": "2907001021",
+      "clusterId": "Group 2"
+    },
+    {
+      "sectionId": "2907001022",
+      "clusterId": "Group 5"
+    },
+    {
+      "sectionId": "2907001023",
+      "clusterId": "Group 5"
+    },
+    {
+      "sectionId": "2907001024",
+      "clusterId": "Group 3"
+    },
+    {
+      "sectionId": "2907001025",
+      "clusterId": "Group 3"
+    },
+    {
+      "sectionId": "2907001026",
+      "clusterId": "Group 6"
+    },
+    {
+      "sectionId": "2907001027",
+      "clusterId": "Group 5"
+    },
+    {
+      "sectionId": "2907001028",
+      "clusterId": "Group 6"
+    },
+    {
+      "sectionId": "2907001029",
+      "clusterId": "Group 2"
+    },
+    {
+      "sectionId": "2907001030",
+      "clusterId": "Group 6"
+    },
+    {
+      "sectionId": "2907001031",
+      "clusterId": "Group 5"
+    },
+    {
+      "sectionId": "2907001032",
+      "clusterId": "Group 1"
+    },
+    {
+      "sectionId": "2907001033",
+      "clusterId": "Group 3"
+    },
+    {
+      "sectionId": "2907001034",
+      "clusterId": "Group 6"
+    },
+    {
+      "sectionId": "2907001035",
+      "clusterId": "Group 1"
+    },
+    {
+      "sectionId": "2907001036",
+      "clusterId": "Group 4"
+    },
+    {
+      "sectionId": "2907001037",
+      "clusterId": "Group 3"
+    }
+  ],
+  "electoralGrouping": [
+    {
+      "sectionId": "2907001001",
+      "clusterId": "Group 4"
+    },
+    {
+      "sectionId": "2907001002",
+      "clusterId": "Group 5"
+    },
+    {
+      "sectionId": "2907001003",
+      "clusterId": "Group 2"
+    },
+    {
+      "sectionId": "2907001004",
+      "clusterId": "Group 4"
+    },
+    {
+      "sectionId": "2907001005",
+      "clusterId": "Group 4"
+    },
+    {
+      "sectionId": "2907001006",
+      "clusterId": "Group 3"
+    },
+    {
+      "sectionId": "2907001007",
+      "clusterId": "Group 4"
+    },
+    {
+      "sectionId": "2907001008",
+      "clusterId": "Group 4"
+    },
+    {
+      "sectionId": "2907001009",
+      "clusterId": "Group 4"
+    },
+    {
+      "sectionId": "2907001010",
+      "clusterId": "Group 2"
+    },
+    {
+      "sectionId": "2907001011",
+      "clusterId": "Group 1"
+    },
+    {
+      "sectionId": "2907001012",
+      "clusterId": "Group 3"
+    },
+    {
+      "sectionId": "2907001013",
+      "clusterId": "Group 3"
+    },
+    {
+      "sectionId": "2907001014",
+      "clusterId": "Group 4"
+    },
+    {
+      "sectionId": "2907001015",
+      "clusterId": "Group 4"
+    },
+    {
+      "sectionId": "2907001016",
+      "clusterId": "Group 3"
+    },
+    {
+      "sectionId": "2907001017",
+      "clusterId": "Group 2"
+    },
+    {
+      "sectionId": "2907001018",
+      "clusterId": "Group 3"
+    },
+    {
+      "sectionId": "2907001019",
+      "clusterId": "Group 4"
+    },
+    {
+      "sectionId": "2907001020",
+      "clusterId": "Group 3"
+    },
+    {
+      "sectionId": "2907001021",
+      "clusterId": "Group 4"
+    },
+    {
+      "sectionId": "2907001022",
+      "clusterId": "Group 1"
+    },
+    {
+      "sectionId": "2907001023",
+      "clusterId": "Group 1"
+    },
+    {
+      "sectionId": "2907001024",
+      "clusterId": "Group 3"
+    },
+    {
+      "sectionId": "2907001025",
+      "clusterId": "Group 3"
+    },
+    {
+      "sectionId": "2907001026",
+      "clusterId": "Group 2"
+    },
+    {
+      "sectionId": "2907001027",
+      "clusterId": "Group 1"
+    },
+    {
+      "sectionId": "2907001028",
+      "clusterId": "Group 2"
+    },
+    {
+      "sectionId": "2907001029",
+      "clusterId": "Group 3"
+    },
+    {
+      "sectionId": "2907001030",
+      "clusterId": "Group 2"
+    },
+    {
+      "sectionId": "2907001031",
+      "clusterId": "Group 1"
+    },
+    {
+      "sectionId": "2907001032",
+      "clusterId": "Group 5"
+    },
+    {
+      "sectionId": "2907001033",
+      "clusterId": "Group 2"
+    },
+    {
+      "sectionId": "2907001034",
+      "clusterId": "Group 1"
+    },
+    {
+      "sectionId": "2907001035",
+      "clusterId": "Group 3"
+    },
+    {
+      "sectionId": "2907001036",
+      "clusterId": "Group 2"
+    },
+    {
+      "sectionId": "2907001037",
+      "clusterId": "Group 3"
+    }
+  ],
+  "integratedGrouping": [
+    {
+      "sectionId": "2907001001",
+      "clusterId": "Group 1"
+    },
+    {
+      "sectionId": "2907001002",
+      "clusterId": "Group 1"
+    },
+    {
+      "sectionId": "2907001003",
+      "clusterId": "Group 4"
+    },
+    {
+      "sectionId": "2907001004",
+      "clusterId": "Group 4"
+    },
+    {
+      "sectionId": "2907001005",
+      "clusterId": "Group 4"
+    },
+    {
+      "sectionId": "2907001006",
+      "clusterId": "Group 4"
+    },
+    {
+      "sectionId": "2907001007",
+      "clusterId": "Group 1"
+    },
+    {
+      "sectionId": "2907001008",
+      "clusterId": "Group 4"
+    },
+    {
+      "sectionId": "2907001009",
+      "clusterId": "Group 4"
+    },
+    {
+      "sectionId": "2907001010",
+      "clusterId": "Group 2"
+    },
+    {
+      "sectionId": "2907001011",
+      "clusterId": "Group 3"
+    },
+    {
+      "sectionId": "2907001012",
+      "clusterId": "Group 4"
+    },
+    {
+      "sectionId": "2907001013",
+      "clusterId": "Group 1"
+    },
+    {
+      "sectionId": "2907001014",
+      "clusterId": "Group 4"
+    },
+    {
+      "sectionId": "2907001015",
+      "clusterId": "Group 4"
+    },
+    {
+      "sectionId": "2907001016",
+      "clusterId": "Group 4"
+    },
+    {
+      "sectionId": "2907001017",
+      "clusterId": "Group 2"
+    },
+    {
+      "sectionId": "2907001018",
+      "clusterId": "Group 4"
+    },
+    {
+      "sectionId": "2907001019",
+      "clusterId": "Group 4"
+    },
+    {
+      "sectionId": "2907001020",
+      "clusterId": "Group 4"
+    },
+    {
+      "sectionId": "2907001021",
+      "clusterId": "Group 4"
+    },
+    {
+      "sectionId": "2907001022",
+      "clusterId": "Group 3"
+    },
+    {
+      "sectionId": "2907001023",
+      "clusterId": "Group 3"
+    },
+    {
+      "sectionId": "2907001024",
+      "clusterId": "Group 4"
+    },
+    {
+      "sectionId": "2907001025",
+      "clusterId": "Group 4"
+    },
+    {
+      "sectionId": "2907001026",
+      "clusterId": "Group 2"
+    },
+    {
+      "sectionId": "2907001027",
+      "clusterId": "Group 3"
+    },
+    {
+      "sectionId": "2907001028",
+      "clusterId": "Group 2"
+    },
+    {
+      "sectionId": "2907001029",
+      "clusterId": "Group 4"
+    },
+    {
+      "sectionId": "2907001030",
+      "clusterId": "Group 1"
+    },
+    {
+      "sectionId": "2907001031",
+      "clusterId": "Group 3"
+    },
+    {
+      "sectionId": "2907001032",
+      "clusterId": "Group 1"
+    },
+    {
+      "sectionId": "2907001033",
+      "clusterId": "Group 4"
+    },
+    {
+      "sectionId": "2907001034",
+      "clusterId": "Group 3"
+    },
+    {
+      "sectionId": "2907001035",
+      "clusterId": "Group 2"
+    },
+    {
+      "sectionId": "2907001036",
+      "clusterId": "Group 2"
+    },
+    {
+      "sectionId": "2907001037",
+      "clusterId": "Group 4"
+    }
+  ],
+  "solutionComparison": [
+    {
+      "solution_a": "A_structural",
+      "solution_b": "B_electoral",
+      "adjusted_rand_index": 0.2880020663825391,
+      "changed_territories": 29,
+      "note": "label-count comparison; changed count is label-sensitive, ARI is permutation-invariant"
+    },
+    {
+      "solution_a": "A_structural",
+      "solution_b": "C_integrated",
+      "adjusted_rand_index": 0.48129018657109723,
+      "changed_territories": 34,
+      "note": "label-count comparison; changed count is label-sensitive, ARI is permutation-invariant"
+    },
+    {
+      "solution_a": "B_electoral",
+      "solution_b": "C_integrated",
+      "adjusted_rand_index": 0.3398215733982158,
+      "changed_territories": 24,
+      "note": "label-count comparison; changed count is label-sensitive, ARI is permutation-invariant"
+    }
+  ],
+  "namingPreparation": [
+    {
+      "cluster_id": "Group 1",
+      "strongest_positive": "participation_municipal_2023|average_age|share_psoe",
+      "strongest_negative": "density_per_km2|building_intensity|margin_municipal_2023",
+      "representative_sections": "2907001013",
+      "geographic_distribution": "dispersed/non-spatial assignment",
+      "high_internal_consistency": "share_pp|average_age|building_intensity",
+      "high_internal_diversity": "growth_percent_2023_2024|participation_municipal_2023|density_per_km2",
+      "safe_statements": "standardized group means and observed original-unit differences",
+      "unsupported_statements": "causes, motivations, resident concerns, or political strategy",
+      "recommended_neutral_vocabulary": "above average|below average|higher density|lower participation|greater margin",
+      "prohibited_interpretive_vocabulary": "persona|ideology|motivation|target|opportunity|stronghold|priority|message"
+    },
+    {
+      "cluster_id": "Group 2",
+      "strongest_positive": "income_individual|pct_higher_studies|growth_percent_2023_2024",
+      "strongest_negative": "building_intensity|margin_municipal_2023|density_per_km2",
+      "representative_sections": "2907001017",
+      "geographic_distribution": "dispersed/non-spatial assignment",
+      "high_internal_consistency": "pct_higher_studies|building_intensity|growth_percent_2023_2024",
+      "high_internal_diversity": "income_individual|participation_municipal_2023|margin_municipal_2023",
+      "safe_statements": "standardized group means and observed original-unit differences",
+      "unsupported_statements": "causes, motivations, resident concerns, or political strategy",
+      "recommended_neutral_vocabulary": "above average|below average|higher density|lower participation|greater margin",
+      "prohibited_interpretive_vocabulary": "persona|ideology|motivation|target|opportunity|stronghold|priority|message"
+    },
+    {
+      "cluster_id": "Group 3",
+      "strongest_positive": "share_pp|margin_municipal_2023|pct_higher_studies",
+      "strongest_negative": "share_psoe|participation_municipal_2023|building_intensity",
+      "representative_sections": "2907001022",
+      "geographic_distribution": "dispersed/non-spatial assignment",
+      "high_internal_consistency": "density_per_km2|building_intensity|share_pp",
+      "high_internal_diversity": "growth_percent_2023_2024|average_age|participation_municipal_2023",
+      "safe_statements": "standardized group means and observed original-unit differences",
+      "unsupported_statements": "causes, motivations, resident concerns, or political strategy",
+      "recommended_neutral_vocabulary": "above average|below average|higher density|lower participation|greater margin",
+      "prohibited_interpretive_vocabulary": "persona|ideology|motivation|target|opportunity|stronghold|priority|message"
+    },
+    {
+      "cluster_id": "Group 4",
+      "strongest_positive": "density_per_km2|share_psoe|participation_municipal_2023",
+      "strongest_negative": "average_age|share_pp|income_individual",
+      "representative_sections": "2907001016",
+      "geographic_distribution": "dispersed/non-spatial assignment",
+      "high_internal_consistency": "share_psoe|pct_higher_studies|share_pp",
+      "high_internal_diversity": "margin_municipal_2023|participation_municipal_2023|growth_percent_2023_2024",
+      "safe_statements": "standardized group means and observed original-unit differences",
+      "unsupported_statements": "causes, motivations, resident concerns, or political strategy",
+      "recommended_neutral_vocabulary": "above average|below average|higher density|lower participation|greater margin",
+      "prohibited_interpretive_vocabulary": "persona|ideology|motivation|target|opportunity|stronghold|priority|message"
+    },
+    {
+      "cluster_id": "Group 5",
+      "strongest_positive": "building_intensity|density_per_km2|share_psoe",
+      "strongest_negative": "pct_higher_studies|income_individual|share_pp",
+      "representative_sections": "2907001009",
+      "geographic_distribution": "dispersed/non-spatial assignment",
+      "high_internal_consistency": "density_per_km2|income_individual|share_psoe",
+      "high_internal_diversity": "margin_municipal_2023|average_age|growth_percent_2023_2024",
+      "safe_statements": "standardized group means and observed original-unit differences",
+      "unsupported_statements": "causes, motivations, resident concerns, or political strategy",
+      "recommended_neutral_vocabulary": "above average|below average|higher density|lower participation|greater margin",
+      "prohibited_interpretive_vocabulary": "persona|ideology|motivation|target|opportunity|stronghold|priority|message"
+    }
+  ],
+  "evidenceReferences": {
+    "input": "verified Block C primary profiles",
+    "assignments": "distances in standardized selected-feature space",
+    "stability": "repeated initialization plus repeated 80% subsampling, co-membership consistency and ARI",
+    "interpretation": "factual statistical grouping only"
+  },
+  "qualityFindings": [
+    {
+      "check": "primary_sections",
+      "actual": 37,
+      "expected": 37,
+      "status": "pass"
+    },
+    {
+      "check": "unique_sections",
+      "actual": 37,
+      "expected": 37,
+      "status": "pass"
+    },
+    {
+      "check": "selected_population_reconciliation",
+      "actual": 92211,
+      "expected": 92211,
+      "status": "pass"
+    },
+    {
+      "check": "minimum_cluster_size",
+      "actual": 4,
+      "expected": ">=2",
+      "status": "pass"
+    },
+    {
+      "check": "deterministic_repeat_ari",
+      "actual": 1.0,
+      "expected": 1,
+      "status": "pass"
+    },
+    {
+      "check": "adjacency_consistency",
+      "actual": 0.5227272727272727,
+      "expected": "informational",
+      "status": "informational"
+    }
+  ],
+  "rejectedModels": [
+    {
+      "model": "kmeans",
+      "feature_set": "D_reduced",
+      "k": 3,
+      "reason": "lower balanced quality, weak minimum size, or less client-usable than selected solution"
+    },
+    {
+      "model": "kmeans",
+      "feature_set": "D_reduced",
+      "k": 4,
+      "reason": "lower balanced quality, weak minimum size, or less client-usable than selected solution"
+    },
+    {
+      "model": "kmeans",
+      "feature_set": "D_reduced",
+      "k": 6,
+      "reason": "lower balanced quality, weak minimum size, or less client-usable than selected solution"
+    },
+    {
+      "model": "kmeans",
+      "feature_set": "D_reduced",
+      "k": 7,
+      "reason": "lower balanced quality, weak minimum size, or less client-usable than selected solution"
+    },
+    {
+      "model": "kmeans",
+      "feature_set": "D_reduced",
+      "k": 8,
+      "reason": "lower balanced quality, weak minimum size, or less client-usable than selected solution"
+    },
+    {
+      "model": "kmeans",
+      "feature_set": "D_reduced",
+      "k": 9,
+      "reason": "lower balanced quality, weak minimum size, or less client-usable than selected solution"
+    },
+    {
+      "model": "kmeans",
+      "feature_set": "D_reduced",
+      "k": 10,
+      "reason": "lower balanced quality, weak minimum size, or less client-usable than selected solution"
+    }
+  ],
+  "limitations": [
+    "37 observations limit statistical certainty.",
+    "Cluster assignments are descriptive and not causal.",
+    "Non-spatial primary clustering may produce geographically disconnected groups.",
+    "Historical volatility and 2026 accessibility are excluded from the primary solution.",
+    "Socioeconomic occupation and sector variables with complete missingness are rejected.",
+    "No political or strategic naming is supplied."
+  ]
+}

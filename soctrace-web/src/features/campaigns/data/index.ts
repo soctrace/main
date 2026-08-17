@@ -3,10 +3,16 @@ import type { CampaignReport } from "@/features/campaigns/types";
 
 const campaigns: Record<string, CampaignReport> = { [mijas2027Campaign.slug]: mijas2027Campaign };
 
+const publicCampaignSlugs = new Set(["mijas-2027"]);
+
 export function getCampaign(slug: string): CampaignReport | null {
   return campaigns[slug] ?? null;
 }
 
 export function getCampaigns(): CampaignReport[] {
   return Object.values(campaigns);
+}
+
+export function isPublicCampaign(slug: string): boolean {
+  return publicCampaignSlugs.has(slug);
 }

@@ -16,7 +16,11 @@ export function CampaignReportPage() {
     upsert('meta[property="og:title"]', { property: "og:title", content: document.title });
     upsert('meta[property="og:description"]', { property: "og:description", content: description });
     upsert('meta[property="og:type"]', { property: "og:type", content: "website" });
-    return () => { document.title = "soctrace"; };
+    upsert('meta[name="robots"]', { name: "robots", content: "noindex, nofollow" });
+    return () => {
+      document.title = "soctrace";
+      document.head.querySelector('meta[name="robots"]')?.remove();
+    };
   }, []);
   useEffect(() => {
     if (!campaign || !window.location.hash) return;

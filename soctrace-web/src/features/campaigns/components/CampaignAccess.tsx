@@ -2,7 +2,7 @@ import { useEffect, useState, type ReactNode } from "react";
 import { AlertTriangle, LockKeyhole, LogOut, RefreshCw } from "lucide-react";
 import { Navigate, useLocation, useNavigate, useParams } from "react-router-dom";
 import { useAuth } from "@/auth/AuthProvider";
-import { getCampaign } from "@/features/campaigns/data";
+import { getCampaign, isPublicCampaign } from "@/features/campaigns/data";
 import { getCampaignAccess, type CampaignAccessResult } from "@/features/campaigns/services/campaignAccess";
 
 function AccessState({ kind, retry }: { kind: "denied" | "error"; retry?: () => void }) {
@@ -38,18 +38,21 @@ export function CampaignRoute({ children }: { children: ReactNode }) {
   const [attempt, setAttempt] = useState(0);
   const fixture = import.meta.env.DEV ? new URLSearchParams(location.search).get("auditAccess") : null;
   const knownCampaign = Boolean(getCampaign(slug));
+  const publicCampaign = isPublicCampaign(slug);
 
   useEffect(() => {
     let active = true;
     setAccess(null);
+    if (publicCampaign) return () => { active = false; };
     if (loading || !knownCampaign || (!session && !bypassAuth) || fixture === "loading") return () => { active = false; };
     const controlled = developmentFixture(slug, fixture);
     if (controlled) { setAccess(controlled); return () => { active = false; }; }
     if (bypassAuth) { setAccess(developmentFixture(slug, "member")); return () => { active = false; }; }
     getCampaignAccess(slug, session?.user.id ?? "").then((result) => { if (active) setAccess(result); });
     return () => { active = false; };
-  }, [attempt, bypassAuth, fixture, knownCampaign, loading, session, slug]);
+  }, [attempt, bypassAuth, fixture, knownCampaign, loading, publicCampaign, session, slug]);
 
+  if (publicCampaign && knownCampaign) return <>{children}</>;
   if (loading) return <div className="min-h-screen bg-[#05070c]" aria-label="Comprobando sesión" />;
   if (!bypassAuth && !session) return <Navigate to="/login" replace state={{ from: location }} />;
   if (!knownCampaign) return <AccessState kind="denied" />;

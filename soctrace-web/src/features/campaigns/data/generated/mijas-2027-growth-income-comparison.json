@@ -1,0 +1,64 @@
+{
+  "status": "verified descriptive comparison",
+  "incomeReferenceYear": 2023,
+  "coverage": {
+    "incomeSections": 37,
+    "harmonisedFamilies": 32,
+    "missingFamilies": 0,
+    "zeroImputations": 0
+  },
+  "method": "Each 2023 income section uses Block C's verified demographic_family_id crosswalk. Income is population-weighted within each 2021-anchored family using 2023 population (verified 2024 population less verified 2023–2024 absolute change). Group statistics are unweighted across family values. Quartiles use linear interpolation.",
+  "conclusion": "Los territorios de crecimiento sostenido presentan medianas de renta superiores, aunque los rangos de ambos grupos se solapan.",
+  "groups": [
+    {
+      "classification": "sustained_growth",
+      "label": "Crecimiento sostenido",
+      "territoryCount": 15,
+      "individualIncome": {
+        "mean": 12499,
+        "median": 12806,
+        "minimum": 9714,
+        "q1": 11598,
+        "q3": 13769,
+        "maximum": 14415
+      },
+      "householdIncome": {
+        "mean": 32712,
+        "median": 32731,
+        "minimum": 26405,
+        "q1": 29657,
+        "q3": 34260,
+        "maximum": 43114
+      },
+      "individualIncomeExtremes": {
+        "lowest": "Sección 04 · Centro Salud",
+        "highest": "Sección 11 · Calahonda Sur / El Zoco"
+      }
+    },
+    {
+      "classification": "volatile",
+      "label": "Evolución variable",
+      "territoryCount": 17,
+      "individualIncome": {
+        "mean": 10891,
+        "median": 10770,
+        "minimum": 9044,
+        "q1": 9849,
+        "q3": 11341,
+        "maximum": 14024
+      },
+      "householdIncome": {
+        "mean": 31007,
+        "median": 29406,
+        "minimum": 25982,
+        "q1": 28071,
+        "q3": 32448,
+        "maximum": 43167
+      },
+      "individualIncomeExtremes": {
+        "lowest": "Sección 15 · Barrio de los ríos",
+        "highest": "Sección 10 · El Coto / Lagarejo"
+      }
+    }
+  ]
+}

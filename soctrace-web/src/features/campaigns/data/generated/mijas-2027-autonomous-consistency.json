@@ -1,0 +1,63 @@
+{
+  "election": "Elecciones al Parlamento de Andalucía 2026",
+  "election_id": 40,
+  "source_geography": "41 secciones electorales de 2026",
+  "comparison_geography": "37 secciones canónicas de 2024",
+  "aggregation": "Suma de censo, votantes y votos; porcentajes y margen recalculados tras la agregación",
+  "mapping": {
+    "source_sections": 41,
+    "comparison_sections": 37,
+    "minimum_overlap_pct": 99.9998
+  },
+  "relationships": [
+    {
+      "relationship": "income_individual__share_pp",
+      "autonomous_pearson": 0.5874106030753963,
+      "autonomous_spearman": 0.6725936462778568,
+      "n": 37,
+      "missing": 0
+    },
+    {
+      "relationship": "income_individual__share_psoe",
+      "autonomous_pearson": -0.789414981967037,
+      "autonomous_spearman": -0.8065433854907539,
+      "n": 37,
+      "missing": 0
+    },
+    {
+      "relationship": "average_age__participation",
+      "autonomous_pearson": -0.12808781119449128,
+      "autonomous_spearman": -0.1209103840682788,
+      "n": 37,
+      "missing": 0
+    },
+    {
+      "relationship": "density_per_km2__participation",
+      "autonomous_pearson": 0.17319434883311494,
+      "autonomous_spearman": 0.2463252726410621,
+      "n": 37,
+      "missing": 0
+    },
+    {
+      "relationship": "pct_higher_studies__share_pp",
+      "autonomous_pearson": 0.42969801653271145,
+      "autonomous_spearman": 0.5531057373162637,
+      "n": 37,
+      "missing": 0
+    },
+    {
+      "relationship": "pct_higher_studies__share_psoe",
+      "autonomous_pearson": -0.8313233036844202,
+      "autonomous_spearman": -0.8155523944997628,
+      "n": 37,
+      "missing": 0
+    },
+    {
+      "relationship": "growth_percent_2023_2024__participation",
+      "autonomous_pearson": -0.03278803976726773,
+      "autonomous_spearman": -0.07705530213287068,
+      "n": 37,
+      "missing": 0
+    }
+  ]
+}

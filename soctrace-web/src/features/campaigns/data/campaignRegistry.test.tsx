@@ -8,10 +8,10 @@ import { getCampaign } from "@/features/campaigns/data";
 describe("Mijas campaign configuration", () => {
   const campaign = getCampaign("mijas-2027");
   it("loads a complete, uniquely-addressable commercial report", () => {
-    expect(campaign).not.toBeNull(); expect(campaign?.chapters).toHaveLength(11);
-    expect(new Set(campaign?.chapters.map(({ id }) => id)).size).toBe(11);
+    expect(campaign).not.toBeNull(); expect(campaign?.chapters).toHaveLength(10);
+    expect(new Set(campaign?.chapters.map(({ id }) => id)).size).toBe(10);
     expect(campaign?.chapters.map(({ id }) => id)).toContain("your-campaign");
-    expect(campaign?.chapters.map(({ id }) => id)).not.toEqual(expect.arrayContaining(["opportunity-map", "priority-territories", "resource-allocation", "measurement-kpis"]));
+    expect(campaign?.chapters.map(({ id }) => id)).not.toEqual(expect.arrayContaining(["target-profiles", "opportunity-map", "priority-territories", "resource-allocation", "measurement-kpis"]));
     expect(campaign?.chapters.every(({ group }) => ["context", "diagnosis", "priorities", "strategy", "execution", "methodology"].includes(group))).toBe(true);
   });
   it("grouped navigation references only configured chapters", () => {

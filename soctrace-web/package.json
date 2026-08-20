@@ -11,7 +11,8 @@
     "test": "vitest",
     "test:run": "vitest run",
     "test:campaign": "vitest run src/features/campaigns src/auth/returnUrl.test.tsx",
-    "test:browser": "playwright test"
+    "test:browser": "playwright test",
+    "audit:print": "node scripts/campaign-print-audit.mjs"
   },
   "dependencies": {
     "@deck.gl/layers": "^9.3.0",
